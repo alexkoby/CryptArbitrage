@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/dark_grey"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="15dip"
+    android:orientation="horizontal"
+    tools:context="com.example.alexander.cryptarbitrage2.MainActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dip"
+            android:text="@string/main_title"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dip"
+            android:text="@string/home_page"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/view_current_opprotunities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dip"
+            android:layout_marginHorizontal="30dip"
+            android:background="@color/lime_green"
+            android:text="@string/view_current_opprotunities"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/modify_exchanges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dip"
+            android:layout_marginHorizontal="30dip"
+            android:background="@color/dark_blue"
+            android:text="@string/modify_exchanges"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/modify_cryptocurrencies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dip"
+            android:background="@color/green"
+            android:text="@string/modify_cryptocurrencies"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

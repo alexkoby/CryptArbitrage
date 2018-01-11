@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">CryptArbitrage2</string>
+    <string name="main_title">CryptArbitrage</string>
+    <string name="home_page">Home</string>
+    <string name="please_login">Please Login</string>
+    <string name="email">Email:</string>
+    <string name="password">Password</string>
+    <string name="enter_password_here">Enter Password Here</string>
+    <string name="enter_email_here">Enter Email Here       </string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="sign_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="view_current_opprotunities">View Current Opportunities</string>
+    <string name="current_arbitrage_opprotunities">Current Arbitrage Opportunities</string>
+    <string name="modify_exchanges">Modify Exchanges</string>
+    <string name="modify_cryptocurrencies">Modify Cryptocurrencies</string>
+    <string name="current_opprotunities">Current Opportunities</string>
+    <string name="select_all_exchanges">Select All Exchanges</string>
+    <string name="sumbit">Submit</string>
+    <string name="exchange1">Binance</string>
+    <string name="exchange2">Bitthumb</string>
+    <string name="exchange3">Bittrex</string>
+    <string name="exchange4">Bitfinex</string>
+    <string name="exchange5">OKEX</string>
+    <string name="exchange6">Huobi</string>
+    <string name="exchange7">Poloniex</string>
+    <string name="exchange8">HitBTC</string>
+    <string name="exchange9">GDAX</string>
+    <string name="exchange10">BitStamp</string>
+    <string name="exchange11">Bit-Z</string>
+    <string name="exchange12">Kraken</string>
+    <string name="exchange13">Ethfinex</string>
+    <string name="exchange14">KuCoin</string>
+    <string name="exchange15">CoinNest</string>
+    <string name="exchange16">CoinOne</string>
+    <string name="exchange17">Gate.io</string>
+    <string name="exchange18">Bitcoin Indonesis</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="select_all_cryptocurrencies">Select All Cryptocurrencies</string>
+    <string name="bitcoin_price">Bitcoin Price: </string>
+
+</resources>

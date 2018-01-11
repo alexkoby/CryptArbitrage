@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/dark_grey"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="15dip"
+    android:orientation="horizontal"
+    tools:context="com.example.alexander.cryptarbitrage2.MainActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dip"
+            android:text="@string/modify_cryptocurrencies"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_all_cryptocurrencies"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="50dip"/>
+
+                    <Button
+                        android:id="@+id/select_all_cryptocurrencies_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/off"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange1"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="90dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange1_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange2"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="78dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange2_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange3"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="105dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange3_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange4"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="95dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange4_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange5"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="113dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange5_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange6"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="110dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange6_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange7"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="83dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange7_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange8"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="99dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange8_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange9"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="111dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange9_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange10"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="76dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange10_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange11"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="121dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange11_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange12"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="100dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange12_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange13"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="88dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange13_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange14"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="96dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange14_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange15"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="76dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange15_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange16"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="81dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange16_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange17"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="94dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange17_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dip">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchange18"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/exchange18_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/submit_exchange_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dip"
+                        android:layout_marginRight="100dip"
+                        android:background="@color/light_sea_green"
+                        android:text="@string/sumbit"
+                        android:textAlignment="center" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</LinearLayout>
