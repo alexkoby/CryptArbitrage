@@ -40,14 +40,11 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
         //if first time opening this page, create allExchangesButton - arrayList of all buttons
          //The data has likely been changed before, try to load it
-        if(!MainActivity.isCreatedExchanges){
-            setUpExchangeButtons();
-        }
-        if(MainActivity.isCreatedExchanges) {
-            getExchangeInfo1();
-            setContentView(R.layout.exchanges_page);
-            System.out.println("Papa Johns");
-        }
+        //if(!MainActivity.isCreatedExchanges){
+        setUpExchangeButtons();
+
+
+
 
 
         //getExchangeInfo();
@@ -59,6 +56,11 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
         submitExchangeButton = findViewById(R.id.submit_exchange_button);
         submitExchangeButton.setOnClickListener(this);
+
+        if(MainActivity.isCreatedExchanges) {
+            getExchangeInfo1();
+            System.out.println("Papa Johns");
+        }
 
         MainActivity.isCreatedExchanges = true;
 
