@@ -29,10 +29,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currencies_page);
 
-        MainActivity.isCreatedCryptocurrencies = true;
-        //Create and add all other Buttons to ArrayList
-        allCurrenciesButtons = new ArrayList<>(); //not sure whether to use ArrayList or Array, might add more later
-        setUpButtons();
+
 
         //set up click listeners
         selectAllCurrenciesButton = findViewById(R.id.select_all_cryptocurrencies_button);
@@ -40,6 +37,15 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
 
         submitCurrencyButton = findViewById(R.id.submit_currency_button);
         submitCurrencyButton.setOnClickListener(this);
+
+        //Create and add all other Buttons to ArrayList
+        setUpButtons();
+
+        if(MainActivity.isCreatedCryptocurrencies){
+            getSavedCoins();
+        }
+
+        MainActivity.isCreatedCryptocurrencies = true;
 
 
     }
@@ -70,6 +76,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                         addCurrencyToExchanges(button);
                     }
                 }
+                saveSelectedCoinsInfo(allCurrenciesButtons);
                 System.out.println("size is: " + HomePage.bitfinex.getCoins().size());
                 startActivity(new Intent(this, HomePage.class));
 
@@ -77,6 +84,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
     }
 
     public void setUpButtons(){
+        allCurrenciesButtons = new ArrayList<>();
         ToggleButton currencyButton1 = findViewById(R.id.currency1_button);
         allCurrenciesButtons.add(currencyButton1);
         ToggleButton currencyButton2 = findViewById(R.id.currency2_button);
@@ -328,7 +336,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
      * @param listOfButtons
      */
     public void saveSelectedCoinsInfo(ArrayList<ToggleButton> listOfButtons){
-        String fileName = "ExchangeInformation";
+        String fileName = "CurrenciesInformation";
         String message;
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
