@@ -19,27 +19,24 @@ public class ViewCryptoOpprotunities extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crypto_opprotunities);
 
-        addAsksAndBidsToCoins(HomePage.taskBitfinex, MainActivity.bitfinex);
-        addAsksAndBidsToCoins(HomePage.taskBittrex, MainActivity.bitfinex);
+        addAsksAndBidsToCoins(HomePage.taskBitfinex, HomePage.bitfinex);
+        addAsksAndBidsToCoins(HomePage.taskBittrex, HomePage.bittrex);
 
+        //System.out.println("Homepage: " + MainActivity.isCreatedHomepage + "CryptoPage " +
+        //        MainActivity.isCreatedCryptocurrencies + " Exchanges: " + MainActivity.isCreatedExchanges);
 
-        for(int i = 0; i < 16; i ++) {
-            String test = MainActivity.bitfinex.getCoins().get(i).getName() + " ask price USD: " +
-                    MainActivity.bitfinex.getCoins().get(i).getAskPriceUSD() +
-                    "  ask price: BTC" + MainActivity.bitfinex.getCoins().get(i).getBidPriceBTC()
-                    + " ask price: ETH" + MainActivity.bitfinex.getCoins().get(i).getAskPriceETH();
-            String test2 = MainActivity.bittrex.getCoins().get(i).getName() + " ask price USD: " +
-                    MainActivity.bittrex.getCoins().get(i).getAskPriceUSD() +
-                    "  ask price: BTC" + MainActivity.bittrex.getCoins().get(i).getBidPriceBTC()
-                    + " ask price: ETH" + MainActivity.bittrex.getCoins().get(i).getAskPriceETH();
-            Log.d("Bitfinex", test);
-            Log.d("Bittrex", test);
-        }
-
+        System.out.print("Homepage size is: " + HomePage.taskBittrex.getExchangeCoinsAskUSD().size());
+        System.out.println("AKA: " + HomePage.bittrex.getCoins().size());
     }
 
-    //For every coin in exchange, add ask and bid price to the coin's data field
+
+    /**
+     * Transfers all of the data from the download task to the exchange
+     * @param dt1 is the download task
+     * @param e is the exchange
+     */
     public void addAsksAndBidsToCoins(DownloadTask dt1, Exchange e){
+        System.out.println(e.getName());
         for(Coin c1: e.getCoins()){
             int index = e.getCoins().indexOf(c1);
             c1.setBidPriceUSD(dt1.getExchangeCoinsBidUSD().get(index));
@@ -48,7 +45,11 @@ public class ViewCryptoOpprotunities extends Activity{
             c1.setAskPriceBTC(dt1.getExchangeCoinsAskBTC().get(index));
             c1.setBidPriceETH(dt1.getExchangeCoinsBIDETH().get(index));
             c1.setAskPriceETH(dt1.getExchangeCoinsAskETH().get(index));
+
+            System.out.println(c1.getName() + " " + c1.getAskPriceUSD() + " " + c1.getAskPriceBTC() + " " + c1.getAskPriceETH());
+
         }
+
     }
 
 

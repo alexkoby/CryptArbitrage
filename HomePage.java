@@ -5,11 +5,17 @@ import android.view.View;
 import android.content.Intent;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Alexander on 1/7/2018.
  */
 
 public class HomePage extends Activity implements View.OnClickListener {
+    static ArrayList<Exchange> listOfExchanges;
+    static Exchange bitfinex;
+    static Exchange bittrex;
+
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
 
@@ -17,6 +23,18 @@ public class HomePage extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
+
+        //If this is the first time visiting the homepage
+        if(!MainActivity.isCreatedHomepage) {
+            listOfExchanges = new ArrayList<>();
+            bitfinex = new Exchange("Bitfinex");
+            bittrex = new Exchange("Bittrex");
+
+            taskBitfinex = new DownloadTask("Bitfinex");
+            taskBittrex = new DownloadTask("Bittrex");
+
+        }
+
 
         //set up click listeners for buttons on home page
         View viewCurrentOpprotunities = findViewById(R.id.view_current_opprotunities);
@@ -28,12 +46,19 @@ public class HomePage extends Activity implements View.OnClickListener {
         View modifyCryptocurrencies = findViewById(R.id.modify_cryptocurrencies);
         modifyCryptocurrencies.setOnClickListener(this);
 
-        taskBitfinex = new DownloadTask("Bitfinex");
-        taskBittrex = new DownloadTask("Bittrex");
 
-        getAsksAndBids(taskBitfinex, MainActivity.bitfinex, "https://api.bitfinex.com/v1/pubticker/");
-//        getAsksAndBids(taskBittrex, MainActivity.bittrex, "https://bittrex.com/api/v1.1/public/getticker?market=" );
+        MainActivity.isCreatedHomepage = true;
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+        recreateTasks();
 
+        if(MainActivity.isCreatedExchanges == true == MainActivity.isCreatedCryptocurrencies) {
+            getAsksAndBids(taskBitfinex, HomePage.bitfinex, "https://api.bitfinex.com/v1/pubticker/");
+            getAsksAndBids(taskBittrex, HomePage.bittrex, "https://bittrex.com/api/v1.1/public/getticker?market=");
+
+        }
     }
 
 
@@ -42,6 +67,7 @@ public class HomePage extends Activity implements View.OnClickListener {
 
         String [] APIs = new String [e.getCoins().size()*3];
 
+        System.out.println(e.getCoins().size());
         for(int i = 0; i < e.getCoins().size(); i+=1){
             switch (e.getName()){
                 case "Bitfinex":
@@ -75,8 +101,16 @@ public class HomePage extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.modify_cryptocurrencies:
-
+                Intent k = new Intent(this, Cryptocurrencies.class);
+                startActivity(k);
                 break;
         }
     }
+
+    public void recreateTasks(){
+        taskBitfinex = new DownloadTask("Bitfinex");
+        taskBittrex = new DownloadTask("Bittrex");
+    }
+
+
 }

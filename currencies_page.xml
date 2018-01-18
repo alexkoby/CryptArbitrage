@@ -39,16 +39,16 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="280dip"
                         android:layout_height="wrap_content"
                         android:text="@string/select_all_cryptocurrencies"
                         android:textColor="@color/black"
                         android:textSize="23sp"
-                        android:paddingRight="50dip"/>
+                        android:paddingBottom="20dip"/>
 
                     <Button
                         android:id="@+id/select_all_cryptocurrencies_button"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dip"
                         android:layout_height="wrap_content"
                         android:text="@string/off"/>
 
@@ -59,354 +59,349 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/currency1"
+                        android:layout_width="200dip"
                         android:layout_height="wrap_content"
-                        android:text="@string/exchange1"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="90dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange1_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange2"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="78dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange2_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange3"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="105dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange3_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange4"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="95dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange4_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange5"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="113dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange5_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange6"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="110dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange6_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange7"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="83dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange7_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange8"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="99dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange8_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange9"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="111dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange9_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange10"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="76dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange10_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange11"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="121dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange11_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange12"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="100dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange12_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange13"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="88dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange13_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange14"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="96dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange14_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange15"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="76dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange15_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange16"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="81dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange16_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange17"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="94dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange17_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingBottom="8dip">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange18"
+                        android:text="@string/currency1"
                         android:textColor="@color/black"
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/exchange18_button"
-                        android:layout_width="match_parent"
+                        android:id="@+id/currency1_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency2"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency2"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency2_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency3"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency3"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency3_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency4"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency4"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency4_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency5"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency5"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency5_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency6"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency6"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency6_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency7"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency7"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency7_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency8"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency8"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency8_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency9"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency9"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency9_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency10"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency10"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency10_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency11"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency11"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency11_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency12"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency12"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency12_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency13"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency13_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency14"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency14_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency15"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency15_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency16"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency16_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency17"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency17_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency18"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/currency18_button"
+                        android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
 
@@ -414,14 +409,412 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency19"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency19"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency19_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency20"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency20"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency20_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency21"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency21"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency21_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency22"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency22"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency22_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency23"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency23"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency23_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency24"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency24"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency24_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency25"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency25"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency25_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency26"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency26"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency26_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency27"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency27"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency27_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency28"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency28"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency28_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency29"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency29"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency29_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency30"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency30"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency30_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency31"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency31"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency31_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency32"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency32"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency32_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency33"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency33"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency33_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency34"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency34"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency34_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency35"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency35"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency35_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency36"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency36"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency36_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency37"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency37"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency37_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency38"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency38"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/currency38_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="200dip"
                     android:layout_height="wrap_content">
 
                     <Button
-                        android:id="@+id/submit_exchange_button"
-                        android:layout_width="match_parent"
+                        android:id="@+id/submit_currency_button"
+                        android:layout_width="120dip"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dip"
-                        android:layout_marginRight="100dip"
                         android:background="@color/light_sea_green"
                         android:text="@string/sumbit"
                         android:textAlignment="center" />

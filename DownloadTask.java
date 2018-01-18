@@ -5,9 +5,8 @@ import android.view.View;
 
 import org.json.JSONObject;
 
-import java.io.Console;
 import java.io.FileNotFoundException;
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -18,30 +17,24 @@ import android.util.Log;
 
 /**
  * Created by Alexander on 1/9/2018.
- *
- * This class is used to parse all the URLs and retrieve the bids and asks for each coin
- * Stores these values in an arrayList - not storing in coins themselves because ran into problem where
- *     it takes a while to retrieve all values and don't want values to end up null due to time constraints. Thus, 
- *     in another activity, all the values are inserted into respective coin. I now realize this was not a smart
- *     design idea and it is possible to insert the values directly into the coins themselves, will make alterations when
- *     the rest of the implementation works properly.
  */
 
 public class DownloadTask extends AsyncTask<String,Void,String> {
 
 
-//Why can't this go in constructor or doInBackground? -- always says its null
-    ArrayList<Double> exchangeCoinsBidUSD = new ArrayList<>(5);
-    ArrayList<Double> exchangeCoinsAskUSD = new ArrayList<>(5);
-    ArrayList<Double> exchangeCoinsBidBTC = new ArrayList<>(5);
-    ArrayList<Double> exchangeCoinsAskBTC = new ArrayList<>(5);
-    ArrayList<Double> exchangeCoinsBidETH = new ArrayList<>(5);
-    ArrayList<Double> exchangeCoinsAskETH = new ArrayList<>(5);
+    //Why can't this go in constructor or doInBackground? -- always says its null
+    ArrayList<Double> exchangeCoinsBidUSD = new ArrayList<>();
+    ArrayList<Double> exchangeCoinsAskUSD = new ArrayList<>();
+    ArrayList<Double> exchangeCoinsBidBTC = new ArrayList<>();
+    ArrayList<Double> exchangeCoinsAskBTC = new ArrayList<>();
+    ArrayList<Double> exchangeCoinsBidETH = new ArrayList<>();
+    ArrayList<Double> exchangeCoinsAskETH = new ArrayList<>();
 
     String exchangeName;
 
 
     public DownloadTask(String exchangeName){
+        //gives ask and bid for BTCBTC 1:1, BTCETH = -999, ETHETH 1:1
         this.exchangeName = exchangeName;
 
         exchangeCoinsAskBTC.add(1.0);
@@ -57,31 +50,36 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String [] urls) {
-       
+        //Create priority Queue first with USD endings, then BTC, then ETH
+        //skips BTCBTC, BTCETH, ETHETH - DNE
 
-        PriorityQueue<String> q1 = new PriorityQueue<>();
+        LinkedList<String> q1 = new LinkedList<>();
 
-        //add all strings of URLs into queue
         for(int i = 0; i < urls.length; i++){
             q1.add(urls[i]);
+            System.out.println(q1.size() + " size");
         }
         String result = "";
-        //for debugging purposes
-        System.out.println(getStatus());
 
-        //used to figure out if dealing with a coin:USD, coin:BTC, or coin:ETH
-        int counter = 0; 
+        int counter = 0; //specify which arrayList to add results to - explicit for first 3
+        //rounds, then rotate
 
-        //while queue has items still in it
         while(q1.size()!=0){
-            counter++; //yes counter starts at one
+            counter++;
             result = "";
             URL url;
             HttpURLConnection urlConnection = null;
 
+            //skips BTCBTC, BTCETH, ETHETH as they DNE
+            if(counter == 2 || counter == 3 || counter == 6){
+                q1.remove();
+                continue;
+            }
+
             try {
                 url = new URL(q1.peek());
                 q1.remove();
+
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 InputStream in = urlConnection.getInputStream();
@@ -89,8 +87,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 InputStreamReader reader = new InputStreamReader(in);
 
                 int data = reader.read();
-                
-                //while still characters to be read, add to string
+
                 while (data != -1) {
                     char current = (char) data;
                     result += current;
@@ -98,98 +95,92 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 }
                 JSONObject jsonObject = new JSONObject(result);
 
-                //Check if page can be reached, this doesn't help because Exception is already thrown above
-                //Was trying to see if what showed up on my computer could be used to check if page could be reached
-                //Some URLs didn't work - network errors - too many times using API/minute
-                JSONObject jsonObjectSuccessBittrex = new JSONObject(jsonObject.getString("success"));
-                JSONObject jsonObjectSuccessBitfinex = new JSONObject(jsonObject.getString("message"));
-                System.out.println(counter + " " + jsonObjectSuccessBitfinex);
-                if((exchangeName.equals("Bittrex") && jsonObjectSuccessBittrex.getBoolean("success")==false) ||
-                        (exchangeName.equals("Bitfinex") && jsonObjectSuccessBitfinex.getString
-                                ("bid")==null)){
-                    //Dealing with a coin:USD ratio
-                    if(counter%3 == 1){
-                        exchangeCoinsBidUSD.add(-999.0);
-                        exchangeCoinsAskUSD.add(-999.0);
-                    }
-                    //coin:BTC ratio
-                    else if (counter%3 == 2){
-                        exchangeCoinsBidBTC.add(-999.0);
-                        exchangeCoinsAskBTC.add(-999.0);
-                    }
-                    //coin:Eth ratio
-                    else{
-                        exchangeCoinsBidETH.add(-999.0);
-                        exchangeCoinsAskETH.add(-999.0);
-                    }
-                    continue;
-                }
 
-                    //if its bittrex, need to check in result section of JSON
+                /**Check if page can be reached
+                 JSONObject jsonObjectSuccessBittrex = new JSONObject(jsonObject.getString("success"));
+                 JSONObject jsonObjectSuccessBitfinex = new JSONObject(jsonObject.getString("message"));
+                 System.out.println(counter + " " + jsonObjectSuccessBitfinex);
+                 if((exchangeName.equals("Bittrex") && jsonObjectSuccessBittrex.getBoolean("success")==false) ||
+                 (exchangeName.equals("Bitfinex") && jsonObjectSuccessBitfinex.getString
+                 ("bid")==null)){
+
+                 if(counter%3 == 1){
+                 exchangeCoinsBidUSD.add(-999.0);
+                 exchangeCoinsAskUSD.add(-999.0);
+                 }
+                 else if (counter%3 == 2){
+                 exchangeCoinsBidBTC.add(-999.0);
+                 exchangeCoinsAskBTC.add(-999.0);
+                 }
+                 else{
+                 exchangeCoinsBidETH.add(-999.0);
+                 exchangeCoinsAskETH.add(-999.0);
+                 }
+                 continue;
+                 }
+                 */
+                //if its bittrex, need to check in result section of JSON
                 if(exchangeName.equals("Bittrex")) {
 
                     jsonObject = new JSONObject(jsonObject.getString("result"));
                 }
 
-                //if coin:USD
                 if(counter%3 == 1 ) {
-                    
                     //search for 'bid' if bitfinex, else search for 'Bid'
                     if(exchangeName.equals("Bitfinex")) {
                         exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString("bid")));
                         exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString("ask")));
                     }
                     else if (exchangeName.equals("Bittrex")){
+                        System.out.println("Number1");
                         exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString("Bid")));
                         exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString("Ask")));
                     }
                 }
-                //if coin:USD and not BTCBTC - DNE
-                else if (counter%3 == 2 && counter!=2){
+                else if (counter%3 == 2){
                     if(exchangeName.equals("Bitfinex")) {
                         exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString("bid")));
                         exchangeCoinsAskBTC.add(Double.parseDouble(jsonObject.getString("ask")));
                     }
                     else if (exchangeName.equals("Bittrex")){
-                        exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString("Bid")));
-                        exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString("Ask")));
+                        System.out.println("Number2");
+                        exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString("Bid")));
+                        exchangeCoinsAskBTC.add(Double.parseDouble(jsonObject.getString("Ask")));
                     }
-            }
-                //if coin:Eth and neither BTC:ETH nor ETH:ETH
-                else if (counter%3 == 0 && counter > 6 ){ //dont really need the if, but makes it more clear
+                }
+                else if (counter%3 == 0){ //dont really need the if, but makes it more clear
                     if(exchangeName.equals("Bitfinex")) {
                         exchangeCoinsBidETH.add(Double.parseDouble(jsonObject.getString("bid")));
                         exchangeCoinsAskETH.add(Double.parseDouble(jsonObject.getString("ask")));
                     }
-                else if (exchangeName.equals("Bitrex")){
-                    exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString("Bid")));
-                    exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString("Ask")));
+                    else if (exchangeName.equals("Bittrex")){
+                        System.out.println("Number3");
+                        exchangeCoinsBidETH.add(Double.parseDouble(jsonObject.getString("Bid")));
+                        exchangeCoinsAskETH.add(Double.parseDouble(jsonObject.getString("Ask")));
+                    }
                 }
             }
-        }
-            
-        catch (Exception e) {
-            //if FileNotFoundException, plug in -999.0 in place of true values
-            if(e instanceof FileNotFoundException){
-                if(counter%3 == 1){
-                    exchangeCoinsAskUSD.add(-999.0);
-                    exchangeCoinsBidUSD.add(-999.0);
+            catch (Exception e) {
+                System.out.println("Hey guys: " + (e instanceof FileNotFoundException));
+                if(e instanceof FileNotFoundException || e instanceof org.json.JSONException){
+                    if(counter%3 == 1){
+                        exchangeCoinsAskUSD.add(-999.0);
+                        exchangeCoinsBidUSD.add(-999.0);
+                    }
+                    else if(counter%3 == 2){
+                        exchangeCoinsAskBTC.add(-999.0);
+                        exchangeCoinsBidBTC.add(-999.0);
+                    }
+                    else if (counter%3 == 0) { //could just be else, but this is more clear
+                        exchangeCoinsAskETH.add(-999.0);
+                        exchangeCoinsBidETH.add(-999.0);
+                    }
                 }
-                else if(counter%3 == 2){
-                    exchangeCoinsAskBTC.add(-999.0);
-                    exchangeCoinsBidBTC.add(-999.0);
-                }
-                else if (counter%3 == 0) { //could just be else, but this is more clear
-                    exchangeCoinsAskETH.add(-999.0);
-                    exchangeCoinsBidETH.add(-999.0);
-                }
+                e.printStackTrace();
             }
-            e.printStackTrace();
         }
-    }
         return result;
     }
-    //Dont really need anymore, keeping J.I.C.
     @Override
     protected void onPostExecute(String result){
         super.onPostExecute(result);
@@ -206,11 +197,11 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             e.printStackTrace();
         }
     }
-//probably don't need anymore
+    //probably don't need anymore
     public ArrayList<Double> getExchangeCoinsBidUSD() {
         return exchangeCoinsBidUSD;
     }
-//probably don't need anymore
+    //probably don't need anymore
     public ArrayList<Double> getExchangeCoinsAskUSD() {
         return exchangeCoinsAskUSD;
     }
