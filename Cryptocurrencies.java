@@ -205,7 +205,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.currency6_button:
-                Coin nemBittrex = new Coin("NEM","NEM", "Bittrex");
+                Coin nemBittrex = new Coin("NEM","XEM", "Bittrex");
                 HomePage.bittrex.addCoin(nemBittrex);
                 break;
 
@@ -238,25 +238,24 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(neoBitfinex);
                 Coin neoBittrex = new Coin("NEO","NEO", "Bittrex");
                 HomePage.bittrex.addCoin(neoBittrex);
-
                 break;
 
             case R.id.currency12_button:
                 Coin moneroBitfinex = new Coin("Monero","ETH", "Bitfinex");
                 HomePage.bitfinex.addCoin(moneroBitfinex);
-                Coin moneroBittrex = new Coin("Monero","ETH", "Bittrex");
+                Coin moneroBittrex = new Coin("Monero","XMR", "Bittrex");
                 HomePage.bittrex.addCoin(moneroBittrex);
                 break;
 
             case R.id.currency13_button:
                 Coin qtumBitfinex = new Coin("QTUM","ETH", "Bitfinex");
                 HomePage.bitfinex.addCoin(qtumBitfinex);
-                Coin qtumBittrex = new Coin("QTUM","ETH", "Bittrex");
+                Coin qtumBittrex = new Coin("QTUM","QTUM", "Bittrex");
                 HomePage.bittrex.addCoin(qtumBittrex);
                 break;
 
             case R.id.currency14_button:
-                Coin liskBittrex = new Coin("Lisk","ETH", "Bittrex");
+                Coin liskBittrex = new Coin("Lisk","LSK", "Bittrex");
                 HomePage.bittrex.addCoin(liskBittrex);
                 break;
 
@@ -272,49 +271,61 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.currency17_button:
-                Coin vergeBittrex = new Coin("Verge","ETH", "Bittrex");
+                Coin vergeBittrex = new Coin("Verge","XVG", "Bittrex");
                 HomePage.bittrex.addCoin(vergeBittrex);
                 break;
 
             case R.id.currency18_button:
-                Coin siacoinBittrex = new Coin("Siacoin","ETH", "Bittrex");
+                Coin siacoinBittrex = new Coin("Siacoin","SC", "Bittrex");
                 HomePage.bittrex.addCoin(siacoinBittrex);
                 break;
 
             case R.id.currency19_button:
-                Coin stratisBittrex = new Coin("Stratis","ETH", "Bittrex");
+                Coin stratisBittrex = new Coin("Stratis","STRAT", "Bittrex");
                 HomePage.bittrex.addCoin(stratisBittrex);
                 break;
 
             case R.id.currency20_button:
                 Coin zcashBitfinex = new Coin("Z-Cash","ZEC", "Bitfinex");
                 HomePage.bitfinex.addCoin(zcashBitfinex);
-                Coin zcashBittrex = new Coin("Z-Cash","ETH", "Bittrex");
+                Coin zcashBittrex = new Coin("Z-Cash","ZEC", "Bittrex");
                 HomePage.bittrex.addCoin(zcashBittrex);
                 break;
 
             case R.id.currency21_button: //DogeCoin
+                Coin dogecoinBittrex = new Coin("Dogecoin","DOGE", "Bittrex");
+                HomePage.bittrex.addCoin(dogecoinBittrex);
                 break;
 
             case R.id.currency22_button: //Steem
+                Coin steemBittrex = new Coin("Steem","STEEM", "Bittrex");
+                HomePage.bittrex.addCoin(steemBittrex);
                 break;
 
             case R.id.currency23_button: //Waves
+                Coin wavesBittrex = new Coin("Waves","WAVES", "Bittrex");
+                HomePage.bittrex.addCoin(wavesBittrex);
                 break;
 
             case R.id.currency24_button: //VeChain
                 break;
 
             case R.id.currency25_button: //Digibyte
+                Coin digibyteBittrex = new Coin("Digibyte","DGB", "Bittrex");
+                HomePage.bittrex.addCoin(digibyteBittrex);
                 break;
 
             case R.id.currency26_button: //Komodo
+                Coin komodoBittrex = new Coin("Komodo","KMD", "Bittrex");
+                HomePage.bittrex.addCoin(komodoBittrex);
                 break;
 
             case R.id.currency27_button: //HShare
                 break;
 
             case R.id.currency28_button: //Ark
+                Coin arkBittrex = new Coin("Ark","ARK", "Bittrex");
+                HomePage.bittrex.addCoin(arkBittrex);
                 break;
 
         }
