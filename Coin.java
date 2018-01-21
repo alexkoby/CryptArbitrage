@@ -1,11 +1,13 @@
 package com.example.alexander.cryptarbitrage2;
 
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by Alexander on 1/9/2018.
  */
 
-public class Coin {
+public class Coin implements Comparable<Coin>{
 
     String name;
     String abbreviation;
@@ -101,10 +103,9 @@ public class Coin {
     }
 
 
-
-
-
-
-
-
+    @Override
+    //sorts coins alphabetically
+    public int compareTo(@NonNull Coin coin) {
+        return this.getName().compareTo(coin.getName());
+    }
 }
