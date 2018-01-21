@@ -15,6 +15,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     static ArrayList<Exchange> listOfExchanges;
     static Exchange bitfinex;
     static Exchange bittrex;
+    static Exchange binance;
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
@@ -30,8 +31,9 @@ public class HomePage extends Activity implements View.OnClickListener {
             bitfinex = new Exchange("Bitfinex");
             bittrex = new Exchange("Bittrex");
 
-            taskBitfinex = new DownloadTask("Bitfinex");
-            taskBittrex = new DownloadTask("Bittrex");
+            //taskBitfinex = new DownloadTask("Bitfinex");
+            taskBittrex = new DownloadTask("Bittrex",
+                    "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
 
         }
 
@@ -53,11 +55,11 @@ public class HomePage extends Activity implements View.OnClickListener {
     public void onStart(){
         super.onStart();
         recreateTasks();
-
-        if(MainActivity.isCreatedExchanges == true == MainActivity.isCreatedCryptocurrencies) {
-            getAsksAndBids(taskBitfinex, HomePage.bitfinex, "https://api.bitfinex.com/v1/pubticker/");
-            getAsksAndBids(taskBittrex, HomePage.bittrex, "https://bittrex.com/api/v1.1/public/getticker?market=");
-
+System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainActivity.isCreatedExchanges + "Exchanges");
+        if(MainActivity.isCreatedExchanges  && MainActivity.isCreatedCryptocurrencies) {
+            //getAsksAndBids(taskBitfinex, HomePage.bitfinex, "https://api.bitfinex.com/v1/pubticker/");
+            System.out.println("Went here" + MainActivity.isCreatedExchanges);
+            getAsksAndBids(taskBittrex, HomePage.bittrex, "https://bittrex.com/api/v1.1/public/getmarketsummaries");
         }
     }
 
@@ -76,11 +78,9 @@ public class HomePage extends Activity implements View.OnClickListener {
                     APIs[3*i+2] = API.concat(e.getCoins().get(i).getAbbreviation().concat("ETH"));
                     break;
                 case "Bittrex":
-                    APIs[3*i] = API.concat("USDT-".concat(e.getCoins().get(i).getAbbreviation()));
-
-                    APIs[3*i+1] = API.concat("BTC-".concat(e.getCoins().get(i).getAbbreviation()));
-
-                    APIs[3*i+2] = API.concat("ETH-".concat(e.getCoins().get(i).getAbbreviation()));
+                    APIs[3*i] = "USDT-".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3*i+1] = "BTC-".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3*i+2] = "ETH-".concat(e.getCoins().get(i).getAbbreviation());
                     break;
             }
 
@@ -108,8 +108,9 @@ public class HomePage extends Activity implements View.OnClickListener {
     }
 
     public void recreateTasks(){
-        taskBitfinex = new DownloadTask("Bitfinex");
-        taskBittrex = new DownloadTask("Bittrex");
+        //taskBitfinex = new DownloadTask("Bitfinex");
+        taskBittrex = new DownloadTask("Bittrex",
+                "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
     }
 
 
