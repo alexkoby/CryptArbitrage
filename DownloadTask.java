@@ -283,63 +283,82 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
 
             System.out.println("JSON SIZE" + allPairs.length() + " Queue length" + queue.size());
+            System.out.println("Exchange name is: " + exchange.getName());
             //goes through every {} in JSON file
             while(!queue.isEmpty()){
                 counter ++; //makes counter 0 initially 0 - don't want it at end bc might overlook it
                 currentCoin = exchange.getCoins().get(counter/3);
                 //want it to switch every third time - coinUSD, coinBTC, coinETH
-                for (int i = 0; i < allPairs.length(); i++) {
-                    jsonObject = allPairs.getJSONObject(i);
+                if(exchange.getName().equals("Binance")) {
+                    //Binance API returns unsorted list
+                    for (int i = 0; i < allPairs.length(); i++) {
+                        jsonObject = allPairs.getJSONObject(i);
 
-                    //Bittrex
-                    if (exchangeName.equals("Bittrex") && jsonObject.getString("MarketName").equals(queue.peek())) {
-                        System.out.println("Word is: " + queue.peek());
+                        if (exchangeName.equals("Binance") && jsonObject.getString("symbol").equals(queue.peek())) {
+                            System.out.println("Word is: " + queue.peek());
 
-                        //a btc pair
-                        if (counter % 3 == 1) {
-                            currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString("Bid")));
-                            currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString("Ask")));
-                            break;
-                        }
-                        //eth pair
-                        else if (counter % 3 == 2) {
-                            currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString("Bid")));
-                            currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString("Ask")));
-                            break;
-
-                        }
-                        //USDT pair or USD pair
-                        else if (counter % 3 == 0) {
-                            currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString("Bid")));
-                            currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString("Ask")));
-                            break;
+                            //a btc pair
+                            if (counter % 3 == 1) {
+                                currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString("price")));
+                                currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString("price")));
+                                break;
+                            }
+                            //eth pair
+                            else if (counter % 3 == 2) {
+                                currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString("price")));
+                                currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString("price")));
+                                break;
+                            }
+                            //USDT pair
+                            else if (counter % 3 == 0) {
+                                currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString("price")));
+                                currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString("price")));
+                                break;
+                            }
                         }
                     }
-                    else if (exchangeName.equals("Binance") && jsonObject.getString("symbol").equals(queue.peek())){
-                        System.out.println("Word is: " + queue.peek());
+                }//binary search for Bittrex because it's API returns sorted list
+                else if (exchange.getName().equals("Bittrex")){
+                    int low = 0;
+                    int high = allPairs.length();
+                    int middle;
+                    while(high >= low){
+                        middle = (high + low) / 2;
+                        jsonObject = allPairs.getJSONObject(middle);
+                        if(jsonObject.getString("MarketName").equals(queue.peek())){
+                            //a btc pair
+                            if (counter % 3 == 1) {
+                                currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString("Bid")));
+                                currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString("Ask")));
+                                break;
+                            }
+                            //eth pair
+                            else if (counter % 3 == 2) {
+                                currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString("Bid")));
+                                currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString("Ask")));
+                                break;
 
-                        //a btc pair
-                        if (counter % 3 == 1) {
-                            currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString("price")));
-                            currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString("price")));
-                            break;
+                            }
+                            //USDT pair or USD pair
+                            else if (counter % 3 == 0) {
+                                currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString("Bid")));
+                                currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString("Ask")));
+                                break;
+                            }
                         }
-                        //eth pair
-                        else if (counter % 3 == 2) {
-                            currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString("price")));
-                            currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString("price")));
-                            break;
+                        //what we're looking for comes before where we're at
+                        else if (jsonObject.getString("MarketName").compareTo(queue.peek())>0){
+                            high = middle - 1;
                         }
-                        //USDT pair
-                        else if (counter % 3 == 0) {
-                            currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString("price")));
-                            currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString("price")));
-                            break;
+                        //what we're looking for comes after where we're at
+                        else {
+                            low = middle + 1;
                         }
                     }
-                 }
-                queue.remove();
-            }
+                }
+                    queue.remove();
+
+                }
             }
         catch (Exception e){
 
