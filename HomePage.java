@@ -19,6 +19,7 @@ public class HomePage extends Activity implements View.OnClickListener {
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
+    static DownloadTask taskBinance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -30,10 +31,13 @@ public class HomePage extends Activity implements View.OnClickListener {
             listOfExchanges = new ArrayList<>();
             bitfinex = new Exchange("Bitfinex");
             bittrex = new Exchange("Bittrex");
+            binance = new Exchange("Binance");
 
-            //taskBitfinex = new DownloadTask("Bitfinex");
+            taskBitfinex = new DownloadTask("Bitfinex","https://api.bitfinex.com/v1/pubticker/", bitfinex );
             taskBittrex = new DownloadTask("Bittrex",
                     "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
+            taskBinance = new DownloadTask("Binance", "https://www.binance.com/api/v1/ticker/allPrices",
+                    binance);
 
         }
 
@@ -58,8 +62,8 @@ public class HomePage extends Activity implements View.OnClickListener {
 System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainActivity.isCreatedExchanges + "Exchanges");
         if(MainActivity.isCreatedExchanges  && MainActivity.isCreatedCryptocurrencies) {
             //getAsksAndBids(taskBitfinex, HomePage.bitfinex, "https://api.bitfinex.com/v1/pubticker/");
-            System.out.println("Went here" + MainActivity.isCreatedExchanges);
             getAsksAndBids(taskBittrex, HomePage.bittrex, "https://bittrex.com/api/v1.1/public/getmarketsummaries");
+            getAsksAndBids(taskBinance, HomePage.binance, "https://www.binance.com/api/v1/ticker/allPrices");
         }
     }
 
@@ -74,14 +78,18 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
             switch (e.getName()){
                 case "Bitfinex":
                     APIs[3*i] = API.concat(e.getCoins().get(i).getAbbreviation().concat("USD"));
-                    APIs[3*i+1] = API.concat(e.getCoins().get(i).getAbbreviation().concat("BTC"));
+                    APIs[3*i + 1] = API.concat(e.getCoins().get(i).getAbbreviation().concat("BTC"));
                     APIs[3*i+2] = API.concat(e.getCoins().get(i).getAbbreviation().concat("ETH"));
                     break;
                 case "Bittrex":
                     APIs[3*i] = "USDT-".concat(e.getCoins().get(i).getAbbreviation());
-                    APIs[3*i+1] = "BTC-".concat(e.getCoins().get(i).getAbbreviation());
-                    APIs[3*i+2] = "ETH-".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3*i + 1] = "BTC-".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3*i + 2] = "ETH-".concat(e.getCoins().get(i).getAbbreviation());
                     break;
+                case "Binance":
+                    APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("USDT");
+                    APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
+                    APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
             }
 
         }
