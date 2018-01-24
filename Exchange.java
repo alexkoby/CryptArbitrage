@@ -12,8 +12,9 @@ public class Exchange {
     private int amtCoins;
     private String askSymbol;
     private String bidSymbol;
+    private boolean exchangeAPISorted;
 
-    public Exchange(String name, String askSymbol, String bidSymbol){
+    public Exchange(String name, String askSymbol, String bidSymbol, boolean exchangeAPISorted){
         coins = new ArrayList<>();
         asks = new ArrayList<>();
         bids = new ArrayList<>();
@@ -22,6 +23,8 @@ public class Exchange {
 
         this.askSymbol = askSymbol;
         this.bidSymbol = bidSymbol;
+
+        this.exchangeAPISorted = exchangeAPISorted;
     }
 
 
@@ -63,5 +66,8 @@ public class Exchange {
     }
     public String getBidSymbol(){
         return this.bidSymbol;
+    }
+    public boolean isExchangeAPISorted(){
+        return this.exchangeAPISorted;
     }
 }
