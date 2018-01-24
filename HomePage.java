@@ -29,14 +29,14 @@ public class HomePage extends Activity implements View.OnClickListener {
         //If this is the first time visiting the homepage
         if(!MainActivity.isCreatedHomepage) {
             listOfExchanges = new ArrayList<>();
-            bitfinex = new Exchange("Bitfinex");
-            bittrex = new Exchange("Bittrex");
-            binance = new Exchange("Binance");
+            bitfinex = new Exchange("Bitfinex", "ask", "bid", false);
+            bittrex = new Exchange("Bittrex", "Ask", "Bid", true);
+            binance = new Exchange("Binance", "price", "price", false);
 
-            taskBitfinex = new DownloadTask("Bitfinex","https://api.bitfinex.com/v1/pubticker/", bitfinex );
-            taskBittrex = new DownloadTask("Bittrex",
+            taskBitfinex = new DownloadTask(null,"https://api.bitfinex.com/v1/pubticker/", bitfinex );
+            taskBittrex = new DownloadTask("MarketName",
                     "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
-            taskBinance = new DownloadTask("Binance", "https://www.binance.com/api/v1/ticker/allPrices",
+            taskBinance = new DownloadTask("symbol", "https://www.binance.com/api/v1/ticker/allPrices",
                     binance);
 
         }
@@ -117,9 +117,8 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
 
     public void recreateTasks(){
         //taskBitfinex = new DownloadTask("Bitfinex");
-        taskBittrex = new DownloadTask("Bittrex",
+        taskBittrex = new DownloadTask("MarketName",
                 "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
+        taskBinance = new DownloadTask("symbol","https://www.binance.com/api/v1/ticker/allPrices", binance);
     }
-
-
 }
