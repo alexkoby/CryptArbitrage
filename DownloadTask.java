@@ -8,12 +8,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.util.Log;
 
@@ -32,22 +35,22 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
     ArrayList<Double> exchangeCoinsBidETH = new ArrayList<>();
     ArrayList<Double> exchangeCoinsAskETH = new ArrayList<>();
 
-    String exchangeName;
     String apiBase;
+    String findSymbol;
 
     Exchange exchange;
 
 
-    public DownloadTask(String exchangeName, String apiBase, Exchange exchange) {
+    public DownloadTask(String findSymbol, String apiBase, Exchange exchange) {
         //gives ask and bid for BTCBTC 1:1, BTCETH = -999, ETHETH 1:1
-        this.exchangeName = exchangeName; //need to get rid of this later
-
         exchangeCoinsAskBTC.add(1.0);
         exchangeCoinsBidBTC.add(1.0);
         exchangeCoinsAskETH.add(-999.0);
         exchangeCoinsBidETH.add(-999.0);
         exchangeCoinsAskETH.add(1.0);
         exchangeCoinsBidETH.add(1.0);
+
+        this.findSymbol = findSymbol;
 
         this.apiBase = apiBase;
 
@@ -69,7 +72,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         int counter = 0; //specify which arrayList to add results to - explicit for first 3
         //rounds, then rotate
 
-        if (exchangeName.equals("Bittrex") || exchangeName.equals("Binance")) {
+        if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")) {
             tryBittrex(q1);
             return "Worked";
         }
@@ -132,35 +135,37 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                  }
                  */
                 //if its bittrex, need to check in result section of JSON
-                if (exchangeName.equals("Bittrex")) {
+                if (exchange.getName().equals("Bittrex")) {
 
                     jsonObject = new JSONObject(jsonObject.getString("result"));
                 }
 
                 if (counter % 3 == 1) {
                     //search for 'bid' if bitfinex, else search for 'Bid'
-                    if (exchangeName.equals("Bitfinex")) {
+                    if (exchange.getName().equals("Bitfinex")) {
                         exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString("bid")));
                         exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString("ask")));
-                    } else if (exchangeName.equals("Bittrex")) {
+                    } else if (exchange.getName().equals("Bittrex")) {
                         System.out.println("Number1");
                         exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString("Bid")));
                         exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString("Ask")));
                     }
                 } else if (counter % 3 == 2) {
-                    if (exchangeName.equals("Bitfinex")) {
+                    if (exchange.getName().equals("Bitfinex")) {
                         exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString("bid")));
                         exchangeCoinsAskBTC.add(Double.parseDouble(jsonObject.getString("ask")));
-                    } else if (exchangeName.equals("Bittrex")) {
+                    }
+                    else if (exchange.getName().equals("Bittrex")) {
                         System.out.println("Number2");
                         exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString("Bid")));
                         exchangeCoinsAskBTC.add(Double.parseDouble(jsonObject.getString("Ask")));
                     }
                 } else if (counter % 3 == 0) { //dont really need the if, but makes it more clear
-                    if (exchangeName.equals("Bitfinex")) {
+                    if (exchange.getName().equals("Bitfinex")) {
                         exchangeCoinsBidETH.add(Double.parseDouble(jsonObject.getString("bid")));
                         exchangeCoinsAskETH.add(Double.parseDouble(jsonObject.getString("ask")));
-                    } else if (exchangeName.equals("Bittrex")) {
+                    }
+                    else if (exchange.getName().equals("Bittrex")) {
                         System.out.println("Number3");
                         exchangeCoinsBidETH.add(Double.parseDouble(jsonObject.getString("Bid")));
                         exchangeCoinsAskETH.add(Double.parseDouble(jsonObject.getString("Ask")));
@@ -274,95 +279,138 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
             JSONObject jsonObject;
             JSONArray allPairs;
-            if(exchangeName.equals("Bittrex")) {
+            if(exchange.getName().equals("Bittrex")) {
                 jsonObject = new JSONObject(result.toString());
                 allPairs = jsonObject.getJSONArray("result");
             }
             else {
-                 allPairs = new JSONArray(result.toString());
+                allPairs = new JSONArray(result.toString());
+            }
+
+            if(!exchange.isExchangeAPISorted()) {
+                sortJSONArray(allPairs, findSymbol);
             }
 
             System.out.println("JSON SIZE" + allPairs.length() + " Queue length" + queue.size());
             System.out.println("Exchange name is: " + exchange.getName());
             //goes through every {} in JSON file
+
             while(!queue.isEmpty()){
                 counter ++; //makes counter 0 initially 0 - don't want it at end bc might overlook it
                 currentCoin = exchange.getCoins().get(counter/3);
                 //want it to switch every third time - coinUSD, coinBTC, coinETH
-                if(exchange.getName().equals("Binance")) {
-                    //Binance API returns unsorted list
-                    for (int i = 0; i < allPairs.length(); i++) {
-                        jsonObject = allPairs.getJSONObject(i);
 
-                        if (exchangeName.equals("Binance") && jsonObject.getString("symbol").equals(queue.peek())) {
-                            System.out.println("Word is: " + queue.peek());
+                jsonObject = binarySearch(queue.peek(), allPairs, this.findSymbol);
+                //System.out.println("The object is " + jsonObject.getString(this.findSymbol) +
+                //        " Price is " + jsonObject.getString(exchange.getAskSymbol()));
 
-                            //a btc pair
-                            if (counter % 3 == 1) {
-                                currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString("price")));
-                                currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString("price")));
-                                break;
-                            }
-                            //eth pair
-                            else if (counter % 3 == 2) {
-                                currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString("price")));
-                                currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString("price")));
-                                break;
-                            }
-                            //USDT pair
-                            else if (counter % 3 == 0) {
-                                currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString("price")));
-                                currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString("price")));
-                                break;
-                            }
-                        }
+                if(jsonObject == null){
+                    System.out.println("Null " + queue.peek() );//debugger
+                }
+                else {
+                    //a btc pair
+                    if (counter % 3 == 1) {
+                        currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                        currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                     }
-                }//binary search for Bittrex because it's API returns sorted list
-                else if (exchange.getName().equals("Bittrex")){
-                    int low = 0;
-                    int high = allPairs.length();
-                    int middle;
-                    while(high >= low){
-                        middle = (high + low) / 2;
-                        jsonObject = allPairs.getJSONObject(middle);
-                        if(jsonObject.getString("MarketName").equals(queue.peek())){
-                            //a btc pair
-                            if (counter % 3 == 1) {
-                                currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString("Bid")));
-                                currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString("Ask")));
-                                break;
-                            }
-                            //eth pair
-                            else if (counter % 3 == 2) {
-                                currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString("Bid")));
-                                currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString("Ask")));
-                                break;
-
-                            }
-                            //USDT pair or USD pair
-                            else if (counter % 3 == 0) {
-                                currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString("Bid")));
-                                currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString("Ask")));
-                                break;
-                            }
-                        }
-                        //what we're looking for comes before where we're at
-                        else if (jsonObject.getString("MarketName").compareTo(queue.peek())>0){
-                            high = middle - 1;
-                        }
-                        //what we're looking for comes after where we're at
-                        else {
-                            low = middle + 1;
-                        }
+                    //eth pair
+                    else if (counter % 3 == 2) {
+                        currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                        currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                    }
+                    //USDT pair
+                    else if (counter % 3 == 0) {
+                        currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                        currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                     }
                 }
-                    queue.remove();
-
-                }
+                queue.remove();
             }
+        }
         catch (Exception e){
-
             e.printStackTrace();
         }
     }
+
+    /**
+     * Sorts JSONArray
+     * @param array is the JSONArray to be sorted
+     * @param key is the Field you want them sorted by
+     */
+    private void sortJSONArray(JSONArray array, final String key){
+
+        if(array.length() < 2){
+            return; //not needed, but clarifies
+        }
+        else {
+            List<JSONObject> jsonList = new ArrayList<>();
+            try {
+                for (int i = 0; i < array.length(); i++) {
+                    jsonList.add(array.getJSONObject(i));
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            Collections.sort(jsonList, new Comparator<JSONObject>() {
+                @Override
+                public int compare(JSONObject json1, JSONObject json2) {
+                    try {
+                        String val1 = json1.getString(key);
+                        String val2 = json2.getString(key);
+                        return val1.compareTo(val2);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return 0;
+                }
+
+            });
+            for(int i = 0; i < array.length(); i++){
+                try{
+                    array.put(i, jsonList.get(i));
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * Binary search returns the JSON Object with the name = key
+     * @param key is the pair you're looking for
+     * @param array is the JSONArray you're looking in
+     * @param name is the what we search to look at the keys
+     * @return the JSON Object with the matching key, or null if DNE
+     */
+    private JSONObject binarySearch(String key, JSONArray array, String name){
+        int low = 0;
+        int high = array.length()-1;
+        int middle;
+
+        while(high >= low){
+            middle = (high + low) / 2;
+            try {
+                if(key.equals(array.getJSONObject(middle).getString(name))){
+                    return array.getJSONObject(middle);
+                } //key comes after where we're at
+                else if (key.compareTo(array.getJSONObject(middle).getString(name)) > 0){
+                    low = middle + 1;
+                    System.out.println("After " + array.getJSONObject(middle).getString(name));
+                }
+                else if (key.compareTo(array.getJSONObject(middle).getString(name)) < 0){
+                    high = middle - 1;
+                    System.out.println("Look First Half");
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
 }
