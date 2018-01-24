@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="26dip"
             android:layout_marginHorizontal="30dip"
-            android:background="@color/dark_blue"
+            android:background="@color/lime_green"
             android:text="@string/modify_exchanges"
             android:textSize="20sp" />
 
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dip"
-            android:background="@color/green"
+            android:background="@color/lime_green"
             android:text="@string/modify_cryptocurrencies"
             android:textSize="20sp" />
     </LinearLayout>
