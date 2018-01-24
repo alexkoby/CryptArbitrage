@@ -176,6 +176,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(bitcoinBitfinex);
                 Coin bitcoinBittrex = new Coin("Bitcoin","BTC", "Bittrex");
                 HomePage.bittrex.addCoin(bitcoinBittrex);
+                Coin bitcoinBinance = new Coin("Bitcoin", "BTC", "Binance");
+                HomePage.binance.addCoin(bitcoinBinance);
                 break;
 
             case R.id.currency2_button:
@@ -183,6 +185,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(ethereumBitfinex);
                 Coin ethereumBittrex = new Coin("Ethereum","ETH", "Bittrex");
                 HomePage.bittrex.addCoin(ethereumBittrex);
+                Coin ethereumBinance = new Coin("Ethereum", "ETH", "Binance");
+                HomePage.binance.addCoin(ethereumBinance);
                 break;
 
             case R.id.currency3_button:
@@ -190,18 +194,24 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(rippleBitfinex);
                 Coin rippleBittrex = new Coin("Ripple","XRP", "Bittrex");
                 HomePage.bittrex.addCoin(rippleBittrex);
+                Coin rippleBinance = new Coin("Ripple", "XRP", "Binance");
+                HomePage.binance.addCoin(rippleBinance);
                 break;
 
             case R.id.currency4_button:
                 Coin bitcoinCashBitfinex = new Coin("Bitcoin Cash","BCC", "Bitfinex");
                 HomePage.bitfinex.addCoin(bitcoinCashBitfinex);
-                Coin bitcoinCashBittrex = new Coin("BitcoinCash","BCC", "Bittrex");
+                Coin bitcoinCashBittrex = new Coin("Bitcoin Cash","BCC", "Bittrex");
                 HomePage.bittrex.addCoin(bitcoinCashBittrex);
+                Coin bitcoinCashBinance = new Coin("Bitcoin Cash", "BCC", "Binance");
+                HomePage.binance.addCoin(bitcoinCashBinance);
                 break;
 
             case R.id.currency5_button:
                 Coin cardanoBittrex = new Coin("Cardano","ADA", "Bittrex");
                 HomePage.bittrex.addCoin(cardanoBittrex);
+                Coin cardanoBinance = new Coin("Cardano", "ADA", "Binance");
+                HomePage.binance.addCoin(cardanoBinance);
                 break;
 
             case R.id.currency6_button:
@@ -214,16 +224,22 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(litecoinBitfinex);
                 Coin litecoinBittrex = new Coin("Litecoin","LTC", "Bittrex");
                 HomePage.bittrex.addCoin(litecoinBittrex);
+                Coin litecoinBinance = new Coin("Litecoin", "LTC", "Binance");
+                HomePage.binance.addCoin(litecoinBinance);
                 break;
 
             case R.id.currency8_button:
                 Coin stellarBittrex = new Coin("Stellar","XLM", "Bittrex");
                 HomePage.bittrex.addCoin(stellarBittrex);
+                Coin stellarBinance = new Coin("Stellar", "XLM", "Binance");
+                HomePage.binance.addCoin(stellarBinance);
                 break;
 
             case R.id.currency9_button:
                 Coin iotaBitfinex = new Coin("IOTA","IOT", "Bitfinex");
                 HomePage.bitfinex.addCoin(iotaBitfinex);
+                Coin iotaBinance = new Coin("Iota", "IOTA", "Binance");
+                HomePage.binance.addCoin(iotaBinance);
                 break;
 
             case R.id.currency10_button:
@@ -231,6 +247,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(dashBitfinex);
                 Coin dashBittrex = new Coin("Dash","DASH", "Bittrex");
                 HomePage.bittrex.addCoin(dashBittrex);
+                Coin dashBinance = new Coin("Dash", "DASH", "Binance");
+                HomePage.binance.addCoin(dashBinance);
                 break;
 
             case R.id.currency11_button:
@@ -238,25 +256,33 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(neoBitfinex);
                 Coin neoBittrex = new Coin("NEO","NEO", "Bittrex");
                 HomePage.bittrex.addCoin(neoBittrex);
+                Coin neoBinance = new Coin("NEO", "NEO", "Binance");
+                HomePage.binance.addCoin(neoBinance);
                 break;
 
             case R.id.currency12_button:
-                Coin moneroBitfinex = new Coin("Monero","ETH", "Bitfinex");
+                Coin moneroBitfinex = new Coin("Monero","XMR", "Bitfinex");
                 HomePage.bitfinex.addCoin(moneroBitfinex);
                 Coin moneroBittrex = new Coin("Monero","XMR", "Bittrex");
                 HomePage.bittrex.addCoin(moneroBittrex);
+                Coin moneroBinance = new Coin("Monero", "XMR", "Binance");
+                HomePage.binance.addCoin(moneroBinance);
                 break;
 
             case R.id.currency13_button:
-                Coin qtumBitfinex = new Coin("QTUM","ETH", "Bitfinex");
+                Coin qtumBitfinex = new Coin("QTUM","QTM", "Bitfinex");
                 HomePage.bitfinex.addCoin(qtumBitfinex);
                 Coin qtumBittrex = new Coin("QTUM","QTUM", "Bittrex");
                 HomePage.bittrex.addCoin(qtumBittrex);
+                Coin qtumBinance = new Coin("QTUM", "QTUM", "Binance");
+                HomePage.binance.addCoin(qtumBinance);
                 break;
 
             case R.id.currency14_button:
                 Coin liskBittrex = new Coin("Lisk","LSK", "Bittrex");
                 HomePage.bittrex.addCoin(liskBittrex);
+                Coin liskBinance = new Coin("LISK", "LSK", "Binance");
+                HomePage.binance.addCoin(liskBinance);
                 break;
 
             case R.id.currency15_button:
@@ -264,6 +290,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(ethereumClassicBitfinex);
                 Coin ethereumClassicBittrex = new Coin("Ethereum Classic ","ETC", "Bittrex");
                 HomePage.bittrex.addCoin(ethereumClassicBittrex);
+                Coin ethereumClassicBinance = new Coin("Ethereum Classic", "ETC", "Binance");
+                HomePage.binance.addCoin(ethereumClassicBinance);
                 break;
 
             case R.id.currency16_button:
@@ -273,6 +301,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
             case R.id.currency17_button:
                 Coin vergeBittrex = new Coin("Verge","XVG", "Bittrex");
                 HomePage.bittrex.addCoin(vergeBittrex);
+                Coin vergeBinance = new Coin("Verge", "XVG", "Binance");
+                HomePage.binance.addCoin(vergeBinance);
                 break;
 
             case R.id.currency18_button:
@@ -283,6 +313,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
             case R.id.currency19_button:
                 Coin stratisBittrex = new Coin("Stratis","STRAT", "Bittrex");
                 HomePage.bittrex.addCoin(stratisBittrex);
+                Coin stratisBinance = new Coin("Stratis", "STRAT", "Binance");
+                HomePage.binance.addCoin(stratisBinance);
                 break;
 
             case R.id.currency20_button:
@@ -290,6 +322,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitfinex.addCoin(zcashBitfinex);
                 Coin zcashBittrex = new Coin("Z-Cash","ZEC", "Bittrex");
                 HomePage.bittrex.addCoin(zcashBittrex);
+                Coin zcashBinance = new Coin("Z-Cash", "ZEC", "Binance");
+                HomePage.binance.addCoin(zcashBinance);
                 break;
 
             case R.id.currency21_button: //DogeCoin
@@ -305,9 +339,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
             case R.id.currency23_button: //Waves
                 Coin wavesBittrex = new Coin("Waves","WAVES", "Bittrex");
                 HomePage.bittrex.addCoin(wavesBittrex);
+                Coin wavesBinance = new Coin("Waves", "WAVES", "Binance");
+                HomePage.binance.addCoin(wavesBinance);
                 break;
 
             case R.id.currency24_button: //VeChain
+                Coin vechainBinance = new Coin("VeChain", "VEN", "Binance");
+                HomePage.binance.addCoin(vechainBinance);
                 break;
 
             case R.id.currency25_button: //Digibyte
@@ -318,16 +356,21 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
             case R.id.currency26_button: //Komodo
                 Coin komodoBittrex = new Coin("Komodo","KMD", "Bittrex");
                 HomePage.bittrex.addCoin(komodoBittrex);
+                Coin komodoBinance = new Coin("Komodo", "KMD", "Binance");
+                HomePage.binance.addCoin(komodoBinance);
                 break;
 
             case R.id.currency27_button: //HShare
+                Coin hshareBinance = new Coin("Hshare", "HSR", "Binance");
+                HomePage.binance.addCoin(hshareBinance);
                 break;
 
             case R.id.currency28_button: //Ark
                 Coin arkBittrex = new Coin("Ark","ARK", "Bittrex");
                 HomePage.bittrex.addCoin(arkBittrex);
+                Coin arkBinance = new Coin("ARK", "ARK", "Binance");
+                HomePage.binance.addCoin(arkBinance);
                 break;
-
         }
     }
 
