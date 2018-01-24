@@ -10,13 +10,18 @@ public class Exchange {
     private ArrayList<Double> bids;
     private String name;
     private int amtCoins;
+    private String askSymbol;
+    private String bidSymbol;
 
-    public Exchange(String name){
+    public Exchange(String name, String askSymbol, String bidSymbol){
         coins = new ArrayList<>();
         asks = new ArrayList<>();
         bids = new ArrayList<>();
         this.name = name;
         amtCoins = 0;
+
+        this.askSymbol = askSymbol;
+        this.bidSymbol = bidSymbol;
     }
 
 
@@ -51,5 +56,12 @@ public class Exchange {
     }
     public ArrayList<Double> getBids(){
         return this.bids;
+    }
+
+    public String getAskSymbol(){
+        return this.askSymbol;
+    }
+    public String getBidSymbol(){
+        return this.bidSymbol;
     }
 }
