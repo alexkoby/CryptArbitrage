@@ -18,12 +18,14 @@ public class HomePage extends Activity implements View.OnClickListener {
     static Exchange binance;
     static Exchange hitBTC;
     static Exchange bitZ;
+    static Exchange poloniex;
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
     static DownloadTask taskBinance;
     static DownloadTask taskHitBTC;
     static DownloadTask taskBitZ;
+    static DownloadTask taskPoloniex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,6 +40,7 @@ public class HomePage extends Activity implements View.OnClickListener {
             binance = new Exchange("Binance", "price", "price", false);
             hitBTC = new Exchange("HitBTC", "ask", "bid", false);
             bitZ = new Exchange("Bit-Z","sell","buy",false);
+            poloniex = new Exchange("Poloniex","lowestAsk", "highestBid",false);
 
             taskBitfinex = new DownloadTask(null,"https://api.bitfinex.com/v1/pubticker/", bitfinex );
             taskBittrex = new DownloadTask("MarketName",
@@ -46,6 +49,7 @@ public class HomePage extends Activity implements View.OnClickListener {
                     binance);
             taskHitBTC = new DownloadTask("symbol","https://api.hitbtc.com/api/2/public/ticker", hitBTC);
             taskBitZ = new DownloadTask("","https://www.bit-z.com/api_v1/tickerall", bitZ);
+            taskPoloniex = new DownloadTask("","https://poloniex.com/public?command=returnTicker",poloniex);
 
         }
 
@@ -73,7 +77,8 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
             //getAsksAndBids(taskBittrex, HomePage.bittrex, "https://bittrex.com/api/v1.1/public/getmarketsummaries");
             //getAsksAndBids(taskBinance, HomePage.binance, "https://www.binance.com/api/v1/ticker/allPrices");
             //getAsksAndBids(taskHitBTC, HomePage.hitBTC, "https://api.hitbtc.com/api/2/public/ticker");
-            getAsksAndBids(taskBitZ,HomePage.bitZ,"https://www.bit-z.com/api_v1/tickerall");
+            //getAsksAndBids(taskBitZ,HomePage.bitZ,"https://www.bit-z.com/api_v1/tickerall");
+            getAsksAndBids(taskPoloniex, HomePage.poloniex, "https://poloniex.com/public?command=returnTicker");
         }
     }
 
@@ -110,6 +115,12 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
                     APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
+                    break;
+                case "Poloniex":
+                    APIs[3*i] = "USDT_".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3*i + 1] = "BTC_".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3*i + 2] = "ETH_".concat(e.getCoins().get(i).getAbbreviation());
+                    break;
             }
 
         }
