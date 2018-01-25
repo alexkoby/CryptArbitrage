@@ -73,7 +73,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         //rounds, then rotate
 
         if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
-    || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z")) {
+    || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
+                exchange.getName().equals("Poloniex")) {
             fullAPIWay(q1);
             return "Worked";
         }
@@ -245,6 +246,11 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             else if (exchange.getName().equals("Bit-Z")){
                 jsonObject = new JSONObject(result.toString());
                 jsonObject = jsonObject.getJSONObject("data");
+                bitZWay(queue, jsonObject);
+                return;
+            }
+            else if(exchange.getName().equals("Poloniex")){
+                jsonObject = new JSONObject(result.toString());
                 bitZWay(queue, jsonObject);
                 return;
             }
