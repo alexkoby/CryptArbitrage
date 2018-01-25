@@ -43,12 +43,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
     public DownloadTask(String findSymbol, String apiBase, Exchange exchange) {
         //gives ask and bid for BTCBTC 1:1, BTCETH = -999, ETHETH 1:1
-        exchangeCoinsAskBTC.add(1.0);
-        exchangeCoinsBidBTC.add(1.0);
-        exchangeCoinsAskETH.add(-999.0);
-        exchangeCoinsBidETH.add(-999.0);
-        exchangeCoinsAskETH.add(1.0);
-        exchangeCoinsBidETH.add(1.0);
+        exchangeCoinsAskBTC.add(-1.0);
+        exchangeCoinsBidBTC.add(-1.0);
+        exchangeCoinsAskETH.add(-1.0);
+        exchangeCoinsBidETH.add(-1.0);
+        exchangeCoinsAskETH.add(-1.0);
+        exchangeCoinsBidETH.add(-1.0);
 
         this.findSymbol = findSymbol;
 
@@ -114,35 +114,33 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
                 if (counter % 3 == 1) {
                     //search for 'bid' if bitfinex, else search for 'Bid'
-                    if (exchange.getName().equals("Bitfinex")) {
-                        exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString("bid")));
-                        exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString("ask")));
-                    }
+                    exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                    exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+
                 }
                 else if (counter % 3 == 2) {
-                    if (exchange.getName().equals("Bitfinex")) {
-                        exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString("bid")));
-                        exchangeCoinsAskBTC.add(Double.parseDouble(jsonObject.getString("ask")));
-                    }
+                    exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                    exchangeCoinsAskBTC.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                 }
                 else if (counter % 3 == 0) { //dont really need the if, but makes it more clear
-                    if (exchange.getName().equals("Bitfinex")) {
-                        exchangeCoinsBidETH.add(Double.parseDouble(jsonObject.getString("bid")));
-                        exchangeCoinsAskETH.add(Double.parseDouble(jsonObject.getString("ask")));
-                    }
+                    exchangeCoinsBidETH.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                    exchangeCoinsAskETH.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 System.out.println("Hey guys: " + (e instanceof FileNotFoundException));
                 if (e instanceof FileNotFoundException || e instanceof org.json.JSONException) {
                     if (counter % 3 == 1) {
-                        exchangeCoinsAskUSD.add(-999.0);
-                        exchangeCoinsBidUSD.add(-999.0);
-                    } else if (counter % 3 == 2) {
-                        exchangeCoinsAskBTC.add(-999.0);
-                        exchangeCoinsBidBTC.add(-999.0);
-                    } else if (counter % 3 == 0) { //could just be else, but this is more clear
-                        exchangeCoinsAskETH.add(-999.0);
-                        exchangeCoinsBidETH.add(-999.0);
+                        exchangeCoinsAskUSD.add(-1.0);
+                        exchangeCoinsBidUSD.add(-1.0);
+                    }
+                    else if (counter % 3 == 2) {
+                        exchangeCoinsAskBTC.add(-1.0);
+                        exchangeCoinsBidBTC.add(-1.0);
+                    }
+                    else if (counter % 3 == 0) { //could just be else, but this is more clear
+                        exchangeCoinsAskETH.add(-1.0);
+                        exchangeCoinsBidETH.add(-1.0);
                     }
                 }
                 e.printStackTrace();
