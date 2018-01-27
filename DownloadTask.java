@@ -111,12 +111,14 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     data = reader.read();
                 }
                 JSONObject jsonObject = new JSONObject(stringBuilder.toString());
+                if(this.findSymbol.length() > 0){
+                    jsonObject = jsonObject.getJSONObject(this.findSymbol);
+                }
 
                 if (counter % 3 == 1) {
                     //search for 'bid' if bitfinex, else search for 'Bid'
                     exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
-
                 }
                 else if (counter % 3 == 2) {
                     exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
