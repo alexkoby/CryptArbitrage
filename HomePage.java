@@ -20,6 +20,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     static Exchange bitZ;
     static Exchange poloniex;
     static Exchange bitStamp;
+    static Exchange OKEX;
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
@@ -28,6 +29,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     static DownloadTask taskBitZ;
     static DownloadTask taskPoloniex;
     static DownloadTask taskBitStamp;
+    static DownloadTask taskOKEX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -44,6 +46,7 @@ public class HomePage extends Activity implements View.OnClickListener {
             bitZ = new Exchange("Bit-Z","sell","buy",false);
             poloniex = new Exchange("Poloniex","lowestAsk", "highestBid",false);
             bitStamp = new Exchange("BitStamp","bid","ask",false);
+            OKEX = new Exchange("OKEX","sell","buy",false);
 
             taskBitfinex = new DownloadTask(null,"https://api.bitfinex.com/v1/pubticker/", bitfinex );
             taskBittrex = new DownloadTask("MarketName",
@@ -54,6 +57,7 @@ public class HomePage extends Activity implements View.OnClickListener {
             taskBitZ = new DownloadTask("","https://www.bit-z.com/api_v1/tickerall", bitZ);
             taskPoloniex = new DownloadTask("","https://poloniex.com/public?command=returnTicker",poloniex);
             taskBitStamp = new DownloadTask(null, "https://www.bitstamp.net/api/v2/ticker/",bitStamp);
+            taskOKEX = new DownloadTask("ticker","https://www.okex.com/api/v1/ticker.do?symbol=", OKEX);
 
         }
 
@@ -77,13 +81,14 @@ public class HomePage extends Activity implements View.OnClickListener {
         recreateTasks();
 System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainActivity.isCreatedExchanges + "Exchanges");
         if(MainActivity.isCreatedExchanges  && MainActivity.isCreatedCryptocurrencies) {
-            getAsksAndBids(taskBitfinex, HomePage.bitfinex, "https://api.bitfinex.com/v1/pubticker/");
+            //getAsksAndBids(taskBitfinex, HomePage.bitfinex, "https://api.bitfinex.com/v1/pubticker/");
             //getAsksAndBids(taskBittrex, HomePage.bittrex, "https://bittrex.com/api/v1.1/public/getmarketsummaries");
             //getAsksAndBids(taskBinance, HomePage.binance, "https://www.binance.com/api/v1/ticker/allPrices");
             //getAsksAndBids(taskHitBTC, HomePage.hitBTC, "https://api.hitbtc.com/api/2/public/ticker");
             //getAsksAndBids(taskBitZ,HomePage.bitZ,"https://www.bit-z.com/api_v1/tickerall");
             //getAsksAndBids(taskPoloniex, HomePage.poloniex, "https://poloniex.com/public?command=returnTicker");
-            getAsksAndBids(taskBitStamp,HomePage.bitStamp,"https://www.bitstamp.net/api/v2/ticker/");
+            //getAsksAndBids(taskBitStamp,HomePage.bitStamp,"https://www.bitstamp.net/api/v2/ticker/");
+            getAsksAndBids(taskOKEX, HomePage.OKEX, "https://www.okex.com/api/v1/ticker.do?symbol=");
         }
     }
 
@@ -130,6 +135,11 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                     APIs[3*i] = API.concat(e.getCoins().get(i).getAbbreviation().concat("USD"));
                     APIs[3*i + 1] = API.concat(e.getCoins().get(i).getAbbreviation().concat("BTC"));
                     APIs[3*i + 2] = API.concat(e.getCoins().get(i).getAbbreviation().concat("ETH"));
+                    break;
+                case "OKEX":
+                    APIs[3*i] = API.concat(e.getCoins().get(i).getAbbreviation().concat("_usdt"));
+                    APIs[3*i + 1] = API.concat(e.getCoins().get(i).getAbbreviation().concat("_btc"));
+                    APIs[3*i + 2] = API.concat(e.getCoins().get(i).getAbbreviation().concat("_eth"));
                     break;
             }
 
