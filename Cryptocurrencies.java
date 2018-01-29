@@ -188,6 +188,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitStamp.addCoin(bitcoinBitStamp);
                 Coin bitcoinOKEX = new Coin("Bitcoin", "BTC","OKEX");
                 HomePage.OKEX.addCoin(bitcoinOKEX);
+                Coin bitcoinGDAX = new Coin("Bitcoin","BTC","GDAX");
+                HomePage.GDAX.addCoin(bitcoinGDAX);
                 break;
 
             case R.id.currency2_button:
@@ -207,6 +209,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitStamp.addCoin(ethereumBitStamp);
                 Coin ethereumOKEX = new Coin("Ethereum", "ETH","OKEX");
                 HomePage.OKEX.addCoin(ethereumOKEX);
+                Coin ethereumGDAX = new Coin("Ethereum","ETH","GDAX");
+                HomePage.GDAX.addCoin(ethereumGDAX);
                 break;
 
             case R.id.currency3_button:
@@ -241,6 +245,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitStamp.addCoin(bitcoinCashBitStamp);
                 Coin bitcoinCashOKEX = new Coin("Bitcoin Cash", "BCH","OKEX");
                 HomePage.OKEX.addCoin(bitcoinCashOKEX);
+                Coin bitcoinCashGDAX = new Coin("Bitcoin Cash","BCH","GDAX");
+                HomePage.GDAX.addCoin(bitcoinCashGDAX);
                 break;
 
             case R.id.currency5_button:
@@ -278,6 +284,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bitStamp.addCoin(litecoinBitStamp);
                 Coin litecoinOKEX = new Coin("Litecoin", "LTC","OKEX");
                 HomePage.OKEX.addCoin(litecoinOKEX);
+                Coin litecoinGDAX = new Coin("Litecoin","LTC","GDAX");
+                HomePage.GDAX.addCoin(litecoinGDAX);
                 break;
 
             case R.id.currency8_button:
