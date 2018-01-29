@@ -21,8 +21,8 @@ public class ViewCryptoOpprotunities extends Activity{
 
         //addAsksAndBidsToCoins(HomePage.taskBitfinex, HomePage.bitfinex);
         //addAsksAndBidsToCoins(HomePage.taskBitStamp, HomePage.bitStamp);
-        addAsksAndBidsToCoins(HomePage.taskOKEX, HomePage.OKEX);
-
+        //addAsksAndBidsToCoins(HomePage.taskOKEX, HomePage.OKEX);
+        addAsksAndBidsToCoins(HomePage.taskGDAX, HomePage.GDAX);
         //System.out.println("Homepage: " + MainActivity.isCreatedHomepage + "CryptoPage " +
         //        MainActivity.isCreatedCryptocurrencies + " Exchanges: " + MainActivity.isCreatedExchanges);
 
