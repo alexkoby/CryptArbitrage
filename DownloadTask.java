@@ -111,7 +111,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     data = reader.read();
                 }
                 JSONObject jsonObject = new JSONObject(stringBuilder.toString());
-                if(this.findSymbol.length() > 0){
+                if(this.findSymbol!= null && this.findSymbol.length() > 0){
                     jsonObject = jsonObject.getJSONObject(this.findSymbol);
                 }
 
@@ -119,6 +119,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     //search for 'bid' if bitfinex, else search for 'Bid'
                     exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                    System.out.println("GOT TO USD");
                 }
                 else if (counter % 3 == 2) {
                     exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
@@ -412,6 +413,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 queue.remove();
             }
         }
+    }
+
+    public String getApiBase(){
+        return this.apiBase;
     }
 
 }
