@@ -94,7 +94,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
 
             try {
-                url = new URL(q1.peek());
+                String currentPair = q1.peek();
+                url = new URL(this.apiBase.concat(currentPair));
                 q1.remove();
 
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -114,12 +115,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 if(this.findSymbol!= null && this.findSymbol.length() > 0){
                     jsonObject = jsonObject.getJSONObject(this.findSymbol);
                 }
-
                 if (counter % 3 == 1) {
                     //search for 'bid' if bitfinex, else search for 'Bid'
                     exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
-                    System.out.println("GOT TO USD");
                 }
                 else if (counter % 3 == 2) {
                     exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
@@ -418,5 +417,23 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
     public String getApiBase(){
         return this.apiBase;
     }
+        //Kraken pairs are so weird
+    /*public void addCoinsKraken(String krakenPair, JSONObject jsonObject) {
+        double jsonArrayAsk;
+        double jsonArrayBid;
+        try {
+            jsonObject = new JSONObject(krakenPair);
+            jsonArrayAsk = jsonObject.getDouble(exchange.getAskSymbol());
+            jsonArrayBid = jsonObject.getDouble(exchange.getBidSymbol());
 
+            System.out.println(jsonArrayAsk);
+
+            if(krakenPair.charAt(krakenPair.length()-1) == 'C'){
+
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }*/
 }
