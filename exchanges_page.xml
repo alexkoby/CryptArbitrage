@@ -73,25 +73,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange2"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="78dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange2_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -153,25 +134,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange6"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="110dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange6_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -270,145 +232,6 @@
                         android:id="@+id/exchange11_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange12"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="100dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange12_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange13"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="88dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange13_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange14"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="96dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange14_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange15"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="76dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange15_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange16"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="81dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange16_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange17"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="94dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange17_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingBottom="8dip">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange18"
-                        android:textColor="@color/black"
-                        android:textSize="23sp" />
-
-                    <ToggleButton
-                        android:id="@+id/exchange18_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
 
                 </LinearLayout>
 
