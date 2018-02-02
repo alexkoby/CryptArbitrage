@@ -75,22 +75,18 @@ public class HomePage extends Activity implements View.OnClickListener {
         super.onStart();
 System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainActivity.isCreatedExchanges + "Exchanges");
         if(MainActivity.isCreatedExchanges  && MainActivity.isCreatedCryptocurrencies) {
-            //getAsksAndBids(taskBitfinex, HomePage.bitfinex);
-            //getAsksAndBids(taskBittrex, HomePage.bittrex);
-            //getAsksAndBids(taskBinance, HomePage.binance);
-            //getAsksAndBids(taskHitBTC, HomePage.hitBTC);
-            //getAsksAndBids(taskBitZ,HomePage.bitZ);
-            //getAsksAndBids(taskPoloniex, HomePage.poloniex);
-            //getAsksAndBids(taskBitStamp,HomePage.bitStamp);
-            //getAsksAndBids(taskOKEX, HomePage.OKEX);
-            //getAsksAndBids(taskGDAX, HomePage.GDAX);
+            for(Exchange exchange: listOfExchanges){
+                getAsksAndBids(exchange);
+                System.out.println(exchange.getName());
+            }
         }
     }
 
 
     //Creates an Array of URLs and calls downloadtask.execute()
-    public void getAsksAndBids(DownloadTask task, Exchange e){
+    public void getAsksAndBids(Exchange e){
         String [] APIs = new String [e.getCoins().size()*3];
+        DownloadTask task = null;
 
         System.out.println(e.getCoins().size());
         for(int i = 0; i < e.getCoins().size(); i+=1){
@@ -99,51 +95,67 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("USD");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
                     APIs[3*i+2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                    task = HomePage.taskBitfinex;
                     break;
                 case "Bittrex":
                     APIs[3*i] = "USDT-".concat(e.getCoins().get(i).getAbbreviation());
                     APIs[3*i + 1] = "BTC-".concat(e.getCoins().get(i).getAbbreviation());
                     APIs[3*i + 2] = "ETH-".concat(e.getCoins().get(i).getAbbreviation());
+                    task = HomePage.taskBittrex;
                     break;
                 case "Binance":
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("USDT");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
                     APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                    task = HomePage.taskBinance;
                     break;
                 case "HitBTC":
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("USD");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
                     APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                    task = HomePage.taskHitBTC;
                     break;
                 case "Bit-Z":
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
                     APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
+                    task = HomePage.taskBitZ;
                     break;
                 case "Poloniex":
                     APIs[3*i] = "USDT_".concat(e.getCoins().get(i).getAbbreviation());
                     APIs[3*i + 1] = "BTC_".concat(e.getCoins().get(i).getAbbreviation());
                     APIs[3*i + 2] = "ETH_".concat(e.getCoins().get(i).getAbbreviation());
+                    task = HomePage.taskPoloniex;
                     break;
                 case "BitStamp":
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("USD");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
                     APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                    task = HomePage.taskBitStamp;
                     break;
                 case "OKEX":
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
                     APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
+                    task = HomePage.taskOKEX;
                     break;
                 case "GDAX":
                     APIs[3*i] = e.getCoins().get(i).getAbbreviation().concat("-usd/ticker");
                     APIs[3*i + 1] = e.getCoins().get(i).getAbbreviation().concat("-btc/ticker");
                     APIs[3*i + 2] = e.getCoins().get(i).getAbbreviation().concat("-eth/ticker");
+                    task = HomePage.taskGDAX;
                     break;
             }
 
         }
-        task.execute(APIs);
+        if(task == null) {
+            System.out.println("TRIED TO USE NULL DOWNLOAD TASK");
+            return;
+        }
+        else {
+            task.execute(APIs);
+        }
+
     }
 
     public void onClick(View v){
