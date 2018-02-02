@@ -115,13 +115,8 @@ public class Exchanges extends Activity implements View.OnClickListener{
     public void addExchangeToList (ToggleButton button){
         switch (button.getId()){
             case R.id.exchange1_button:
-                //binance
+                HomePage.listOfExchanges.add(HomePage.binance);
                 break;
-
-            case R.id.exchange2_button:
-                //bitthumb
-                break;
-
             case R.id.exchange3_button:
                 HomePage.listOfExchanges.add(HomePage.bittrex);
                 break;
@@ -130,6 +125,25 @@ public class Exchanges extends Activity implements View.OnClickListener{
                 HomePage.listOfExchanges.add(HomePage.bitfinex);
                 break;
 
+            case R.id.exchange5_button:
+                HomePage.listOfExchanges.add(HomePage.OKEX);
+                break;
+
+            case R.id.exchange7_button:
+                HomePage.listOfExchanges.add(HomePage.poloniex);
+                break;
+
+            case R.id.exchange8_button:
+                HomePage.listOfExchanges.add(HomePage.hitBTC);
+                break;
+
+            case R.id.exchange9_button:
+                HomePage.listOfExchanges.add(HomePage.GDAX);
+                break;
+
+            case R.id.exchange11_button:
+                HomePage.listOfExchanges.add(HomePage.bitZ);
+                break;
         }
     }
 
