@@ -72,6 +72,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
             case R.id.submit_currency_button:
                 clearExchanges();
                 HomePage.listOfCurrencies.clear();
+                addBitcoinAndEthereumToExchanges();
                 for(ToggleButton button : allCurrenciesButtons){
                     if(button.isChecked()) {
                         addCurrencyToExchanges(button);
@@ -165,56 +166,57 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
     }
 
     /**
+     * Adds bitcoin and ethereum to every exchange by default
+     */
+    public void addBitcoinAndEthereumToExchanges(){
+        Coin bitcoinBitfinex = new Coin("Bitcoin","BTC", "Bitfinex");
+        HomePage.bitfinex.addCoin(bitcoinBitfinex);
+        Coin bitcoinBittrex = new Coin("Bitcoin","BTC", "Bittrex");
+        HomePage.bittrex.addCoin(bitcoinBittrex);
+        Coin bitcoinBinance = new Coin("Bitcoin", "BTC", "Binance");
+        HomePage.binance.addCoin(bitcoinBinance);
+        Coin bitcoinHitBTC = new Coin("Bitcoin", "BTC", "HitBTC");
+        HomePage.hitBTC.addCoin(bitcoinHitBTC);
+        Coin bitcoinBitZ = new Coin("Bitcoin", "btc", "Bit-Z");
+        HomePage.bitZ.addCoin(bitcoinBitZ);
+        Coin bitcoinPoloniex = new Coin("Bitcoin","BTC","Poloniex");
+        HomePage.poloniex.addCoin(bitcoinPoloniex);
+        Coin bitcoinBitStamp = new Coin ("Bitcoin","BTC","BitStamp");
+        HomePage.bitStamp.addCoin(bitcoinBitStamp);
+        Coin bitcoinOKEX = new Coin("Bitcoin", "BTC","OKEX");
+        HomePage.OKEX.addCoin(bitcoinOKEX);
+        Coin bitcoinGDAX = new Coin("Bitcoin","BTC","GDAX");
+        HomePage.GDAX.addCoin(bitcoinGDAX);
+        HomePage.listOfCurrencies.add("Bitcoin");
+
+        Coin ethereumBitfinex = new Coin("Ethereum","ETH", "Bitfinex");
+        HomePage.bitfinex.addCoin(ethereumBitfinex);
+        Coin ethereumBittrex = new Coin("Ethereum","ETH", "Bittrex");
+        HomePage.bittrex.addCoin(ethereumBittrex);
+        Coin ethereumBinance = new Coin("Ethereum", "ETH", "Binance");
+        HomePage.binance.addCoin(ethereumBinance);
+        Coin ethereumHitBTC = new Coin("Ethereum", "ETH", "HitBTC");
+        HomePage.hitBTC.addCoin(ethereumHitBTC);
+        Coin ethereumBitZ = new Coin("Ethereum", "eth", "Bit-Z");
+        HomePage.bitZ.addCoin(ethereumBitZ);
+        Coin ethereumPoloniex = new Coin("Ethereum","ETH","Poloniex");
+        HomePage.poloniex.addCoin(ethereumPoloniex);
+        Coin ethereumBitStamp = new Coin ("Ethereum","ETH","BitStamp");
+        HomePage.bitStamp.addCoin(ethereumBitStamp);
+        Coin ethereumOKEX = new Coin("Ethereum", "ETH","OKEX");
+        HomePage.OKEX.addCoin(ethereumOKEX);
+        Coin ethereumGDAX = new Coin("Ethereum","ETH","GDAX");
+        HomePage.GDAX.addCoin(ethereumGDAX);
+        HomePage.listOfCurrencies.add("Ethereum");
+    }
+
+    /**
      * Checks to see if button is selected, if it is, it adds it to all exchanges
      *     that have that currency
      * @param button is the ToggleButton you're checking
      */
     public void addCurrencyToExchanges(ToggleButton button){
         switch (button.getId()){
-            case R.id.currency1_button:
-                Coin bitcoinBitfinex = new Coin("Bitcoin","BTC", "Bitfinex");
-                HomePage.bitfinex.addCoin(bitcoinBitfinex);
-                Coin bitcoinBittrex = new Coin("Bitcoin","BTC", "Bittrex");
-                HomePage.bittrex.addCoin(bitcoinBittrex);
-                Coin bitcoinBinance = new Coin("Bitcoin", "BTC", "Binance");
-                HomePage.binance.addCoin(bitcoinBinance);
-                Coin bitcoinHitBTC = new Coin("Bitcoin", "BTC", "HitBTC");
-                HomePage.hitBTC.addCoin(bitcoinHitBTC);
-                Coin bitcoinBitZ = new Coin("Bitcoin", "btc", "Bit-Z");
-                HomePage.bitZ.addCoin(bitcoinBitZ);
-                Coin bitcoinPoloniex = new Coin("Bitcoin","BTC","Poloniex");
-                HomePage.poloniex.addCoin(bitcoinPoloniex);
-                Coin bitcoinBitStamp = new Coin ("Bitcoin","BTC","BitStamp");
-                HomePage.bitStamp.addCoin(bitcoinBitStamp);
-                Coin bitcoinOKEX = new Coin("Bitcoin", "BTC","OKEX");
-                HomePage.OKEX.addCoin(bitcoinOKEX);
-                Coin bitcoinGDAX = new Coin("Bitcoin","BTC","GDAX");
-                HomePage.GDAX.addCoin(bitcoinGDAX);
-                HomePage.listOfCurrencies.add("Bitcoin");
-                break;
-
-            case R.id.currency2_button:
-                Coin ethereumBitfinex = new Coin("Ethereum","ETH", "Bitfinex");
-                HomePage.bitfinex.addCoin(ethereumBitfinex);
-                Coin ethereumBittrex = new Coin("Ethereum","ETH", "Bittrex");
-                HomePage.bittrex.addCoin(ethereumBittrex);
-                Coin ethereumBinance = new Coin("Ethereum", "ETH", "Binance");
-                HomePage.binance.addCoin(ethereumBinance);
-                Coin ethereumHitBTC = new Coin("Ethereum", "ETH", "HitBTC");
-                HomePage.hitBTC.addCoin(ethereumHitBTC);
-                Coin ethereumBitZ = new Coin("Ethereum", "eth", "Bit-Z");
-                HomePage.bitZ.addCoin(ethereumBitZ);
-                Coin ethereumPoloniex = new Coin("Ethereum","ETH","Poloniex");
-                HomePage.poloniex.addCoin(ethereumPoloniex);
-                Coin ethereumBitStamp = new Coin ("Ethereum","ETH","BitStamp");
-                HomePage.bitStamp.addCoin(ethereumBitStamp);
-                Coin ethereumOKEX = new Coin("Ethereum", "ETH","OKEX");
-                HomePage.OKEX.addCoin(ethereumOKEX);
-                Coin ethereumGDAX = new Coin("Ethereum","ETH","GDAX");
-                HomePage.GDAX.addCoin(ethereumGDAX);
-                HomePage.listOfCurrencies.add("Ethereum");
-                break;
-
             case R.id.currency3_button:
                 Coin rippleBitfinex = new Coin("Ripple","XRP", "Bitfinex");
                 HomePage.bitfinex.addCoin(rippleBitfinex);
@@ -546,11 +548,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 HomePage.bittrex.addCoin(arkBittrex);
                 Coin arkBinance = new Coin("Ark", "ARK", "Binance");
                 HomePage.binance.addCoin(arkBinance);
-                Coin arkBitZ = new Coin("Ark", "ARK", "Bit-Z");
+                Coin arkBitZ = new Coin("Ark", "ark", "Bit-Z");
                 HomePage.bitZ.addCoin(arkBitZ);
                 Coin arkOKEX = new Coin("Ark", "ARK","OKEX");
                 HomePage.OKEX.addCoin(arkOKEX);
                 HomePage.listOfCurrencies.add("Ark");
+                break;
+            default:
                 break;
         }
     }
@@ -568,7 +572,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
 
     /**
      * Saves files listing whether each coin is toggled to "On" or "Off"
-     * @param listOfButtons
+     * @param listOfButtons of the list of all buttons viewable
      */
     public void saveSelectedCoinsInfo(ArrayList<ToggleButton> listOfButtons){
         String fileName = "CurrenciesInformation";
