@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 
 public class HomePage extends Activity implements View.OnClickListener {
+    static ArrayList<String> listOfCurrencies;
     static ArrayList<Exchange> listOfExchanges;
     static Exchange bitfinex;
     static Exchange bittrex;
