@@ -1,124 +1,251 @@
 package com.example.alexander.cryptarbitrage2;
+import android.graphics.Path;
 
-import com.example.alexander.cryptarbitrage2.Coin;
-import com.example.alexander.cryptarbitrage2.Exchange;
-import com.example.alexander.cryptarbitrage2.HomePage;
-
-import java.lang.reflect.Array;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.ArrayList;
 /**
  * Created by Alexander on 1/11/2018.
  */
 
 public class ArbitrageFinder {
-    private ArrayList<Exchange> allExchanges;
-    private final int NUMBER_OPPROTUNITIES = 10;
-    private MaxHeap bestOpprotunitiesWithinExchanges;
+    private final int NUMBER_OPPORTUNITIES = 15;
+    private PriorityQueue<Opportunity> bestOpportunitiesWithinExchanges;
+    private PriorityQueue<Opportunity> bestOpportunitiesAcrossExchanges;
+    private double goalReturn;
 
-
-    public ArbitrageFinder() {
-        bestOpprotunitiesWithinExchanges = new MaxHeap(NUMBER_OPPROTUNITIES);
+    public ArbitrageFinder(double goalReturn) {
+        this.goalReturn = goalReturn;
+        bestOpportunitiesWithinExchanges = new PriorityQueue(NUMBER_OPPORTUNITIES, new Comparator<Opportunity>() {
+            @Override
+            public int compare(Opportunity o1, Opportunity o2) {
+                if(o1.getPercentGain() > o2.getPercentGain()){
+                    return 1;
+                }
+                else if (o1.getPercentGain() < o2.getPercentGain()){
+                    return -1;
+                }
+                else{
+                    return 0;
+                }
+            }
+        });
+        bestOpportunitiesAcrossExchanges = new PriorityQueue(NUMBER_OPPORTUNITIES, new Comparator<Opportunity>() {
+            @Override
+            public int compare(Opportunity o1, Opportunity o2) {
+                if(o1.getPercentGain() > o2.getPercentGain()){
+                    return 1;
+                }
+                else if (o1.getPercentGain() < o2.getPercentGain()){
+                    return -1;
+                }
+                else{
+                    return 0;
+                }
+            }
+        });
+    }
+    public PriorityQueue getBestOpportunitiesWithinExchange(ArrayList<Exchange> listOfExchanges) {
+        calculateBestOpportunitiesWithinExchange();
+        return this.bestOpportunitiesAcrossExchanges;
+    }
+    public PriorityQueue getBestOpportunitiesAcrossExchange(){
+        return this.bestOpportunitiesAcrossExchanges;
     }
 
-    public void addExchange(Exchange e) {
-        allExchanges.add(e);
+    private void calculateBestOpportunitiesCrossExchange(){
+        Opportunity opportunity;
+        if(HomePage.listOfCurrencies.size() == 0){
+            //tell user to select more currencies
+            return;
+        }
+        if(HomePage.listOfExchanges.size() <= 1){
+            //tell user to select more exchanges - need at least two to tango
+            return;
+        }
+        for(String coin: HomePage.listOfCurrencies){
+            opportunity = typeSeven(coin);
+            if(opportunity != null){
+                bestOpportunitiesAcrossExchanges.add(opportunity);
+            }
+        }
     }
 
-    public ArrayList<Exchange> getAllExchanges() {
-        return this.allExchanges;
-    }
-
-    public MaxHeap getBestOpprotunitiesWithinExchange(ArrayList<Exchange> listOfExchanges) {
-        calculateBestOpprotunitiesWithinExchange();
-        return bestOpprotunitiesWithinExchanges;
-    }
-
-    private void calculateBestOpprotunitiesWithinExchange() {
+    private void calculateBestOpportunitiesWithinExchange() {
+        Opportunity opportunity;
+        Coin bitcoin;
+        Coin ethereum;
+        if(HomePage.listOfExchanges.size() == 0){
+            //Tell user to select more Exchanges
+            return;
+        }
         for (Exchange exchange : HomePage.listOfExchanges) {
-            for (Coin coin : exchange.getCoins()) { //120$/1Btc * 1LTC/10$ * xBTC/LTC  -- sell btc, buy ltc, exchange ltc for bitcoin
-                //if coin can be converted to btc and converted to usd
-                if (coin.getBidPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
-                    //sell price of bitcoin / buy price usd of coin * convert coin to btc (starded with 1 btc, now hopefully 1.03)
-                    //buy price of bitcoin / convert btc to coin * sell price of other coin - (
-                    // gotta divide by buy price of btc for percentage gain)
-                    double betterDeal = Math.max((exchange.getCoins().get(0).getBidPriceUSD() /
-                            coin.getAskPriceUSD() * coin.getBidPriceBTC()), exchange.getCoins().get(0).getAskPriceUSD() *
-                            coin.getAskPriceBTC() * coin.getBidPriceUSD() / exchange.getCoins().get(0).getAskPriceUSD());
-                    //if this can yield a 1% gain
-                    if (betterDeal > 1.01) {
-                        bestOpprotunitiesWithinExchanges.insert(betterDeal);
-                    }
-
+            bitcoin = exchange.getCoins().get(0);
+            ethereum = exchange.getCoins().get(1);
+            //don't want to perform function
+            if(exchange.getCoins().size() == 0){
+                continue;
+            }
+            for (Coin coin : exchange.getCoins()) {
+                opportunity = typeOne(coin, bitcoin );
+                if(opportunity != null){
+                    bestOpportunitiesWithinExchanges.add(opportunity);
+                }
+                opportunity = typeTwo(coin, bitcoin);
+                if(opportunity != null){
+                    bestOpportunitiesWithinExchanges.add(opportunity);
+                }
+                opportunity = typeThree(coin, ethereum);
+                if(opportunity != null){
+                    bestOpportunitiesWithinExchanges.add(opportunity);
+                }
+                opportunity = typeFour(coin, ethereum);
+                if(opportunity != null){
+                    bestOpportunitiesWithinExchanges.add(opportunity);
+                }
+                opportunity = typeFive(coin, ethereum);
+                if(opportunity != null){
+                    bestOpportunitiesWithinExchanges.add(opportunity);
+                }
+                opportunity = typeSix(coin, ethereum);
+                if(opportunity != null){
+                    bestOpportunitiesWithinExchanges.add(opportunity);
                 }
             }
         }
-
     }
     /**
-     * Checks if way type one offers above a 1.5% arbitrage opprotunitiy
+     * Checks if way type one offers above a 'goalReturn' arbitrage opportunitiy
      * @param coin is the coin you're testing
      * @param bitcoin is bitcoin on the exchange your coin is on
-     * @return Opprotunity if a 1.5% opprotunity or higher exists, null if it doesn't
+     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
      */
-    public Opprotunity typeOne(Coin coin, Coin bitcoin) {
+    private Opportunity typeOne(Coin coin, Coin bitcoin) {
         double type1Rate;
 
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && bitcoin.getBidPriceUSD() > 0) {
             type1Rate = coin.getAskPriceUSD() * coin.getBidPriceBTC() * bitcoin.getBidPriceUSD();
-            if (type1Rate > 1.5) {
-                Opprotunity newOpprotunity = new Opprotunity(type1Rate, 1, coin, coin);
+            if (type1Rate > goalReturn) {
+                return new Opportunity(type1Rate, 1, coin, bitcoin);
             }
         }
         return null;
     }
     /**
-     * Checks if way type two offers above a 1.5% arbitrage opprotunitiy
+     * Checks if way type two offers above a 'goalReturn' arbitrage opportunitiy
      * @param coin is the coin you're testing
      * @param bitcoin is bitcoin on the exchange your coin is on
-     * @return Opprotunity if a 1.5% opprotunity or higher exists, null if it doesn't
+     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
      */
-    public Opprotunity typeTwo(Coin coin, Coin bitcoin) {
+    private Opportunity typeTwo(Coin coin, Coin bitcoin) {
         double type2Rate;
         if (bitcoin.getAskPriceUSD() > 0 && coin.getAskPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
             type2Rate = bitcoin.getAskPriceUSD() * coin.getAskPriceBTC() * coin.getBidPriceUSD();
-            if (type2Rate > 1.5) {
-                Opprotunity newOpprotunitiy = new Opprotunity(type2Rate, 2, coin, coin);
-                return newOpprotunitiy;
+            if (type2Rate > goalReturn) {
+                return new Opportunity(type2Rate, 2, coin, bitcoin);
             }
         }
         return null;
     }
     /**
-     * Checks if way type three offers above a 1.5% arbitrage opprotunitiy
+     * Checks if way type three offers above a 'goalReturn' arbitrage opportunitiy
      * @param coin is the coin you're testing
      * @param ethereum is ethereum on the exchange your coin is on
-     * @return Opprotunity if a 1.5% opprotunity or higher exists, null if it doesn't
+     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
      */
-    public Opprotunity typeThree(Coin coin, Coin ethereum) {
+    private Opportunity typeThree(Coin coin, Coin ethereum) {
         double type3Rate;
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getBidPriceUSD() > 0) {
             type3Rate = coin.getAskPriceUSD() * coin.getBidPriceBTC() * ethereum.getBidPriceUSD();
-            if (type3Rate > 1.5) {
-                Opprotunity newOpprotunity = new Opprotunity(type3Rate, 3, coin, coin);
+            if (type3Rate > goalReturn) {
+                return new Opportunity(type3Rate, 3, coin, ethereum);
             }
         }
         return null;
     }
 
     /**
-     * Checks if way type four offers above a 1.5% arbitrage opprotunitiy
+     * Checks if way type four offers above a 'goalReturn' arbitrage opportunitiy
      * @param coin is the coin you're testing
      * @param ethereum is ethereum on the exchange your coin is on
-     * @return Opprotunity if a 1.5% opprotunity or higher exists, null if it doesn't
+     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
      */
-    public Opprotunity typeFour(Coin coin, Coin ethereum) {
+    private Opportunity typeFour(Coin coin, Coin ethereum) {
         double type4Rate;
         if (ethereum.getAskPriceUSD() > 0 && coin.getAskPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
             type4Rate = ethereum.getAskPriceUSD() * coin.getAskPriceBTC() * coin.getBidPriceUSD();
-            if (type4Rate > 1.5) {
-                Opprotunity newOpprotunitiy = new Opprotunity(type4Rate, 4, coin, coin);
-                return newOpprotunitiy;
+            if (type4Rate > goalReturn) {
+                return new Opportunity(type4Rate, 4, coin, ethereum);
             }
+        }
+        return null;
+    }
+
+    /**
+     * Checks if way type four offers above a 'goalReturn' arbitrage opportunitiy
+     * @param coin is the coin you're testing
+     * @param ethereum is ethereum on the exchange you're testing
+     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
+     */
+    private Opportunity typeFive(Coin coin, Coin ethereum) {
+        double type5Rate;
+        if(coin.getAskPriceETH() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getAskPriceBTC() > 0){
+            type5Rate = coin.getAskPriceETH() * coin.getBidPriceBTC() * ethereum.getAskPriceBTC();
+            if(type5Rate > goalReturn) {
+                return new Opportunity(type5Rate, 5, coin, ethereum);
+            }
+
+        }
+        return null;
+    }
+    /**
+     * Checks if way type four offers above a 'goalReturn' arbitrage opportunitiy
+     * @param coin is the coin you're testing
+     * @param ethereum is ethereum on the exchange you're testing
+     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
+     */
+    private Opportunity typeSix(Coin coin, Coin ethereum) {
+        double type6Rate;
+        if(coin.getAskPriceBTC() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceBTC() > 0) {
+            type6Rate = coin.getAskPriceBTC() * coin.getBidPriceETH() * ethereum.getBidPriceBTC();
+            if(type6Rate > goalReturn) {
+                return new Opportunity(type6Rate, 6, coin, ethereum);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Checks if way type seven offers above a 'goalReturn' arbitrage opportunitiy
+     * @param coinName is the coin you're testing
+     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
+     */
+    private Opportunity typeSeven(String coinName){
+        double minAskUSD = 1000000;
+        Coin coinMinAskUSD = null;
+        double maxBidUSD = 0;
+        Coin coinMaxBidUSD = null;
+
+        for(Exchange exchange: HomePage.listOfExchanges){
+            for(Coin coin: exchange.getCoins()){
+                if(coin.getName().equals(coinName)){
+                    if(coin.getBidPriceUSD() > maxBidUSD){
+                        maxBidUSD = coin.getBidPriceUSD();
+                        coinMaxBidUSD = coin;
+                    }
+                    if(coin.getAskPriceUSD() > 0 && coin.getAskPriceUSD() < minAskUSD){
+                        minAskUSD = coin.getAskPriceUSD();
+                        coinMinAskUSD = coin;
+                    }
+                    break;
+                }
+            }
+        }
+        if(coinMaxBidUSD == null || coinMinAskUSD == null){
+            return null;
+        }
+        if(maxBidUSD/minAskUSD > goalReturn){
+            return new Opportunity(maxBidUSD/minAskUSD,7,coinMaxBidUSD,coinMinAskUSD);
         }
         return null;
     }
