@@ -31,8 +31,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
     Button selectAllExchangesButton;
     Button submitExchangeButton;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +40,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
          //The data has likely been changed before, try to load it
         //if(!MainActivity.isCreatedExchanges){
         setUpExchangeButtons();
-
-
-
-
 
         //getExchangeInfo();
 
@@ -97,7 +91,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
                         addExchangeToList(button);
                     }
                 }
-                saveExchangeInfo1(allExchangesButton);
+                saveExchangeInfo1();
 
                 startActivity(new Intent(this, HomePage.class));
                 break;
@@ -110,7 +104,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
     /**
      * Adds exchange of the button to the list of selected Exchanges
-     * @param button
+     * @param button is the button to the corresponding exchange
      */
     public void addExchangeToList (ToggleButton button){
         switch (button.getId()){
@@ -147,35 +141,12 @@ public class Exchanges extends Activity implements View.OnClickListener{
         }
     }
 
-    /*//Saves the users Exchange Preferences
-    public void saveExchangesInfo(){
-        exchangeInfo =  getSharedPreferences("exchangeInfo", Context.MODE_PRIVATE);
-
-        //Gives us object to write to file
-        SharedPreferences.Editor editor = exchangeInfo.edit();
-        //Adds all buttons to file in form of: 'exchangeButton#', string Value
-        for(int i = 0; i < MainActivity.allExchangesButton.size(); i++) {
-            editor.putBoolean("exchangeButton" + Integer.toString(i+1),
-                    MainActivity.allExchangesButton.get(i).isChecked());
-        }
-        //submit
-        editor.commit();
-    }
-
-    public void getExchangeInfo(){
-        for(int i = 0; i < MainActivity.allExchangesButton.size(); i++){
-            MainActivity.allExchangesButton.get(i).setChecked(exchangeInfo.
-                    getBoolean("exchange" + Integer.toString(i+1),false));
-        }
-    } */
-
-    public void saveExchangeInfo1(ArrayList<ToggleButton> listOfButtons){
+    public void saveExchangeInfo1(){
         String fileName = "ExchangeInformation";
         String message;
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
             for(ToggleButton b1:allExchangesButton){
-                System.out.println("Saved File");
                 message = Boolean.toString(b1.isChecked());
                 fileOutputStream.write(message.getBytes());
             }
