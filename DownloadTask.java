@@ -28,12 +28,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
 
     //Why can't this go in constructor or doInBackground? -- always says its null
-    ArrayList<Double> exchangeCoinsBidUSD = new ArrayList<>();
-    ArrayList<Double> exchangeCoinsAskUSD = new ArrayList<>();
-    ArrayList<Double> exchangeCoinsBidBTC = new ArrayList<>();
-    ArrayList<Double> exchangeCoinsAskBTC = new ArrayList<>();
-    ArrayList<Double> exchangeCoinsBidETH = new ArrayList<>();
-    ArrayList<Double> exchangeCoinsAskETH = new ArrayList<>();
+    private ArrayList<Double> exchangeCoinsBidUSD;
+    private ArrayList<Double> exchangeCoinsAskUSD;
+    private ArrayList<Double> exchangeCoinsBidBTC;
+    private ArrayList<Double> exchangeCoinsAskBTC;
+    private ArrayList<Double> exchangeCoinsBidETH;
+    private ArrayList<Double> exchangeCoinsAskETH;
 
     String apiBase;
     String findSymbol;
@@ -42,13 +42,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
 
     public DownloadTask(String findSymbol, String apiBase, Exchange exchange) {
-        //gives ask and bid for BTCBTC 1:1, BTCETH = -999, ETHETH 1:1
-        exchangeCoinsAskBTC.add(-1.0);
-        exchangeCoinsBidBTC.add(-1.0);
-        exchangeCoinsAskETH.add(-1.0);
-        exchangeCoinsBidETH.add(-1.0);
-        exchangeCoinsAskETH.add(-1.0);
-        exchangeCoinsBidETH.add(-1.0);
+        exchangeCoinsBidUSD = new ArrayList<>();
+        exchangeCoinsAskUSD = new ArrayList<>();
+        exchangeCoinsBidBTC = new ArrayList<>();
+        exchangeCoinsAskBTC = new ArrayList<>();
+        exchangeCoinsBidETH = new ArrayList<>();
+        exchangeCoinsAskETH = new ArrayList<>();
 
         this.findSymbol = findSymbol;
 
@@ -69,7 +68,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         for (int i = 0; i < urls.length; i++) {
             q1.add(urls[i]);
         }
-        int counter = 0; //specify which arrayList to add results to - explicit for first 3
+        int counter = -1; //specify which arrayList to add results to - explicit for first 3
         //rounds, then rotate
 
         if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
@@ -87,11 +86,6 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             URL url;
             HttpURLConnection urlConnection = null;
 
-            //skips BTCBTC, BTCETH, ETHETH as they DNE
-            if (counter == 2 || counter == 3 || counter == 6) {
-                q1.remove();
-                continue;
-            }
 
             try {
                 String currentPair = q1.peek();
@@ -115,35 +109,41 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 if(this.findSymbol!= null && this.findSymbol.length() > 0){
                     jsonObject = jsonObject.getJSONObject(this.findSymbol);
                 }
-                if (counter % 3 == 1) {
+                if (counter % 3 == 0) {
                     //search for 'bid' if bitfinex, else search for 'Bid'
-                    exchangeCoinsBidUSD.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
-                    exchangeCoinsAskUSD.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                    exchange.getCoins().get(counter/3).setBidPriceUSD
+                            (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                    exchange.getCoins().get(counter/3).setAskPriceUSD
+                            (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                    System.out.println("MADE IT USD");
                 }
-                else if (counter % 3 == 2) {
-                    exchangeCoinsBidBTC.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
-                    exchangeCoinsAskBTC.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                else if (counter % 3 == 1) {
+                    exchange.getCoins().get(counter/3).setBidPriceBTC
+                            (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                    exchange.getCoins().get(counter/3).setAskPriceBTC
+                            (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                 }
-                else if (counter % 3 == 0) { //dont really need the if, but makes it more clear
-                    exchangeCoinsBidETH.add(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
-                    exchangeCoinsAskETH.add(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                else if (counter % 3 == 2) { //dont really need the if, but makes it more clear
+                    exchange.getCoins().get(counter/3).setBidPriceETH
+                            (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
+                    exchange.getCoins().get(counter/3).setAskPriceETH
+                            (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                 }
             }
             catch (Exception e) {
                 System.out.println("Hey guys: " + (e instanceof FileNotFoundException));
                 if (e instanceof FileNotFoundException || e instanceof org.json.JSONException) {
-                    if (counter % 3 == 1) {
-                        exchangeCoinsAskUSD.add(-1.0);
-                        exchangeCoinsBidUSD.add(-1.0);
+                    if (counter % 3 == 0) {
+                        exchange.getCoins().get(counter/3).setBidPriceUSD(-1.0);
+                        exchange.getCoins().get(counter/3).setAskPriceUSD(-1.0);
                     }
-                    else if (counter % 3 == 2) {
-                        exchangeCoinsAskBTC.add(-1.0);
-                        exchangeCoinsBidBTC.add(-1.0);
+                    else if (counter % 3 == 1) {
+                        exchange.getCoins().get(counter/3).setBidPriceBTC(-1.0);
+                        exchange.getCoins().get(counter/3).setAskPriceBTC(-1.0);
                     }
-                    else if (counter % 3 == 0) { //could just be else, but this is more clear
-                        exchangeCoinsAskETH.add(-1.0);
-                        exchangeCoinsBidETH.add(-1.0);
-                    }
+                    else if (counter % 3 == 2) { //could just be else, but this is more clear
+                        exchange.getCoins().get(counter/3).setBidPriceETH(-1.0);
+                        exchange.getCoins().get(counter/3).setAskPriceETH(-1.0);                    }
                 }
                 e.printStackTrace();
             }
@@ -154,6 +154,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+        System.out.println(exchange.getName());
         try { //sets all null values in each coin to 0 if it DNE - previously null
             for(Coin coin : exchange.getCoins()){
                 if (coin.getAskPriceUSD() == null){
@@ -176,8 +177,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 }
             }
             for(Coin coin: exchange.getCoins()){
-                System.out.print("Name: " + coin.getName() + " Price USD: " + coin.getAskPriceUSD());
-                System.out.println(" Price BTC: " + coin.getAskPriceBTC() + " Price ETH: " + coin.getAskPriceETH());
+                System.out.print("Name: " + coin.getName() + " Price Ask USD: "
+                        + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
+                System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
+                        " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
             }
 
             Log.d("PLEEEEEEESE", Integer.toString(exchangeCoinsBidUSD.size()));
@@ -187,7 +190,9 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             e.printStackTrace();
         }
     }
-
+    public Exchange getExchange(){
+        return this.exchange;
+    }
     //probably don't need anymore
     public ArrayList<Double> getExchangeCoinsBidUSD() {
         return exchangeCoinsBidUSD;
@@ -217,7 +222,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
     private void fullAPIWay(LinkedList<String> queue) {
 
-        int counter = -1;
+        int counter1 = -1;
         Coin currentCoin;
 
         StringBuilder result = new StringBuilder();
@@ -265,8 +270,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             System.out.println("Exchange name is: " + exchange.getName());
 
             while(!queue.isEmpty()){
-                counter ++; //makes counter 0 initially 0 - don't want it at end bc might overlook it
-                currentCoin = exchange.getCoins().get(counter/3);
+                counter1 ++; //makes counter1 0 initially 0 - don't want it at end bc might overlook it
+                currentCoin = exchange.getCoins().get(counter1/3);
                 //want it to switch every third time - coinUSD, coinBTC, coinETH
 
                 jsonObject = binarySearch(queue.peek(), allPairs, this.findSymbol);
@@ -278,17 +283,17 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 }
                 else {
                     //a btc pair
-                    if (counter % 3 == 1) {
+                    if (counter1 % 3 == 1) {
                         currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                         currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                     }
                     //eth pair
-                    else if (counter % 3 == 2) {
+                    else if (counter1 % 3 == 2) {
                         currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                         currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                     }
                     //USDT pair
-                    else if (counter % 3 == 0) {
+                    else if (counter1 % 3 == 0) {
                         currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                         currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                     }
@@ -382,33 +387,48 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
     public void bitZWay(LinkedList<String> queue, JSONObject jsonObject){
         JSONObject temp;
-        int counter = -1;
+        int counter2 = -1;
         Coin currentCoin;
         while(!queue.isEmpty()){
-            counter++;
-            currentCoin = exchange.getCoins().get(counter/3);
+            counter2++;
+            currentCoin = exchange.getCoins().get(counter2/3);
             try{
                 temp = jsonObject.getJSONObject(queue.peek());
 
-                queue.remove();
-                if (counter % 3 == 1) {
+
+                if (counter2 % 3 == 1) {
                     currentCoin.setBidPriceBTC(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceBTC(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
                 }
                 //eth pair
-                else if (counter % 3 == 2) {
+                else if (counter2 % 3 == 2) {
                     currentCoin.setBidPriceETH(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceETH(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
                 }
                 //USDT pair
-                else if (counter % 3 == 0) {
+                else if (counter2 % 3 == 0) {
                     currentCoin.setBidPriceUSD(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceUSD(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
                 }
+                queue.remove();
 
             }
             catch (Exception e){
                 e.printStackTrace();
+                if (counter2 % 3 == 1) {
+                    currentCoin.setBidPriceBTC(-1.0);
+                    currentCoin.setAskPriceBTC(-1.0);
+                }
+                //eth pair
+                else if (counter2 % 3 == 2) {
+                    currentCoin.setBidPriceETH(-1.0);
+                    currentCoin.setAskPriceETH(-1.0);
+                }
+                //USDT pair
+                else if (counter2 % 3 == 0) {
+                    currentCoin.setBidPriceUSD(-1.0);
+                    currentCoin.setAskPriceUSD(-1.0);
+                }
                 queue.remove();
             }
         }

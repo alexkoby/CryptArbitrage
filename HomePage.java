@@ -104,6 +104,7 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
 
     //Creates an Array of URLs and calls downloadtask.execute()
     public void getAsksAndBids(Exchange e){
+        System.out.println("Exchange is: " + e.getName());
         String [] APIs = new String [e.getCoins().size()*3];
         DownloadTask task = null;
 
@@ -191,7 +192,6 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
             task.execute(APIs);
         }
     }
-
     public void onClick(View v){
         switch (v.getId()){
             case R.id.view_current_opprotunities:
@@ -246,11 +246,11 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
         taskGDAX = new DownloadTask(null,"https://api.gdax.com/products/", GDAX);
     }
 
-    @Override
+    //@Override
     //after OnPause and OnStart, basically every time
-    public void onResume(){
-        super.onResume();
-    }
+//    public void onResume(){
+ //       super.onResume();
+    //   }
 
     public void reImplementTask(DownloadTask downloadTask){
         switch (downloadTask.getExchange().getName()){
