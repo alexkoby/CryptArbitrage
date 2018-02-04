@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class HomePage extends Activity implements View.OnClickListener {
 
     static double minGainsWanted = 1.5;
     EditText minGainEditText;
+    Button typeOfArbitrage;
+    static String typeOfArbitrageString = "Inter-Exchange and Cross Exchange Arbitrage";
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -77,6 +80,12 @@ public class HomePage extends Activity implements View.OnClickListener {
 
         minGainEditText= findViewById(R.id.minGainEditText);
         minGainEditText.setText(Double.toString(minGainsWanted));
+
+        typeOfArbitrage = findViewById(R.id.typeOfArbitrage);
+        typeOfArbitrage.setText(typeOfArbitrageString);
+        typeOfArbitrage.setOnClickListener(this);
+
+
 
         MainActivity.isCreatedHomepage = true;
     }
@@ -183,7 +192,6 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
         }
     }
 
-    @SuppressLint("SetTextI18n")
     public void onClick(View v){
         switch (v.getId()){
             case R.id.view_current_opprotunities:
@@ -206,6 +214,20 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                 String s = minGainEditText.getText().toString();
                 minGainsWanted = Double.parseDouble(s);
                 minGainEditText.setText(Double.toString(minGainsWanted));
+                break;
+            case R.id.typeOfArbitrage:
+                if(typeOfArbitrage.getText().toString().equals("Inter-Exchange and Cross Exchange Arbitrage")){
+                    typeOfArbitrageString = "Inter-Exchange Arbitrage Only";
+                    typeOfArbitrage.setText(typeOfArbitrageString);
+                }
+                else if (typeOfArbitrage.getText().toString().equals("Inter-Exchange Arbitrage Only")){
+                    typeOfArbitrageString = "Cross-Exchange Arbitrage Only";
+                    typeOfArbitrage.setText(typeOfArbitrageString);
+                }
+                else {
+                    typeOfArbitrageString = "Inter-Exchange and Cross Exchange Arbitrage";
+                    typeOfArbitrage.setText(typeOfArbitrageString);
+                }
                 break;
         }
     }
