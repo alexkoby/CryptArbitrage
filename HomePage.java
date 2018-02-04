@@ -1,9 +1,11 @@
 package com.example.alexander.cryptarbitrage2;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -33,17 +35,19 @@ public class HomePage extends Activity implements View.OnClickListener {
     static DownloadTask taskBitStamp;
     static DownloadTask taskOKEX;
     static DownloadTask taskGDAX;
+
+    static double minGainsWanted = 1.5;
+    EditText minGainEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-        System.out.println("ON CREATE");
-
 
         //If this is the first time visiting the homepage
         if(!MainActivity.isCreatedHomepage) {
             listOfExchanges = new ArrayList<>();
+            listOfCurrencies = new ArrayList<>();
             bitfinex = new Exchange("Bitfinex", "ask", "bid", false);
             bittrex = new Exchange("Bittrex", "Ask", "Bid", true);
             binance = new Exchange("Binance", "price", "price", false);
@@ -68,6 +72,11 @@ public class HomePage extends Activity implements View.OnClickListener {
         View modifyCryptocurrencies = findViewById(R.id.modify_cryptocurrencies);
         modifyCryptocurrencies.setOnClickListener(this);
 
+        View enterMinGainsButton = findViewById(R.id.enterMinGainsButton);
+        enterMinGainsButton.setOnClickListener(this);
+
+        minGainEditText= findViewById(R.id.minGainEditText);
+        minGainEditText.setText(Double.toString(minGainsWanted));
 
         MainActivity.isCreatedHomepage = true;
     }
@@ -174,6 +183,7 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void onClick(View v){
         switch (v.getId()){
             case R.id.view_current_opprotunities:
@@ -189,6 +199,13 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
             case R.id.modify_cryptocurrencies:
                 Intent k = new Intent(this, Cryptocurrencies.class);
                 startActivity(k);
+                break;
+            case R.id.enterMinGainsButton:
+                minGainsWanted = 0;
+                int decimalSpot = -1;
+                String s = minGainEditText.getText().toString();
+                minGainsWanted = Double.parseDouble(s);
+                minGainEditText.setText(Double.toString(minGainsWanted));
                 break;
         }
     }
