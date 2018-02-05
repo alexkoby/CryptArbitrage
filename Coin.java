@@ -9,21 +9,28 @@ import android.support.annotation.NonNull;
 
 public class Coin implements Comparable<Coin>{
 
-    String name;
-    String abbreviation;
-    String exchange;
-    Double askPriceUSD;
-    Double bidPriceUSD;
-    Double askPriceBTC;
-    Double bidPriceBTC;
-    Double askPriceETH;
-    Double bidPriceETH;
+    private String name;
+    private String abbreviation;
+    private String exchange;
+    private Double askPriceUSD;
+    private Double bidPriceUSD;
+    private Double askPriceBTC;
+    private Double bidPriceBTC;
+    private Double askPriceETH;
+    private Double bidPriceETH;
+    private String USDPairBitcoinPairEthPair;
 
 
     /**
      * Constructor
      * @param name is the name of the coin
      */
+    public Coin(String name, String abbreviation, String exchange, String USDPairBitcoinPairEthPair){
+        this.name = name;
+        this.abbreviation = abbreviation;
+        this.exchange = exchange;
+        this.USDPairBitcoinPairEthPair = USDPairBitcoinPairEthPair;
+    }
     public Coin(String name, String abbreviation, String exchange){
         this.name = name;
         this.abbreviation = abbreviation;
@@ -96,6 +103,10 @@ public class Coin implements Comparable<Coin>{
 
     public String getAbbreviation() {
         return abbreviation;
+    }
+
+    public String getUSDBTCETHPairs(){
+        return this.USDPairBitcoinPairEthPair;
     }
 
     public void setAbbreviation(String abbreviation) {
