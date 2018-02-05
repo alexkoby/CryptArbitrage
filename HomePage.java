@@ -159,6 +159,7 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                     task = HomePage.taskPoloniex;
                     break;
                 case "BitStamp":
+                    System.out.println("BITSTAMP GOT HERE");
                     for(int i = 0; i < e.getCoins().size(); i+=1) {
                         APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
                         APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
@@ -188,7 +189,8 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
             return;
         }
         else {
-            reImplementTask(task);
+            System.out.println("Made it to reimplement " + e.getName());
+            task = reImplementTask(task);
             task.execute(APIs);
         }
     }
@@ -252,38 +254,38 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
  //       super.onResume();
     //   }
 
-    public void reImplementTask(DownloadTask downloadTask){
+    public DownloadTask reImplementTask(DownloadTask downloadTask){
         switch (downloadTask.getExchange().getName()){
             case "Bitfinex":
                 taskBitfinex = new DownloadTask(null,"https://api.bitfinex.com/v1/pubticker/", bitfinex );
-                break;
+                return taskBitfinex;
             case "Bittrex":
                 taskBittrex = new DownloadTask("MarketName",
                         "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
-                break;
+                return taskBittrex;
             case "Binance":
                 taskBinance = new DownloadTask("symbol", "https://www.binance.com/api/v1/ticker/allPrices",
                         binance);
-                break;
+                return taskBinance;
             case "HitBTC":
                 taskHitBTC = new DownloadTask("symbol","https://api.hitbtc.com/api/2/public/ticker", hitBTC);
-                break;
-            case "BIT-Z":
+                return taskHitBTC;
+            case "Bit-Z":
                 taskBitZ = new DownloadTask("","https://www.bit-z.com/api_v1/tickerall", bitZ);
-                break;
+                return taskBitZ;
             case "Poloniex":
                 taskPoloniex = new DownloadTask("","https://poloniex.com/public?command=returnTicker",poloniex);
-                break;
+                return taskPoloniex;
             case "BitStamp":
                 taskBitStamp = new DownloadTask(null, "https://www.bitstamp.net/api/v2/ticker/",bitStamp);
-                break;
+                return taskBitStamp;
             case "OKEX":
                 taskOKEX = new DownloadTask("ticker","https://www.okex.com/api/v1/ticker.do?symbol=", OKEX);
-                break;
+                return taskOKEX;
             case "GDAX":
                 taskGDAX = new DownloadTask(null,"https://api.gdax.com/products/", GDAX);
-                break;
-
+                return taskGDAX;
         }
+        return null;
     }
 }
