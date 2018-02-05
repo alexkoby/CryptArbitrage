@@ -85,7 +85,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
                 //Gets rid of all Exchanges from listOfExchanges and adds in valid exchanges
                     //based on the buttons that are 'On'
                 HomePage.listOfExchanges.clear();
-                System.out.println(allExchangesButton.size() + " SIZE");
                 for (ToggleButton button: allExchangesButton){
                     if (button.isChecked()){
                         addExchangeToList(button);
@@ -133,6 +132,10 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
             case R.id.exchange9_button:
                 HomePage.listOfExchanges.add(HomePage.GDAX);
+                break;
+
+            case R.id.exchange10_button:
+                HomePage.listOfExchanges.add(HomePage.bitStamp);
                 break;
 
             case R.id.exchange11_button:
