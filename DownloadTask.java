@@ -82,6 +82,13 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
         while (q1.size() != 0) {
             counter++;
+
+            if(isCoinPairNull(counter)){
+                System.out.println("REMOVED");
+                q1.remove();
+                continue;
+            }
+
             StringBuilder stringBuilder = new StringBuilder();
             URL url;
             HttpURLConnection urlConnection = null;
@@ -456,4 +463,20 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             e.printStackTrace();
         }
     }*/
+
+    public boolean isCoinPairNull(int counter){
+        if(counter % 3 == 0 && exchange.getCoins().
+                get(counter/3).getUSDBTCETHPairs().charAt(0)=='0'){
+            return true;
+        }
+        else if (counter % 3 == 1 && exchange.getCoins().
+                get(counter/3).getUSDBTCETHPairs().charAt(1) == '0'){
+            return true;
+        }
+        else if (counter % 3 == 2 && exchange.getCoins().get(counter/3)
+                .getUSDBTCETHPairs().charAt(2) == '0'){
+            return true;
+        }
+        return false;
+    }
 }
