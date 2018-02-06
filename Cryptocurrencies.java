@@ -23,6 +23,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
     ArrayList<ToggleButton> allCurrenciesButtons;
     Button submitCurrencyButton;
     Button selectAllCurrenciesButton;
+    boolean hasAddedBitcoinAndEthereum = false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +73,18 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
             case R.id.submit_currency_button:
                 clearExchanges();
                 HomePage.listOfCurrencies.clear();
-                addBitcoinAndEthereumToExchanges();
                 for(ToggleButton button : allCurrenciesButtons){
                     if(button.isChecked()) {
+                        if(!hasAddedBitcoinAndEthereum){
+                            addBitcoinAndEthereumToExchanges();
+                            hasAddedBitcoinAndEthereum = true;
+                        }
                         addCurrencyToExchanges(button);
                     }
+                }
+                hasAddedBitcoinAndEthereum = false;
+                if(HomePage.listOfCurrencies.size() > 0){
+                    addBitcoinAndEthereumToExchanges();
                 }
                 saveSelectedCoinsInfo(allCurrenciesButtons);
                 System.out.println("size is: " + HomePage.bitfinex.getCoins().size());
