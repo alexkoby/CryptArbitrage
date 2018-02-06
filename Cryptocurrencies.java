@@ -187,7 +187,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 "Poloniex","100");
         HomePage.poloniex.addCoin(bitcoinPoloniex);
         Coin bitcoinBitStamp = new Coin ("Bitcoin","BTC",
-                "BitStamp");
+                "BitStamp","100");
         HomePage.bitStamp.addCoin(bitcoinBitStamp);
         Coin bitcoinOKEX = new Coin("Bitcoin", "BTC",
                 "OKEX","100");
@@ -215,7 +215,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
         Coin ethereumPoloniex = new Coin("Ethereum","ETH",
                 "Poloniex","110");
         HomePage.poloniex.addCoin(ethereumPoloniex);
-        Coin ethereumBitStamp = new Coin ("Ethereum","ETH","BitStamp");
+        Coin ethereumBitStamp = new Coin ("Ethereum","ETH",
+                "BitStamp","110");
         HomePage.bitStamp.addCoin(ethereumBitStamp);
         Coin ethereumOKEX = new Coin("Ethereum", "ETH",
                 "OKEX","110");
@@ -249,7 +250,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin ripplePoloniex = new Coin("Ripple","XRP",
                         "Poloniex","110");
                 HomePage.poloniex.addCoin(ripplePoloniex);
-                Coin rippleBitStamp = new Coin ("Ripple","XRP","BitStamp");
+                Coin rippleBitStamp = new Coin ("Ripple","XRP",
+                        "BitStamp","110");
                 HomePage.bitStamp.addCoin(rippleBitStamp);
                 Coin rippleOKEX = new Coin("Ripple", "XRP",
                         "OKEX","111");
@@ -273,7 +275,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin bitcoinCashPoloniex = new Coin("Bitcoin Cash","BCH",
                         "Poloniex","111");
                 HomePage.poloniex.addCoin(bitcoinCashPoloniex);
-                Coin bitcoinCashBitStamp = new Coin ("Bitcoin Cash","BCH","BitStamp");
+                Coin bitcoinCashBitStamp = new Coin ("Bitcoin Cash","BCH",
+                        "BitStamp","110");
                 HomePage.bitStamp.addCoin(bitcoinCashBitStamp);
                 Coin bitcoinCashOKEX = new Coin("Bitcoin Cash", "BCH",
                         "OKEX","111");
@@ -329,7 +332,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin litecoinPoloniex = new Coin("Litecoin", "LTC",
                         "Poloniex","110");
                 HomePage.poloniex.addCoin(litecoinPoloniex);
-                Coin litecoinBitStamp = new Coin ("Litecoin","LTC","BitStamp");
+                Coin litecoinBitStamp = new Coin ("Litecoin","LTC",
+                        "BitStamp","110");
                 HomePage.bitStamp.addCoin(litecoinBitStamp);
                 Coin litecoinOKEX = new Coin("Litecoin", "LTC",
                         "OKEX","111");
