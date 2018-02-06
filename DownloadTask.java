@@ -25,16 +25,7 @@ import android.util.Log;
  */
 
 public class DownloadTask extends AsyncTask<String,Void,String> {
-
-
-    //Why can't this go in constructor or doInBackground? -- always says its null
-    private ArrayList<Double> exchangeCoinsBidUSD;
-    private ArrayList<Double> exchangeCoinsAskUSD;
-    private ArrayList<Double> exchangeCoinsBidBTC;
-    private ArrayList<Double> exchangeCoinsAskBTC;
-    private ArrayList<Double> exchangeCoinsBidETH;
-    private ArrayList<Double> exchangeCoinsAskETH;
-
+    int APIRequestsMade = -1;
     String apiBase;
     String findSymbol;
 
@@ -42,19 +33,9 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
 
     public DownloadTask(String findSymbol, String apiBase, Exchange exchange) {
-        exchangeCoinsBidUSD = new ArrayList<>();
-        exchangeCoinsAskUSD = new ArrayList<>();
-        exchangeCoinsBidBTC = new ArrayList<>();
-        exchangeCoinsAskBTC = new ArrayList<>();
-        exchangeCoinsBidETH = new ArrayList<>();
-        exchangeCoinsAskETH = new ArrayList<>();
-
         this.findSymbol = findSymbol;
-
         this.apiBase = apiBase;
-
         this.exchange = exchange;
-
     }
 
 
@@ -88,6 +69,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 q1.remove();
                 continue;
             }
+            APIRequestsMade++;
 
             StringBuilder stringBuilder = new StringBuilder();
             URL url;
@@ -122,7 +104,6 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                             (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchange.getCoins().get(counter/3).setAskPriceUSD
                             (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
-                    System.out.println("MADE IT USD");
                 }
                 else if (counter % 3 == 1) {
                     exchange.getCoins().get(counter/3).setBidPriceBTC
@@ -138,19 +119,14 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 }
             }
             catch (Exception e) {
-                System.out.println("Hey guys: " + (e instanceof FileNotFoundException));
                 if (e instanceof FileNotFoundException || e instanceof org.json.JSONException) {
-                    if (counter % 3 == 0) {
-                        exchange.getCoins().get(counter/3).setBidPriceUSD(-1.0);
-                        exchange.getCoins().get(counter/3).setAskPriceUSD(-1.0);
+                    if (!isCoinPairNull(counter) && (!exchange.getName().equals("GDAX"))
+                            && (!exchange.getName().equals("BitStamp"))) {
+                        e.printStackTrace();
+                        System.out.print("NO MORE API REQUESTS ALLOWED " + exchange.getName());
+                        System.out.println("The maximum amt is: " + APIRequestsMade);
+                        return "NO MORE API REQUESTS ALLOWED";
                     }
-                    else if (counter % 3 == 1) {
-                        exchange.getCoins().get(counter/3).setBidPriceBTC(-1.0);
-                        exchange.getCoins().get(counter/3).setAskPriceBTC(-1.0);
-                    }
-                    else if (counter % 3 == 2) { //could just be else, but this is more clear
-                        exchange.getCoins().get(counter/3).setBidPriceETH(-1.0);
-                        exchange.getCoins().get(counter/3).setAskPriceETH(-1.0);                    }
                 }
                 e.printStackTrace();
             }
@@ -189,14 +165,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
             }
-
-            Log.d("PLEEEEEEESE", Integer.toString(exchangeCoinsBidUSD.size()));
-
-
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public Exchange getExchange(){
         return this.exchange;
     }
