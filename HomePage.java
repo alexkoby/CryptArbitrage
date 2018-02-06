@@ -1,12 +1,15 @@
 package com.example.alexander.cryptarbitrage2;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,8 @@ public class HomePage extends Activity implements View.OnClickListener {
     static DownloadTask taskBitStamp;
     static DownloadTask taskOKEX;
     static DownloadTask taskGDAX;
+
+    AlertDialog alertDialog;
 
     static double minGainsWanted = 1.5;
     EditText minGainEditText;
@@ -85,6 +90,8 @@ public class HomePage extends Activity implements View.OnClickListener {
         typeOfArbitrage.setText(typeOfArbitrageString);
         typeOfArbitrage.setOnClickListener(this);
 
+        //alert dialog in case user tries to click viewCurrentOpprotunities before it's ready
+        alertDialog = new AlertDialog.Builder(this).create();
 
 
         MainActivity.isCreatedHomepage = true;
@@ -197,6 +204,44 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
     public void onClick(View v){
         switch (v.getId()){
             case R.id.view_current_opprotunities:
+                if(listOfExchanges.size() == 0 && listOfCurrencies.size() == 0){
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please Select One Or More Exchanges And One Or " +
+                            "More Cryptocurrencies Before Viewing Current Opprotunities");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+                else if(listOfExchanges.size() == 0){
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please Select One Or More Exchanges Before Viewing Current Opprotunities");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+                else if(listOfCurrencies.size() == 0){
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please Select One Or More Currencies Before Viewing Current Opprotunities");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+
                 Intent j = new Intent(this, ViewCryptoOpprotunities.class);
                 startActivity(j);
 
@@ -212,7 +257,6 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                 break;
             case R.id.enterMinGainsButton:
                 minGainsWanted = 0;
-                int decimalSpot = -1;
                 String s = minGainEditText.getText().toString();
                 minGainsWanted = Double.parseDouble(s);
                 minGainEditText.setText(Double.toString(minGainsWanted));
