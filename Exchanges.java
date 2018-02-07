@@ -110,6 +110,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
             case R.id.exchange1_button:
                 HomePage.listOfExchanges.add(HomePage.binance);
                 break;
+
             case R.id.exchange3_button:
                 HomePage.listOfExchanges.add(HomePage.bittrex);
                 break;
@@ -141,6 +142,9 @@ public class Exchanges extends Activity implements View.OnClickListener{
             case R.id.exchange11_button:
                 HomePage.listOfExchanges.add(HomePage.bitZ);
                 break;
+
+            case R.id.exchange15_button:
+                HomePage.listOfExchanges.add(HomePage.kraken);
         }
     }
 
@@ -215,20 +219,22 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(exchangeButton1);
         ToggleButton exchangeButton3 = findViewById(R.id.exchange3_button);
         allExchangesButton.add(exchangeButton3);
+        ToggleButton exchangeButton7 = findViewById(R.id.exchange7_button);
+        allExchangesButton.add(exchangeButton7);
+        ToggleButton exchangeButton11 = findViewById(R.id.exchange11_button);
+        allExchangesButton.add(exchangeButton11);
+        ToggleButton exchangeButton15 = findViewById(R.id.exchange15_button);
+        allExchangesButton.add(exchangeButton15);
+        ToggleButton exchangeButton8 = findViewById(R.id.exchange8_button);
+        allExchangesButton.add(exchangeButton8);
         ToggleButton exchangeButton4 = findViewById(R.id.exchange4_button);
         allExchangesButton.add(exchangeButton4);
         ToggleButton exchangeButton5 = findViewById(R.id.exchange5_button);
         allExchangesButton.add(exchangeButton5);
-        ToggleButton exchangeButton7 = findViewById(R.id.exchange7_button);
-        allExchangesButton.add(exchangeButton7);
-        ToggleButton exchangeButton8 = findViewById(R.id.exchange8_button);
-        allExchangesButton.add(exchangeButton8);
         ToggleButton exchangeButton9 = findViewById(R.id.exchange9_button);
         allExchangesButton.add(exchangeButton9);
         ToggleButton exchangeButton10 = findViewById(R.id.exchange10_button);
         allExchangesButton.add(exchangeButton10);
-        ToggleButton exchangeButton11 = findViewById(R.id.exchange11_button);
-        allExchangesButton.add(exchangeButton11);
     }
 
     private void setButtonOn(ToggleButton button, boolean value){
