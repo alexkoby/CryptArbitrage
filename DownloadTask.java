@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import android.util.Log;
 
@@ -54,7 +55,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
         if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
     || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
-                exchange.getName().equals("Poloniex")) {
+                exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")) {
             fullAPIWay(q1);
             return "Worked";
         }
@@ -212,6 +213,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             else if(exchange.getName().equals("Poloniex")){
                 jsonObject = new JSONObject(result.toString());
                 bitZWay(queue, jsonObject);
+                return;
+            }
+            else if(exchange.getName().equals("Kraken")){
+                jsonObject = new JSONObject(result.toString());
+                jsonObject = jsonObject.getJSONObject("result");
+                krakenWay(queue,jsonObject);
                 return;
             }
             else {
@@ -396,29 +403,62 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
         }
     }
-
-    private String getApiBase(){
-        return this.apiBase;
-    }
         //Kraken pairs are so weird
-    /*public void addCoinsKraken(String krakenPair, JSONObject jsonObject) {
-        double jsonArrayAsk;
-        double jsonArrayBid;
-        try {
-            jsonObject = new JSONObject(krakenPair);
-            jsonArrayAsk = jsonObject.getDouble(exchange.getAskSymbol());
-            jsonArrayBid = jsonObject.getDouble(exchange.getBidSymbol());
+    public void krakenWay(LinkedList<String> q1, JSONObject jsonObject) {
+        System.out.println("Kraken has " + exchange.getCoins().size() + " coins in it");
+        Coin currentCoin;
+        JSONObject currentCoinJSONForm;
+        String currentAskString;
+        String currentBidString;
 
-            System.out.println(jsonArrayAsk);
+        int counter = -1;
+        while(!q1.isEmpty()){
+            counter++;
+            currentCoin = exchange.getCoins().get(counter/3);
+            if(counter % 3 == 0){
+                System.out.println("Coin is: " + exchange.getCoins().get(counter/3).getName());
+            }
+            if(isCoinPairNull(counter)){
+                q1.remove();
+                continue;
+            }
+            String coinPairBase = q1.peek();
 
-            if(krakenPair.charAt(krakenPair.length()-1) == 'C'){
+            //BitcoinCash and Dash have different way to look at API for some reason
+            if(currentCoin.getName().equals("Bitcoin Cash") || currentCoin.getName().equals("Dash")){
+                coinPairBase = coinPairBase.substring(0, coinPairBase.length() - 4).
+                        concat(coinPairBase.substring(coinPairBase.length() - 3));
+            }
 
+            try {
+                currentCoinJSONForm = jsonObject.getJSONObject(coinPairBase);
+                currentAskString = currentCoinJSONForm.getString(exchange.getAskSymbol());
+                System.out.println(currentAskString);
+                currentBidString = currentCoinJSONForm.getString(exchange.getBidSymbol());
+                System.out.println(currentBidString);
+
+                if (counter % 3 == 1) {
+                    currentCoin.setBidPriceBTC(getPriceDataFromStringInArrayFormKraken(currentBidString));
+                    currentCoin.setAskPriceBTC(getPriceDataFromStringInArrayFormKraken(currentAskString));
+                }
+                //eth pair
+                else if (counter % 3 == 2) {
+                    currentCoin.setBidPriceETH(getPriceDataFromStringInArrayFormKraken(currentBidString));
+                    currentCoin.setAskPriceETH(getPriceDataFromStringInArrayFormKraken(currentAskString));
+                }
+                //USDT pair
+                else if (counter % 3 == 0) {
+                    currentCoin.setBidPriceUSD(getPriceDataFromStringInArrayFormKraken(currentBidString));
+                    currentCoin.setAskPriceUSD(getPriceDataFromStringInArrayFormKraken(currentAskString));
+                }
+                q1.remove();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                q1.remove();
             }
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }*/
+    }
 
     private boolean isCoinPairNull(int counter){
         if(counter % 3 == 0 && exchange.getCoins().
@@ -434,5 +474,28 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Takes a string that looks like an array of data and finds the price
+     * @param s is the string that looks like an array
+     * @return the first price - or null if it doesn't exist
+     */
+    private Double getPriceDataFromStringInArrayFormKraken(String s){
+        int spotOfFirstQuote = 1;
+        int spotOfSecondQuote = 0;
+
+        for(int i = 2; i < s.length(); i++){
+            if(s.charAt(i) == '"'){
+                spotOfSecondQuote = i;
+                break;
+            }
+        }
+        if(spotOfSecondQuote == 0){
+            return null;
+        }
+        else {
+            return Double.parseDouble(s.substring(spotOfFirstQuote + 1, spotOfSecondQuote));
+        }
     }
 }
