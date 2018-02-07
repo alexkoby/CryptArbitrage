@@ -103,6 +103,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     public void onStart(){
         super.onStart();
 System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainActivity.isCreatedExchanges + "Exchanges");
+        clearCoinData();
         makeAPIRequests();
     }
 
@@ -356,5 +357,20 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                 System.out.println(exchange.getName());
             }
         }
+    }
+    public static void clearCoinData(){
+        for(Exchange exchange: listOfExchanges){
+            for(Coin coin: exchange.getCoins()){
+                clearCoinData(coin);
+            }
+        }
+    }
+    private static void clearCoinData(Coin coin){
+        coin.setAskPriceUSD(null);
+        coin.setBidPriceUSD(null);
+        coin.setAskPriceBTC(null);
+        coin.setBidPriceBTC(null);
+        coin.setAskPriceETH(null);
+        coin.setBidPriceETH(null);
     }
 }
