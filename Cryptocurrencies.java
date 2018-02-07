@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
@@ -14,22 +15,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
 /**
  * Created by Alexander on 1/8/2018.
  */
 
-public class Cryptocurrencies extends Activity implements View.OnClickListener {
+public class Cryptocurrencies extends Activity implements View.OnClickListener{
     ArrayList<ToggleButton> allCurrenciesButtons;
     Button submitCurrencyButton;
     Button selectAllCurrenciesButton;
     boolean hasAddedBitcoinAndEthereum = false;
 
+    ArrayAdapter<String>listAdapter;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currencies_page);
-
 
 
         //set up click listeners
@@ -69,12 +70,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 }
                 break;
             //Submit button - clears everything off each exchange and inserts coins
-                //to respective exchanges
+            //to respective exchanges
             case R.id.submit_currency_button:
                 clearExchanges();
                 HomePage.listOfCurrencies.clear();
                 for(ToggleButton button : allCurrenciesButtons){
                     if(button.isChecked()) {
+                        //adds bitcoin and ethereum if at least one coin is checked
                         if(!hasAddedBitcoinAndEthereum){
                             addBitcoinAndEthereumToExchanges();
                             hasAddedBitcoinAndEthereum = true;
@@ -83,9 +85,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                     }
                 }
                 hasAddedBitcoinAndEthereum = false;
-                if(HomePage.listOfCurrencies.size() > 0){
-                    addBitcoinAndEthereumToExchanges();
-                }
+
                 saveSelectedCoinsInfo(allCurrenciesButtons);
                 System.out.println("size is: " + HomePage.bitfinex.getCoins().size());
                 startActivity(new Intent(this, HomePage.class));
@@ -203,6 +203,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
         Coin bitcoinGDAX = new Coin("Bitcoin","BTC",
                 "GDAX","100");
         HomePage.GDAX.addCoin(bitcoinGDAX);
+        Coin bitcoinKraken = new Coin("Bitcoin","XXBT",
+                "Kraken", "100");
+        HomePage.kraken.addCoin(bitcoinKraken);
         HomePage.listOfCurrencies.add("Bitcoin");
 
         Coin ethereumBitfinex = new Coin("Ethereum","ETH",
@@ -232,6 +235,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
         Coin ethereumGDAX = new Coin("Ethereum","ETH",
                 "GDAX", "110");
         HomePage.GDAX.addCoin(ethereumGDAX);
+        Coin ethereumKraken = new Coin("Ethereum","XETH",
+                "Kraken","110");
+        HomePage.kraken.addCoin(ethereumKraken);
         HomePage.listOfCurrencies.add("Ethereum");
     }
 
@@ -264,6 +270,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin rippleOKEX = new Coin("Ripple", "XRP",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(rippleOKEX);
+                Coin rippleKraken = new Coin("Ripple","XXRP",
+                        "Kraken","110");
+                HomePage.kraken.addCoin(rippleKraken);
                 HomePage.listOfCurrencies.add("Ripple");
                 break;
 
@@ -292,6 +301,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin bitcoinCashGDAX = new Coin("Bitcoin Cash","BCH",
                         "GDAX","110");
                 HomePage.GDAX.addCoin(bitcoinCashGDAX);
+                Coin bitcoinCashKraken = new Coin("Bitcoin Cash","BCH",
+                        "Kraken","110");
+                HomePage.kraken.addCoin(bitcoinCashKraken);
                 HomePage.listOfCurrencies.add("Bitcoin Cash");
                 break;
 
@@ -349,6 +361,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin litecoinGDAX = new Coin("Litecoin","LTC",
                         "GDAX","100");
                 HomePage.GDAX.addCoin(litecoinGDAX);
+                Coin litecoinKraken = new Coin("Litecoin","XLTC",
+                        "Kraken","110");
+                HomePage.kraken.addCoin(litecoinKraken);
                 HomePage.listOfCurrencies.add("Litecoin");
                 break;
 
@@ -362,6 +377,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin stellarOKEX = new Coin("Stellar", "XLM",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(stellarOKEX);
+                Coin stellarKraken = new Coin("Stellar","XXLM",
+                        "Kraken","010");
+                HomePage.kraken.addCoin(stellarKraken);
                 HomePage.listOfCurrencies.add("Stellar");
                 break;
 
@@ -399,6 +417,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin dashOKEX = new Coin("Dash", "DASH",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(dashOKEX);
+                Coin dashKraken = new Coin("Dash","DASH",
+                        "Kraken","110");
+                HomePage.kraken.addCoin(dashKraken);
                 HomePage.listOfCurrencies.add("Dash");
                 break;
 
@@ -439,6 +460,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin moneroOKEX = new Coin("Monero", "XMR",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(moneroOKEX);
+                Coin moneroKraken = new Coin("Monero","XXMR",
+                        "Kraken","110");
+                HomePage.kraken.addCoin(moneroKraken);
                 HomePage.listOfCurrencies.add("Monero");
                 break;
 
@@ -505,6 +529,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin ethereumClassicOKEX = new Coin("Ethereum Classic", "ETC",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(ethereumClassicOKEX);
+                Coin ethereumClassicKraken = new Coin("Ethereum Classic","XETC",
+                        "Kraken","111");
+                HomePage.kraken.addCoin(ethereumClassicKraken);
                 HomePage.listOfCurrencies.add("Ethereum Classic");
                 break;
 
@@ -579,10 +606,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
                 Coin zcashOKEX = new Coin("ZCash", "ZEC",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(zcashOKEX);
+                Coin zcashKraken = new Coin("ZCash","XZEC",
+                        "Kraken","110");
+                HomePage.kraken.addCoin(zcashKraken);
                 HomePage.listOfCurrencies.add("ZCash");
                 break;
 
-            case R.id.currency21_button: //DogeCoin
+            case R.id.currency21_button:
                 Coin dogecoinBittrex = new Coin("Dogecoin","DOGE",
                         "Bittrex","010");
                 HomePage.bittrex.addCoin(dogecoinBittrex);
@@ -774,6 +804,5 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener {
         catch (IOException e){
             e.printStackTrace();
         }
-
     }
 }
