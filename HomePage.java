@@ -29,6 +29,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     static Exchange bitStamp;
     static Exchange OKEX;
     static Exchange GDAX;
+    static Exchange kraken;
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
@@ -39,6 +40,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     static DownloadTask taskBitStamp;
     static DownloadTask taskOKEX;
     static DownloadTask taskGDAX;
+    static DownloadTask taskKraken;
 
     AlertDialog alertDialog;
 
@@ -65,6 +67,7 @@ public class HomePage extends Activity implements View.OnClickListener {
             bitStamp = new Exchange("BitStamp","bid","ask",false);
             OKEX = new Exchange("OKEX","sell","buy",false);
             GDAX = new Exchange("GDAX","ask","bid",false);
+            kraken = new Exchange("Kraken","a","b",false);
 
             initialzeTasks();
         }
@@ -100,17 +103,12 @@ public class HomePage extends Activity implements View.OnClickListener {
     public void onStart(){
         super.onStart();
 System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainActivity.isCreatedExchanges + "Exchanges");
-        if(MainActivity.isCreatedExchanges  && MainActivity.isCreatedCryptocurrencies) {
-            for(Exchange exchange: listOfExchanges){
-                getAsksAndBids(exchange);
-                System.out.println(exchange.getName());
-            }
-        }
+        makeAPIRequests();
     }
 
 
     //Creates an Array of URLs and calls downloadtask.execute()
-    public void getAsksAndBids(Exchange e){
+    private static void getAsksAndBids(Exchange e){
         System.out.println("Exchange is: " + e.getName());
         String [] APIs = new String [e.getCoins().size()*3];
         DownloadTask task = null;
@@ -190,6 +188,14 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                     }
                     task = HomePage.taskGDAX;
                     break;
+                case "Kraken":
+                    for(int i = 0; i < e.getCoins().size(); i+=1) {
+                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("ZUSD");
+                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("XXBT");
+                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("XETH");
+                    }
+                    task = HomePage.taskKraken;
+                    break;
         }
         if(task == null) {
             System.out.println("TRIED TO USE NULL DOWNLOAD TASK");
@@ -244,8 +250,8 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
 
                 Intent j = new Intent(this, ViewCryptoOpprotunities.class);
                 startActivity(j);
-
                 break;
+
             case R.id.modify_exchanges:
                 Intent i = new Intent(this,Exchanges.class);
                 startActivity(i);
@@ -255,12 +261,14 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                 Intent k = new Intent(this, Cryptocurrencies.class);
                 startActivity(k);
                 break;
+
             case R.id.enterMinGainsButton:
                 minGainsWanted = 0;
                 String s = minGainEditText.getText().toString();
                 minGainsWanted = Double.parseDouble(s);
                 minGainEditText.setText(Double.toString(minGainsWanted));
                 break;
+
             case R.id.typeOfArbitrage:
                 if(typeOfArbitrage.getText().toString().equals("Inter-Exchange and Cross Exchange Arbitrage")){
                     typeOfArbitrageString = "Inter-Exchange Arbitrage Only";
@@ -285,11 +293,14 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
         taskBinance = new DownloadTask("symbol", "https://www.binance.com/api/v1/ticker/allPrices",
                 binance);
         taskHitBTC = new DownloadTask("symbol","https://api.hitbtc.com/api/2/public/ticker", hitBTC);
-        taskBitZ = new DownloadTask("","https://www.bit-z.com/api_v1/tickerall", bitZ);
+        taskBitZ = new DownloadTask("data","https://www.bit-z.com/api_v1/tickerall", bitZ);
         taskPoloniex = new DownloadTask("","https://poloniex.com/public?command=returnTicker",poloniex);
         taskBitStamp = new DownloadTask(null, "https://www.bitstamp.net/api/v2/ticker/",bitStamp);
         taskOKEX = new DownloadTask("ticker","https://www.okex.com/api/v1/ticker.do?symbol=", OKEX);
         taskGDAX = new DownloadTask(null,"https://api.gdax.com/products/", GDAX);
+        taskKraken = new DownloadTask("result","https://api.kraken.com/0/public/Ticker?pair=XBTUSD,ETHXBT," +
+                "ETHUSD,XRPXBT,XRPUSD,LTCXBT,LTCUSD,BCHXBT,BCHUSD,XLMXBT,DASHXBT,DASHUSD,XMRXBT,XMRUSD,ETCXBT,ETCUSD," +
+                "ETCETH,ZECXBT,ZECUSD",kraken);
     }
 
     //@Override
@@ -298,7 +309,7 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
  //       super.onResume();
     //   }
 
-    public DownloadTask reImplementTask(DownloadTask downloadTask){
+    public static DownloadTask reImplementTask(DownloadTask downloadTask){
         switch (downloadTask.getExchange().getName()){
             case "Bitfinex":
                 taskBitfinex = new DownloadTask(null,"https://api.bitfinex.com/v1/pubticker/", bitfinex );
@@ -329,7 +340,21 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
             case "GDAX":
                 taskGDAX = new DownloadTask(null,"https://api.gdax.com/products/", GDAX);
                 return taskGDAX;
+            case "Kraken":
+                taskKraken = new DownloadTask("result","https://api.kraken.com/0/public/Ticker?pair=" +
+                        "XBTUSD,ETHXBT,ETHUSD,XRPXBT,XRPUSD,LTCXBT,LTCUSD,BCHXBT,BCHUSD,XLMXBT,DASHXBT,DASHUSD,XMRXBT," +
+                        "XMRUSD,ETCXBT,ETCUSD,ETCETH,ZECXBT,ZECUSD",kraken);
+                return taskKraken;
         }
         return null;
+    }
+
+    public static void makeAPIRequests(){
+        if(listOfExchanges.size() > 0 && listOfCurrencies.size() > 0) {
+            for(Exchange exchange: listOfExchanges){
+                getAsksAndBids(exchange);
+                System.out.println(exchange.getName());
+            }
+        }
     }
 }
