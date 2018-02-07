@@ -163,6 +163,26 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/exchange15"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="101dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange15_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/exchange8"
                         android:textColor="@color/black"
                         android:textSize="23sp"
