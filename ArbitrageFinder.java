@@ -20,10 +20,10 @@ public class ArbitrageFinder {
             @Override
             public int compare(Opportunity o1, Opportunity o2) {
                 if(o1.getPercentGain() > o2.getPercentGain()){
-                    return 1;
+                    return -1;
                 }
                 else if (o1.getPercentGain() < o2.getPercentGain()){
-                    return -1;
+                    return 1;
                 }
                 else{
                     return 0;
@@ -34,10 +34,10 @@ public class ArbitrageFinder {
             @Override
             public int compare(Opportunity o1, Opportunity o2) {
                 if(o1.getPercentGain() > o2.getPercentGain()){
-                    return 1;
+                    return -1;
                 }
                 else if (o1.getPercentGain() < o2.getPercentGain()){
-                    return -1;
+                    return 1;
                 }
                 else{
                     return 0;
@@ -55,7 +55,6 @@ public class ArbitrageFinder {
     }
 
     private void calculateBestOpportunitiesCrossExchange(){
-        Opportunity opportunity;
         if(HomePage.listOfCurrencies.size() == 0){
             //tell user to select more currencies
             return;
@@ -65,10 +64,7 @@ public class ArbitrageFinder {
             return;
         }
         for(String coin: HomePage.listOfCurrencies){
-            opportunity = typeSeven(coin);
-            if(opportunity != null){
-                bestOpportunitiesAcrossExchanges.add(opportunity);
-            }
+            typeSevenandEight(coin);
         }
     }
 
@@ -195,7 +191,6 @@ public class ArbitrageFinder {
             if(type5Rate - 1> goalReturn / 100) {
                 return new Opportunity(type5Rate, 5, coin, ethereum);
             }
-
         }
         return null;
     }
@@ -219,35 +214,40 @@ public class ArbitrageFinder {
     /**
      * Checks if way type seven offers above a 'goalReturn' arbitrage opportunitiy
      * @param coinName is the coin you're testing
-     * @return Opportunity if a 'goalReturn' opportunity or higher exists, null if it doesn't
      */
-    private Opportunity typeSeven(String coinName){
-        double minAskUSD = 1000000;
-        Coin coinMinAskUSD = null;
-        double maxBidUSD = 0;
-        Coin coinMaxBidUSD = null;
+    private void typeSevenandEight(String coinName){
+        ArrayList<Coin> listOfCoins = new ArrayList<>();
 
         for(Exchange exchange: HomePage.listOfExchanges){
             for(Coin coin: exchange.getCoins()){
                 if(coin.getName().equals(coinName)){
-                    if(coin.getBidPriceUSD() > maxBidUSD){
-                        maxBidUSD = coin.getBidPriceUSD();
-                        coinMaxBidUSD = coin;
-                    }
-                    if(coin.getAskPriceUSD() > 0 && coin.getAskPriceUSD() < minAskUSD){
-                        minAskUSD = coin.getAskPriceUSD();
-                        coinMinAskUSD = coin;
-                    }
-                    break;
+                    listOfCoins.add(coin);
                 }
             }
         }
-        if(coinMaxBidUSD == null || coinMinAskUSD == null){
-            return null;
+        if(listOfCoins.size() == 0){
+            return;
         }
-        if(maxBidUSD/minAskUSD - 1 > goalReturn/100){
-            return new Opportunity(maxBidUSD/minAskUSD,7,coinMaxBidUSD,coinMinAskUSD);
+        else {
+            for (int i = 0; i < listOfCoins.size() - 1; i++) {
+                for (int j = i + 1; j < listOfCoins.size(); j++) {
+                    if (listOfCoins.get(i).getBidPriceUSD() / listOfCoins.get(j).getAskPriceUSD() -1 >
+                            HomePage.minGainsWanted / 100) {
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity(listOfCoins.get(i).getBidPriceUSD()
+                                / listOfCoins.get(j).getAskPriceUSD(), 7, listOfCoins.get(i), listOfCoins.get(j)));
+                    }
+                    if (listOfCoins.get(i).getBidPriceBTC() / listOfCoins.get(j).getAskPriceBTC() - 1 >
+                            HomePage.minGainsWanted / 100) {
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity(listOfCoins.get(i).getBidPriceBTC()
+                                / listOfCoins.get(j).getAskPriceBTC(), 8, listOfCoins.get(i), listOfCoins.get(j)));
+                    }
+                    if (listOfCoins.get(i).getBidPriceETH() / listOfCoins.get(j).getAskPriceETH() - 1 >
+                            HomePage.minGainsWanted / 100) {
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity(listOfCoins.get(i).getBidPriceETH()
+                                / listOfCoins.get(j).getAskPriceETH(), 9, listOfCoins.get(i), listOfCoins.get(j)));
+                    }
+                }
+            }
         }
-        return null;
     }
 }
