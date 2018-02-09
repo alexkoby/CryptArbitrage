@@ -24,15 +24,16 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -442,6 +443,25 @@
 
                     <ToggleButton
                         android:id="@+id/currency20_button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currencyDogeCoin"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                    <ToggleButton
+                        android:id="@+id/DogeCoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
