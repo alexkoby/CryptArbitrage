@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 /**
@@ -96,7 +97,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 */        }
 
         if(bestOpportunitiesWithinExchanges == null){
-            topOpportunitiesArray = new Opportunity[min(bestOpportunitiesAcrossExchanges.size(),30)];
+            topOpportunitiesArray = new Opportunity[min(bestOpportunitiesAcrossExchanges.size(),50)];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
                 System.out.println("First Loop");
@@ -104,7 +105,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
             }
         }
         else if (bestOpportunitiesAcrossExchanges == null){
-            topOpportunitiesArray = new Opportunity[min(bestOpportunitiesWithinExchanges.size(),30)];
+            topOpportunitiesArray = new Opportunity[min(bestOpportunitiesWithinExchanges.size(),50)];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
                 System.out.println("Second loop");
@@ -113,7 +114,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         }
         else {
             topOpportunitiesArray = new Opportunity[min(bestOpportunitiesAcrossExchanges.size()
-                    + bestOpportunitiesWithinExchanges.size(), 30)];
+                    + bestOpportunitiesWithinExchanges.size(), 50)];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
                 System.out.println("Third loop");
@@ -220,7 +221,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 
             opportunity1Cryptocurrency.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getName());
             opportunity1Type.setText(Integer.toString(topOpportunitiesArray[counter].getType()));
-            opportunity1Price.setText(Double.toString(topOpportunitiesArray[counter].getPercentGain()));
+            opportunity1Price.setText(doubleToStringFiveSigDigs(topOpportunitiesArray[counter].getPercentGain()));
             if (topOpportunitiesArray[counter].getType() > 6) {
                 opportunity1Exchange.setText("Buy " + topOpportunitiesArray[counter].getLowPriceCoinExchange().getExchange().
                         concat(" Sell ").concat(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange()));
@@ -234,7 +235,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         if (counter < topOpportunitiesArray.length) {
             opportunity2Cryptocurrency.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getName());
             opportunity2Type.setText(Integer.toString(topOpportunitiesArray[counter].getType()));
-            opportunity2Price.setText(Double.toString(topOpportunitiesArray[counter].getPercentGain()));
+            opportunity2Price.setText(doubleToStringFiveSigDigs(topOpportunitiesArray[counter].getPercentGain()));
             if (topOpportunitiesArray[counter].getType() > 6) {
                 opportunity2Exchange.setText("Buy " + topOpportunitiesArray[counter].getLowPriceCoinExchange().
                         getExchange().concat(" Sell ").concat(topOpportunitiesArray[counter].
@@ -254,7 +255,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         if (counter < topOpportunitiesArray.length) {
             opportunity3Cryptocurrency.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getName());
             opportunity3Type.setText(Integer.toString(topOpportunitiesArray[counter].getType()));
-            opportunity3Price.setText(Double.toString(topOpportunitiesArray[counter].getPercentGain()));
+            opportunity3Price.setText(doubleToStringFiveSigDigs(topOpportunitiesArray[counter].getPercentGain()));
             if (topOpportunitiesArray[counter].getType() > 6) {
                 opportunity3Exchange.setText("Buy " + topOpportunitiesArray[counter].getLowPriceCoinExchange().getExchange().
                         concat(" Sell ").concat(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange()));
@@ -273,7 +274,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         if (counter < topOpportunitiesArray.length) {
             opportunity4Cryptocurrency.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange());
             opportunity4Type.setText(Integer.toString(topOpportunitiesArray[counter].getType()));
-            opportunity4Price.setText(Double.toString(topOpportunitiesArray[counter].getPercentGain()));
+            opportunity4Price.setText(doubleToStringFiveSigDigs(topOpportunitiesArray[counter].getPercentGain()));
             if (topOpportunitiesArray[counter].getType() > 6) {
                 opportunity4Exchange.setText("Buy " + topOpportunitiesArray[counter].getLowPriceCoinExchange().getExchange().
                         concat(" Sell ").concat(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange()));
@@ -292,7 +293,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         if (counter < topOpportunitiesArray.length) {
             opportunity5Cryptocurrency.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getName());
             opportunity5Type.setText(Integer.toString(topOpportunitiesArray[counter].getType()));
-            opportunity5Price.setText(Double.toString(topOpportunitiesArray[counter].getPercentGain()));
+            opportunity5Price.setText(doubleToStringFiveSigDigs(topOpportunitiesArray[counter].getPercentGain()));
             if (topOpportunitiesArray[counter].getType() > 6) {
                 opportunity5Exchange.setText("Buy " + topOpportunitiesArray[counter].getLowPriceCoinExchange().getExchange().
                         concat(" Sell ").concat(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange()));
@@ -337,7 +338,41 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         }
     }
 
-    private String doubleToStringThreeDecimals(){
+    private String doubleToStringFiveSigDigs(double d1){
+        if(d1 >= 1000){
+            return String.format("%.1f", d1);
+        }
+        else if (d1 >= 100){
+            return String.format("%.2f", d1);
+        }
+        else if(d1 >= 10){
+            return String.format("%.3f", d1);
+        }
+        else if (d1 >= 1){
+            return String.format("%.4f", d1);
+        }
+        else if (d1 >= .1){
+            return String.format("%.5f", d1);
+        }
+        else if(d1 >= .01){
+            return String.format("%.6f", d1);
+        }
+        else if (d1 >= .001){
+            return String.format("%.7f", d1);
+        }
+        else if (d1 >= .0001){
+            return String.format("%.8f", d1);
+        }
+        else if(d1 >= .00001){
+            return String.format("%.9f", d1);
+        }
+        else if (d1 >= .000001){
+            return String.format("%.10f", d1);
+        }
+        else if (d1 >= .00000001){
+            return String.format("%.11f", d1);
+        }
+
         return null;
     }
 }
