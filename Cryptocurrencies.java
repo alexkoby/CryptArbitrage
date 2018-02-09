@@ -135,6 +135,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         allCurrenciesButtons.add(currencyButton19);
         ToggleButton currencyButton20 = findViewById(R.id.currency20_button);
         allCurrenciesButtons.add(currencyButton20);
+        ToggleButton currencyDogecoin = findViewById(R.id.DogeCoinButton);
+        allCurrenciesButtons.add(currencyDogecoin);
         ToggleButton currencyButton21 = findViewById(R.id.currency21_button);
         allCurrenciesButtons.add(currencyButton21);
         ToggleButton currencyButton22 = findViewById(R.id.currency22_button);
@@ -612,7 +614,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("ZCash");
                 break;
 
-            case R.id.currency21_button:
+            case R.id.DogeCoinButton:
                 Coin dogecoinBittrex = new Coin("Dogecoin","DOGE",
                         "Bittrex","010");
                 HomePage.bittrex.addCoin(dogecoinBittrex);
@@ -628,7 +630,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("Dogecoin");
                 break;
 
-            case R.id.currency22_button: //Steem
+            case R.id.currency21_button: //Steem
                 Coin steemBittrex = new Coin("Steem","STEEM",
                         "Bittrex","010");
                 HomePage.bittrex.addCoin(steemBittrex);
@@ -641,7 +643,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("Steem");
                 break;
 
-            case R.id.currency23_button: //Waves
+            case R.id.currency22_button: //Waves
                 Coin wavesBittrex = new Coin("Waves","WAVES",
                         "Bittrex","011");
                 HomePage.bittrex.addCoin(wavesBittrex);
@@ -651,7 +653,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("Waves");
                 break;
 
-            case R.id.currency24_button: //VeChain
+            case R.id.currency23_button: //VeChain
                 Coin vechainBinance = new Coin("VeChain", "VEN",
                         "Binance","011");
                 HomePage.binance.addCoin(vechainBinance);
@@ -661,7 +663,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("VeChain");
                 break;
 
-            case R.id.currency25_button: //Digibyte
+            case R.id.currency24_button: //Digibyte
                 Coin digibyteBittrex = new Coin("Digibyte","DGB",
                         "Bittrex","011");
                 HomePage.bittrex.addCoin(digibyteBittrex);
@@ -680,7 +682,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("Digibyte");
                 break;
 
-            case R.id.currency26_button: //Komodo
+            case R.id.currency25_button: //Komodo
                 Coin komodoBittrex = new Coin("Komodo","KMD",
                         "Bittrex","010");
                 HomePage.bittrex.addCoin(komodoBittrex);
@@ -693,7 +695,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("Komodo");
                 break;
 
-            case R.id.currency27_button: //HShare
+            case R.id.currency26_button: //HShare
                 Coin hshareBinance = new Coin("HShare", "HSR",
                         "Binance","011");
                 HomePage.binance.addCoin(hshareBinance);
@@ -709,7 +711,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.listOfCurrencies.add("HShare");
                 break;
 
-            case R.id.currency28_button: //Ark
+            case R.id.currency27_button: //Ark
                 Coin arkBittrex = new Coin("Ark","ARK",
                         "Bittrex","010");
                 HomePage.bittrex.addCoin(arkBittrex);
