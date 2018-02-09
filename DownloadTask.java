@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.net.SocketTimeoutException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -18,8 +19,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
-
-import android.util.Log;
 
 /**
  * Created by Alexander on 1/9/2018.
@@ -45,6 +44,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         //Create priority Queue first with USD endings, then BTC, then ETH
         //skips BTCBTC, BTCETH, ETHETH - DNE
 
+        System.out.println("MADE IT TO DOWNLOAD TASK");
+
         LinkedList<String> q1 = new LinkedList<>();
 
         for (int i = 0; i < urls.length; i++) {
@@ -53,6 +54,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         int counter = -1; //specify which arrayList to add results to - explicit for first 3
         //rounds, then rotate
 
+        System.out.println("MADE IT TO DOWNLOADTASK2");
         if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
     || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
                 exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")) {
@@ -89,7 +91,6 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 InputStreamReader reader = new InputStreamReader(in);
 
                 int data = reader.read();
-
                 while (data != -1) {
                     char current = (char) data;
                     stringBuilder.append(current);
@@ -180,24 +181,29 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
         int counter = -1;
         Coin currentCoin;
-
+        System.out.println("MADE IT TO DOWNLOADTASK5");
         StringBuilder result = new StringBuilder();
         URL url;
         HttpURLConnection urlConnection;
 
         try {
+            System.out.println("MADE IT TO DOWNLOADTASK6");
             url = new URL(this.apiBase);
+            System.out.println("MADE IT TO DOWNLOADTASK7");
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setConnectTimeout(800);
+            System.out.println("MADE IT TO DOWNLOADTASK8");
             InputStream in = urlConnection.getInputStream();
+            System.out.println(in.toString());
+            System.out.println("MADE IT TO DOWNLOADTASK9");
             InputStreamReader reader = new InputStreamReader(in);
+            System.out.println("MADE IT TO DOWNLOADTASK10");
             int data = reader.read();
-
             while (data != -1) {
                 char current = (char) data;
                 result.append(current);
                 data = reader.read();
             }
-
             JSONObject jsonObject;
             JSONArray allPairs;
             if(exchange.getName().equals("Bittrex")) {
@@ -267,8 +273,14 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 queue.remove();
             }
         }
+        catch (SocketTimeoutException e){
+            e.printStackTrace();
+            return;
+        }
         catch (Exception e){
             e.printStackTrace();
+            System.out.println("MADE IT TO DOWNLOADTAS12");
+            return;
         }
     }
 
@@ -404,7 +416,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         }
     }
         //Kraken pairs are so weird
-    public void krakenWay(LinkedList<String> q1, JSONObject jsonObject) {
+    private void krakenWay(LinkedList<String> q1, JSONObject jsonObject) {
         System.out.println("Kraken has " + exchange.getCoins().size() + " coins in it");
         Coin currentCoin;
         JSONObject currentCoinJSONForm;
