@@ -123,7 +123,7 @@ public class ArbitrageFinder {
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && bitcoin.getBidPriceUSD() > 0) {
             type1Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceBTC() * bitcoin.getBidPriceUSD();
             if (type1Rate - 1 > goalReturn / 100) {
-                return new Opportunity(type1Rate, 1, coin, bitcoin);
+                return new Opportunity((type1Rate - 1) * 100, 1, coin, bitcoin);
             }
         }
         return null;
@@ -139,7 +139,7 @@ public class ArbitrageFinder {
         if (bitcoin.getAskPriceUSD() > 0 && coin.getAskPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
             type2Rate = (1/bitcoin.getAskPriceUSD()) * (1/coin.getAskPriceBTC()) * coin.getBidPriceUSD();
             if (type2Rate - 1 > goalReturn / 100) {
-                return new Opportunity(type2Rate, 2, coin, bitcoin);
+                return new Opportunity((type2Rate - 1) * 100, 2, coin, bitcoin);
             }
         }
         return null;
@@ -155,7 +155,7 @@ public class ArbitrageFinder {
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getBidPriceUSD() > 0) {
             type3Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceETH() * ethereum.getBidPriceUSD();
             if (type3Rate - 1 > goalReturn / 100) {
-                return new Opportunity(type3Rate, 3, coin, ethereum);
+                return new Opportunity((type3Rate - 1) * 100, 3, coin, ethereum);
             }
         }
         return null;
@@ -172,7 +172,7 @@ public class ArbitrageFinder {
         if (ethereum.getAskPriceUSD() > 0 && coin.getAskPriceETH() > 0 && coin.getBidPriceUSD() > 0) {
             type4Rate = (1/ethereum.getAskPriceUSD()) * (1/coin.getAskPriceETH()) * coin.getBidPriceUSD();
             if (type4Rate - 1> goalReturn / 100) {
-                return new Opportunity(type4Rate, 4, coin, ethereum);
+                return new Opportunity((type4Rate - 1) * 100, 4, coin, ethereum);
             }
         }
         return null;
@@ -189,7 +189,7 @@ public class ArbitrageFinder {
         if(coin.getAskPriceETH() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getAskPriceBTC() > 0){
             type5Rate = (1/coin.getAskPriceETH()) * coin.getBidPriceBTC() * ethereum.getAskPriceBTC();
             if(type5Rate - 1> goalReturn / 100) {
-                return new Opportunity(type5Rate, 5, coin, ethereum);
+                return new Opportunity((type5Rate - 1) * 100, 5, coin, ethereum);
             }
         }
         return null;
@@ -205,7 +205,7 @@ public class ArbitrageFinder {
         if(coin.getAskPriceBTC() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceBTC() > 0) {
             type6Rate = (1/coin.getAskPriceBTC()) * coin.getBidPriceETH() * ethereum.getBidPriceBTC();
             if(type6Rate -1 > goalReturn / 100) {
-                return new Opportunity(type6Rate, 6, coin, ethereum);
+                return new Opportunity((type6Rate - 1) * 100, 6, coin, ethereum);
             }
         }
         return null;
@@ -233,18 +233,18 @@ public class ArbitrageFinder {
                 for (int j = i + 1; j < listOfCoins.size(); j++) {
                     if (listOfCoins.get(i).getBidPriceUSD() / listOfCoins.get(j).getAskPriceUSD() -1 >
                             HomePage.minGainsWanted / 100) {
-                        bestOpportunitiesAcrossExchanges.add(new Opportunity(listOfCoins.get(i).getBidPriceUSD()
-                                / listOfCoins.get(j).getAskPriceUSD(), 7, listOfCoins.get(i), listOfCoins.get(j)));
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(i).getBidPriceUSD()
+                                / listOfCoins.get(j).getAskPriceUSD() - 1) * 100, 7, listOfCoins.get(i), listOfCoins.get(j)));
                     }
                     if (listOfCoins.get(i).getBidPriceBTC() / listOfCoins.get(j).getAskPriceBTC() - 1 >
                             HomePage.minGainsWanted / 100) {
-                        bestOpportunitiesAcrossExchanges.add(new Opportunity(listOfCoins.get(i).getBidPriceBTC()
-                                / listOfCoins.get(j).getAskPriceBTC(), 8, listOfCoins.get(i), listOfCoins.get(j)));
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(i).getBidPriceBTC()
+                                / listOfCoins.get(j).getAskPriceBTC() - 1) * 100, 8, listOfCoins.get(i), listOfCoins.get(j)));
                     }
                     if (listOfCoins.get(i).getBidPriceETH() / listOfCoins.get(j).getAskPriceETH() - 1 >
                             HomePage.minGainsWanted / 100) {
-                        bestOpportunitiesAcrossExchanges.add(new Opportunity(listOfCoins.get(i).getBidPriceETH()
-                                / listOfCoins.get(j).getAskPriceETH(), 9, listOfCoins.get(i), listOfCoins.get(j)));
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(i).getBidPriceETH()
+                                / listOfCoins.get(j).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(i), listOfCoins.get(j)));
                     }
                 }
             }
