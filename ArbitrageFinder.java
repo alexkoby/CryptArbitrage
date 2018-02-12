@@ -122,6 +122,7 @@ public class ArbitrageFinder {
 
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && bitcoin.getBidPriceUSD() > 0) {
             type1Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceBTC() * bitcoin.getBidPriceUSD();
+            System.out.println("Type 1: "+ type1Rate+ "  " + coin.getName());
             if (type1Rate - 1 > goalReturn / 100) {
                 return new Opportunity((type1Rate - 1) * 100, 1, coin, bitcoin);
             }
@@ -138,6 +139,7 @@ public class ArbitrageFinder {
         double type2Rate;
         if (bitcoin.getAskPriceUSD() > 0 && coin.getAskPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
             type2Rate = (1/bitcoin.getAskPriceUSD()) * (1/coin.getAskPriceBTC()) * coin.getBidPriceUSD();
+            System.out.println("Type 2: "+ type2Rate+ "  " + coin.getName());
             if (type2Rate - 1 > goalReturn / 100) {
                 return new Opportunity((type2Rate - 1) * 100, 2, coin, bitcoin);
             }
@@ -152,8 +154,9 @@ public class ArbitrageFinder {
      */
     private Opportunity typeThree(Coin coin, Coin ethereum) {
         double type3Rate;
-        if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getBidPriceUSD() > 0) {
+        if (coin.getAskPriceUSD() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceUSD() > 0) {
             type3Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceETH() * ethereum.getBidPriceUSD();
+            System.out.println("Type 3: "+ type3Rate+ "  " + coin.getName());
             if (type3Rate - 1 > goalReturn / 100) {
                 return new Opportunity((type3Rate - 1) * 100, 3, coin, ethereum);
             }
@@ -171,6 +174,7 @@ public class ArbitrageFinder {
         double type4Rate;
         if (ethereum.getAskPriceUSD() > 0 && coin.getAskPriceETH() > 0 && coin.getBidPriceUSD() > 0) {
             type4Rate = (1/ethereum.getAskPriceUSD()) * (1/coin.getAskPriceETH()) * coin.getBidPriceUSD();
+            System.out.println("Type 4: "+ type4Rate+ "  " + coin.getName());
             if (type4Rate - 1> goalReturn / 100) {
                 return new Opportunity((type4Rate - 1) * 100, 4, coin, ethereum);
             }
@@ -187,8 +191,9 @@ public class ArbitrageFinder {
     private Opportunity typeFive(Coin coin, Coin ethereum) {
         double type5Rate;
         if(coin.getAskPriceETH() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getAskPriceBTC() > 0){
-            type5Rate = (1/coin.getAskPriceETH()) * coin.getBidPriceBTC() * ethereum.getAskPriceBTC();
-            if(type5Rate - 1> goalReturn / 100) {
+            type5Rate = (1 / coin.getAskPriceETH()) * coin.getBidPriceBTC() / ethereum.getAskPriceBTC();
+            System.out.println("Type 5 " + type5Rate + "  " + coin.getName());
+            if(type5Rate - 1 > goalReturn / 100) {
                 return new Opportunity((type5Rate - 1) * 100, 5, coin, ethereum);
             }
         }
@@ -203,7 +208,8 @@ public class ArbitrageFinder {
     private Opportunity typeSix(Coin coin, Coin ethereum) {
         double type6Rate;
         if(coin.getAskPriceBTC() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceBTC() > 0) {
-            type6Rate = (1/coin.getAskPriceBTC()) * coin.getBidPriceETH() * ethereum.getBidPriceBTC();
+            type6Rate = (1 / coin.getAskPriceBTC()) * coin.getBidPriceETH() * ethereum.getBidPriceBTC();
+            System.out.println("Type 6: "+ type6Rate + "  "+ coin.getName());
             if(type6Rate -1 > goalReturn / 100) {
                 return new Opportunity((type6Rate - 1) * 100, 6, coin, ethereum);
             }
