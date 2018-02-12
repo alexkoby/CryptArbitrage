@@ -31,7 +31,7 @@
     <string name="exchange12">Kraken</string>
     <string name="exchange13">Ethfinex</string>
     <string name="exchange14">KuCoin</string>
-    <string name="exchange15">CoinNest</string>
+    <string name="exchange15">Kraken</string>
     <string name="exchange16">CoinOne</string>
     <string name="exchange17">Gate.io</string>
     <string name="exchange18">Bitcoin Indonesis</string>
@@ -59,6 +59,7 @@
     <string name="currency18">Siacoin</string>
     <string name="currency19">Stratis</string>
     <string name="currency20">Z-Cash</string>
+    <string name="currencyDogeCoin">Dogecoin</string>
     <string name="currency21">Steem</string>
     <string name="currency22">Waves</string>
     <string name="currency23">VeChain</string>
@@ -77,8 +78,46 @@
     <string name="currency36">GameCredits</string>
     <string name="currency37">GxShares</string>
     <string name="currency38">Vertcoin</string>
+    <string name="eosCurrency">EOS</string>
+    <string name="tronCurrency">Tron</string>
+    <string name="bitcoinGoldCurrency">Bitcoin Gold</string>
+    <string name="iconCurrency">Icon</string>
+    <string name="omiseGoCurrency">OmiseGo</string>
+    <string name="ucashCurrency">U.Cash</string>
     <string name="minimumGainsHappyWith">Enter The lowest % gains that interest you Ex: "2.0"</string>
     <string name="minGainNumber">1.5</string>
     <string name="enterButtonHomePageMinGains">Enter</string>
     <string name="typeOfOpprotunities">Inter-Exchange and Cross Exchange Arbitrage</string>
+    <string name="SearchForCryptocurrencies">Search For Cryptocurrencies</string>
+    <string name="opportunity_header">Opportunity</string>
+    <string name="percentGainsHeader">% Gains</string>
+    <string name="currencyHeader">Currency</string>
+    <string name="exchangesHeader">Exchange(s)</string>
+    <string name="arbitrageTypeHeader">Type</string>
+    <string name="opprotunity1Price">0</string>
+    <string name="currency1CryptoOpportunities">Bitcoin</string>
+    <string name="exchange1CryptoOpportunities">Buy Bitfinex Sell Binance</string>
+    <string name="arbitrageType1CryptoOpportunities">5</string>
+    <string name="opprotunity2Price">0</string>
+    <string name="currency2CryptoOpportunities">Bitcoin</string>
+    <string name="exchange2CryptoOpportunities">Bitfinex</string>
+    <string name="arbitrageType2CryptoOpportunities">5</string>
+    <string name="opprotunity3Price">0</string>
+    <string name="currency3CryptoOpportunities">Ethereum Classic</string>
+    <string name="exchange3CryptoOpportunities">Buy Bitfinex Sell Binance</string>
+    <string name="arbitrageType3CryptoOpportunities">5</string>
+    <string name="opprotunity4Price">0</string>
+    <string name="currency4CryptoOpportunities">Bitcoin</string>
+    <string name="exchange4CryptoOpportunities">Bitfinex</string>
+    <string name="arbitrageType4CryptoOpportunities">5</string>
+    <string name="opprotunity5Price">0</string>
+    <string name="currency5CryptoOpportunities">Bitcoin</string>
+    <string name="exchange5CryptoOpportunities">Bitfinex</string>
+    <string name="arbitrageType5CryptoOpportunities">5</string>
+    <string name="previous5Button">Prev 5</string>
+    <string name="refreshDataButton">Refresh Data</string>
+    <string name="next5Button">Next 5</string>
+    <string name="lastUpdatedTime">5:10</string>
+
+
 </resources>
