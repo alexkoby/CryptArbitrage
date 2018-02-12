@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="5dip">
+            android:paddingBottom="10dip">
 
             <TextView
                 android:layout_width="85dip"
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="5dip">
+            android:paddingBottom="10dip">
 
             <TextView
                 android:layout_width="85dip"
@@ -144,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="5dip">
+            android:paddingBottom="10dip">
 
             <TextView
                 android:layout_width="85dip"
@@ -181,7 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="5dip">
+            android:paddingBottom="19dip">
 
             <TextView
                 android:layout_width="85dip"
@@ -275,6 +275,7 @@
             <Button
                 android:layout_width="100dip"
                 android:layout_height="wrap_content"
+                android:id="@+id/refreshDataButton"
                 android:text="@string/refreshDataButton"
                 android:textColor="@color/black"
                 android:layout_marginRight="50dip"/>
