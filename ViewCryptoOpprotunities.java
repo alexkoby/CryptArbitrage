@@ -294,6 +294,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 
                 break;
             case R.id.opportunity1Type:
+                if(opportunity1Cryptocurrency.getText().toString().equals("")){
+                    break;
+                }
                 alertDialog.setTitle("Details");
                 alertDialog.setMessage(getDialogInfo(topOpportunitiesArray[counter - 5]));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -305,6 +308,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 alertDialog.show();
                 break;
             case R.id.opportunity2Type:
+                if(opportunity2Cryptocurrency.getText().toString().equals("")){
+                    break;
+                }
                 alertDialog.setTitle("Details");
                 alertDialog.setMessage(getDialogInfo(topOpportunitiesArray[counter - 4]));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -317,6 +323,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 break;
 
             case R.id.opportunity3Type:
+                if(opportunity3Cryptocurrency.getText().toString().equals("")){
+                    break;
+                }
                 alertDialog.setTitle("Details");
                 alertDialog.setMessage(getDialogInfo(topOpportunitiesArray[counter - 3]));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -329,6 +338,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 break;
 
             case R.id.opportunity4Type:
+                if(opportunity4Cryptocurrency.getText().toString().equals("")){
+                    break;
+                }
                 alertDialog.setTitle("Details");
                 alertDialog.setMessage(getDialogInfo(topOpportunitiesArray[counter - 2]));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -341,6 +353,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 break;
 
             case R.id.opportunity5Type:
+                if(opportunity5Cryptocurrency.getText().toString().equals("")){
+                    break;
+                }
                 alertDialog.setTitle("Details");
                 alertDialog.setMessage(getDialogInfo(topOpportunitiesArray[counter - 1]));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -554,7 +569,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" to Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceETH()));
                 stringBuilder.append(" Ethereum\nStep 3:\nConvert Your Ethereum to Bitcoin at: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceETH()));
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceBTC()));
                 stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
