@@ -68,7 +68,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency1_button"
+                        android:id="@+id/bitcoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content"
                         android:textAlignment="center" />
@@ -89,7 +89,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency2_button"
+                        android:id="@+id/ethereumButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -109,7 +109,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency3_button"
+                        android:id="@+id/rippleButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -129,7 +129,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency4_button"
+                        android:id="@+id/bitcoinCashButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -149,7 +149,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency5_button"
+                        android:id="@+id/cardanoButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -169,7 +169,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency6_button"
+                        android:id="@+id/nemButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -189,7 +189,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency7_button"
+                        android:id="@+id/litecoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -209,7 +209,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency8_button"
+                        android:id="@+id/stellarButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -229,7 +229,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency9_button"
+                        android:id="@+id/iotaButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -249,7 +249,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency10_button"
+                        android:id="@+id/dashButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -269,7 +269,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency11_button"
+                        android:id="@+id/neoButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -289,7 +289,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency12_button"
+                        android:id="@+id/moneroButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -308,7 +308,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency13_button"
+                        android:id="@+id/qtumButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -327,7 +327,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency14_button"
+                        android:id="@+id/liskButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -345,7 +345,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency15_button"
+                        android:id="@+id/ethereumClassicButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -364,7 +364,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency16_button"
+                        android:id="@+id/raiblocksButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -382,7 +382,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency17_button"
+                        android:id="@+id/vergeButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -401,7 +401,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/currency18_button"
+                        android:id="@+id/siacoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -422,7 +422,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency19_button"
+                        android:id="@+id/stratisButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -442,7 +442,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency20_button"
+                        android:id="@+id/zcashButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -461,7 +461,7 @@
                         android:textSize="23sp" />
 
                     <ToggleButton
-                        android:id="@+id/DogeCoinButton"
+                        android:id="@+id/dogecoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -481,7 +481,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency21_button"
+                        android:id="@+id/steemButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -501,7 +501,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency22_button"
+                        android:id="@+id/wavesButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -521,7 +521,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency23_button"
+                        android:id="@+id/vechainButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -541,7 +541,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency24_button"
+                        android:id="@+id/digibyteButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -561,7 +561,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency25_button"
+                        android:id="@+id/komodoButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -581,7 +581,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency26_button"
+                        android:id="@+id/hshareButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -601,7 +601,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency27_button"
+                        android:id="@+id/arkButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -621,7 +621,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency28_button"
+                        android:id="@+id/decredButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -641,7 +641,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency29_button"
+                        android:id="@+id/factomButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -661,7 +661,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency30_button"
+                        android:id="@+id/neblioButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -681,7 +681,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency31_button"
+                        android:id="@+id/digitalNoteButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -701,7 +701,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency32_button"
+                        android:id="@+id/nxtButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -721,7 +721,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency33_button"
+                        android:id="@+id/syscoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -740,26 +740,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency34_button"
-                        android:layout_width="120dip"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:id="@+id/currency35"
-                        android:layout_width="200dip"
-                        android:layout_height="wrap_content"
-                        android:text="@string/currency35"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"/>
-
-                    <ToggleButton
-                        android:id="@+id/currency35_button"
+                        android:id="@+id/zcoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -779,7 +760,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency36_button"
+                        android:id="@+id/gameCreditsButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -799,7 +780,7 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency37_button"
+                        android:id="@+id/gxSharesButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
@@ -819,11 +800,133 @@
                         android:textSize="23sp"/>
 
                     <ToggleButton
-                        android:id="@+id/currency38_button"
+                        android:id="@+id/vertcoinButton"
                         android:layout_width="120dip"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency39"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eosCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/eosButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency40"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency36"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/tronButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency41"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bitcoinGoldCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/bitcoinGoldButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency42"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/iconCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/iconButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency43"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/omiseGoCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/omiseGoButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency44"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ucashCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/ucashButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
 
 
 
