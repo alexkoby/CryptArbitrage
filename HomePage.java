@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Alexander on 1/7/2018.
  */
-
+import java.util.Calendar;
 public class HomePage extends Activity implements View.OnClickListener {
     static ArrayList<String> listOfCurrencies;
     static ArrayList<Exchange> listOfExchanges;
@@ -58,16 +58,26 @@ public class HomePage extends Activity implements View.OnClickListener {
         if(!MainActivity.isCreatedHomepage) {
             listOfExchanges = new ArrayList<>();
             listOfCurrencies = new ArrayList<>();
-            bitfinex = new Exchange("Bitfinex", "ask", "bid", false);
-            bittrex = new Exchange("Bittrex", "Ask", "Bid", true);
-            binance = new Exchange("Binance", "price", "price", false);
-            hitBTC = new Exchange("HitBTC", "ask", "bid", false);
-            bitZ = new Exchange("Bit-Z","sell","buy",false);
-            poloniex = new Exchange("Poloniex","lowestAsk", "highestBid",false);
-            bitStamp = new Exchange("BitStamp","bid","ask",false);
-            OKEX = new Exchange("OKEX","sell","buy",false);
-            GDAX = new Exchange("GDAX","ask","bid",false);
-            kraken = new Exchange("Kraken","a","b",false);
+            bitfinex = new Exchange("Bitfinex", "ask", "bid",
+                    false, false);
+            bittrex = new Exchange("Bittrex", "Ask", "Bid",
+                    true, false);
+            binance = new Exchange("Binance", "price", "price",
+                    false, false);
+            hitBTC = new Exchange("HitBTC", "ask", "bid",
+                    false, false);
+            bitZ = new Exchange("Bit-Z","sell","buy",
+                    false, false);
+            poloniex = new Exchange("Poloniex","lowestAsk",
+                    "highestBid",false, false);
+            bitStamp = new Exchange("BitStamp","bid","ask",
+                    false, false);
+            OKEX = new Exchange("OKEX","sell","buy",
+                    false, false);
+            GDAX = new Exchange("GDAX","ask","bid",
+                    false, false);
+            kraken = new Exchange("Kraken","a","b",
+                    false, false);
 
             initialzeTasks();
         }
@@ -102,9 +112,10 @@ public class HomePage extends Activity implements View.OnClickListener {
     @Override
     public void onStart(){
         super.onStart();
-System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainActivity.isCreatedExchanges + "Exchanges");
-        clearCoinData();
-        makeAPIRequests();
+
+        if(listOfExchanges.size() > 0 && listOfCurrencies.size() > 0){
+            HomePage.makeAPIRequests();
+        }
     }
 
 
@@ -205,6 +216,9 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
         else {
             System.out.println("Made it to reimplement " + e.getName());
             task = reImplementTask(task);
+            if(task == null){
+                System.out.println("TASK IS NUUUUUUUUUUUUUUUUUUUUL");
+            }
             task.execute(APIs);
         }
     }
@@ -248,7 +262,34 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
                     alertDialog.show();
                     break;
                 }
-
+                System.out.println("Data is finished refreshing: " + HomePage.isAllDataFinishedRefreshing());
+                if(!HomePage.isAllDataFinishedRefreshing()){
+                    System.out.println("Made it inside the loop");
+                    Toast.makeText(getApplicationContext(),"Please Wait for data to finish loading",Toast.LENGTH_LONG).show();
+                    alertDialog.setTitle("Please Wait");
+                    alertDialog.setMessage("Please Wait While We Refresh All The Data To Find Your Best Arbitrage Opportunities");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+                /*HomePage.makeAPIRequests();
+                final Object lock = new Object();
+                synchronized (lock){
+                    while (!HomePage.isAllDataFinishedRefreshing()) {
+                       try{
+                            lock.wait();
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                */
                 Intent j = new Intent(this, ViewCryptoOpprotunities.class);
                 startActivity(j);
                 break;
@@ -351,8 +392,10 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
     }
 
     public static void makeAPIRequests(){
+        clearCoinData();
         if(listOfExchanges.size() > 0 && listOfCurrencies.size() > 0) {
             for(Exchange exchange: listOfExchanges){
+                exchange.setDataIsFinishedRefreshing(false);
                 getAsksAndBids(exchange);
                 System.out.println(exchange.getName());
             }
@@ -365,6 +408,7 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
             }
         }
     }
+
     private static void clearCoinData(Coin coin){
         coin.setAskPriceUSD(null);
         coin.setBidPriceUSD(null);
@@ -372,5 +416,14 @@ System.out.println(MainActivity.isCreatedCryptocurrencies + " Crypto " + MainAct
         coin.setBidPriceBTC(null);
         coin.setAskPriceETH(null);
         coin.setBidPriceETH(null);
+    }
+
+    static boolean isAllDataFinishedRefreshing(){
+        for (Exchange exchange: HomePage.listOfExchanges){
+            if (exchange.isDataFinishedRefreshing() == false){
+                return false;
+            }
+        }
+        return true;
     }
 }
