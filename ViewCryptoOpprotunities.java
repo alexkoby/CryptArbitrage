@@ -23,6 +23,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 
     Opportunity [] topOpportunitiesArray;
 
+    static boolean hasData = true;
+
     TextView opportunity1Price;
     TextView opportunity2Price;
     TextView opportunity3Price;
@@ -82,16 +84,20 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         alertDialog = new AlertDialog.Builder(this).create();
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
 
-        recalculateNumbers();
+        int x = recalculateNumbers();
 
-        for(int i = 0; i < topOpportunitiesArray.length; i++){
-            System.out.println(topOpportunitiesArray[i].getPercentGain());
+        if(topOpportunitiesArray != null) {
+            for (int i = 0; i < topOpportunitiesArray.length; i++) {
+                System.out.println(topOpportunitiesArray[i].getPercentGain());
+            }
         }
 
         counter = 0;
 
         connectJavaToXML();
-        getDataToScreen();
+        if(x == 1){
+            getDataToScreen();
+        }
 
 
 
@@ -407,11 +413,10 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         return null;
     }
 
-    public void recalculateNumbers(){
+    public int recalculateNumbers(){
         if(HomePage.typeOfArbitrageString.equals("Inter-Exchange and Cross Exchange Arbitrage")) {
             bestOpportunitiesAcrossExchanges = arbitrageFinder.getBestOpportunitiesAcrossExchange();
             bestOpportunitiesWithinExchanges = arbitrageFinder.getBestOpportunitiesWithinExchange();
-
         }
         else if (HomePage.typeOfArbitrageString.equals("Inter-Exchange Arbitrage Only")) {
             bestOpportunitiesWithinExchanges = arbitrageFinder.getBestOpportunitiesWithinExchange();
@@ -421,7 +426,13 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 
         }
 
-        if(bestOpportunitiesWithinExchanges == null){
+        if(bestOpportunitiesAcrossExchanges.size() == 0 && bestOpportunitiesWithinExchanges.size() == 0){
+            ViewCryptoOpprotunities.hasData = false;
+            Intent k = new Intent(this, HomePage.class);
+            startActivity(k);
+            return 0;
+        }
+        if(bestOpportunitiesWithinExchanges.size() == 0){
             topOpportunitiesArray = new Opportunity[min(bestOpportunitiesAcrossExchanges.size(),50)];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
@@ -429,7 +440,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 topOpportunitiesArray[i] = bestOpportunitiesAcrossExchanges.poll();
             }
         }
-        else if (bestOpportunitiesAcrossExchanges == null){
+        else if (bestOpportunitiesAcrossExchanges.size() == 0){
             topOpportunitiesArray = new Opportunity[min(bestOpportunitiesWithinExchanges.size(),50)];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
@@ -462,6 +473,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
             }
         }
+        return 1;
     }
 
     public void setUpMessages(){
@@ -552,7 +564,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" to Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceBTC()));
                 stringBuilder.append(" Bitcoin\nStep 3:\nConvert Your Bitcoin to Ethereum at: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceETH()));
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceBTC()));
                 stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
