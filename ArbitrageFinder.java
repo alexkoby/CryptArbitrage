@@ -228,6 +228,9 @@ public class ArbitrageFinder {
             for(Coin coin: exchange.getCoins()){
                 if(coin.getName().equals(coinName)){
                     listOfCoins.add(coin);
+                    if (coin.getName().equals("Ardor")){
+                        System.out.println("Ardor made it here: " + coin.getBidPriceBTC());
+                    }
                 }
             }
         }
@@ -237,20 +240,36 @@ public class ArbitrageFinder {
         else {
             for (int i = 0; i < listOfCoins.size() - 1; i++) {
                 for (int j = i + 1; j < listOfCoins.size(); j++) {
-                    if (listOfCoins.get(i).getBidPriceUSD() / listOfCoins.get(j).getAskPriceUSD() -1 >
+                    if (listOfCoins.get(i).getBidPriceUSD() / listOfCoins.get(j).getAskPriceUSD() - 1 >
                             HomePage.minGainsWanted / 100) {
                         bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(i).getBidPriceUSD()
                                 / listOfCoins.get(j).getAskPriceUSD() - 1) * 100, 7, listOfCoins.get(i), listOfCoins.get(j)));
+                    }
+                    if (listOfCoins.get(j).getBidPriceUSD() / listOfCoins.get(i).getAskPriceUSD() - 1 >
+                            HomePage.minGainsWanted / 100) {
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceUSD()
+                                / listOfCoins.get(i).getAskPriceUSD() - 1) * 100, 7, listOfCoins.get(j), listOfCoins.get(i)));
                     }
                     if (listOfCoins.get(i).getBidPriceBTC() / listOfCoins.get(j).getAskPriceBTC() - 1 >
                             HomePage.minGainsWanted / 100) {
                         bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(i).getBidPriceBTC()
                                 / listOfCoins.get(j).getAskPriceBTC() - 1) * 100, 8, listOfCoins.get(i), listOfCoins.get(j)));
                     }
+                    if (listOfCoins.get(j).getBidPriceBTC() / listOfCoins.get(i).getAskPriceBTC() - 1 >
+                            HomePage.minGainsWanted / 100) {
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceBTC()
+                                / listOfCoins.get(i).getAskPriceBTC() - 1) * 100, 8, listOfCoins.get(j), listOfCoins.get(i)));
+                    }
                     if (listOfCoins.get(i).getBidPriceETH() / listOfCoins.get(j).getAskPriceETH() - 1 >
                             HomePage.minGainsWanted / 100) {
                         bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(i).getBidPriceETH()
                                 / listOfCoins.get(j).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(i), listOfCoins.get(j)));
+                    }
+                    if (listOfCoins.get(j).getBidPriceETH() / listOfCoins.get(i).getAskPriceETH() - 1 >
+                                HomePage.minGainsWanted / 100) {
+                            bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceETH()
+                                    / listOfCoins.get(i).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(j), listOfCoins.get(i)));
+
                     }
                 }
             }
