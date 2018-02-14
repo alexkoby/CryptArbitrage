@@ -96,6 +96,12 @@
             android:background="@color/light_sea_green"
             android:text="@string/typeOfOpprotunities" />
 
-
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/refreshDataButtonHomePage"
+            android:text="@string/refreshDataButton"
+            android:background="@color/light_sea_green"
+            />
     </LinearLayout>
 </LinearLayout>
