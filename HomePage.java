@@ -42,11 +42,17 @@ public class HomePage extends Activity implements View.OnClickListener {
     static DownloadTask taskGDAX;
     static DownloadTask taskKraken;
 
+    static int lastTimeRefreshedMinute;
+    static int lastTimeRefreshedHour;
+
     AlertDialog alertDialog;
+
+    static boolean isInProcessOfRefreshing = false;
 
     static double minGainsWanted = 1.5;
     EditText minGainEditText;
     Button typeOfArbitrage;
+    Button refreshButtonHomePage;
     static String typeOfArbitrageString = "Inter-Exchange and Cross Exchange Arbitrage";
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -96,6 +102,10 @@ public class HomePage extends Activity implements View.OnClickListener {
         View enterMinGainsButton = findViewById(R.id.enterMinGainsButton);
         enterMinGainsButton.setOnClickListener(this);
 
+        refreshButtonHomePage = findViewById(R.id.refreshDataButtonHomePage);
+        refreshButtonHomePage.setOnClickListener(this);
+
+
         minGainEditText= findViewById(R.id.minGainEditText);
         minGainEditText.setText(Double.toString(minGainsWanted));
 
@@ -113,8 +123,23 @@ public class HomePage extends Activity implements View.OnClickListener {
     public void onStart(){
         super.onStart();
 
-        if(listOfExchanges.size() > 0 && listOfCurrencies.size() > 0){
+        if(!ViewCryptoOpprotunities.hasData){
+            alertDialog.setTitle("No Arbitrage Opportunities Were Found");
+            alertDialog.setMessage("Please add more exchanges," +
+                    " more cryptocurrencies, or set a lower minimum gains to find an Arbitrage Opprotunity for you");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            ViewCryptoOpprotunities.hasData = true;
+        }
+        if(ViewCryptoOpprotunities.selectedRefreshViewOpportunities){
             HomePage.makeAPIRequests();
+            Toast.makeText(this, "Refreshing your data", Toast.LENGTH_LONG).show();
+            ViewCryptoOpprotunities.selectedRefreshViewOpportunities = false;
         }
     }
 
@@ -267,7 +292,8 @@ public class HomePage extends Activity implements View.OnClickListener {
                     System.out.println("Made it inside the loop");
                     Toast.makeText(getApplicationContext(),"Please Wait for data to finish loading",Toast.LENGTH_LONG).show();
                     alertDialog.setTitle("Please Wait");
-                    alertDialog.setMessage("Please Wait While We Refresh All The Data To Find Your Best Arbitrage Opportunities");
+                    alertDialog.setMessage("Please Wait While We Refresh All The Data To Find Your Best Arbitrage Opportunities" +
+                            "\n\nIf you haven't clicked the refresh button first, do that!");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -325,6 +351,65 @@ public class HomePage extends Activity implements View.OnClickListener {
                     typeOfArbitrage.setText(typeOfArbitrageString);
                 }
                 break;
+
+            case R.id.refreshDataButtonHomePage:
+                if(listOfExchanges.size() == 0 && listOfCurrencies.size() == 0){
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please Select One Or More Exchanges And One Or " +
+                            "More Cryptocurrencies Before Viewing Current Opprotunities");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+                else if(listOfExchanges.size() == 0){
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please Select One Or More Exchanges Before Viewing Current Opprotunities");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+                else if(listOfCurrencies.size() == 0){
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please Select One Or More Currencies Before Viewing Current Opprotunities");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+                if(!isDataCurrentlyRefreshing()){
+                    HomePage.makeAPIRequests();
+                    Toast.makeText(this, "Refreshing Your Data", Toast.LENGTH_LONG).show();
+                    HomePage.lastTimeRefreshedMinute = Calendar.getInstance().get(Calendar.MINUTE);
+                    HomePage.lastTimeRefreshedHour = Calendar.getInstance().get(Calendar.HOUR);
+                    break;
+                }
+                else{
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Please Wait For Data To Finish Refreshing Before Refreshing Again");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+
         }
     }
 
@@ -425,5 +510,9 @@ public class HomePage extends Activity implements View.OnClickListener {
             }
         }
         return true;
+    }
+
+    static boolean isDataCurrentlyRefreshing(){
+        return HomePage.isInProcessOfRefreshing;
     }
 }
