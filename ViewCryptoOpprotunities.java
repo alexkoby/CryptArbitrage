@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     Opportunity [] topOpportunitiesArray;
 
     static boolean hasData = true;
+    static boolean selectedRefreshViewOpportunities = false;
 
     TextView opportunity1Price;
     TextView opportunity2Price;
@@ -53,6 +56,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     Button next5Button;
     Button refreshDataButton;
 
+    TextView timePicker;
+
     AlertDialog Opportunity1AlertDialog;
     AlertDialog Opportunity2AlertDialog;
     AlertDialog Opportunity3AlertDialog;
@@ -71,6 +76,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     String typeEightOpportunityMessage;
     String typeNineOpportunityMessage;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crypto_opprotunities);
@@ -83,6 +89,10 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         Opportunity5AlertDialog = new AlertDialog.Builder(this).create();
         alertDialog = new AlertDialog.Builder(this).create();
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
+
+        timePicker = findViewById(R.id.lastTimeRefreshedClock);
+        timePicker.setText(Integer.toString(HomePage.lastTimeRefreshedHour).
+                concat(":").concat(Integer.toString(HomePage.lastTimeRefreshedMinute)));
 
         int x = recalculateNumbers();
 
@@ -295,6 +305,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 break;
             case R.id.refreshDataButton:
                 //get clock data here
+                selectedRefreshViewOpportunities = true;
                 Intent intent = new Intent(this, HomePage.class);
                 startActivity(intent);
 
@@ -490,13 +501,13 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceUSD()));
-                stringBuilder.append(" USD\nStep 2:\nCovert ");
+                stringBuilder.append(" USD\n\nStep 2:\nCovert ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceBTC()));
-                stringBuilder.append(" Bitcoin\nStep 3:\nSell your Bitcoin for USD at: $");
+                stringBuilder.append(" Bitcoin\n\nStep 3:\nSell your Bitcoin for USD at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceUSD()));
-                stringBuilder.append("Note you may start at any point in this cycle");
+                stringBuilder.append("\n\nNote you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
                 stringBuilder.append("\n");
@@ -505,11 +516,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
             case 2:
                 stringBuilder.append("Step1:\nBuy Bitcoin at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
-                stringBuilder.append("Dollars \nStep 2:\nCovert Bitcoin to ");
+                stringBuilder.append("Dollars \n\nStep 2:\nCovert Bitcoin to ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
-                stringBuilder.append("at ");
+                stringBuilder.append( "at ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceBTC()));
-                stringBuilder.append(" Bitcoin\nStep 3:\nSell your");
+                stringBuilder.append(" Bitcoin\n\nStep 3:\nSell your");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" for USD at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceUSD()));
@@ -525,11 +536,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceUSD()));
-                stringBuilder.append(" USD\nStep 2:\nCovert ");
+                stringBuilder.append(" USD\n\nStep 2:\nCovert ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceETH()));
-                stringBuilder.append(" Ethereum\nStep 3:\nSell your Ethereum for USD at: $");
+                stringBuilder.append(" Ethereum\n\nStep 3:\nSell your Ethereum for USD at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceUSD()));
                 stringBuilder.append(" USD\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
@@ -540,11 +551,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
             case 4:
                 stringBuilder.append("Step1:\nBuy Ethereum at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
-                stringBuilder.append(" USD\nStep 2:\nCovert Ethereum to ");
+                stringBuilder.append(" USD\n\nStep 2:\nCovert Ethereum to ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append("at ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceETH()));
-                stringBuilder.append(" Ethereum\nStep 3:\nSell your");
+                stringBuilder.append(" Ethereum\n\nStep 3:\nSell your");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" For USD at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceUSD()));
@@ -559,11 +570,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append( "at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceETH()));
-                stringBuilder.append("Ethereum\nStep 2:\nConvert ");
+                stringBuilder.append("Ethereum\n\nStep 2:\nConvert ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceBTC()));
-                stringBuilder.append(" Bitcoin\nStep 3:\nConvert Your Bitcoin to Ethereum at: ");
+                stringBuilder.append(" Bitcoin\n\nStep 3:\nConvert Your Bitcoin to Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceBTC()));
                 stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
@@ -576,11 +587,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append( "at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceBTC()));
-                stringBuilder.append(" Bitcoin\nStep 2:\nConvert ");
+                stringBuilder.append(" Bitcoin\n\nStep 2:\nConvert ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceETH()));
-                stringBuilder.append(" Ethereum\nStep 3:\nConvert Your Ethereum to Bitcoin at: ");
+                stringBuilder.append(" Ethereum\n\nStep 3:\nConvert Your Ethereum to Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceBTC()));
                 stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
@@ -596,7 +607,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" for: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
                 stringBuilder.append(" USD");
-                stringBuilder.append("\nStep 2:\n");
+                stringBuilder.append("\n\nStep 2:\n");
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
@@ -616,7 +627,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getLowPriceCoinExchange().getExchange());
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceBTC()));
-                stringBuilder.append(" Bitcoin\nStep 2:\n");
+                stringBuilder.append(" Bitcoin\n\nStep 2:\n");
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
@@ -636,7 +647,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getLowPriceCoinExchange().getExchange());
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceETH()));
-                stringBuilder.append(" Ethereum\nStep 2:\n");
+                stringBuilder.append(" Ethereum\n\nStep 2:\n");
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
