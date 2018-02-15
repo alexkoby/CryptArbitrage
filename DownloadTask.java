@@ -2,6 +2,7 @@ package com.example.alexander.cryptarbitrage2;
 
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +31,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
     String findSymbol;
 
     Exchange exchange;
+    URL url;
+    HttpURLConnection urlConnection;
 
 
     public DownloadTask(String findSymbol, String apiBase, Exchange exchange) {
@@ -64,6 +67,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
         String result = "";
 
+
         while (q1.size() != 0) {
             counter++;
 
@@ -75,16 +79,15 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             APIRequestsMade++;
 
             StringBuilder stringBuilder = new StringBuilder();
-            URL url;
-            HttpURLConnection urlConnection;
+
 
 
             try {
                 String currentPair = q1.peek();
                 url = new URL(this.apiBase.concat(currentPair));
                 q1.remove();
-
                 urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setConnectTimeout(800);
 
                 InputStream in = urlConnection.getInputStream();
 
@@ -96,6 +99,9 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     stringBuilder.append(current);
                     data = reader.read();
                 }
+                in.close();
+                urlConnection.disconnect();
+
                 JSONObject jsonObject = new JSONObject(stringBuilder.toString());
                 if(this.findSymbol!= null && this.findSymbol.length() > 0){
                     jsonObject = jsonObject.getJSONObject(this.findSymbol);
@@ -122,9 +128,11 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
             catch (Exception e) {
                 if (e instanceof FileNotFoundException || e instanceof org.json.JSONException) {
-                    if (!isCoinPairNull(counter) && (!exchange.getName().equals("GDAX"))
-                            && (!exchange.getName().equals("BitStamp"))) {
+                    if (exchange.getName().equals("Bitfinex")) {
                         e.printStackTrace();
+                        if(urlConnection != null){
+                            urlConnection.disconnect();
+                        }
                         System.out.print("NO MORE API REQUESTS ALLOWED " + exchange.getName());
                         System.out.println("The maximum amt is: " + APIRequestsMade);
                         return "NO MORE API REQUESTS ALLOWED";
@@ -161,6 +169,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     coin.setBidPriceETH(-1.0);
                 }
             }
+            if(exchange.getName().equals(HomePage.lastExchange)){
+                HomePage.isInProcessOfRefreshing = false;
+            }
+            exchange.setDataIsFinishedRefreshing(true);
             for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
                         + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
@@ -169,6 +181,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
         }
         catch (Exception e) {
+            exchange.setDataIsFinishedRefreshing(true);
             e.printStackTrace();
         }
     }
@@ -204,6 +217,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 result.append(current);
                 data = reader.read();
             }
+            in.close();
+            urlConnection.disconnect();
             JSONObject jsonObject;
             JSONArray allPairs;
             if(exchange.getName().equals("Bittrex")) {
