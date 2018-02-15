@@ -2,6 +2,7 @@ package com.example.alexander.cryptarbitrage2;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -45,6 +46,8 @@ public class HomePage extends Activity implements View.OnClickListener {
     static int lastTimeRefreshedMinute;
     static int lastTimeRefreshedHour;
 
+    static String lastExchange;
+
     AlertDialog alertDialog;
 
     static boolean isInProcessOfRefreshing = false;
@@ -54,6 +57,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     Button typeOfArbitrage;
     Button refreshButtonHomePage;
     static String typeOfArbitrageString = "Inter-Exchange and Cross Exchange Arbitrage";
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -287,13 +291,26 @@ public class HomePage extends Activity implements View.OnClickListener {
                     alertDialog.show();
                     break;
                 }
-                System.out.println("Data is finished refreshing: " + HomePage.isAllDataFinishedRefreshing());
-                if(!HomePage.isAllDataFinishedRefreshing()){
-                    System.out.println("Made it inside the loop");
-                    Toast.makeText(getApplicationContext(),"Please Wait for data to finish loading",Toast.LENGTH_LONG).show();
+                if(HomePage.isDataCurrentlyRefreshing()){
+                    Toast.makeText(getApplicationContext(),"Please Wait for data to finish loading" +
+                            "\n\n Currently gathering data from ".concat(currentlyOnWhatExchange()),Toast.LENGTH_LONG).show();
                     alertDialog.setTitle("Please Wait");
                     alertDialog.setMessage("Please Wait While We Refresh All The Data To Find Your Best Arbitrage Opportunities" +
-                            "\n\nIf you haven't clicked the refresh button first, do that!");
+                            "\n\nCurrently gathering data from ".concat(currentlyOnWhatExchange()));
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                    break;
+                }
+                if(!HomePage.isAllDataFinishedRefreshing()){
+                    System.out.println("Made it inside the loop");
+                    Toast.makeText(getApplicationContext(),"Please select the refresh data button to get data!",Toast.LENGTH_LONG).show();
+                    alertDialog.setTitle("Please Wait");
+                    alertDialog.setMessage("Please select the refresh data button to get data!");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -399,7 +416,8 @@ public class HomePage extends Activity implements View.OnClickListener {
                 }
                 else{
                     alertDialog.setTitle("Error");
-                    alertDialog.setMessage("Please Wait For Data To Finish Refreshing Before Refreshing Again");
+                    alertDialog.setMessage("Please Wait For Data To Finish Refreshing Before Refreshing Again" +
+                            "\n\nCurrently gathering data from ".concat(currentlyOnWhatExchange()));
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -478,6 +496,9 @@ public class HomePage extends Activity implements View.OnClickListener {
 
     public static void makeAPIRequests(){
         clearCoinData();
+        HomePage.isInProcessOfRefreshing = true;
+        lastExchange = HomePage.listOfExchanges.get(HomePage.listOfExchanges.size() - 1).getName();
+
         if(listOfExchanges.size() > 0 && listOfCurrencies.size() > 0) {
             for(Exchange exchange: listOfExchanges){
                 exchange.setDataIsFinishedRefreshing(false);
@@ -514,5 +535,15 @@ public class HomePage extends Activity implements View.OnClickListener {
 
     static boolean isDataCurrentlyRefreshing(){
         return HomePage.isInProcessOfRefreshing;
+    }
+
+    private String currentlyOnWhatExchange(){
+        Exchange e;
+        for(Exchange exchange: listOfExchanges){
+            if (!exchange.isDataFinishedRefreshing()){
+                return exchange.getName();
+            }
+        }
+        return null;
     }
 }
