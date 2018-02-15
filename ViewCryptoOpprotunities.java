@@ -431,9 +431,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         }
         else if (HomePage.typeOfArbitrageString.equals("Inter-Exchange Arbitrage Only")) {
             bestOpportunitiesWithinExchanges = arbitrageFinder.getBestOpportunitiesWithinExchange();
+            bestOpportunitiesAcrossExchanges = new PriorityQueue<>();
         }
         else {
             bestOpportunitiesAcrossExchanges = arbitrageFinder.getBestOpportunitiesAcrossExchange();
+            bestOpportunitiesWithinExchanges = new PriorityQueue<>();
 
         }
 
@@ -510,13 +512,13 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("\n\nNote you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 2:
                 stringBuilder.append("Step1:\nBuy Bitcoin at: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
-                stringBuilder.append("Dollars \n\nStep 2:\nCovert Bitcoin to ");
+                stringBuilder.append(" USD \n\nStep 2:\nCovert Bitcoin to ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append( "at ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceBTC()));
@@ -528,7 +530,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 3:
@@ -545,7 +547,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" USD\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 4:
@@ -562,7 +564,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" USD\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 5:
@@ -579,7 +581,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 6:
@@ -596,7 +598,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 7:
@@ -617,7 +619,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" USD");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 8:
@@ -637,7 +639,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Bitcoin");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
 
             case 9:
@@ -657,7 +659,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Ethereum");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("\n");
+                stringBuilder.append("%\n");
                 return stringBuilder.toString();
         }
         return null;
