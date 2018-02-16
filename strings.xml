@@ -29,6 +29,7 @@
     <string name="exchange10">BitStamp</string>
     <string name="exchange11">Bit-Z</string>
     <string name="exchange12">Kraken</string>
+    <string name="exchangeHuobi">Huobi</string>
     <string name="exchange13">Ethfinex</string>
     <string name="exchange14">KuCoin</string>
     <string name="exchange15">Kraken</string>

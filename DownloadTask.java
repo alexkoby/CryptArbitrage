@@ -108,18 +108,38 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 }
                 if (counter % 3 == 0) {
                     //search for 'bid' if bitfinex, else search for 'Bid'
+                    if(exchange.getName().equals("Huobi")){
+                        exchange.getCoins().get(counter/3).setBidPriceUSD(getPriceDataFromStringInArrayForm
+                                (jsonObject.getString(exchange.getBidSymbol())));
+                        exchange.getCoins().get(counter/3).setAskPriceUSD(getPriceDataFromStringInArrayForm
+                                (jsonObject.getString(exchange.getAskSymbol())));
+                        continue;
+                    }
+
+
                     exchange.getCoins().get(counter/3).setBidPriceUSD
                             (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchange.getCoins().get(counter/3).setAskPriceUSD
                             (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                 }
                 else if (counter % 3 == 1) {
+                    if(exchange.getName().equals("Huobi")){
+                        exchange.getCoins().get(counter/3).setBidPriceBTC(getPriceDataFromStringInArrayForm                                (jsonObject.getString(exchange.getBidSymbol())));
+                        exchange.getCoins().get(counter/3).setAskPriceBTC(getPriceDataFromStringInArrayForm
+                                (jsonObject.getString(exchange.getAskSymbol())));
+                        continue;
+                    }
                     exchange.getCoins().get(counter/3).setBidPriceBTC
                             (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchange.getCoins().get(counter/3).setAskPriceBTC
                             (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                 }
                 else if (counter % 3 == 2) { //dont really need the if, but makes it more clear
+                    if(exchange.getName().equals("Huobi")){
+                        exchange.getCoins().get(counter/3).setBidPriceETH(getPriceDataFromStringInArrayForm                                (jsonObject.getString(exchange.getBidSymbol())));
+                        exchange.getCoins().get(counter/3).setAskPriceETH(getPriceDataFromStringInArrayForm                                (jsonObject.getString(exchange.getAskSymbol())));
+                        continue;
+                    }
                     exchange.getCoins().get(counter/3).setBidPriceETH
                             (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchange.getCoins().get(counter/3).setAskPriceETH
@@ -465,18 +485,18 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 System.out.println(currentBidString);
 
                 if (counter % 3 == 1) {
-                    currentCoin.setBidPriceBTC(getPriceDataFromStringInArrayFormKraken(currentBidString));
-                    currentCoin.setAskPriceBTC(getPriceDataFromStringInArrayFormKraken(currentAskString));
+                    currentCoin.setBidPriceBTC(getPriceDataFromStringInArrayForm(currentBidString));
+                    currentCoin.setAskPriceBTC(getPriceDataFromStringInArrayForm(currentAskString));
                 }
                 //eth pair
                 else if (counter % 3 == 2) {
-                    currentCoin.setBidPriceETH(getPriceDataFromStringInArrayFormKraken(currentBidString));
-                    currentCoin.setAskPriceETH(getPriceDataFromStringInArrayFormKraken(currentAskString));
+                    currentCoin.setBidPriceETH(getPriceDataFromStringInArrayForm(currentBidString));
+                    currentCoin.setAskPriceETH(getPriceDataFromStringInArrayForm(currentAskString));
                 }
                 //USDT pair
                 else if (counter % 3 == 0) {
-                    currentCoin.setBidPriceUSD(getPriceDataFromStringInArrayFormKraken(currentBidString));
-                    currentCoin.setAskPriceUSD(getPriceDataFromStringInArrayFormKraken(currentAskString));
+                    currentCoin.setBidPriceUSD(getPriceDataFromStringInArrayForm(currentBidString));
+                    currentCoin.setAskPriceUSD(getPriceDataFromStringInArrayForm(currentAskString));
                 }
                 q1.remove();
             }
@@ -508,12 +528,11 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
      * @param s is the string that looks like an array
      * @return the first price - or null if it doesn't exist
      */
-    private Double getPriceDataFromStringInArrayFormKraken(String s){
-        int spotOfFirstQuote = 1;
+    private Double getPriceDataFromStringInArrayForm(String s){
         int spotOfSecondQuote = 0;
 
         for(int i = 2; i < s.length(); i++){
-            if(s.charAt(i) == '"'){
+            if(s.charAt(i) == '"' || s.charAt(i) == ','){
                 spotOfSecondQuote = i;
                 break;
             }
@@ -521,8 +540,13 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         if(spotOfSecondQuote == 0){
             return null;
         }
-        else {
-            return Double.parseDouble(s.substring(spotOfFirstQuote + 1, spotOfSecondQuote));
+        else if (exchange.getName().equals("Kraken")){
+            return Double.parseDouble(s.substring(2, spotOfSecondQuote));
         }
+        else if (exchange.getName().equals("Huobi")){
+            return Double.parseDouble(s.substring(1,spotOfSecondQuote));
+        }
+        return null;
     }
+
 }

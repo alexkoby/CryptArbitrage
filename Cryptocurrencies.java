@@ -340,6 +340,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         Coin bitcoinKraken = new Coin("Bitcoin","XXBT",
                 "Kraken", "100");
         HomePage.kraken.addCoin(bitcoinKraken);
+        Coin bitcoinHuobi = new Coin("Bitcoin","btc",
+                "Huobi","100");
+        HomePage.huobi.addCoin(bitcoinHuobi);
         HomePage.listOfCurrencies.add("Bitcoin");
 
         Coin ethereumBitfinex = new Coin("Ethereum","ETH",
@@ -372,6 +375,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         Coin ethereumKraken = new Coin("Ethereum","XETH",
                 "Kraken","110");
         HomePage.kraken.addCoin(ethereumKraken);
+        Coin ethereumHuobi = new Coin("Ethereum","eth",
+                "Huobi","110");
+        HomePage.huobi.addCoin(ethereumHuobi);
         HomePage.listOfCurrencies.add("Ethereum");
     }
 
@@ -407,6 +413,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin rippleKraken = new Coin("Ripple","XXRP",
                         "Kraken","110");
                 HomePage.kraken.addCoin(rippleKraken);
+                Coin rippleHuobi = new Coin("Ripple","xrp",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(rippleHuobi);
                 HomePage.listOfCurrencies.add("Ripple");
                 break;
 
@@ -438,6 +447,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin bitcoinCashKraken = new Coin("Bitcoin Cash","BCH",
                         "Kraken","110");
                 HomePage.kraken.addCoin(bitcoinCashKraken);
+                Coin bitcoinCashHuobi = new Coin("Bitcoin Cash","bch",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(bitcoinCashHuobi);
                 HomePage.listOfCurrencies.add("Bitcoin Cash");
                 break;
 
@@ -448,6 +460,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin cardanoBinance = new Coin("Cardano", "ADA",
                         "Binance","011");
                 HomePage.binance.addCoin(cardanoBinance);
+
                 HomePage.listOfCurrencies.add("Cardano");
                 break;
 
@@ -464,6 +477,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin nemOKEX = new Coin("NEM", "XEM",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(nemOKEX);
+                Coin nemHuobi = new Coin("NEM","xem",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(nemHuobi);
                 HomePage.listOfCurrencies.add("NEM");
                 break;
 
@@ -498,6 +514,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin litecoinKraken = new Coin("Litecoin","XLTC",
                         "Kraken","110");
                 HomePage.kraken.addCoin(litecoinKraken);
+                Coin litecoinHuobi = new Coin("Litecoin","ltc",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(litecoinHuobi);
                 HomePage.listOfCurrencies.add("Litecoin");
                 break;
 
@@ -514,6 +533,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin stellarKraken = new Coin("Stellar","XXLM",
                         "Kraken","010");
                 HomePage.kraken.addCoin(stellarKraken);
+
                 HomePage.listOfCurrencies.add("Stellar");
                 break;
 
@@ -554,6 +574,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin dashKraken = new Coin("Dash","DASH",
                         "Kraken","110");
                 HomePage.kraken.addCoin(dashKraken);
+                Coin dashHuobi = new Coin("Dash","dash",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(dashHuobi);
                 HomePage.listOfCurrencies.add("Dash");
                 break;
 
@@ -572,6 +595,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin neoOKEX = new Coin("NEO", "NEO",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(neoOKEX);
+                Coin neoHuobi = new Coin("NEO","neo",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(neoHuobi);
                 HomePage.listOfCurrencies.add("NEO");
                 break;
 
@@ -619,6 +645,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin qtumOKEX = new Coin("QTUM", "QTUM",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(qtumOKEX);
+                    Coin qtumHuobi = new Coin("QTUM","qtum",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(qtumHuobi);
                 HomePage.listOfCurrencies.add("QTUM");
                 break;
 
@@ -638,6 +667,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin liskPoloniex = new Coin("Lisk", "LSK",
                         "Poloniex","011");
                 HomePage.poloniex.addCoin(liskPoloniex);
+                Coin liskHuobi = new Coin("Lisk","lsk",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(liskHuobi);
                 HomePage.listOfCurrencies.add("Lisk");
                 break;
 
@@ -666,6 +698,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin ethereumClassicKraken = new Coin("Ethereum Classic","XETC",
                         "Kraken","111");
                 HomePage.kraken.addCoin(ethereumClassicKraken);
+                Coin ethereumClassicHuobi = new Coin("Ethereum Classic","etc",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(ethereumClassicHuobi);
                 HomePage.listOfCurrencies.add("Ethereum Classic");
                 break;
 
@@ -745,6 +780,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin zcashKraken = new Coin("ZCash","XZEC",
                         "Kraken","110");
                 HomePage.kraken.addCoin(zcashKraken);
+                Coin zecHuobi = new Coin("ZCash","zec",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(zecHuobi);
                 HomePage.listOfCurrencies.add("ZCash");
                 break;
 
@@ -794,6 +832,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin vechainHitBTC = new Coin("VeChain", "VEN",
                         "HitBTC","111");
                 HomePage.hitBTC.addCoin(vechainHitBTC);
+                Coin vechainHuobi = new Coin("veChain","ven",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(vechainHuobi);
                 HomePage.listOfCurrencies.add("VeChain");
                 break;
 
@@ -842,6 +883,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin hshareOKEX = new Coin("HShare", "HSR",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(hshareOKEX);
+                Coin hshareHuobi = new Coin("HShare","hsr",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(hshareHuobi);
                 HomePage.listOfCurrencies.add("HShare");
                 break;
 
@@ -970,6 +1014,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.bitZ.addCoin(eosBitZ);
                 Coin eosHitBTC = new Coin("EOS","EOS","HitBTC","111");
                 HomePage.hitBTC.addCoin(eosHitBTC);
+                Coin eosHuobi = new Coin("EOS","eos",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(eosHuobi);
                 HomePage.listOfCurrencies.add("EOS");
                 break;
 
@@ -982,6 +1029,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.bitZ.addCoin(tronBitZ);
                 Coin tronHitBTC = new Coin("Tron","TRX","HitBTC","111");
                 HomePage.hitBTC.addCoin(tronHitBTC);
+                Coin tronHuobi = new Coin("Tron","trx",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(tronHuobi);
                 HomePage.listOfCurrencies.add("Tron");
                 break;
 
@@ -997,6 +1047,10 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.bitfinex.addCoin(bitcoinGoldBitfinex);
                 Coin bitcoinGoldHitBTC = new Coin("Bitcoin Gold","BTG",
                         "HitBTC","111");
+                HomePage.hitBTC.addCoin(bitcoinGoldHitBTC);
+                Coin bitcoinGoldHuobi = new Coin("Bitcoin Coin","btg",
+                        "Huobi","010");
+                HomePage.huobi.addCoin(bitcoinGoldHuobi);
                 HomePage.listOfCurrencies.add("Bitcoin Gold");
                 break;
 
@@ -1005,6 +1059,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.binance.addCoin(iconBinance);
                 Coin iconHitBTC = new Coin("Icon","ICX","HitBTC","111");
                 HomePage.hitBTC.addCoin(iconHitBTC);
+                Coin iconHuobi = new Coin("Icon","icx",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(iconHuobi);
                 HomePage.listOfCurrencies.add("Icon");
                 break;
 
@@ -1017,6 +1074,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.bittrex.addCoin(omiseGoBittrex);
                 Coin omiseGoPoloniex = new Coin("OmiseGO","OMG","Binance","011");
                 HomePage.poloniex.addCoin(omiseGoPoloniex);
+                Coin omiseGoHuobi = new Coin("OmiseGO","omg",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(omiseGoHuobi);
                 HomePage.listOfCurrencies.add("OmiseGO");
                 break;
 
@@ -1051,6 +1111,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.bitfinex.addCoin(statusBitfinex);
                 Coin statusOKEX = new Coin("Status","SNT","OKEX","111");
                 HomePage.OKEX.addCoin(statusOKEX);
+                Coin statusHuobi = new Coin("Status","snt",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(statusHuobi);
                 HomePage.listOfCurrencies.add("status");
                 break;
 
@@ -1103,6 +1166,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.hitBTC.addCoin(zeroxHitBTC);
                 Coin zeroxOKEX = new Coin("0x","ZRX","OKEX","011");
                 HomePage.OKEX.addCoin(zeroxOKEX);
+                Coin zeroxHuobi = new Coin("0x","zrx",
+                        "Huobi","010");
+                HomePage.huobi.addCoin(zeroxHuobi);
                 HomePage.listOfCurrencies.add("0x");
                 break;
 
@@ -1129,6 +1195,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.OKEX.addCoin(digixdaoOKEX);
                 Coin digixdaoHitBTC = new Coin("DigixDAO","DGD","HitBTC","010");
                 HomePage.hitBTC.addCoin(digixdaoHitBTC);
+                Coin digixdaoHuobi = new Coin("DigixDAO","dgd",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(digixdaoHuobi);
                 HomePage.listOfCurrencies.add("DigixDAO");
                 break;
 
@@ -1139,6 +1208,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.poloniex.addCoin(gasPoloniex);
                 Coin gasOKEX = new Coin("Gas","GAS","OKEX","010");
                 HomePage.binance.addCoin(gasOKEX);
+                Coin gasHuobi = new Coin("Gas","gas",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(gasHuobi);
                 HomePage.listOfCurrencies.add("Gas");
                 break;
 
@@ -1147,6 +1219,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.binance.addCoin(kyberBinance);
                 Coin kyberOKEX = new Coin("Kyber","KNC","OKEX","110");
                 HomePage.OKEX.addCoin(kyberOKEX);
+                Coin kyberHuobi = new Coin("Kyber","knc",
+                        "Huobi","010");
+                HomePage.huobi.addCoin(kyberHuobi);
                 HomePage.listOfCurrencies.add("Kyber");
                 break;
 
@@ -1157,6 +1232,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.bitfinex.addCoin(batBitfinex);
                 Coin batBittrex = new Coin("BAT","BAT","Bittrex","011");
                 HomePage.bittrex.addCoin(batBittrex);
+                Coin batHuobi = new Coin("BAT","bat",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(batHuobi);
                 HomePage.listOfCurrencies.add("BAT");
                 break;
 
@@ -1191,6 +1269,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.poloniex.addCoin(golemPoloniex);
                 Coin golemOKEX = new Coin("Golem","GNT","OKEX","110");
                 HomePage.OKEX.addCoin(golemOKEX);
+                Coin golemHuobi = new Coin("Golem","gnt",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(golemHuobi);
                 HomePage.listOfCurrencies.add("Golem");
                 break;
 
@@ -1199,12 +1280,18 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.binance.addCoin(aelfBinance);
                 Coin aelfOKEX = new Coin("aelf","ELF","OKEX","111");
                 HomePage.OKEX.addCoin(aelfOKEX);
+                Coin aelfHuobi = new Coin("aelf","elf",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(aelfHuobi);
                 HomePage.listOfCurrencies.add("aelf");
                 break;
 
             case R.id.nebulasButton:
                 Coin nebulasOKEX = new Coin("Nebulas","NAS","OKEX","111");
                 HomePage.OKEX.addCoin(nebulasOKEX);
+                Coin nebulasHuobi = new Coin("Nebulas","nas",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(nebulasHuobi);
                 HomePage.listOfCurrencies.add("Nebulas");
                 break;
 
@@ -1241,6 +1328,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin iostokenOKEX = new Coin("IOStoken","IOST",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(iostokenOKEX);
+                Coin iostokenHuobi = new Coin("IOStoken","iost",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(iostokenHuobi);
                 HomePage.listOfCurrencies.add("IOStoken");
                 break;
 
@@ -1269,6 +1359,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.binance.addCoin(saltBinance);
                 Coin saltBittrex = new Coin("Salt","SALT","Bittrex","011");
                 HomePage.bittrex.addCoin(saltBittrex);
+                Coin saltHuobi = new Coin("Salt","salt",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(saltHuobi);
                 HomePage.listOfCurrencies.add("Salt");
                 break;
 
@@ -1279,12 +1372,18 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.poloniex.addCoin(civicPoloniex);
                 Coin civicOKEX = new Coin("Civic","cvc","OKEX","110");
                 HomePage.OKEX.addCoin(civicOKEX);
+                Coin civicHuobi = new Coin("Civic","cvc",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(civicHuobi);
                 HomePage.listOfCurrencies.add("Civic");
                 break;
 
             case R.id.waxButton:
                 Coin waxHitBTC = new Coin("WAX","WAX","HitBTC","111");
                 HomePage.hitBTC.addCoin(waxHitBTC);
+                Coin waxHuobi = new Coin("WAX","wax",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(waxHuobi);
                 HomePage.listOfCurrencies.add("WAX");
                 break;
 
@@ -1295,6 +1394,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.binance.addCoin(storjBinance);
                 Coin storjPoloniex = new Coin("Storj","STORJ","Poloniex","010");
                 HomePage.poloniex.addCoin(storjPoloniex);
+                Coin storjHuobi = new Coin("Storj","storj",
+                        "Huobi","110");
+                HomePage.huobi.addCoin(storjHuobi);
                 HomePage.listOfCurrencies.add("Storj");
                 break;
 
@@ -1311,6 +1413,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin decentralandOKEX = new Coin("Decentraland","MANA",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(decentralandOKEX);
+                Coin decentralandHuobi = new Coin("Decentraland","mana",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(decentralandHuobi);
                 HomePage.listOfCurrencies.add("Decentraland");
                 break;
 
@@ -1334,12 +1439,18 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin timenewbankOKEX = new Coin("Time New Bank","TNB",
                         "OKEX","111");
                 HomePage.OKEX.addCoin(timenewbankOKEX);
+                Coin timenewbankHuobi = new Coin("Time New Bank","tnb",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(timenewbankHuobi);
                 HomePage.listOfCurrencies.add("Time New Bank");
                 break;
 
             case R.id.achainButton:
                 Coin achainOKEX = new Coin("Achain","ACT","OKEX","111");
                 HomePage.OKEX.addCoin(achainOKEX);
+                Coin achainHuobi = new Coin("Achain","act",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(achainHuobi);
                 HomePage.listOfCurrencies.add("Achain");
                 break;
 
@@ -1397,6 +1508,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin chainlinkOKEX = new Coin("ChainLink","link",
                         "OKEX","110");
                 HomePage.OKEX.addCoin(chainlinkOKEX);
+                Coin chainlinkHuobi = new Coin("ChainLink","link",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(chainlinkHuobi);
                 HomePage.listOfCurrencies.add("ChainLink");
                 break;
 
@@ -1437,6 +1551,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.OKEX.addCoin(monacoOKEX);
                 Coin monacoBitZ = new Coin("Monaco","mco","Bit-Z","011");
                 HomePage.bitZ.addCoin(monacoBitZ);
+                Coin monacoHuobi = new Coin("Monaco","mco",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(monacoHuobi);
                 HomePage.listOfCurrencies.add("Monaco");
                 break;
 
@@ -1465,18 +1582,27 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin ripioCreditNetworkOKEX = new Coin("Ripio Credit Network",
                         "rcn","OKEX","011");
                 HomePage.OKEX.addCoin(ripioCreditNetworkOKEX);
+                Coin ripioCreditNetworkHuobi = new Coin("Ripio Credit Network","rcn",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(ripioCreditNetworkHuobi);
                 HomePage.listOfCurrencies.add("Ripio Credit Network");
                 break;
 
             case R.id.iotchainButton:
                 Coin iotchainOKEX = new Coin("IoT Chain","ITC","OKEX","111");
                 HomePage.OKEX.addCoin(iotchainOKEX);
+                Coin iotchainHuobi = new Coin("IoT Chain","itc",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(iotchainHuobi);
                 HomePage.listOfCurrencies.add("IoT Chain");
                 break;
 
             case R.id.airswapButton:
                 Coin airswapBinance = new Coin("AirSwap","AST","Binance","011");
                 HomePage.binance.addCoin(airswapBinance);
+                Coin airswapHuobi = new Coin("AirSwap","ast",
+                        "Huobi","010");
+                HomePage.huobi.addCoin(airswapHuobi);
                 HomePage.listOfCurrencies.add("AirSwap");
                 break;
 
@@ -1528,6 +1654,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin cybermilesOKEX = new Coin("CyberMiles","CMT","OKEX",
                         "110");
                 HomePage.OKEX.addCoin(cybermilesOKEX);
+                Coin cybermilesHuobi = new Coin("CyberMiles","cmt",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(cybermilesHuobi);
                 HomePage.listOfCurrencies.add("CyberMiles");
                 break;
 
@@ -1559,6 +1688,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 HomePage.binance.addCoin(metalBinance);
                 Coin metalOKEX = new Coin("Metal","mtl","OKEX","011");
                 HomePage.OKEX.addCoin(metalOKEX);
+                Coin metalHuobi = new Coin("Metal","mtl",
+                        "Huobi","010");
+                HomePage.huobi.addCoin(metalHuobi);
                 HomePage.listOfCurrencies.add("MTL");
                 break;
 
@@ -1569,6 +1701,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 Coin simpletokenOKEX = new Coin("Simple Token","OST",
                         "OKEX","110");
                 HomePage.OKEX.addCoin(simpletokenOKEX);
+                Coin simpletokenHuobi = new Coin("Simple Token","ost",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(simpletokenHuobi);
                 HomePage.listOfCurrencies.add("Simple Token");
                 break;
 
@@ -1587,6 +1722,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
             case R.id.thetatokenButton:
                 Coin thetatokenOKEX = new Coin("Theta Token","THETA","OKEX","111");
                 HomePage.OKEX.addCoin(thetatokenOKEX);
+                Coin thetatokenHuobi = new Coin("Theta Token","theta",
+                        "Huobi","111");
+                HomePage.huobi.addCoin(thetatokenHuobi);
                 HomePage.listOfCurrencies.add("Theta Token");
                 break;
 

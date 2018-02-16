@@ -55,9 +55,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
             getExchangeInfo1();
             System.out.println("Papa Johns");
         }
-
         MainActivity.isCreatedExchanges = true;
-
     }
 
     public void onClick(View v){
@@ -96,10 +94,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
                 break;
         }
     }
-
-
-
-
 
     /**
      * Adds exchange of the button to the list of selected Exchanges
@@ -145,6 +139,10 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
             case R.id.exchange15_button:
                 HomePage.listOfExchanges.add(HomePage.kraken);
+                break;
+
+            case R.id.huobiExchangeButton:
+                HomePage.listOfExchanges.add(HomePage.huobi);
         }
     }
 
@@ -225,6 +223,8 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(exchangeButton11);
         ToggleButton exchangeButton15 = findViewById(R.id.exchange15_button);
         allExchangesButton.add(exchangeButton15);
+        ToggleButton huobiButton = findViewById(R.id.huobiExchangeButton);
+        allExchangesButton.add(huobiButton);
         ToggleButton exchangeButton8 = findViewById(R.id.exchange8_button);
         allExchangesButton.add(exchangeButton8);
         ToggleButton exchangeButton4 = findViewById(R.id.exchange4_button);

@@ -21,6 +21,7 @@ import java.util.Calendar;
 public class HomePage extends Activity implements View.OnClickListener {
     static ArrayList<String> listOfCurrencies;
     static ArrayList<Exchange> listOfExchanges;
+    static ArrayList<Exchange> allPossibleExchanges;
     static Exchange bitfinex;
     static Exchange bittrex;
     static Exchange binance;
@@ -31,6 +32,8 @@ public class HomePage extends Activity implements View.OnClickListener {
     static Exchange OKEX;
     static Exchange GDAX;
     static Exchange kraken;
+    static Exchange huobi;
+
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
@@ -42,6 +45,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     static DownloadTask taskOKEX;
     static DownloadTask taskGDAX;
     static DownloadTask taskKraken;
+    static DownloadTask taskHuobi;
 
     static int lastTimeRefreshedMinute;
     static int lastTimeRefreshedHour;
@@ -68,26 +72,40 @@ public class HomePage extends Activity implements View.OnClickListener {
         if(!MainActivity.isCreatedHomepage) {
             listOfExchanges = new ArrayList<>();
             listOfCurrencies = new ArrayList<>();
+            allPossibleExchanges = new ArrayList<>();
             bitfinex = new Exchange("Bitfinex", "ask", "bid",
                     false, false);
+            allPossibleExchanges.add(bitfinex);
             bittrex = new Exchange("Bittrex", "Ask", "Bid",
                     true, false);
+            allPossibleExchanges.add(bittrex);
             binance = new Exchange("Binance", "price", "price",
                     false, false);
+            allPossibleExchanges.add(binance);
             hitBTC = new Exchange("HitBTC", "ask", "bid",
                     false, false);
+            allPossibleExchanges.add(hitBTC);
             bitZ = new Exchange("Bit-Z","sell","buy",
                     false, false);
+            allPossibleExchanges.add(bitZ);
             poloniex = new Exchange("Poloniex","lowestAsk",
                     "highestBid",false, false);
+            allPossibleExchanges.add(poloniex);
             bitStamp = new Exchange("BitStamp","bid","ask",
                     false, false);
+            allPossibleExchanges.add(bitStamp);
             OKEX = new Exchange("OKEX","sell","buy",
                     false, false);
+            allPossibleExchanges.add(OKEX);
             GDAX = new Exchange("GDAX","ask","bid",
                     false, false);
+            allPossibleExchanges.add(GDAX);
             kraken = new Exchange("Kraken","a","b",
                     false, false);
+            allPossibleExchanges.add(kraken);
+            huobi = new Exchange("Huobi","ask","bid",
+                    false,false);
+            allPossibleExchanges.add(huobi);
 
             initialzeTasks();
         }
@@ -237,6 +255,15 @@ public class HomePage extends Activity implements View.OnClickListener {
                     }
                     task = HomePage.taskKraken;
                     break;
+
+                case "Huobi":
+                    for(int i = 0; i < e.getCoins().size(); i+=1) {
+                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("usdt");
+                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("btc");
+                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("eth");
+                    }
+                    task = HomePage.taskHuobi;
+                    break;
         }
         if(task == null) {
             System.out.println("TRIED TO USE NULL DOWNLOAD TASK");
@@ -373,7 +400,7 @@ public class HomePage extends Activity implements View.OnClickListener {
                 if(listOfExchanges.size() == 0 && listOfCurrencies.size() == 0){
                     alertDialog.setTitle("Error");
                     alertDialog.setMessage("Please Select One Or More Exchanges And One Or " +
-                            "More Cryptocurrencies Before Viewing Current Opprotunities");
+                            "More Cryptocurrencies Before Refreshing Data");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -385,7 +412,7 @@ public class HomePage extends Activity implements View.OnClickListener {
                 }
                 else if(listOfExchanges.size() == 0){
                     alertDialog.setTitle("Error");
-                    alertDialog.setMessage("Please Select One Or More Exchanges Before Viewing Current Opprotunities");
+                    alertDialog.setMessage("Please Select One Or More Exchanges Before Refreshing Data");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -397,7 +424,7 @@ public class HomePage extends Activity implements View.OnClickListener {
                 }
                 else if(listOfCurrencies.size() == 0){
                     alertDialog.setTitle("Error");
-                    alertDialog.setMessage("Please Select One Or More Currencies Before Viewing Current Opprotunities");
+                    alertDialog.setMessage("Please Select One Or More Currencies Before Refreshing Data");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -410,8 +437,6 @@ public class HomePage extends Activity implements View.OnClickListener {
                 if(!isDataCurrentlyRefreshing()){
                     HomePage.makeAPIRequests();
                     Toast.makeText(this, "Refreshing Your Data", Toast.LENGTH_LONG).show();
-                    HomePage.lastTimeRefreshedMinute = Calendar.getInstance().get(Calendar.MINUTE);
-                    HomePage.lastTimeRefreshedHour = Calendar.getInstance().get(Calendar.HOUR);
                     break;
                 }
                 else{
@@ -446,6 +471,7 @@ public class HomePage extends Activity implements View.OnClickListener {
         taskKraken = new DownloadTask("result","https://api.kraken.com/0/public/Ticker?pair=XBTUSD,ETHXBT," +
                 "ETHUSD,XRPXBT,XRPUSD,LTCXBT,LTCUSD,BCHXBT,BCHUSD,XLMXBT,DASHXBT,DASHUSD,XMRXBT,XMRUSD,ETCXBT,ETCUSD," +
                 "ETCETH,ZECXBT,ZECUSD",kraken);
+        taskHuobi = new DownloadTask("tick","https://api.huobi.pro/market/detail/merged?symbol=",huobi);
     }
 
     //@Override
@@ -490,11 +516,18 @@ public class HomePage extends Activity implements View.OnClickListener {
                         "XBTUSD,ETHXBT,ETHUSD,XRPXBT,XRPUSD,LTCXBT,LTCUSD,BCHXBT,BCHUSD,XLMXBT,DASHXBT,DASHUSD,XMRXBT," +
                         "XMRUSD,ETCXBT,ETCUSD,ETCETH,ZECXBT,ZECUSD",kraken);
                 return taskKraken;
+            case "Huobi":
+                taskHuobi = new DownloadTask("tick","https://api.huobi.pro/market/detail/merged?symbol=",huobi);
+                return taskHuobi;
         }
         return null;
     }
 
     public static void makeAPIRequests(){
+
+        HomePage.lastTimeRefreshedMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        HomePage.lastTimeRefreshedHour = Calendar.getInstance().get(Calendar.HOUR);
+
         clearCoinData();
         HomePage.isInProcessOfRefreshing = true;
         lastExchange = HomePage.listOfExchanges.get(HomePage.listOfExchanges.size() - 1).getName();
@@ -508,8 +541,8 @@ public class HomePage extends Activity implements View.OnClickListener {
         }
     }
     public static void clearCoinData(){
-        for(Exchange exchange: listOfExchanges){
-            for(Coin coin: exchange.getCoins()){
+        for(Exchange exchange: allPossibleExchanges) {
+            for (Coin coin : exchange.getCoins()) {
                 clearCoinData(coin);
             }
         }
