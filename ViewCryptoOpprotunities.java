@@ -91,8 +91,14 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
 
         timePicker = findViewById(R.id.lastTimeRefreshedClock);
-        timePicker.setText(Integer.toString(HomePage.lastTimeRefreshedHour).
-                concat(":").concat(Integer.toString(HomePage.lastTimeRefreshedMinute)));
+        if(HomePage.lastTimeRefreshedMinute < 10){
+            timePicker.setText("Last Refresh: ".concat(Integer.toString(HomePage.lastTimeRefreshedHour).
+                    concat(":0").concat(Integer.toString(HomePage.lastTimeRefreshedMinute))));
+        }
+        else {
+            timePicker.setText("Last Refresh: ".concat(Integer.toString(HomePage.lastTimeRefreshedHour).
+                    concat(":").concat(Integer.toString(HomePage.lastTimeRefreshedMinute))));
+        }
 
         int x = recalculateNumbers();
 
@@ -108,9 +114,6 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         if(x == 1){
             getDataToScreen();
         }
-
-
-
     }
 
     private void connectJavaToXML(){
