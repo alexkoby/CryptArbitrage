@@ -45,11 +45,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         //Create and add all other Buttons to ArrayList
         setUpButtons();
 
-        if(MainActivity.isCreatedCryptocurrencies){
+        if(HomePage.isCreatedCryptocurrencies){
             getSavedCoins();
         }
-
-        MainActivity.isCreatedCryptocurrencies = true;
 
 
     }
@@ -74,6 +72,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
             //Submit button - clears everything off each exchange and inserts coins
             //to respective exchanges
             case R.id.submit_currency_button:
+                HomePage.isCreatedCryptocurrencies = true;
                 clearExchanges();
                 HomePage.listOfCurrencies.clear();
                 for(ToggleButton button : allCurrenciesButtons){
@@ -186,11 +185,11 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         ToggleButton ucashButton = findViewById(R.id.ucashButton);
         allCurrenciesButtons.add(ucashButton);
         ToggleButton populousButton = findViewById(R.id.populousButton);
-        allCurrenciesButtons.add(ucashButton);
+        allCurrenciesButtons.add(populousButton);
         ToggleButton bytecoinButton = findViewById(R.id.bytecoinButton);
-        allCurrenciesButtons.add(ucashButton);
+        allCurrenciesButtons.add(bytecoinButton);
         ToggleButton statusButton = findViewById(R.id.statusButton);
-        allCurrenciesButtons.add(ucashButton);
+        allCurrenciesButtons.add(statusButton);
         ToggleButton bitsharesButton = findViewById(R.id.bitsharesButton);
         allCurrenciesButtons.add(bitsharesButton);
         ToggleButton augurButton = findViewById(R.id.augurButton);
@@ -256,7 +255,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         ToggleButton gnosisButton = findViewById(R.id.gnosisButton);
         allCurrenciesButtons.add(gnosisButton);
         ToggleButton iconomiButton = findViewById(R.id.iconomiButton);
-        allCurrenciesButtons.add(saltButton);
+        allCurrenciesButtons.add(iconomiButton);
         ToggleButton bancorButton = findViewById(R.id.bancorButton);
         allCurrenciesButtons.add(bancorButton);
         ToggleButton madesafecoinButton = findViewById(R.id.madesafecoinButton);
@@ -305,6 +304,168 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         allCurrenciesButtons.add(thetatokenButton);
         ToggleButton metaverseetpButton = findViewById(R.id.metaverseetpButton);
         allCurrenciesButtons.add(metaverseetpButton);
+        ToggleButton aeternityButton = findViewById(R.id.aeternityButton);
+        allCurrenciesButtons.add(aeternityButton);
+        ToggleButton zilliqaButton = findViewById(R.id.zilliqaButton);
+        allCurrenciesButtons.add(zilliqaButton);
+        ToggleButton bytomButton = findViewById(R.id.bytomButton);
+        allCurrenciesButtons.add(bytomButton);
+        ToggleButton dentacoinButton = findViewById(R.id.dentacoinButton);
+        allCurrenciesButtons.add(dentacoinButton);
+        ToggleButton qashButton = findViewById(R.id.qashButton);
+        allCurrenciesButtons.add(qashButton);
+        ToggleButton bitcoreButton = findViewById(R.id.bitcoreButton);
+        allCurrenciesButtons.add(bitcoreButton);
+        ToggleButton aionButton = findViewById(R.id.aionButton);
+        allCurrenciesButtons.add(aionButton);
+        ToggleButton requestnetworkButton = findViewById(R.id.requestnetworkButton);
+        allCurrenciesButtons.add(requestnetworkButton);
+        ToggleButton tenxButton = findViewById(R.id.tenxButton);
+        allCurrenciesButtons.add(tenxButton);
+        ToggleButton quantstampButton = findViewById(R.id.quantstampButton);
+        allCurrenciesButtons.add(quantstampButton);
+        ToggleButton appcoinButton = findViewById(R.id.appcoinsButton);
+        allCurrenciesButtons.add(appcoinButton);
+        ToggleButton santimentButton = findViewById(R.id.santimentButton);
+        allCurrenciesButtons.add(santimentButton);
+        ToggleButton poetButton = findViewById(R.id.po_etButton);
+        allCurrenciesButtons.add(poetButton);
+        ToggleButton substratumButton = findViewById(R.id.substratumButton);
+        allCurrenciesButtons.add(substratumButton);
+        ToggleButton raidenButton = findViewById(R.id.raidenButton);
+        allCurrenciesButtons.add(raidenButton);
+        ToggleButton zencashButton = findViewById(R.id.zencashButton);
+        allCurrenciesButtons.add(zencashButton);
+        ToggleButton redpulseButton = findViewById(R.id.redpulseButton);
+        allCurrenciesButtons.add(redpulseButton);
+        ToggleButton enjincoinButton = findViewById(R.id.enjincoinButton);
+        allCurrenciesButtons.add(enjincoinButton);
+        ToggleButton aragonButton = findViewById(R.id.aragonButton);
+        allCurrenciesButtons.add(aragonButton);
+        ToggleButton deepbrainchainButton = findViewById(R.id.deepbrainchainButton);
+        allCurrenciesButtons.add(deepbrainchainButton);
+        ToggleButton sirinlabsButton = findViewById(R.id.sirinlabsButton);
+        allCurrenciesButtons.add(sirinlabsButton);
+        ToggleButton medisharesButton = findViewById(R.id.medisharesButton);
+        allCurrenciesButtons.add(medisharesButton);
+        ToggleButton giftoButton = findViewById(R.id.giftoButton);
+        allCurrenciesButtons.add(giftoButton);
+        ToggleButton wabiButton = findViewById(R.id.wabiButton);
+        allCurrenciesButtons.add(wabiButton);
+        ToggleButton crypto20Button = findViewById(R.id.crypto20Button);
+        allCurrenciesButtons.add(crypto20Button);
+        ToggleButton ambrosusButton = findViewById(R.id.ambrosusButton);
+        allCurrenciesButtons.add(ambrosusButton);
+        ToggleButton insecosystemButton = findViewById(R.id.insecosystemButton);
+        allCurrenciesButtons.add(insecosystemButton);
+        ToggleButton streamrdatacoinButton = findViewById(R.id.streamrdataButton);
+        allCurrenciesButtons.add(streamrdatacoinButton);
+        ToggleButton sonmButton = findViewById(R.id.sonmButton);
+        allCurrenciesButtons.add(sonmButton);
+        ToggleButton viacoinButton = findViewById(R.id.viacoinButton);
+        allCurrenciesButtons.add(viacoinButton);
+        ToggleButton genesisvisionButton = findViewById(R.id.genesisvisionButton);
+        allCurrenciesButtons.add(genesisvisionButton);
+        ToggleButton melonButton = findViewById(R.id.melonButton);
+        allCurrenciesButtons.add(melonButton);
+        ToggleButton spankchainButton = findViewById(R.id.spankchainButton);
+        allCurrenciesButtons.add(spankchainButton);
+        ToggleButton breadButton = findViewById(R.id.breadButton);
+        allCurrenciesButtons.add(breadButton);
+        ToggleButton nulsButton = findViewById(R.id.nulsButton);
+        allCurrenciesButtons.add(nulsButton);
+        ToggleButton utrustButton = findViewById(R.id.utrustButton);
+        allCurrenciesButtons.add(utrustButton);
+        ToggleButton triggersButton = findViewById(R.id.triggersButton);
+        allCurrenciesButtons.add(triggersButton);
+        ToggleButton etherpartyButton = findViewById(R.id.etherpartyButton);
+        allCurrenciesButtons.add(etherpartyButton);
+        ToggleButton modumButton = findViewById(R.id.modumButton);
+        allCurrenciesButtons.add(modumButton);
+        ToggleButton wingsButton = findViewById(R.id.wingsButton);
+        allCurrenciesButtons.add(wingsButton);
+        ToggleButton tierionButton = findViewById(R.id.tierionButton);
+        allCurrenciesButtons.add(tierionButton);
+        ToggleButton wepowerButton = findViewById(R.id.wepowerButton);
+        allCurrenciesButtons.add(wepowerButton);
+        ToggleButton burstButton = findViewById(R.id.burstButton);
+        allCurrenciesButtons.add(burstButton);
+        ToggleButton allsportsButton = findViewById(R.id.allsportsButton);
+        allCurrenciesButtons.add(allsportsButton);
+        ToggleButton district0xButton = findViewById(R.id.district0xButton);
+        allCurrenciesButtons.add(district0xButton);
+        ToggleButton internetnodetokenButton = findViewById(R.id.internetnodetokenButton);
+        allCurrenciesButtons.add(internetnodetokenButton);
+        ToggleButton coindashButton = findViewById(R.id.coindashButton);
+        allCurrenciesButtons.add(coindashButton);
+        ToggleButton cossButton = findViewById(R.id.cossButton);
+        allCurrenciesButtons.add(cossButton);
+        ToggleButton lbryButton = findViewById(R.id.lbrycreditsButton);
+        allCurrenciesButtons.add(lbryButton);
+        ToggleButton unikoingoldButton = findViewById(R.id.unikoingoldButton);
+        allCurrenciesButtons.add(unikoingoldButton);
+        ToggleButton steemdollarsButton = findViewById(R.id.steemdollarsButton);
+        allCurrenciesButtons.add(steemdollarsButton);
+        ToggleButton nagaButton = findViewById(R.id.nagaButton);
+        allCurrenciesButtons.add(nagaButton);
+        ToggleButton delphyButton = findViewById(R.id.delphyButton);
+        allCurrenciesButtons.add(delphyButton);
+        ToggleButton aeonButton = findViewById(R.id.aeonButton);
+        allCurrenciesButtons.add(aeonButton);
+        ToggleButton indahashButton = findViewById(R.id.indahashButton);
+        allCurrenciesButtons.add(indahashButton);
+        ToggleButton lunyrButton = findViewById(R.id.lunyrButton);
+        allCurrenciesButtons.add(lunyrButton);
+        ToggleButton firstbloodButton = findViewById(R.id.firstbloodButton);
+        allCurrenciesButtons.add(firstbloodButton);
+        ToggleButton viberateButton = findViewById(R.id.viberateButton);
+        allCurrenciesButtons.add(viberateButton);
+        ToggleButton datumButton = findViewById(R.id.datumButton);
+        allCurrenciesButtons.add(datumButton);
+        ToggleButton odysseyButton = findViewById(R.id.odysseyButton);
+        allCurrenciesButtons.add(odysseyButton);
+        ToggleButton inkButton = findViewById(R.id.inkButton);
+        allCurrenciesButtons.add(inkButton);
+        ToggleButton potcoinButton = findViewById(R.id.potcoinButton);
+        allCurrenciesButtons.add(potcoinButton);
+        ToggleButton swftcoinButton = findViewById(R.id.swftcoinButton);
+        allCurrenciesButtons.add(swftcoinButton);
+        ToggleButton humaniqButton = findViewById(R.id.humaniqButton);
+        allCurrenciesButtons.add(humaniqButton);
+        ToggleButton monethaButton = findViewById(R.id.monethaButton);
+        allCurrenciesButtons.add(monethaButton);
+        ToggleButton agrelloButton = findViewById(R.id.agrelloButton);
+        allCurrenciesButtons.add(agrelloButton);
+        ToggleButton yoyowButton = findViewById(R.id.yoyowButton);
+        allCurrenciesButtons.add(yoyowButton);
+        ToggleButton worldcoreButton = findViewById(R.id.worldcoreButton);
+        allCurrenciesButtons.add(worldcoreButton);
+        ToggleButton selfkeyButton = findViewById(R.id.selfkeyButton);
+        allCurrenciesButtons.add(selfkeyButton);
+        ToggleButton blocktixButton = findViewById(R.id.blocktixButton);
+        allCurrenciesButtons.add(blocktixButton);
+        ToggleButton everexButton = findViewById(R.id.everexButton);
+        allCurrenciesButtons.add(everexButton);
+        ToggleButton suncontractButton = findViewById(R.id.suncontractButton);
+        allCurrenciesButtons.add(suncontractButton);
+        ToggleButton tradetokenButton = findViewById(R.id.tradetokenButton);
+        allCurrenciesButtons.add(tradetokenButton);
+        ToggleButton latokenButton = findViewById(R.id.latokenButton);
+        allCurrenciesButtons.add(latokenButton);
+        ToggleButton blackcoinButton = findViewById(R.id.blackcoinButton);
+        allCurrenciesButtons.add(blackcoinButton);
+        ToggleButton ixledgerButton = findViewById(R.id.ixledgerButton);
+        allCurrenciesButtons.add(ixledgerButton);
+        ToggleButton olympuslabsButton = findViewById(R.id.olympuslabsButton);
+        allCurrenciesButtons.add(olympuslabsButton);
+        ToggleButton hydroprotocolButton = findViewById(R.id.hydroprotocolButton);
+        allCurrenciesButtons.add(hydroprotocolButton);
+        ToggleButton moedaloyaltypointsButton = findViewById(R.id.moedaloyaltypointsButton);
+        allCurrenciesButtons.add(moedaloyaltypointsButton);
+
+
+
+
     }
 
     /**
@@ -1141,18 +1302,18 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
 
             case R.id.veritaseumButton:
                 Coin veritaseumHitBTC = new Coin("Veritaseum","VERI","HitBTC","111");
-                HomePage.hitBTC.addCoin(veritaseumHitBTC);;
+                HomePage.hitBTC.addCoin(veritaseumHitBTC);
                 HomePage.listOfCurrencies.add("Veritaseum");
                 break;
 
             case R.id.waltonButton:
-                Coin waltonBinance = new Coin("Walton","WTC","Binance","011");
+                Coin waltonBinance = new Coin("Waltonchain","WTC","Binance","011");
                 HomePage.binance.addCoin(waltonBinance);
-                Coin waltonOKEX = new Coin("Walton","WTC","OKEX","011");
+                Coin waltonOKEX = new Coin("Waltonchain","WTC","OKEX","011");
                 HomePage.OKEX.addCoin(waltonOKEX);
-                Coin waltonHitBTC = new Coin("Walton","WTC","HitBTC","010");
+                Coin waltonHitBTC = new Coin("Waltonchain","WTC","HitBTC","010");
                 HomePage.hitBTC.addCoin(waltonHitBTC);
-                HomePage.listOfCurrencies.add("Walton");
+                HomePage.listOfCurrencies.add("Waltonchain");
                 break;
 
             case R.id.zeroxButton:
@@ -1489,16 +1650,16 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                 break;
 
             case R.id.madesafecoinButton:
-                Coin madesafecoinBittrex = new Coin("MadeSafeCoin",
+                Coin madesafecoinBittrex = new Coin("MaidSafeCoin",
                         "MAID","Bittrex","010");
                 HomePage.bittrex.addCoin(madesafecoinBittrex);
-                Coin madesafecoinPoloniex = new Coin("MadeSafeCoin","MAID",
+                Coin madesafecoinPoloniex = new Coin("MaidSafeCoin","MAID",
                         "Poloniex","010");
                 HomePage.poloniex.addCoin(madesafecoinPoloniex);
-                Coin madesafecoinHitBTC = new Coin("MadeSafeCoin","MAID",
+                Coin madesafecoinHitBTC = new Coin("MaidSafeCoin","MAID",
                         "HitBTC","111");
                 HomePage.hitBTC.addCoin(madesafecoinHitBTC);
-                HomePage.listOfCurrencies.add("MadeSafeCoin");
+                HomePage.listOfCurrencies.add("MaidSafeCoin");
                 break;
 
             case R.id.chainlinkButton:
@@ -1739,6 +1900,579 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                         "HitBTC","010");
                 HomePage.hitBTC.addCoin(metaverseHitBTC);
                 HomePage.listOfCurrencies.add("Metaverse");
+                break;
+
+            case R.id.aeternityButton:
+                Coin aeternityBinance = new Coin("Aeternity","AE","Binance","011");
+                HomePage.binance.addCoin(aeternityBinance);
+                Coin aeternityHitBTC = new Coin("Aeternity","AE","HitBTC","010");
+                HomePage.hitBTC.addCoin(aeternityHitBTC);
+                HomePage.listOfCurrencies.add("Aeternity");
+                break;
+
+            case R.id.zilliqaButton:
+                Coin zilliqaHuobi = new Coin("Zilliqa","zil","Huobi","111");
+                HomePage.huobi.addCoin(zilliqaHuobi);
+                HomePage.listOfCurrencies.add("Zilliqa");
+                break;
+
+            case R.id.bytomButton:
+                Coin bytomOKEX = new Coin("Bytom","BTM","OKEX","111");
+                HomePage.OKEX.addCoin(bytomOKEX);
+                Coin bytomHuobi = new Coin("Bytom","btm","Huobi","011");
+                HomePage.huobi.addCoin(bytomHuobi);
+                HomePage.listOfCurrencies.add("Bytom");
+                break;
+
+            case R.id.dentacoinButton:
+                Coin dentacoinHitBTC = new Coin("Dentacoin","DCN","HitBTC","101");
+                HomePage.hitBTC.addCoin(dentacoinHitBTC);
+                HomePage.listOfCurrencies.add("Dentacoin");
+                break;
+
+            case R.id.qashButton:
+                Coin qashHuobi = new Coin("QASH","qash","Huobi","011");
+                HomePage.huobi.addCoin(qashHuobi);
+                Coin qashBitfinex = new Coin("QASH","QSH","Bitfinex","111");
+                HomePage.bitfinex.addCoin(qashBitfinex);
+                HomePage.listOfCurrencies.add("QASH");
+                break;
+
+            case R.id.bitcoreButton:
+                Coin bitcoreBitZ = new Coin("Bitcore","btx","Bit-Z","011");
+                HomePage.bitZ.addCoin(bitcoreBitZ);
+                Coin bitcoreHitBTC = new Coin("Bitcore","BTX","HitBTC","010");
+                HomePage.hitBTC.addCoin(bitcoreHitBTC);
+                HomePage.listOfCurrencies.add("Bitcore");
+                break;
+
+            case R.id.aionButton:
+                Coin aionBinance = new Coin("Aion","AION","Binance","011");
+                HomePage.binance.addCoin(aionBinance);
+                break;
+
+            case R.id.requestnetworkButton:
+                Coin requestnetworkBinance = new Coin("Request Network","REQ",
+                        "Binance","011");
+                HomePage.binance.addCoin(requestnetworkBinance);
+                Coin requestnetworkHuobi = new Coin("Request Network","011",
+                        "Huobi","011");
+                HomePage.listOfCurrencies.add("Request Network");
+                break;
+
+            case R.id.tenxButton:
+                Coin tenxBittrex = new Coin("TenX","PAY","Bittrex","010");
+                HomePage.bittrex.addCoin(tenxBittrex);
+                Coin tenxHuobi = new Coin("TenX","pay","Huobi","011");
+                HomePage.huobi.addCoin(tenxHuobi);
+                HomePage.listOfCurrencies.add("TenX");
+                break;
+
+            case R.id.quantstampButton:
+                Coin quantstampBinance = new Coin("Quantstamp","QSP",
+                        "Binance","011");
+                HomePage.binance.addCoin(quantstampBinance);
+                Coin quantstampHuobi = new Coin("Quantstamp","qsp","Huobi","011");
+                HomePage.huobi.addCoin(quantstampHuobi);
+                HomePage.listOfCurrencies.add("Quantstamp");
+                break;
+
+            case R.id.appcoinsButton:
+                Coin appcoinsBinance = new Coin("AppCoins","APPC",
+                        "Binance","011");
+                HomePage.binance.addCoin(appcoinsBinance);
+                Coin appcoinsHuobi = new Coin("AppCoins","appc",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(appcoinsHuobi);
+                HomePage.listOfCurrencies.add("AppCoins");
+                break;
+
+            case R.id.santimentButton:
+                Coin santimentBitfinex = new Coin("Santiment","SAN","Bitfinex","111");
+                HomePage.bitfinex.addCoin(santimentBitfinex);
+                Coin santimentOKEX = new Coin("Santiment","SAN","OKEX","110");
+                HomePage.OKEX.addCoin(santimentOKEX);
+                HomePage.listOfCurrencies.add("Santiment");
+                break;
+
+            case R.id.po_etButton:
+                Coin poetBinance = new Coin("Po.et","POE","Binance","011");
+                HomePage.binance.addCoin(poetBinance);
+                Coin poetOKEX = new Coin("Po.et","POE","OKEX","110");
+                HomePage.OKEX.addCoin(poetOKEX);
+                Coin poetHitBTC = new Coin("Po.et","POE","HitBTC","010");
+                HomePage.hitBTC.addCoin(poetHitBTC);
+                HomePage.listOfCurrencies.add("Po.et");
+                break;
+
+            case R.id.substratumButton:
+                Coin substratumBinance = new Coin("Substratum","SUB","Binance","011");
+                HomePage.binance.addCoin(substratumBinance);
+                Coin substratumHitBTC = new Coin("Substratum","SUB","HitBTC","010");
+                HomePage.hitBTC.addCoin(substratumHitBTC);
+                HomePage.listOfCurrencies.add("Substratum");
+                break;
+
+            case R.id.raidenButton:
+                Coin raidenBinance = new Coin("Raiden","RDN","Binance","011");
+                HomePage.binance.addCoin(raidenBinance);
+                Coin raidenHuobi = new Coin("Raiden","rdn","Huobi","011");
+                HomePage.huobi.addCoin(raidenHuobi);
+                HomePage.listOfCurrencies.add("Raiden");
+                break;
+
+            case R.id.zencashButton:
+                Coin zencashBittrex = new Coin("ZenCash","ZEN","Bittrex","010");
+                HomePage.bittrex.addCoin(zencashBittrex);
+                Coin zencashOKEX = new Coin("ZenCash","ZEN","OKEX","010");
+                HomePage.OKEX.addCoin(zencashOKEX);
+                HomePage.listOfCurrencies.add("ZenCash");
+                break;
+
+            case R.id.redpulseButton:
+                Coin redpulseBinance = new Coin("Red Pulse","RPX","Binance","011");
+                HomePage.binance.addCoin(redpulseBinance);
+                Coin redpulseHuobi = new Coin("Red Pulse","rpx","Huobi","010");
+                HomePage.huobi.addCoin(redpulseHuobi);
+                HomePage.listOfCurrencies.add("Red Pulse");
+                break;
+
+            case R.id.enjincoinButton:
+                Coin enjincoinBinance = new Coin("Enjin Coin","ENJ","Binance","011");
+                HomePage.binance.addCoin(enjincoinBinance);
+                break;
+
+            case R.id.aragonButton:
+                Coin aragonBittrex = new Coin("Aragon","ANT","Bittrex","011");
+                HomePage.bittrex.addCoin(aragonBittrex);
+                break;
+
+            case R.id.deepbrainchainButton:
+                Coin deepbrainchainHuobi = new Coin("DeepBrain Chain","dbc","Huobi","011");
+                HomePage.huobi.addCoin(deepbrainchainHuobi);
+                break;
+
+            case R.id.sirinlabsButton:
+                Coin sirinlabsBittrex = new Coin("SIRIN LABS","SRN",
+                        "Bittrex","011");
+                HomePage.bittrex.addCoin(sirinlabsBittrex);
+                Coin sirinlabsHuobi = new Coin("SIRIN LABS","srn",
+                        "Huobi","011");
+                HomePage.huobi.addCoin(sirinlabsHuobi);
+                HomePage.listOfCurrencies.add("SIRIN LABS");
+                break;
+
+            case R.id.medisharesButton:
+                Coin medisharesHuobi = new Coin("MediShares","mds","Huobi","011");
+                HomePage.huobi.addCoin(medisharesHuobi);
+                break;
+
+            case R.id.giftoButton:
+                Coin giftoBinance = new Coin("Gifto","GTO","Binance","011");
+                HomePage.binance.addCoin(giftoBinance);
+                Coin giftoOKEX = new Coin("Gifto","GTO","OKEX","111");
+                HomePage.OKEX.addCoin(giftoOKEX);
+                HomePage.listOfCurrencies.add("Gifto");
+                break;
+
+            case R.id.wabiButton:
+                Coin wabiBinance = new Coin("Wabi","WABI","Binance","011");
+                HomePage.binance.addCoin(wabiBinance);
+                break;
+
+            case R.id.crypto20Button:
+                Coin crypto20HitBTC = new Coin("CRYPTO20","C20","HitBTC","011");
+                HomePage.hitBTC.addCoin(crypto20HitBTC);
+                break;
+
+            case R.id.ambrosusButton:
+                Coin ambrosusBinance = new Coin("Ambrosus","AMB","Binance","011");
+                HomePage.binance.addCoin(ambrosusBinance);
+                break;
+
+            case R.id.insecosystemButton:
+                Coin insecosystemBinance = new Coin("INS Ecosystem","INS",
+                        "Binance","011");
+                HomePage.binance.addCoin(insecosystemBinance);
+                Coin insecosystemOKEX = new Coin("INS Ecosystem","INS","OKEX",
+                        "111");
+                HomePage.OKEX.addCoin(insecosystemOKEX);
+                HomePage.listOfCurrencies.add("INS Ecosystem");
+                break;
+
+            case R.id.streamrdataButton:
+                Coin streamrdataBitfinex = new Coin("Streamr DATAcoin","DATA",
+                        "Bitfinex","111");
+                HomePage.bitfinex.addCoin(streamrdataBitfinex);
+                Coin streamrdataHitBTC = new Coin("Streamr DATAcoin","DATA",
+                        "HitBTC","111");
+                HomePage.hitBTC.addCoin(streamrdataHitBTC);
+                HomePage.listOfCurrencies.add("Streamr DATAcoin");
+                break;
+
+            case R.id.sonmButton:
+                Coin sonmBinance = new Coin("SONM","SNM","Binance","011");
+                HomePage.binance.addCoin(sonmBinance);
+                break;
+
+            case R.id.viacoinButton:
+                Coin viacoinBinance = new Coin("Viacoin","VIA","Binance","011");
+                HomePage.binance.addCoin(viacoinBinance);
+                Coin viacoinBittrex = new Coin("Viacoin","VIA","Bittrex","010");
+                HomePage.bittrex.addCoin(viacoinBittrex);
+                Coin viacoinPoloniex = new Coin("Viacoin","VIA","Poloniex","010");
+                HomePage.poloniex.addCoin(viacoinPoloniex);
+                HomePage.listOfCurrencies.add("Viacoin");
+                break;
+
+            case R.id.genesisvisionButton:
+                Coin genesisvisionBinance = new Coin("Genesis Vision","GVT",
+                        "Binance","011");
+                HomePage.binance.addCoin(genesisvisionBinance);
+                break;
+
+            case R.id.melonButton:
+                Coin melonBittrex = new Coin("Melon","MLN","Bittrex","010");
+                HomePage.bittrex.addCoin(melonBittrex);
+                //Coin melonKraken = new Coin("Melon","MLN","Kraken","011");
+                //HomePage.kraken.addCoin(melonKraken);
+                HomePage.listOfCurrencies.add("Melon");
+                break;
+
+            case R.id.spankchainButton:
+                Coin spankchainBitfinex = new Coin("SpankChain","SPK",
+                        "Bitfinex","111");
+                HomePage.bitfinex.addCoin(spankchainBitfinex);
+                break;
+
+            case R.id.breadButton:
+                Coin breadBinance = new Coin("Bread","BRD","Binance","011");
+                HomePage.binance.addCoin(breadBinance);
+                Coin breadOKEX = new Coin("Bread","BRD","OKEX","110");
+                HomePage.OKEX.addCoin(breadOKEX);
+                HomePage.listOfCurrencies.add("Bread");
+                break;
+
+            case R.id.nulsButton:
+                Coin nulsBinance = new Coin("Nuls","NULS","Binance","011");
+                HomePage.binance.addCoin(nulsBinance);
+                Coin nulsBitZ = new Coin("Nuls","nuls","Bit-Z","011");
+                HomePage.bitZ.addCoin(nulsBitZ);
+                HomePage.listOfCurrencies.add("Nuls");
+                break;
+
+            case R.id.utrustButton:
+                Coin utrustHuobi = new Coin("UTRUST","utk","Huobi","011");
+                HomePage.huobi.addCoin(utrustHuobi);
+                Coin utrustHitBTC = new Coin("UTRUST","UTK","HitBTC","011");
+                HomePage.hitBTC.addCoin(utrustHitBTC);
+                Coin utrustOKEX = new Coin("UTRUST","UTK","OKEX","010");
+                HomePage.OKEX.addCoin(utrustOKEX);
+                HomePage.listOfCurrencies.add("UTRUST");
+                break;
+
+            case R.id.triggersButton:
+                Coin triggersBinance = new Coin("Triggers","TRIG","Binance","011");
+                HomePage.binance.addCoin(triggersBinance);
+                break;
+
+            case R.id.etherpartyButton:
+                Coin etherpartyBinance = new Coin("Etherparty","FUEL","Binance","011");
+                HomePage.binance.addCoin(etherpartyBinance);
+                break;
+
+            case R.id.modumButton:
+                Coin modumBinance = new Coin("Modum","MOD","Binance","011");
+                HomePage.binance.addCoin(modumBinance);
+                break;
+
+            case R.id.wingsButton:
+                Coin wingsBinance = new Coin("Wings","WINGS","Binance","011");
+                HomePage.binance.addCoin(wingsBinance);
+                Coin wingsBittrex = new Coin("Wings","WINGS","Bittrex","010");
+                HomePage.bittrex.addCoin(wingsBittrex);
+                HomePage.listOfCurrencies.add("Wings");
+                break;
+
+            case R.id.tierionButton:
+                Coin tierionBinance = new Coin("Tierion","TNT","Binance","011");
+                HomePage.binance.addCoin(tierionBinance);
+                Coin tierionHitBTC = new Coin("Tierion","TNT","HitBTC","101");
+                HomePage.hitBTC.addCoin(tierionHitBTC);
+                Coin tierionHuobi = new Coin("Tierion","tnt","Huobi","011");
+                HomePage.huobi.addCoin(tierionHuobi);
+                HomePage.listOfCurrencies.add("Tierion");
+                break;
+
+            case R.id.wepowerButton:
+                Coin wepowerHuobi = new Coin("WePower","wpr","Huobi","011");
+                HomePage.huobi.addCoin(wepowerHuobi);
+                break;
+
+            case R.id.burstButton:
+                Coin burstBittrex = new Coin("Burst","BURST","Bittrex","010");
+                HomePage.bittrex.addCoin(burstBittrex);
+                Coin burstPoloniex = new Coin("Burst","BURST","Poloniex","010");
+                HomePage.poloniex.addCoin(burstPoloniex);
+                HomePage.listOfCurrencies.add("Burst");
+                break;
+
+            case R.id.allsportsButton:
+                Coin allsportsHuobi = new Coin("All Sports","soc","Huobi","011");
+                HomePage.huobi.addCoin(allsportsHuobi);
+                Coin allsportsOKEX = new Coin("All Sports","SOC","OKEX","111");
+                HomePage.OKEX.addCoin(allsportsOKEX);
+                HomePage.listOfCurrencies.add("All Sports");
+                break;
+
+            case R.id.district0xButton:
+                Coin district0xBinance = new Coin("district0x","DNT","Binance","011");
+                HomePage.binance.addCoin(district0xBinance);
+                Coin district0xBittrex = new Coin("district0x","DNT","Bittrex","010");
+                HomePage.bittrex.addCoin(district0xBittrex);
+                Coin district0xOKEX = new Coin("district0x","DNT","OKEX","010");
+                HomePage.OKEX.addCoin(district0xOKEX);
+                HomePage.listOfCurrencies.add("district0x");
+                break;
+
+            case R.id.internetnodetokenButton:
+                Coin internetnodetokenOKEX = new Coin("Internet Node Token","INT",
+                        "OKEX","111");
+                HomePage.OKEX.addCoin(internetnodetokenOKEX);
+                break;
+
+            case R.id.coindashButton:
+                Coin coindashBinance = new Coin("CoinDash","CDT","Binance","011");
+                HomePage.binance.addCoin(coindashBinance);
+                break;
+
+            case R.id.cossButton:
+                Coin cossHitBTC = new Coin("COSS","COSS","HitBTC","011");
+                HomePage.hitBTC.addCoin(cossHitBTC);
+                break;
+
+            case R.id.lbrycreditsButton:
+                Coin lbrycreditsBittrex = new Coin("LBRY Credits","LBC",
+                        "Bittrex","010");
+                HomePage.bittrex.addCoin(lbrycreditsBittrex);
+                Coin lbrycreditsPoloniex = new Coin("LBRY Credits","LBC",
+                        "Poloniex","010");
+                HomePage.poloniex.addCoin(lbrycreditsPoloniex);
+                HomePage.listOfCurrencies.add("LBRY Credits");
+                break;
+
+            case R.id.unikoingoldButton:
+                Coin unikoingoBittrex = new Coin("Unikoin Gold","UKG","Bittrex","011");
+                HomePage.bittrex.addCoin(unikoingoBittrex);
+                Coin unikoingoOKEX = new Coin("Unikoin Gold","UKG","OKEX","110");
+                HomePage.OKEX.addCoin(unikoingoOKEX);
+                HomePage.listOfCurrencies.add("Unikoin Gold");
+                break;
+
+            case R.id.steemdollarsButton:
+                Coin steemdollarsBittrex = new Coin("Steem Dollars","SBD","Bittrex","010");
+                HomePage.bittrex.addCoin(steemdollarsBittrex);
+                Coin steemdollarsPoloniex = new Coin("Steem Dollars","SBD","Poloniex","010");
+                HomePage.poloniex.addCoin(steemdollarsPoloniex);
+                HomePage.listOfCurrencies.add("Steem Dollars");
+                break;
+
+            case R.id.nagaButton:
+                Coin nagaHitBTC = new Coin("NAGA","NGC","HitBTC","111");
+                HomePage.hitBTC.addCoin(nagaHitBTC);
+                Coin nagaOKEX = new Coin("NAGA","NGC","OKEX","010");
+                HomePage.OKEX.addCoin(nagaOKEX);
+                HomePage.listOfCurrencies.add("NAGA");
+                break;
+
+            case R.id.delphyButton:
+                Coin delphyOKEX = new Coin("Delphy","DPY","OKEX","111");
+                HomePage.OKEX.addCoin(delphyOKEX);
+                break;
+
+            case R.id.aeonButton:
+                Coin aeonBittrex = new Coin("Aeon","AEON","Bittrex","010");
+                HomePage.bittrex.addCoin(aeonBittrex);
+                Coin aeonHitBTC = new Coin("Aeon","AEON","HitBTC","010");
+                HomePage.hitBTC.addCoin(aeonHitBTC);
+                HomePage.listOfCurrencies.add("Aeon");
+                break;
+
+            case R.id.indahashButton:
+                Coin indahashHitBTC = new Coin("indaHash","IDH","HitBTC","011");
+                HomePage.hitBTC.addCoin(indahashHitBTC);
+                break;
+
+            case R.id.lunyrButton:
+                Coin lunyrBittrex = new Coin("Lunyr","LUN","Bittrex","010");
+                HomePage.bittrex.addCoin(lunyrBittrex);
+                Coin lunyrBinance = new Coin("Lunyr","LUN","Binance","011");
+                HomePage.binance.addCoin(lunyrBinance);
+                Coin lunyrHuobi = new Coin("Lunyr","lun","Huobi","011");
+                HomePage.huobi.addCoin(lunyrHuobi);
+                HomePage.listOfCurrencies.add("Lunyr");
+                break;
+
+            case R.id.firstbloodButton:
+                Coin firstbloodBittrex = new Coin("FirstBlood","1ST",
+                        "Bittrex","010");
+                HomePage.bittrex.addCoin(firstbloodBittrex);
+                Coin firstbloodOKEX = new Coin("FirstBlood","1ST",
+                        "OKEX","010");
+                HomePage.OKEX.addCoin(firstbloodOKEX);
+                HomePage.listOfCurrencies.add("FirstBlood");
+                break;
+
+            case R.id.viberateButton:
+                Coin viberateBinance = new Coin("Viberate","VIB","Binance","011");
+                HomePage.binance.addCoin(viberateBinance);
+                Coin viberateBittrex = new Coin("Viberate","VIB","Bittrex","011");
+                HomePage.bittrex.addCoin(viberateBittrex);
+                Coin viberateHitBTC = new Coin("Viberate","VIB","HitBTC","100");
+                HomePage.hitBTC.addCoin(viberateHitBTC);
+                Coin viberateOKEX = new Coin("Viberate","VIB","OKEX","010");
+                HomePage.OKEX.addCoin(viberateOKEX);
+                HomePage.listOfCurrencies.add("Viberate");
+                break;
+
+            case R.id.datumButton:
+                Coin datumHuobi = new Coin("Datum","dat","Huobi","011");
+                HomePage.huobi.addCoin(datumHuobi);
+                Coin datumOKEX = new Coin("Datum","DAT","OKEX","111");
+                HomePage.OKEX.addCoin(datumOKEX);
+                HomePage.listOfCurrencies.add("Datum");
+                break;
+
+            case R.id.odysseyButton:
+                Coin odysseyBitZ = new Coin("Odyssey","ocn","Bit-Z","001");
+                HomePage.bitZ.addCoin(odysseyBitZ);
+                Coin odysseyHuobi = new Coin("Odyssey","ocn","Huobi","011");
+                HomePage.huobi.addCoin(odysseyHuobi);
+                HomePage.listOfCurrencies.add("Odyssey");
+                break;
+
+            case R.id.inkButton:
+                Coin inkBitZ = new Coin("Ink","ink","Bit-Z","011");
+                HomePage.bitZ.addCoin(inkBitZ);
+                break;
+
+            case R.id.potcoinButton:
+                Coin potcoinBittrex = new Coin("PotCoin","POT","Bittrex","010");
+                HomePage.bittrex.addCoin(potcoinBittrex);
+                Coin potcoinPoloniex = new Coin("PotCoin","POT","Polobuex","010");
+                HomePage.poloniex.addCoin(potcoinPoloniex);
+                HomePage.listOfCurrencies.add("PotCoin");
+                break;
+
+            case R.id.swftcoinButton:
+                Coin swftcoinOKEX = new Coin("SwftCoin","SWFTC","OKEX","111");
+                HomePage.OKEX.addCoin(swftcoinOKEX);
+                Coin swftcoinHuobi = new Coin("SwftCoin","swftc","Huobi","011");
+                HomePage.huobi.addCoin(swftcoinHuobi);
+                HomePage.listOfCurrencies.add("SwftCoin");
+                break;
+
+            case R.id.humaniqButton:
+                Coin humaniqBittrex = new Coin("Humaniq","HMQ","Bittrex","011");
+                HomePage.bittrex.addCoin(humaniqBittrex);
+                break;
+
+            case R.id.monethaButton:
+                Coin monethaBinance = new Coin("Monetha","MTH","Binance","011");
+                HomePage.binance.addCoin(monethaBinance);
+                break;
+
+            case R.id.agrelloButton:
+                Coin agrelloBinance = new Coin("Agrello","DLT","Binance","011");
+                HomePage.binance.addCoin(agrelloBinance);
+                break;
+
+            case R.id.yoyowButton:
+                Coin yoyowBitfinex = new Coin("YOYOW","YYW","Bitfinex","110");
+                HomePage.bitfinex.addCoin(yoyowBitfinex);
+                Coin yoyowBinance = new Coin("YOYOW","YOYO","Binance","011");
+                HomePage.binance.addCoin(yoyowBinance);
+                Coin yoyoOKEX = new Coin("YOYOW","YOYO","OKEX","010");
+                HomePage.OKEX.addCoin(yoyoOKEX);
+                HomePage.listOfCurrencies.add("YOYOW");
+                break;
+
+            case R.id.worldcoreButton:
+                Coin worldcoreOKEX = new Coin("Worldcore","WRC","OKEX","111");
+                HomePage.OKEX.addCoin(worldcoreOKEX);
+                Coin worldcoreHitBTC = new Coin("Worldcore","WRC","HitBTC","011");
+                HomePage.hitBTC.addCoin(worldcoreHitBTC);
+                HomePage.listOfCurrencies.add("Worldcore");
+                break;
+
+            case R.id.selfkeyButton:
+                Coin selfkeyOKEX = new Coin("Selfkey","KEY","OKEX","111");
+                HomePage.OKEX.addCoin(selfkeyOKEX);
+                break;
+
+            case R.id.blocktixButton:
+                Coin blocktixBittrex = new Coin("Blocktix","TIX","Bittrex","011");
+                HomePage.bittrex.addCoin(blocktixBittrex);
+                break;
+
+            case R.id.everexButton:
+                Coin everexHuobi = new Coin("Everex","evx","Huobi","011");
+                HomePage.huobi.addCoin(everexHuobi);
+                Coin everexBinance = new Coin("Everex","EVX","Binance","011");
+                HomePage.binance.addCoin(everexBinance);
+                HomePage.listOfCurrencies.add("Everex");
+                break;
+
+            case R.id.suncontractButton:
+                Coin suncontractOKEX = new Coin("SunContract","SNC","OKEX","010");
+                HomePage.OKEX.addCoin(suncontractOKEX);
+                Coin suncontractHitBTC = new Coin("SunContract","SNC","HitBTC","011");
+                HomePage.hitBTC.addCoin(suncontractHitBTC);
+                Coin suncontractHuobi = new Coin("SunContract","snc","Huobi","011");
+                HomePage.huobi.addCoin(suncontractHuobi);
+                HomePage.listOfCurrencies.add("SunContract");
+                break;
+
+            case R.id.tradetokenButton:
+                Coin tradetokenOKEX = new Coin("Trade Token","TIO","OKEX","111");
+                HomePage.OKEX.addCoin(tradetokenOKEX);
+                break;
+
+            case R.id.latokenButton:
+                Coin latokenHitBTC = new Coin("LATOKEN","LA","HitBTC","001");
+                HomePage.hitBTC.addCoin(latokenHitBTC);
+                Coin latokenOKEX = new Coin("LATOKEN","LA","OKEX","011");
+                HomePage.OKEX.addCoin(latokenOKEX);
+                HomePage.listOfCurrencies.add("LATOKEN");
+                break;
+
+            case R.id.blackcoinButton:
+                Coin blackcoinBittrex = new Coin("BlackCoin","BLK","Bittrex","010");
+                HomePage.bittrex.addCoin(blackcoinBittrex);
+                Coin blackcoinPoloniex = new Coin("BlackCoin","BLK","Poloniex","010");
+                HomePage.poloniex.addCoin(blackcoinPoloniex);
+                HomePage.listOfCurrencies.add("BlackCoin");
+                break;
+
+            case R.id.ixledgerButton:
+                Coin ixledgerHitBTC = new Coin("iXledger","IXT","HitBTC","011");
+                HomePage.hitBTC.addCoin(ixledgerHitBTC);
+                break;
+
+            case R.id.olympuslabsButton:
+                Coin olympuslabsOKEX = new Coin("Olympus Labs","MOT","OKEX","111");
+                HomePage.OKEX.addCoin(olympuslabsOKEX);
+                break;
+
+            case R.id.hydroprotocolButton:
+                Coin hydroprotocolOKEX = new Coin("Hydro Protocol","HOT","OKEX","111");
+                HomePage.OKEX.addCoin(hydroprotocolOKEX);
+                break;
+
+            case R.id.moedaloyaltypointsButton:
+                Coin moedaloyaltypointsBinance = new Coin("Moeda Loyalty Points","MDA",
+                        "Binance","011");
+                HomePage.binance.addCoin(moedaloyaltypointsBinance);
                 break;
 
             default:

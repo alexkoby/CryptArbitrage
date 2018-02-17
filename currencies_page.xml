@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     android:padding="15dip"
     android:orientation="horizontal"
-    tools:context="com.example.alexander.cryptarbitrage2.MainActivity">
+    tools:context="com.example.alexander.cryptarbitrage2.HomePage">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -2126,6 +2126,1573 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency106"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aeternityCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/aeternityButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency107"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zilliqaCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/zilliqaButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency108"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bytomCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/bytomButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency109"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dentacoinCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/dentacoinButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency110"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/qashCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/qashButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency111"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bitcoreCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/bitcoreButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency112"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aionCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/aionButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency113"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/requestnetworkCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/requestnetworkButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency114"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tenxCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/tenxButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency115"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quantstampCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/quantstampButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency116"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/appcoinsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/appcoinsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency117"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/santimentCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/santimentButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency118"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/po.etCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/po.etButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency119"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/substratumCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/substratumButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency120"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/raidenCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/raidenButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency121"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zencashCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/zencashButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency122"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/redpulseCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/redpulseButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency123"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/enjincoinCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/enjincoinButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency124"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aragonCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/aragonButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency125"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deepbrainchainCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/deepbrainchainButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency126"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sirinlabsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/sirinlabsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency127"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medisharesCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/medisharesButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency128"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/giftoCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/giftoButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency129"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wabiCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/wabiButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency130"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/crypto20Currency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/crypto20Button"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency131"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ambrosusCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/ambrosusButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency132"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/insecosystemCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/insecosystemButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency133"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/streamrdatacoinCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/streamrdataButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency134"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sonmCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/sonmButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency135"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/viacoinCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/viacoinButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency136"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/genesisvisionCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/genesisvisionButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency137"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/melonCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/melonButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency138"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/spankchainCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/spankchainButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency139"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/breadCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/breadButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency140"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nulsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/nulsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency141"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/utrustCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/utrustButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency142"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/triggersCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/triggersButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency143"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/etherpartyCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/etherpartyButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency144"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/modumCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/modumButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency145"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wingsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/wingsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency146"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tierionCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/tierionButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency147"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wepowerCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/wepowerButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency148"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/burstCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/burstButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency149"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/allsportsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/allsportsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency150"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/district0xCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/district0xButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency151"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/internetnodetokenCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/internetnodetokenButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency152"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cossCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/cossButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency153"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/coindashCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/coindashButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency154"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbrycreditsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/lbrycreditsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency155"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/unikoingoldCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/unikoingoldButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency156"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/steemdollarsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/steemdollarsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency157"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nagaCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/nagaButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency158"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delphyCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/delphyButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency159"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aeonCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/aeonButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency160"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/indahashCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/indahashButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency161"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lunyrCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/lunyrButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency162"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/firstbloodCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/firstbloodButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency163"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/viberateCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/viberateButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency164"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/datumCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/datumButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency165"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/odysseyCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/odysseyButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency166"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inkCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/inkButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency167"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/potcoinCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/potcoinButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency168"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/swftcoinCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/swftcoinButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency169"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/humaniqCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/humaniqButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency170"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/monethaCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/monethaButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency171"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agrelloCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/agrelloButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency172"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yoyowCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/yoyowButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency174"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/worldcoreCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/worldcoreButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency175"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/selfkeyCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/selfkeyButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency176"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/blocktixCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/blocktixButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency177"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/everexCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/everexButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency178"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/suncontractCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/suncontractButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency179"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tradetokenCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/tradetokenButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency180"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/latokenCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/latokenButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency181"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/blackcoinCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/blackcoinButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency182"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ixledgerCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/ixledgerButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency183"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/olympuslabsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/olympuslabsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency184"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hydroprotocolCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/hydroprotocolButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/currency185"
+                        android:layout_width="200dip"
+                        android:layout_height="wrap_content"
+                        android:text="@string/moedaloyaltypointsCurrency"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"/>
+
+                    <ToggleButton
+                        android:id="@+id/moedaloyaltypointsButton"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
 
                 <LinearLayout
