@@ -26,8 +26,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
     static ArrayList<ToggleButton> allExchangesButton;
 
-    SharedPreferences exchangeInfo; //for storing the exchange info
-
     Button selectAllExchangesButton;
     Button submitExchangeButton;
 
@@ -36,13 +34,9 @@ public class Exchanges extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exchanges_page);
 
-        //if first time opening this page, create allExchangesButton - arrayList of all buttons
          //The data has likely been changed before, try to load it
         //if(!MainActivity.isCreatedExchanges){
         setUpExchangeButtons();
-
-        //getExchangeInfo();
-
 
         //set up click listeners
         selectAllExchangesButton = findViewById(R.id.select_all_exchanges_button);
@@ -51,11 +45,10 @@ public class Exchanges extends Activity implements View.OnClickListener{
         submitExchangeButton = findViewById(R.id.submit_exchange_button);
         submitExchangeButton.setOnClickListener(this);
 
-        if(MainActivity.isCreatedExchanges) {
+        if(HomePage.isCreatedExchanges) {
             getExchangeInfo1();
             System.out.println("Papa Johns");
         }
-        MainActivity.isCreatedExchanges = true;
     }
 
     public void onClick(View v){
@@ -80,6 +73,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
             //Submit Button
             case R.id.submit_exchange_button:
+                HomePage.isCreatedExchanges = true;
                 //Gets rid of all Exchanges from listOfExchanges and adds in valid exchanges
                     //based on the buttons that are 'On'
                 HomePage.listOfExchanges.clear();

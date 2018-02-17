@@ -19,6 +19,11 @@ import java.util.ArrayList;
  */
 import java.util.Calendar;
 public class HomePage extends Activity implements View.OnClickListener {
+
+    static boolean isCreatedHomepage = false;
+    static boolean isCreatedExchanges = false;
+    static boolean isCreatedCryptocurrencies = false;
+
     static ArrayList<String> listOfCurrencies;
     static ArrayList<Exchange> listOfExchanges;
     static ArrayList<Exchange> allPossibleExchanges;
@@ -69,7 +74,8 @@ public class HomePage extends Activity implements View.OnClickListener {
 
 
         //If this is the first time visiting the homepage
-        if(!MainActivity.isCreatedHomepage) {
+        if(!isCreatedHomepage) {
+            System.out.println("Home page not created");
             listOfExchanges = new ArrayList<>();
             listOfCurrencies = new ArrayList<>();
             allPossibleExchanges = new ArrayList<>();
@@ -107,6 +113,8 @@ public class HomePage extends Activity implements View.OnClickListener {
                     false,false);
             allPossibleExchanges.add(huobi);
 
+            isCreatedHomepage = true;
+
             initialzeTasks();
         }
 
@@ -137,9 +145,6 @@ public class HomePage extends Activity implements View.OnClickListener {
 
         //alert dialog in case user tries to click viewCurrentOpprotunities before it's ready
         alertDialog = new AlertDialog.Builder(this).create();
-
-
-        MainActivity.isCreatedHomepage = true;
     }
     @Override
     public void onStart(){
