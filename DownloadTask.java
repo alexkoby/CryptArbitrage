@@ -472,7 +472,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             String coinPairBase = q1.peek();
 
             //BitcoinCash and Dash have different way to look at API for some reason
-            if(currentCoin.getName().equals("Bitcoin Cash") || currentCoin.getName().equals("Dash")){
+            if(currentCoin.getName().equals("Bitcoin Cash") || currentCoin.getName().equals("Dash") ||
+                    currentCoin.getName().equals("EOS") || currentCoin.getName().equals("Gnosis")){
                 coinPairBase = coinPairBase.substring(0, coinPairBase.length() - 4).
                         concat(coinPairBase.substring(coinPairBase.length() - 3));
             }
