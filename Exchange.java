@@ -13,18 +13,23 @@ public class Exchange {
     private String askSymbol;
     private String bidSymbol;
     private boolean exchangeAPISorted;
-
-    public Exchange(String name, String askSymbol, String bidSymbol, boolean exchangeAPISorted){
+    private boolean dataIsFinishedRefreshing;
+    private boolean isUSD;
+    public Exchange(String name, String askSymbol, String bidSymbol, boolean exchangeAPISorted, boolean dataIsFinishedRefreshing,
+                    boolean isdUSD){
         coins = new ArrayList<>();
         asks = new ArrayList<>();
         bids = new ArrayList<>();
         this.name = name;
         amtCoins = 0;
+        this.dataIsFinishedRefreshing = dataIsFinishedRefreshing;
 
         this.askSymbol = askSymbol;
         this.bidSymbol = bidSymbol;
 
         this.exchangeAPISorted = exchangeAPISorted;
+
+        this.isUSD = isdUSD;
     }
 
 
@@ -39,6 +44,9 @@ public class Exchange {
         }
         coins.remove(c);
         amtCoins--;
+    }
+    public boolean getIsUSD(){
+        return this.isUSD;
     }
     public String getName(){
         return this.name;
@@ -69,5 +77,12 @@ public class Exchange {
     }
     public boolean isExchangeAPISorted(){
         return this.exchangeAPISorted;
+    }
+
+    public boolean isDataFinishedRefreshing(){
+        return this.dataIsFinishedRefreshing;
+    }
+    public void setDataIsFinishedRefreshing(boolean value){
+        this.dataIsFinishedRefreshing = value;
     }
 }
