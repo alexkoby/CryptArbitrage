@@ -80,37 +80,37 @@ public class HomePage extends Activity implements View.OnClickListener {
             listOfCurrencies = new ArrayList<>();
             allPossibleExchanges = new ArrayList<>();
             bitfinex = new Exchange("Bitfinex", "ask", "bid",
-                    false, false);
+                    false, false, true);
             allPossibleExchanges.add(bitfinex);
             bittrex = new Exchange("Bittrex", "Ask", "Bid",
-                    true, false);
+                    true, false, false);
             allPossibleExchanges.add(bittrex);
             binance = new Exchange("Binance", "price", "price",
-                    false, false);
+                    false, false,false);
             allPossibleExchanges.add(binance);
             hitBTC = new Exchange("HitBTC", "ask", "bid",
-                    false, false);
+                    false, false, true);
             allPossibleExchanges.add(hitBTC);
             bitZ = new Exchange("Bit-Z","sell","buy",
-                    false, false);
+                    false, false, false);
             allPossibleExchanges.add(bitZ);
-            poloniex = new Exchange("Poloniex","lowestAsk",
-                    "highestBid",false, false);
+            poloniex = new Exchange("Poloniex","lowestAsk","highestBid",
+                    false, false, false);
             allPossibleExchanges.add(poloniex);
             bitStamp = new Exchange("BitStamp","bid","ask",
-                    false, false);
+                    false, false, true);
             allPossibleExchanges.add(bitStamp);
             OKEX = new Exchange("OKEX","sell","buy",
-                    false, false);
+                    false, false, false);
             allPossibleExchanges.add(OKEX);
             GDAX = new Exchange("GDAX","ask","bid",
-                    false, false);
+                    false, false, true);
             allPossibleExchanges.add(GDAX);
             kraken = new Exchange("Kraken","a","b",
-                    false, false);
+                    false, false, true);
             allPossibleExchanges.add(kraken);
             huobi = new Exchange("Huobi","ask","bid",
-                    false,false);
+                    false,false, false);
             allPossibleExchanges.add(huobi);
 
             isCreatedHomepage = true;
@@ -475,7 +475,8 @@ public class HomePage extends Activity implements View.OnClickListener {
         taskGDAX = new DownloadTask(null,"https://api.gdax.com/products/", GDAX);
         taskKraken = new DownloadTask("result","https://api.kraken.com/0/public/Ticker?pair=XBTUSD,ETHXBT," +
                 "ETHUSD,XRPXBT,XRPUSD,LTCXBT,LTCUSD,BCHXBT,BCHUSD,XLMXBT,DASHXBT,DASHUSD,XMRXBT,XMRUSD,ETCXBT,ETCUSD," +
-                "ETCETH,ZECXBT,ZECUSD",kraken);
+                "ETCETH,ZECXBT,ZECUSD, EOSXBT, EOSETH, EOSUSD, REPETH, REPXBT, GNOUSD, GNOETH, GNOXBT, ICNXBT, ICNETH" +
+                ", MLNXBT, MLNETH",kraken);
         taskHuobi = new DownloadTask("tick","https://api.huobi.pro/market/detail/merged?symbol=",huobi);
     }
 
@@ -517,9 +518,10 @@ public class HomePage extends Activity implements View.OnClickListener {
                 taskGDAX = new DownloadTask(null,"https://api.gdax.com/products/", GDAX);
                 return taskGDAX;
             case "Kraken":
-                taskKraken = new DownloadTask("result","https://api.kraken.com/0/public/Ticker?pair=" +
-                        "XBTUSD,ETHXBT,ETHUSD,XRPXBT,XRPUSD,LTCXBT,LTCUSD,BCHXBT,BCHUSD,XLMXBT,DASHXBT,DASHUSD,XMRXBT," +
-                        "XMRUSD,ETCXBT,ETCUSD,ETCETH,ZECXBT,ZECUSD",kraken);
+                taskKraken = new DownloadTask("result","https://api.kraken.com/0/public/Ticker?pair=XBTUSD,ETHXBT," +
+                        "ETHUSD,XRPXBT,XRPUSD,LTCXBT,LTCUSD,BCHXBT,BCHUSD,XLMXBT,DASHXBT,DASHUSD,XMRXBT,XMRUSD,ETCXBT,ETCUSD," +
+                        "ETCETH,ZECXBT,ZECUSD, EOSXBT, EOSETH, EOSUSD, REPETH, REPXBT, GNOUSD, GNOETH, GNOXBT, ICNXBT, ICNETH" +
+                        ", MLNXBT, MLNETH",kraken);
                 return taskKraken;
             case "Huobi":
                 taskHuobi = new DownloadTask("tick","https://api.huobi.pro/market/detail/merged?symbol=",huobi);
