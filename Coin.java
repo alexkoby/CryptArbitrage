@@ -11,7 +11,7 @@ public class Coin implements Comparable<Coin>{
 
     private String name;
     private String abbreviation;
-    private String exchange;
+    private Exchange exchange;
     private Double askPriceUSD;
     private Double bidPriceUSD;
     private Double askPriceBTC;
@@ -25,13 +25,13 @@ public class Coin implements Comparable<Coin>{
      * Constructor
      * @param name is the name of the coin
      */
-    public Coin(String name, String abbreviation, String exchange, String USDPairBitcoinPairEthPair){
+    public Coin(String name, String abbreviation, Exchange exchange, String USDPairBitcoinPairEthPair){
         this.name = name;
         this.abbreviation = abbreviation;
         this.exchange = exchange;
         this.USDPairBitcoinPairEthPair = USDPairBitcoinPairEthPair;
     }
-    public Coin(String name, String abbreviation, String exchange){
+    public Coin(String name, String abbreviation, Exchange exchange){
         this.name = name;
         this.abbreviation = abbreviation;
         this.exchange = exchange;
@@ -45,11 +45,11 @@ public class Coin implements Comparable<Coin>{
         this.name = name;
     }
 
-    public String getExchange() {
+    public Exchange getExchange() {
         return exchange;
     }
 
-    public void setExchange(String exchange) {
+    public void setExchange(Exchange exchange) {
         this.exchange = exchange;
     }
 
