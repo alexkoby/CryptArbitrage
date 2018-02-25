@@ -1,10 +1,12 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.content.Intent;
 import android.util.Log;
@@ -12,13 +14,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.SkuDetails;
+import com.anjlab.android.iab.v3.TransactionDetails;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by Alexander on 1/7/2018.
  */
 import java.util.Calendar;
-public class HomePage extends Activity implements View.OnClickListener {
+import java.util.Date;
+import java.util.List;
+
+public class HomePage extends Activity implements View.OnClickListener, BillingProcessor.IBillingHandler {
+
+    BillingProcessor bp;
+    static boolean hasSubscription = false;
 
     static boolean isCreatedHomepage = false;
     static boolean isCreatedExchanges = false;
@@ -67,10 +81,14 @@ public class HomePage extends Activity implements View.OnClickListener {
     Button refreshButtonHomePage;
     static String typeOfArbitrageString = "Inter-Exchange and Cross Exchange Arbitrage";
 
+    final String publicAPI = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArNSgdFawfG05qVr5dmy5VGnrR/D7A636WN7l28Gpy8X9hIM8FlKpRDWfDNjV5x2q/7Nlzpla462DLlYRFIxCHm/LoQMd6vm37k10FqhskFxkvcMshKE7fEfVVrOnnod3JE8UDhwMd0a3UYGqAWNWx8m02K2Y6vzKfIYpu0NLpaPMD1GgVw6ZtoiNCIR+ilL/Kvv8WZutM3yUBhrTr47dOjvu/bwYQ01RT1QbGMjujIE3KWphzmfUCWRhZIGsTypgskVFoH2px5gSB2ynQVvjFAN2Jx18Hj+AhinVl1pSBdOl0eMJG0TXyPtbseRAhPdv1H+YcTPOed5g2j7qxKwxswIDAQAB";
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
+
+        bp = new BillingProcessor(this, publicAPI, this);
 
 
         //If this is the first time visiting the homepage
@@ -178,97 +196,97 @@ public class HomePage extends Activity implements View.OnClickListener {
         DownloadTask task = null;
 
         System.out.println(e.getCoins().size());
-            switch (e.getName()){
-                case "Bitfinex":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
-                    }
-                    task = HomePage.taskBitfinex;
-                    break;
-                case "Bittrex":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = "USDT-".concat(e.getCoins().get(i).getAbbreviation());
-                        APIs[3 * i + 1] = "BTC-".concat(e.getCoins().get(i).getAbbreviation());
-                        APIs[3 * i + 2] = "ETH-".concat(e.getCoins().get(i).getAbbreviation());
-                    }
-                    task = HomePage.taskBittrex;
-                    break;
-                case "Binance":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USDT");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
-                    }
-                    task = HomePage.taskBinance;
-                    break;
-                case "HitBTC":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
-                    }
-                    task = HomePage.taskHitBTC;
-                    break;
-                case "Bit-Z":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
-                    }
-                    task = HomePage.taskBitZ;
-                    break;
-                case "Poloniex":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = "USDT_".concat(e.getCoins().get(i).getAbbreviation());
-                        APIs[3 * i + 1] = "BTC_".concat(e.getCoins().get(i).getAbbreviation());
-                        APIs[3 * i + 2] = "ETH_".concat(e.getCoins().get(i).getAbbreviation());
-                    }
-                    task = HomePage.taskPoloniex;
-                    break;
-                case "BitStamp":
-                    System.out.println("BITSTAMP GOT HERE");
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
-                    }
-                    task = HomePage.taskBitStamp;
-                    break;
-                case "OKEX":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
-                    }
-                    task = HomePage.taskOKEX;
-                    break;
-                case "GDAX":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("-usd/ticker");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("-btc/ticker");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("-eth/ticker");
-                    }
-                    task = HomePage.taskGDAX;
-                    break;
-                case "Kraken":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("ZUSD");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("XXBT");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("XETH");
-                    }
-                    task = HomePage.taskKraken;
-                    break;
+        switch (e.getName()){
+            case "Bitfinex":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                }
+                task = HomePage.taskBitfinex;
+                break;
+            case "Bittrex":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = "USDT-".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3 * i + 1] = "BTC-".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3 * i + 2] = "ETH-".concat(e.getCoins().get(i).getAbbreviation());
+                }
+                task = HomePage.taskBittrex;
+                break;
+            case "Binance":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USDT");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                }
+                task = HomePage.taskBinance;
+                break;
+            case "HitBTC":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                }
+                task = HomePage.taskHitBTC;
+                break;
+            case "Bit-Z":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
+                }
+                task = HomePage.taskBitZ;
+                break;
+            case "Poloniex":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = "USDT_".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3 * i + 1] = "BTC_".concat(e.getCoins().get(i).getAbbreviation());
+                    APIs[3 * i + 2] = "ETH_".concat(e.getCoins().get(i).getAbbreviation());
+                }
+                task = HomePage.taskPoloniex;
+                break;
+            case "BitStamp":
+                System.out.println("BITSTAMP GOT HERE");
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("ETH");
+                }
+                task = HomePage.taskBitStamp;
+                break;
+            case "OKEX":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
+                }
+                task = HomePage.taskOKEX;
+                break;
+            case "GDAX":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("-usd/ticker");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("-btc/ticker");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("-eth/ticker");
+                }
+                task = HomePage.taskGDAX;
+                break;
+            case "Kraken":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("ZUSD");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("XXBT");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("XETH");
+                }
+                task = HomePage.taskKraken;
+                break;
 
-                case "Huobi":
-                    for(int i = 0; i < e.getCoins().size(); i+=1) {
-                        APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("usdt");
-                        APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("btc");
-                        APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("eth");
-                    }
-                    task = HomePage.taskHuobi;
-                    break;
+            case "Huobi":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("usdt");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("btc");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("eth");
+                }
+                task = HomePage.taskHuobi;
+                break;
         }
         if(task == null) {
             System.out.println("TRIED TO USE NULL DOWNLOAD TASK");
@@ -286,6 +304,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.view_current_opprotunities:
+                Toast.makeText(this, "Have paid: " +HomePage.hasSubscription, Toast.LENGTH_SHORT).show();
                 if(listOfExchanges.size() == 0 && listOfCurrencies.size() == 0){
                     alertDialog.setTitle("Error");
                     alertDialog.setMessage("Please Select One Or More Exchanges And One Or " +
@@ -352,19 +371,12 @@ public class HomePage extends Activity implements View.OnClickListener {
                     alertDialog.show();
                     break;
                 }
-                /*HomePage.makeAPIRequests();
-                final Object lock = new Object();
-                synchronized (lock){
-                    while (!HomePage.isAllDataFinishedRefreshing()) {
-                       try{
-                            lock.wait();
-                        }
-                        catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }
+                if(!hasSubscription){
+                    Toast.makeText(this, "Does Not Have Subscription", Toast.LENGTH_SHORT).show();
+                    bp.subscribe(this,"monthly_sub");
+                    break;
                 }
-                */
+                //Toast.makeText(this,"Has Subscription",Toast.LENGTH_SHORT).show();
                 Intent j = new Intent(this, ViewCryptoOpprotunities.class);
                 startActivity(j);
                 break;
@@ -483,7 +495,7 @@ public class HomePage extends Activity implements View.OnClickListener {
     //@Override
     //after OnPause and OnStart, basically every time
 //    public void onResume(){
- //       super.onResume();
+    //       super.onResume();
     //   }
 
     public static DownloadTask reImplementTask(DownloadTask downloadTask){
@@ -586,4 +598,67 @@ public class HomePage extends Activity implements View.OnClickListener {
         }
         return null;
     }
+
+    @Override
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+        Toast.makeText(this, "Thank You For Purchasing A Subscription", Toast.LENGTH_LONG).show();
+        HomePage.hasSubscription = true;
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+
+    }
+//Either onBillingInitialized or onPurchaseHistoryRestored
+    @Override
+    public void onBillingInitialized() {
+        if(!bp.loadOwnedPurchasesFromGoogle()) {
+            Toast.makeText(this,"Please check your internet connection",Toast.LENGTH_LONG);
+            HomePage.hasSubscription = false;
+        }
+//this is getting executed below
+        else{
+            if(bp.isSubscribed("monthly_sub")){
+                Toast.makeText(this, "Welcome back", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this,"You do not have a subscription", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        if(resultCode == 0){
+            Toast.makeText(this,"Buy A Subscription To See The Top Arbitrage Opportunities", Toast.LENGTH_LONG).show();
+        }
+        if(resultCode == -1){
+            HomePage.hasSubscription = true;
+        }
+        if (resultCode == 2){
+            Toast.makeText(this, "Network Connection Down", Toast.LENGTH_LONG).show();
+        }
+        if(resultCode == 7){
+            Toast.makeText(this,"You Are Already Subscribed",Toast.LENGTH_SHORT).show();;
+        }
+        //Toast.makeText(this,"OnActivityResultMethod Result " + resultCode, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (bp != null) {
+            bp.release();
+        }
+        super.onDestroy();
+    }
+
+
 }
