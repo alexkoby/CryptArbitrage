@@ -1,4 +1,4 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -67,19 +67,13 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     int counter;
 
     String typeOneOpportunityMessage;
-    String typeTwoOpportunityMessage;
-    String typeThreeOpportunityMessage;
-    String typeFourOpportunityMessage;
-    String typeFiveOpportunityMessage;
-    String typeSixOpportunityMessage;
-    String typeSevenOpportunityMessage;
-    String typeEightOpportunityMessage;
-    String typeNineOpportunityMessage;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crypto_opprotunities);
+
+        Toast.makeText(this, "Made It To View Opportunities", Toast.LENGTH_SHORT).show();
 
         setUpMessages();
         Opportunity1AlertDialog = new AlertDialog.Builder(this).create();
@@ -90,7 +84,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         alertDialog = new AlertDialog.Builder(this).create();
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
 
-        timePicker = findViewById(R.id.lastTimeRefreshedClock);
+        timePicker = findViewById(R.id.lastTimeRefreshID);
         if(HomePage.lastTimeRefreshedMinute < 10){
             timePicker.setText("Last Refresh: ".concat(Integer.toString(HomePage.lastTimeRefreshedHour).
                     concat(":0").concat(Integer.toString(HomePage.lastTimeRefreshedMinute))));
@@ -150,7 +144,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         prev5Button.setOnClickListener(this);
         next5Button = findViewById(R.id.next5Button);
         next5Button.setOnClickListener(this);
-        refreshDataButton = findViewById(R.id.refreshDataButton);
+        refreshDataButton = findViewById(R.id.refreshDataButtonView);
         refreshDataButton.setOnClickListener(this);
     }
 
@@ -186,17 +180,17 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 
     private void getDataToScreen() {
 
-            opportunity1Cryptocurrency.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getName());
-            opportunity1Type.setText(Integer.toString(topOpportunitiesArray[counter].getType()));
-            opportunity1Price.setText(doubleToStringFiveSigDigs(topOpportunitiesArray[counter].getPercentGain()));
-            if (topOpportunitiesArray[counter].getType() > 6) {
-                opportunity1Exchange.setText("Buy " + topOpportunitiesArray[counter].getLowPriceCoinExchange().getExchange().
-                        getName().concat(" Sell ").concat(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange().getName()));
-            }
-            else {
-                opportunity1Exchange.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange().getName());
-            }
-            counter++;
+        opportunity1Cryptocurrency.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getName());
+        opportunity1Type.setText(Integer.toString(topOpportunitiesArray[counter].getType()));
+        opportunity1Price.setText(doubleToStringFiveSigDigs(topOpportunitiesArray[counter].getPercentGain()));
+        if (topOpportunitiesArray[counter].getType() > 6) {
+            opportunity1Exchange.setText("Buy " + topOpportunitiesArray[counter].getLowPriceCoinExchange().getExchange().
+                    getName().concat(" Sell ").concat(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange().getName()));
+        }
+        else {
+            opportunity1Exchange.setText(topOpportunitiesArray[counter].getHighPriceCoinExchange().getExchange().getName());
+        }
+        counter++;
 
 
         if (counter < topOpportunitiesArray.length) {
@@ -297,6 +291,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                     Toast.makeText(this,"No More Arbitrage Opportunities",Toast.LENGTH_LONG).show();
                 }
                 break;
+
             case R.id.prev5Button:
                 if(counter >= 10){
                     counter -= 10;
@@ -306,13 +301,13 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                     Toast.makeText(this, "No More Arbitrage Opportunities", Toast.LENGTH_LONG).show();
                 }
                 break;
-            case R.id.refreshDataButton:
+            case R.id.refreshDataButtonView:
                 //get clock data here
                 selectedRefreshViewOpportunities = true;
                 Intent intent = new Intent(this, HomePage.class);
                 startActivity(intent);
-
                 break;
+
             case R.id.opportunity1Type:
                 if(opportunity1Cryptocurrency.getText().toString().equals("")){
                     break;
@@ -428,11 +423,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     }
 
     public int recalculateNumbers(){
-        if(HomePage.typeOfArbitrageString.equals("Inter-Exchange and Cross Exchange Arbitrage")) {
+        if(HomePage.typeOfArbitrageString.equals("Intra-Exchange and Cross Exchange Arbitrage")) {
             bestOpportunitiesAcrossExchanges = arbitrageFinder.getBestOpportunitiesAcrossExchange();
             bestOpportunitiesWithinExchanges = arbitrageFinder.getBestOpportunitiesWithinExchange();
         }
-        else if (HomePage.typeOfArbitrageString.equals("Inter-Exchange Arbitrage Only")) {
+        else if (HomePage.typeOfArbitrageString.equals("Intra-Exchange Arbitrage Only")) {
             bestOpportunitiesWithinExchanges = arbitrageFinder.getBestOpportunitiesWithinExchange();
             bestOpportunitiesAcrossExchanges = new PriorityQueue<>();
         }
