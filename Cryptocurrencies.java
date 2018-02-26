@@ -1,4 +1,4 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -182,8 +182,6 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         allCurrenciesButtons.add(iconButton);
         ToggleButton omiseGoButton = findViewById(R.id.omiseGoButton);
         allCurrenciesButtons.add(omiseGoButton);
-        ToggleButton ucashButton = findViewById(R.id.ucashButton);
-        allCurrenciesButtons.add(ucashButton);
         ToggleButton populousButton = findViewById(R.id.populousButton);
         allCurrenciesButtons.add(populousButton);
         ToggleButton bytecoinButton = findViewById(R.id.bytecoinButton);
@@ -473,71 +471,71 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
      */
     public void addBitcoinAndEthereumToExchanges(){
         Coin bitcoinBitfinex = new Coin("Bitcoin","BTC",
-                "Bitfinex","100");
+                HomePage.bitfinex,"100");
         HomePage.bitfinex.addCoin(bitcoinBitfinex);
         Coin bitcoinBittrex = new Coin("Bitcoin","BTC",
-                "Bittrex","100");
+                HomePage.bittrex,"100");
         HomePage.bittrex.addCoin(bitcoinBittrex);
-        Coin bitcoinBinance = new Coin("Bitcoin", "BTC", "Binance","100");
+        Coin bitcoinBinance = new Coin("Bitcoin", "BTC", HomePage.binance,"100");
         HomePage.binance.addCoin(bitcoinBinance);
         Coin bitcoinHitBTC = new Coin("Bitcoin", "BTC",
-                "HitBTC","100");
+                HomePage.hitBTC,"100");
         HomePage.hitBTC.addCoin(bitcoinHitBTC);
         Coin bitcoinBitZ = new Coin("Bitcoin", "btc",
-                "Bit-Z","100");
+                HomePage.bitZ,"100");
         HomePage.bitZ.addCoin(bitcoinBitZ);
         Coin bitcoinPoloniex = new Coin("Bitcoin","BTC",
-                "Poloniex","100");
+                HomePage.poloniex,"100");
         HomePage.poloniex.addCoin(bitcoinPoloniex);
         Coin bitcoinBitStamp = new Coin ("Bitcoin","BTC",
-                "BitStamp","100");
+                HomePage.bitStamp,"100");
         HomePage.bitStamp.addCoin(bitcoinBitStamp);
         Coin bitcoinOKEX = new Coin("Bitcoin", "BTC",
-                "OKEX","100");
+                HomePage.OKEX,"100");
         HomePage.OKEX.addCoin(bitcoinOKEX);
         Coin bitcoinGDAX = new Coin("Bitcoin","BTC",
-                "GDAX","100");
+                HomePage.GDAX,"100");
         HomePage.GDAX.addCoin(bitcoinGDAX);
         Coin bitcoinKraken = new Coin("Bitcoin","XXBT",
-                "Kraken", "100");
+                HomePage.kraken, "100");
         HomePage.kraken.addCoin(bitcoinKraken);
         Coin bitcoinHuobi = new Coin("Bitcoin","btc",
-                "Huobi","100");
+                HomePage.huobi,"100");
         HomePage.huobi.addCoin(bitcoinHuobi);
         HomePage.listOfCurrencies.add("Bitcoin");
 
         Coin ethereumBitfinex = new Coin("Ethereum","ETH",
-                "Bitfinex","110");
+                HomePage.bitfinex,"110");
         HomePage.bitfinex.addCoin(ethereumBitfinex);
         Coin ethereumBittrex = new Coin("Ethereum","ETH",
-                "Bittrex","110");
+                HomePage.bittrex,"110");
         HomePage.bittrex.addCoin(ethereumBittrex);
         Coin ethereumBinance = new Coin("Ethereum", "ETH",
-                "Binance","110");
+                HomePage.binance,"110");
         HomePage.binance.addCoin(ethereumBinance);
         Coin ethereumHitBTC = new Coin("Ethereum", "ETH",
-                "HitBTC","110");
+                HomePage.hitBTC,"110");
         HomePage.hitBTC.addCoin(ethereumHitBTC);
         Coin ethereumBitZ = new Coin("Ethereum", "eth",
-                "Bit-Z","110");
+                HomePage.bitZ,"110");
         HomePage.bitZ.addCoin(ethereumBitZ);
         Coin ethereumPoloniex = new Coin("Ethereum","ETH",
-                "Poloniex","110");
+                HomePage.poloniex,"110");
         HomePage.poloniex.addCoin(ethereumPoloniex);
         Coin ethereumBitStamp = new Coin ("Ethereum","ETH",
-                "BitStamp","110");
+                HomePage.bitStamp,"110");
         HomePage.bitStamp.addCoin(ethereumBitStamp);
         Coin ethereumOKEX = new Coin("Ethereum", "ETH",
-                "OKEX","110");
+                HomePage.OKEX,"110");
         HomePage.OKEX.addCoin(ethereumOKEX);
         Coin ethereumGDAX = new Coin("Ethereum","ETH",
-                "GDAX", "110");
+                HomePage.GDAX, "110");
         HomePage.GDAX.addCoin(ethereumGDAX);
         Coin ethereumKraken = new Coin("Ethereum","XETH",
-                "Kraken","110");
+                HomePage.kraken,"110");
         HomePage.kraken.addCoin(ethereumKraken);
         Coin ethereumHuobi = new Coin("Ethereum","eth",
-                "Huobi","110");
+                HomePage.huobi,"110");
         HomePage.huobi.addCoin(ethereumHuobi);
         HomePage.listOfCurrencies.add("Ethereum");
     }
@@ -551,75 +549,75 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         switch (button.getId()){
             case R.id.rippleButton:
                 Coin rippleBitfinex = new Coin("Ripple","XRP",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(rippleBitfinex);
                 Coin rippleBittrex = new Coin("Ripple","XRP",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(rippleBittrex);
                 Coin rippleBinance = new Coin("Ripple", "XRP",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(rippleBinance);
                 Coin rippleHitBTC = new Coin("Ripple", "XRP",
-                        "HitBTC","011");
+                        HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(rippleHitBTC);
                 Coin ripplePoloniex = new Coin("Ripple","XRP",
-                        "Poloniex","110");
+                        HomePage.poloniex,"110");
                 HomePage.poloniex.addCoin(ripplePoloniex);
                 Coin rippleBitStamp = new Coin ("Ripple","XRP",
-                        "BitStamp","110");
+                        HomePage.bitStamp,"110");
                 HomePage.bitStamp.addCoin(rippleBitStamp);
                 Coin rippleOKEX = new Coin("Ripple", "XRP",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(rippleOKEX);
                 Coin rippleKraken = new Coin("Ripple","XXRP",
-                        "Kraken","110");
+                        HomePage.kraken,"110");
                 HomePage.kraken.addCoin(rippleKraken);
                 Coin rippleHuobi = new Coin("Ripple","xrp",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(rippleHuobi);
                 HomePage.listOfCurrencies.add("Ripple");
                 break;
 
             case R.id.bitcoinCashButton:
                 Coin bitcoinCashBitfinex = new Coin("Bitcoin Cash","BCH",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(bitcoinCashBitfinex);
                 Coin bitcoinCashBittrex = new Coin("Bitcoin Cash","BCC",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(bitcoinCashBittrex);
                 Coin bitcoinCashBinance = new Coin("Bitcoin Cash", "BCC",
-                        "Binance","111");
+                        HomePage.binance,"111");
                 HomePage.binance.addCoin(bitcoinCashBinance);
                 Coin bitcoinCashHitBTC = new Coin("Bitcoin Cash", "BCH",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(bitcoinCashHitBTC);
                 Coin bitcoinCashPoloniex = new Coin("Bitcoin Cash","BCH",
-                        "Poloniex","111");
+                        HomePage.poloniex,"111");
                 HomePage.poloniex.addCoin(bitcoinCashPoloniex);
                 Coin bitcoinCashBitStamp = new Coin ("Bitcoin Cash","BCH",
-                        "BitStamp","110");
+                        HomePage.bitStamp,"110");
                 HomePage.bitStamp.addCoin(bitcoinCashBitStamp);
                 Coin bitcoinCashOKEX = new Coin("Bitcoin Cash", "BCH",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(bitcoinCashOKEX);
                 Coin bitcoinCashGDAX = new Coin("Bitcoin Cash","BCH",
-                        "GDAX","110");
+                        HomePage.GDAX,"110");
                 HomePage.GDAX.addCoin(bitcoinCashGDAX);
                 Coin bitcoinCashKraken = new Coin("Bitcoin Cash","BCH",
-                        "Kraken","110");
+                        HomePage.kraken,"110");
                 HomePage.kraken.addCoin(bitcoinCashKraken);
                 Coin bitcoinCashHuobi = new Coin("Bitcoin Cash","bch",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(bitcoinCashHuobi);
                 HomePage.listOfCurrencies.add("Bitcoin Cash");
                 break;
 
             case R.id.cardanoButton:
                 Coin cardanoBittrex = new Coin("Cardano","ADA",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(cardanoBittrex);
                 Coin cardanoBinance = new Coin("Cardano", "ADA",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(cardanoBinance);
 
                 HomePage.listOfCurrencies.add("Cardano");
@@ -627,72 +625,72 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
 
             case R.id.nemButton:
                 Coin nemBittrex = new Coin("NEM","XEM",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(nemBittrex);
                 Coin nemHitBTC = new Coin("NEM", "XEM",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(nemHitBTC);
                 Coin nemPoloniex = new Coin("NEM","XEM",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(nemPoloniex);
                 Coin nemOKEX = new Coin("NEM", "XEM",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(nemOKEX);
                 Coin nemHuobi = new Coin("NEM","xem",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(nemHuobi);
                 HomePage.listOfCurrencies.add("NEM");
                 break;
 
             case R.id.litecoinButton:
                 Coin litecoinBitfinex = new Coin("Litecoin","LTC",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(litecoinBitfinex);
                 Coin litecoinBittrex = new Coin("Litecoin","LTC",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(litecoinBittrex);
                 Coin litecoinBinance = new Coin("Litecoin", "LTC",
-                        "Binance","111");
+                        HomePage.binance,"111");
                 HomePage.binance.addCoin(litecoinBinance);
                 Coin litecoinHitBTC = new Coin("Litecoin", "LTC",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(litecoinHitBTC);
                 Coin litecoinBitZ = new Coin("Litecoin", "ltc",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(litecoinBitZ);
                 Coin litecoinPoloniex = new Coin("Litecoin", "LTC",
-                        "Poloniex","110");
+                        HomePage.poloniex,"110");
                 HomePage.poloniex.addCoin(litecoinPoloniex);
                 Coin litecoinBitStamp = new Coin ("Litecoin","LTC",
-                        "BitStamp","110");
+                        HomePage.bitStamp,"110");
                 HomePage.bitStamp.addCoin(litecoinBitStamp);
                 Coin litecoinOKEX = new Coin("Litecoin", "LTC",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(litecoinOKEX);
                 Coin litecoinGDAX = new Coin("Litecoin","LTC",
-                        "GDAX","100");
+                        HomePage.GDAX,"100");
                 HomePage.GDAX.addCoin(litecoinGDAX);
                 Coin litecoinKraken = new Coin("Litecoin","XLTC",
-                        "Kraken","110");
+                        HomePage.kraken,"110");
                 HomePage.kraken.addCoin(litecoinKraken);
                 Coin litecoinHuobi = new Coin("Litecoin","ltc",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(litecoinHuobi);
                 HomePage.listOfCurrencies.add("Litecoin");
                 break;
 
             case R.id.stellarButton:
                 Coin stellarBittrex = new Coin("Stellar","XLM",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(stellarBittrex);
                 Coin stellarBinance = new Coin("Stellar", "XLM",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(stellarBinance);
                 Coin stellarOKEX = new Coin("Stellar", "XLM",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(stellarOKEX);
                 Coin stellarKraken = new Coin("Stellar","XXLM",
-                        "Kraken","010");
+                        HomePage.kraken,"010");
                 HomePage.kraken.addCoin(stellarKraken);
 
                 HomePage.listOfCurrencies.add("Stellar");
@@ -700,448 +698,448 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
 
             case R.id.iotaButton:
                 Coin iotaBitfinex = new Coin("Iota","IOT",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(iotaBitfinex);
                 Coin iotaBinance = new Coin("Iota", "IOTA",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(iotaBinance);
                 Coin iotaOKEX = new Coin("Iota", "IOTA",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(iotaOKEX);
                 HomePage.listOfCurrencies.add("Iota");
                 break;
 
             case R.id.dashButton:
                 Coin dashBitfinex = new Coin("Dash","DSH",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(dashBitfinex);
                 Coin dashBittrex = new Coin("Dash","DASH",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(dashBittrex);
-                Coin dashBinance = new Coin("Dash", "DASH", "Binance","011");
+                Coin dashBinance = new Coin("Dash", "DASH", HomePage.binance,"011");
                 HomePage.binance.addCoin(dashBinance);
                 Coin dashHitBTC = new Coin("Dash", "DASH",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(dashHitBTC);
                 Coin dashBitZ = new Coin("Dash", "dash",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(dashBitZ);
                 Coin dashPoloniex = new Coin("Dash", "DASH",
-                        "Poloniex","110");
+                        HomePage.poloniex,"110");
                 HomePage.poloniex.addCoin(dashPoloniex);
                 Coin dashOKEX = new Coin("Dash", "DASH",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(dashOKEX);
                 Coin dashKraken = new Coin("Dash","DASH",
-                        "Kraken","110");
+                        HomePage.kraken,"110");
                 HomePage.kraken.addCoin(dashKraken);
                 Coin dashHuobi = new Coin("Dash","dash",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(dashHuobi);
                 HomePage.listOfCurrencies.add("Dash");
                 break;
 
             case R.id.neoButton:
                 Coin neoBitfinex = new Coin("NEO","NEO",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(neoBitfinex);
                 Coin neoBittrex = new Coin("NEO","NEO",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(neoBittrex);
-                Coin neoBinance = new Coin("NEO", "NEO", "Binance","111");
+                Coin neoBinance = new Coin("NEO", "NEO", HomePage.binance,"111");
                 HomePage.binance.addCoin(neoBinance);
                 Coin neoHitBTC = new Coin("NEO", "NEO",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(neoHitBTC);
                 Coin neoOKEX = new Coin("NEO", "NEO",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(neoOKEX);
                 Coin neoHuobi = new Coin("NEO","neo",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(neoHuobi);
                 HomePage.listOfCurrencies.add("NEO");
                 break;
 
             case R.id.moneroButton:
                 Coin moneroBitfinex = new Coin("Monero","XMR",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(moneroBitfinex);
                 Coin moneroBittrex = new Coin("Monero","XMR",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(moneroBittrex);
                 Coin moneroBinance = new Coin("Monero", "XMR",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(moneroBinance);
                 Coin moneroHitBTC = new Coin("Monero", "XMR",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(moneroHitBTC);
                 Coin moneroPoloniex = new Coin("Monero", "XMR",
-                        "Poloniex","110");
+                        HomePage.poloniex,"110");
                 HomePage.poloniex.addCoin(moneroPoloniex);
                 Coin moneroOKEX = new Coin("Monero", "XMR",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(moneroOKEX);
                 Coin moneroKraken = new Coin("Monero","XXMR",
-                        "Kraken","110");
+                        HomePage.kraken,"110");
                 HomePage.kraken.addCoin(moneroKraken);
                 HomePage.listOfCurrencies.add("Monero");
                 break;
 
             case R.id.qtumButton:
                 Coin qtumBitfinex = new Coin("QTUM","QTM",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(qtumBitfinex);
                 Coin qtumBittrex = new Coin("QTUM","QTUM",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(qtumBittrex);
                 Coin qtumBinance = new Coin("QTUM", "QTUM",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(qtumBinance);
                 Coin qtumHitBTC = new Coin("QTUM", "QTUM",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(qtumHitBTC);
                 Coin qtumBitZ = new Coin("QTUM", "qtum",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(qtumBitZ);
                 Coin qtumOKEX = new Coin("QTUM", "QTUM",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(qtumOKEX);
-                    Coin qtumHuobi = new Coin("QTUM","qtum",
-                        "Huobi","111");
+                Coin qtumHuobi = new Coin("QTUM","qtum",
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(qtumHuobi);
                 HomePage.listOfCurrencies.add("QTUM");
                 break;
 
             case R.id.liskButton:
                 Coin liskBittrex = new Coin("Lisk","LSK",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(liskBittrex);
                 Coin liskBinance = new Coin("Lisk", "LSK",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(liskBinance);
                 Coin liskHitBTC = new Coin("Lisk", "LSK",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(liskHitBTC);
                 Coin liskBitZ = new Coin("Lisk", "lsk",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(liskBitZ);
                 Coin liskPoloniex = new Coin("Lisk", "LSK",
-                        "Poloniex","011");
+                        HomePage.poloniex,"011");
                 HomePage.poloniex.addCoin(liskPoloniex);
                 Coin liskHuobi = new Coin("Lisk","lsk",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(liskHuobi);
                 HomePage.listOfCurrencies.add("Lisk");
                 break;
 
             case R.id.ethereumClassicButton:
                 Coin ethereumClassicBitfinex = new Coin("Ethereum Classic","ETC",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(ethereumClassicBitfinex);
                 Coin ethereumClassicBittrex = new Coin("Ethereum Classic ","ETC",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(ethereumClassicBittrex);
                 Coin ethereumClassicBinance = new Coin("Ethereum Classic", "ETC",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(ethereumClassicBinance);
                 Coin ethereumClassicHitBTC = new Coin("Ethereum Classic", "ETC",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(ethereumClassicHitBTC);
                 Coin ethereumClassicBitZ = new Coin("Ethereum Classic", "etc",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(ethereumClassicBitZ);
                 Coin ethereumClassicPoloniex = new Coin("Ethereum Classic", "ETC",
-                        "Poloniex","111");
+                        HomePage.poloniex,"111");
                 HomePage.poloniex.addCoin(ethereumClassicPoloniex);
                 Coin ethereumClassicOKEX = new Coin("Ethereum Classic", "ETC",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(ethereumClassicOKEX);
                 Coin ethereumClassicKraken = new Coin("Ethereum Classic","XETC",
-                        "Kraken","111");
+                        HomePage.kraken,"111");
                 HomePage.kraken.addCoin(ethereumClassicKraken);
                 Coin ethereumClassicHuobi = new Coin("Ethereum Classic","etc",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(ethereumClassicHuobi);
                 HomePage.listOfCurrencies.add("Ethereum Classic");
                 break;
 
             case R.id.raiblocksButton:
                 Coin raiBlocksBitZ = new Coin("Nano", "xrb",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(raiBlocksBitZ);
-                Coin raiBlocksBinance = new Coin("Nano","NANO","Binance","011");
+                Coin raiBlocksBinance = new Coin("Nano","NANO",HomePage.binance,"011");
                 HomePage.binance.addCoin(raiBlocksBinance);
                 HomePage.listOfCurrencies.add("Nano");
                 break;
 
             case R.id.vergeButton:
                 Coin vergeBittrex = new Coin("Verge","XVG",
-                        "Bittrex","110");
+                        HomePage.bittrex,"110");
                 HomePage.bittrex.addCoin(vergeBittrex);
                 Coin vergeBinance = new Coin("Verge", "XVG",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(vergeBinance);
                 Coin vergeHitBTC = new Coin("Verge", "XVG",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(vergeHitBTC);
                 HomePage.listOfCurrencies.add("Verge");
                 break;
 
             case R.id.siacoinButton:
                 Coin siacoinBittrex = new Coin("Siacoin","SC",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(siacoinBittrex);
                 Coin siacoinHitBTC = new Coin("Siacoin", "SC",
-                        "HitBTC","010");
+                        HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(siacoinHitBTC);
                 Coin siacoinPoloniex = new Coin("Siacoin", "SC",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(siacoinPoloniex);
                 HomePage.listOfCurrencies.add("Siacoin");
                 break;
 
             case R.id.stratisButton:
                 Coin stratisBittrex = new Coin("Stratis","STRAT",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(stratisBittrex);
                 Coin stratisBinance = new Coin("Stratis", "STRAT",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(stratisBinance);
                 Coin stratisHitBTC = new Coin("Stratis", "STRAT",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(stratisHitBTC);
                 Coin stratisPoloniex = new Coin("Stratis", "STRAT",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(stratisPoloniex);
                 HomePage.listOfCurrencies.add("Stratis");
                 break;
 
             case R.id.zcashButton:
                 Coin zcashBitfinex = new Coin("ZCash","ZEC",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(zcashBitfinex);
                 Coin zcashBittrex = new Coin("ZCash","ZEC",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(zcashBittrex);
                 Coin zcashBinance = new Coin("ZCash", "ZEC",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(zcashBinance);
                 Coin zcashHitBTC = new Coin("ZCash", "ZEC",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(zcashHitBTC);
                 Coin zcashBitZ = new Coin("ZCash", "zec",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(zcashBitZ);
                 Coin zcashPoloniex = new Coin("ZCash", "ZEC",
-                        "Poloniex","111");
+                        HomePage.poloniex,"111");
                 HomePage.poloniex.addCoin(zcashPoloniex);
                 Coin zcashOKEX = new Coin("ZCash", "ZEC",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(zcashOKEX);
                 Coin zcashKraken = new Coin("ZCash","XZEC",
-                        "Kraken","110");
+                        HomePage.kraken,"110");
                 HomePage.kraken.addCoin(zcashKraken);
                 Coin zecHuobi = new Coin("ZCash","zec",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(zecHuobi);
                 HomePage.listOfCurrencies.add("ZCash");
                 break;
 
             case R.id.dogecoinButton:
                 Coin dogecoinBittrex = new Coin("Dogecoin","DOGE",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(dogecoinBittrex);
                 Coin dogecoinHitBTC = new Coin("Dogecoin", "DOGE",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(dogecoinHitBTC);
                 Coin dogecoinBitZ = new Coin("Dogecoin", "doge",
-                        "Bit-Z", "011");
+                        HomePage.bitZ, "011");
                 HomePage.bitZ.addCoin(dogecoinBitZ);
                 Coin dogecoinPoloniex = new Coin("Dogecoin", "DOGE",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(dogecoinPoloniex);
                 HomePage.listOfCurrencies.add("Dogecoin");
                 break;
 
             case R.id.steemButton: //Steem
                 Coin steemBittrex = new Coin("Steem","STEEM",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(steemBittrex);
                 Coin steemHitBTC = new Coin("Steem", "STEEM",
-                        "HitBTC","010");
+                        HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(steemHitBTC);
                 Coin steemPoloniex = new Coin("Steem", "STEEM",
-                        "Poloniex","011");
+                        HomePage.poloniex,"011");
                 HomePage.poloniex.addCoin(steemPoloniex);
                 HomePage.listOfCurrencies.add("Steem");
                 break;
 
             case R.id.wavesButton: //Waves
                 Coin wavesBittrex = new Coin("Waves","WAVES",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(wavesBittrex);
                 Coin wavesBinance = new Coin("Waves", "WAVES",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(wavesBinance);
                 HomePage.listOfCurrencies.add("Waves");
                 break;
 
             case R.id.vechainButton: //VeChain
                 Coin vechainBinance = new Coin("VeChain", "VEN",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(vechainBinance);
                 Coin vechainHitBTC = new Coin("VeChain", "VEN",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(vechainHitBTC);
                 Coin vechainHuobi = new Coin("veChain","ven",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(vechainHuobi);
                 HomePage.listOfCurrencies.add("VeChain");
                 break;
 
             case R.id.digibyteButton: //Digibyte
                 Coin digibyteBittrex = new Coin("Digibyte","DGB",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(digibyteBittrex);
                 Coin digibyteHitBTC = new Coin("Digibyte", "DGB",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(digibyteHitBTC);
                 Coin digibtyeBitZ = new Coin("Digibyte", "dgb",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(digibtyeBitZ);
                 Coin digibytePoloniex = new Coin("Digibyte", "DGB",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(digibytePoloniex);
                 Coin digibyteOKEX = new Coin("Digibtye", "DGB",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(digibyteOKEX);
                 HomePage.listOfCurrencies.add("Digibyte");
                 break;
 
             case R.id.komodoButton: //Komodo
                 Coin komodoBittrex = new Coin("Komodo","KMD",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(komodoBittrex);
                 Coin komodoBinance = new Coin("Komodo", "KMD",
-                        "Binance", "011");
+                        HomePage.binance, "011");
                 HomePage.binance.addCoin(komodoBinance);
                 Coin komodoHitBTC = new Coin("Komodo", "KMD",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(komodoHitBTC);
                 HomePage.listOfCurrencies.add("Komodo");
                 break;
 
             case R.id.hshareButton: //HShare
                 Coin hshareBinance = new Coin("HShare", "HSR",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(hshareBinance);
                 Coin hshareHitBTC = new Coin("HShare", "HSR",
-                        "HitBTC","010");
+                        HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(hshareHitBTC);
                 Coin hshareBitZ = new Coin("HShare", "hsr",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(hshareBitZ);
                 Coin hshareOKEX = new Coin("HShare", "HSR",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(hshareOKEX);
                 Coin hshareHuobi = new Coin("HShare","hsr",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(hshareHuobi);
                 HomePage.listOfCurrencies.add("HShare");
                 break;
 
             case R.id.arkButton: //Ark
                 Coin arkBittrex = new Coin("Ark","ARK",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(arkBittrex);
-                Coin arkBinance = new Coin("Ark", "ARK", "Binance","011");
+                Coin arkBinance = new Coin("Ark", "ARK", HomePage.binance,"011");
                 HomePage.binance.addCoin(arkBinance);
                 Coin arkBitZ = new Coin("Ark", "ark",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(arkBitZ);
                 Coin arkOKEX = new Coin("Ark", "ARK",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(arkOKEX);
                 HomePage.listOfCurrencies.add("Ark");
                 break;
 
             case R.id.decredButton:
-                Coin decredBittrex = new Coin("Decred","DCR","Bittrex","010");
+                Coin decredBittrex = new Coin("Decred","DCR",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(decredBittrex);
-                Coin decredPoloniex = new Coin("Decred","DCR","Poloniex","010");
+                Coin decredPoloniex = new Coin("Decred","DCR",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(decredPoloniex);
                 HomePage.listOfCurrencies.add("Decred");
                 break;
 
             case R.id.factomButton:
-                Coin factomBittrex = new Coin("Factom","FCT","Bittrex","011");
+                Coin factomBittrex = new Coin("Factom","FCT",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(factomBittrex);
-                Coin factomPoloniex = new Coin("Factom","FCT","Poloniex","010");
+                Coin factomPoloniex = new Coin("Factom","FCT",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(factomPoloniex);
-                Coin factomBitZ = new Coin("Factom","fct","Bit-Z","010");
+                Coin factomBitZ = new Coin("Factom","fct",HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(factomBitZ);
                 HomePage.listOfCurrencies.add("Factom");
                 break;
 
             case R.id.neblioButton:
-                Coin neblioBinance = new Coin("Neblio","NEBL","Binance","011");
+                Coin neblioBinance = new Coin("Neblio","NEBL",HomePage.binance,"011");
                 HomePage.binance.addCoin(neblioBinance);
                 HomePage.listOfCurrencies.add("Neblio");
                 break;
 
             case R.id.digitalNoteButton:
                 Coin digitalNoteBittrex = new Coin("Digital Note","XDN",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(digitalNoteBittrex);
                 Coin digitalNoteHitBTC = new Coin("Digital Note","XDN",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(digitalNoteHitBTC);
                 HomePage.listOfCurrencies.add("Digital Note");
                 break;
 
             case R.id.nxtButton:
-                Coin nxtHitBTC = new Coin("NXT","NXT","HitBTC","111");
+                Coin nxtHitBTC = new Coin("NXT","NXT",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(nxtHitBTC);
                 Coin nxtBittrex = new Coin("NXT","NXT",
-                        "Bittrex","110");
+                        HomePage.bittrex,"110");
                 HomePage.bittrex.addCoin(nxtBittrex);
                 Coin nxtPoloniex = new Coin("NXT","NXT",
-                        "Poloniex","110");
+                        HomePage.poloniex,"110");
                 HomePage.poloniex.addCoin(nxtPoloniex);
                 HomePage.listOfCurrencies.add("NXT");
                 break;
 
             case R.id.syscoinButton:
                 Coin syscoinBittrex = new Coin("Syscoin","SYS",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(syscoinBittrex);
                 Coin syscoinPoloniex = new Coin("Syscoin","SYS",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.poloniex.addCoin(syscoinPoloniex);
                 HomePage.listOfCurrencies.add("Syscoin");
                 break;
 
             case R.id.zcoinButton:
-                Coin zcoinBittrex = new Coin("ZCoin","XZC","Bittrex","010");
+                Coin zcoinBittrex = new Coin("ZCoin","XZC",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(zcoinBittrex);
                 /* wait for Binance to be back up
-                Coin zcoinBinance = new Coin("ZCoin","XZC","Binance","010");
+                Coin zcoinBinance = new Coin("ZCoin","XZC",HomePage.binance,"010");
                 HomePage.binance.addCoin(zcoinBinance);
                 */
                 HomePage.listOfCurrencies.add("ZCoin");
                 break;
 
             case R.id.gameCreditsButton:
-                Coin gameCreditsBitZ = new Coin("Game Credits","game","Bit-Z","010");
+                Coin gameCreditsBitZ = new Coin("Game Credits","game",HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(gameCreditsBitZ);
                 Coin gameCreditsBittrex = new Coin("Game Credits","GAME",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(gameCreditsBittrex);
                 Coin gameCreditsPoloniex = new Coin("Game Credits","GAME",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(gameCreditsPoloniex);
                 Coin gameCreditsHitBTC = new Coin("Game Credits","GAME",
-                    "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.hitBTC.addCoin(gameCreditsHitBTC);
                 HomePage.listOfCurrencies.add("Game Credits");
                 break;
@@ -1149,952 +1147,949 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
             case R.id.gxSharesButton:
                 /* wait until binance works again
                 Coin gxSharesBinance = new Coin("GXShares","GXS",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(gxSharesBinance);
                 */
-                Coin gxSharesBitZ = new Coin("GXShares","gxs","Bit-Z","011");
+                Coin gxSharesBitZ = new Coin("GXShares","gxs",HomePage.bitZ,"011");
                 HomePage.bitZ.addCoin(gxSharesBitZ);
                 HomePage.listOfCurrencies.add("GXShares");
                 break;
 
             case R.id.vertcoinButton:
-                Coin vertcoinBittrex = new Coin("Vertcoin","VTC","Bittrex","010");
+                Coin vertcoinBittrex = new Coin("Vertcoin","VTC",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(vertcoinBittrex);
-                Coin vertcoinPoloniex = new Coin("Vertcoin","VTC","Poloniex","010");
+                Coin vertcoinPoloniex = new Coin("Vertcoin","VTC",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(vertcoinPoloniex);
                 HomePage.listOfCurrencies.add("Vertcoin");
                 break;
 
             case R.id.eosButton:
-                Coin eosBitfinex = new Coin("EOS","EOS","Bitfinex","111");
+                Coin eosBitfinex = new Coin("EOS","EOS",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(eosBitfinex);
-                //Coin eosBinance = new Coin("EOS","EOS","Binance","011");
+                //Coin eosBinance = new Coin("EOS","EOS",HomePage.binance,"011");
                 //HomePage.binance.addCoin(eosBinance);
                 //DEAL WITH KRAKEN HERE
-                Coin eosBitZ = new Coin("EOS","eos","Bit-Z","010");
+                Coin eosBitZ = new Coin("EOS","eos",HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(eosBitZ);
-                Coin eosHitBTC = new Coin("EOS","EOS","HitBTC","111");
+                Coin eosHitBTC = new Coin("EOS","EOS",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(eosHitBTC);
                 Coin eosHuobi = new Coin("EOS","eos",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(eosHuobi);
                 HomePage.listOfCurrencies.add("EOS");
                 break;
 
             case R.id.tronButton:
-                Coin tronBitfinex = new Coin("Tron","TRX","Bitfinex","111");
+                Coin tronBitfinex = new Coin("Tron","TRX",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(tronBitfinex);
-                //Coin tronBinance = new Coin("Tron","TRX","Binance","011");
+                //Coin tronBinance = new Coin("Tron","TRX",HomePage.binance,"011");
                 //HomePage.binance.addCoin(tronBinance);
-                Coin tronBitZ = new Coin("Tron","trx","BitZ","011");
+                Coin tronBitZ = new Coin("Tron","trx",HomePage.bitZ,"011");
                 HomePage.bitZ.addCoin(tronBitZ);
-                Coin tronHitBTC = new Coin("Tron","TRX","HitBTC","111");
+                Coin tronHitBTC = new Coin("Tron","TRX",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(tronHitBTC);
                 Coin tronHuobi = new Coin("Tron","trx",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(tronHuobi);
                 HomePage.listOfCurrencies.add("Tron");
                 break;
 
             case R.id.bitcoinGoldButton:
                 //Coin bitcoinGoldBinance = new Coin("Bitcoin Gold","BTG",
-                //        "Binance","000");
+                //        HomePage.binance,"000");
                 //HomePage.binance.addCoin(bitcoinGoldBinance);
                 Coin bitcoinGoldBittrex = new Coin("Bitcoin Gold","BTG",
-                        "Bittrex","111");
+                        HomePage.bittrex,"111");
                 HomePage.bittrex.addCoin(bitcoinGoldBittrex);
                 Coin bitcoinGoldBitfinex = new Coin("Bitcoin Gold","BTG",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(bitcoinGoldBitfinex);
                 Coin bitcoinGoldHitBTC = new Coin("Bitcoin Gold","BTG",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(bitcoinGoldHitBTC);
                 Coin bitcoinGoldHuobi = new Coin("Bitcoin Coin","btg",
-                        "Huobi","010");
+                        HomePage.huobi,"010");
                 HomePage.huobi.addCoin(bitcoinGoldHuobi);
                 HomePage.listOfCurrencies.add("Bitcoin Gold");
                 break;
 
             case R.id.iconButton:
-                Coin iconBinance = new Coin("Icon","ICX","Binance","011");
+                Coin iconBinance = new Coin("Icon","ICX",HomePage.binance,"011");
                 HomePage.binance.addCoin(iconBinance);
-                Coin iconHitBTC = new Coin("Icon","ICX","HitBTC","111");
+                Coin iconHitBTC = new Coin("Icon","ICX",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(iconHitBTC);
                 Coin iconHuobi = new Coin("Icon","icx",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(iconHuobi);
                 HomePage.listOfCurrencies.add("Icon");
                 break;
 
             case R.id.omiseGoButton:
-                //Coin omiseGoBinance = new Coin("OmiseGO","OMG","Binance","000");
+                //Coin omiseGoBinance = new Coin("OmiseGO","OMG",HomePage.binance,"000");
                 //HomePage.binance.addCoin(omiseGoBinance);
-                Coin omiseGoBitfinex = new Coin("OmiseGO","OMG","Binance","111");
+                Coin omiseGoBitfinex = new Coin("OmiseGO","OMG",HomePage.binance,"111");
                 HomePage.bitfinex.addCoin(omiseGoBitfinex);
-                Coin omiseGoBittrex = new Coin("OmiseGO","OMG","Binance","111");
+                Coin omiseGoBittrex = new Coin("OmiseGO","OMG",HomePage.binance,"111");
                 HomePage.bittrex.addCoin(omiseGoBittrex);
-                Coin omiseGoPoloniex = new Coin("OmiseGO","OMG","Binance","011");
+                Coin omiseGoPoloniex = new Coin("OmiseGO","OMG",HomePage.binance,"011");
                 HomePage.poloniex.addCoin(omiseGoPoloniex);
                 Coin omiseGoHuobi = new Coin("OmiseGO","omg",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(omiseGoHuobi);
                 HomePage.listOfCurrencies.add("OmiseGO");
                 break;
 
-            case R.id.ucashButton:
-                //NO MAJOR EXCHANGES YET
-                break;
 
             case R.id.populousButton:
-                Coin populousBinance = new Coin("Populous","PPT","Binance","011");
+                Coin populousBinance = new Coin("Populous","PPT",HomePage.binance,"011");
                 HomePage.binance.addCoin(populousBinance);
-                Coin populousHitBTC = new Coin("Populous","PPT","HitBTC","011");
+                Coin populousHitBTC = new Coin("Populous","PPT",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(populousHitBTC);
-                Coin populousOKEX = new Coin("Populous","ppt","OKEX","111");
+                Coin populousOKEX = new Coin("Populous","ppt",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(populousOKEX);
                 HomePage.listOfCurrencies.add("Populous");
                 break;
 
             case R.id.bytecoinButton:
-                Coin bytecoinPoloniex = new Coin("Bytecoin","BCN","Poloniex","010");
+                Coin bytecoinPoloniex = new Coin("Bytecoin","BCN",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(bytecoinPoloniex);
-                Coin bytecoinHitBTC = new Coin("Bytecoin","BCN","HitBTC","111");
+                Coin bytecoinHitBTC = new Coin("Bytecoin","BCN",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(bytecoinHitBTC);
                 HomePage.listOfCurrencies.add("Bytecoin");
                 break;
 
             case R.id.statusButton:
-                Coin statusBittrex = new Coin("Status","SNT","Bittrex","011");
+                Coin statusBittrex = new Coin("Status","SNT",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(statusBittrex);
-                Coin statusBinance = new Coin("Status","SNT","Binance","011");
+                Coin statusBinance = new Coin("Status","SNT",HomePage.binance,"011");
                 HomePage.binance.addCoin(statusBinance);
-                Coin statusBitfinex = new Coin("Status","SNT","Bitfinex","111");
+                Coin statusBitfinex = new Coin("Status","SNT",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(statusBitfinex);
-                Coin statusOKEX = new Coin("Status","SNT","OKEX","111");
+                Coin statusOKEX = new Coin("Status","SNT",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(statusOKEX);
                 Coin statusHuobi = new Coin("Status","snt",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(statusHuobi);
                 HomePage.listOfCurrencies.add("status");
                 break;
 
             case R.id.bitsharesButton:
-                Coin bitsharesBinance = new Coin("BitShares","BTS","Binance","011");
+                Coin bitsharesBinance = new Coin("BitShares","BTS",HomePage.binance,"011");
                 HomePage.binance.addCoin(bitsharesBinance);
-                Coin bitsharesPoloniex = new Coin("BitShares","BTS","Poloniex","010");
+                Coin bitsharesPoloniex = new Coin("BitShares","BTS",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(bitsharesPoloniex);
                 HomePage.listOfCurrencies.add("BitShares");
                 break;
 
             case R.id.augurButton:
-                Coin augurBittrex = new Coin("Augur","REP","Bittrex","011");
+                Coin augurBittrex = new Coin("Augur","REP",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(augurBittrex);
-                Coin augurPoloniex = new Coin("Augur","REP","Poloniex","111");
+                Coin augurPoloniex = new Coin("Augur","REP",HomePage.poloniex,"111");
                 HomePage.poloniex.addCoin(augurPoloniex);
-                Coin augurBitfinex = new Coin("Augur","REP","Bitfinex","111");
+                Coin augurBitfinex = new Coin("Augur","REP",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(augurBitfinex);
-                //Coin augurKraken = new Coin("Kraken","REP","Kraken","011");
+                //Coin augurKraken = new Coin(HomePage.kraken,"REP",HomePage.kraken,"011");
                 //HomePage.kraken.addCoin(augurKraken);
-                Coin augurHitBTC = new Coin("Augur","REP","HitBTC","010");
+                Coin augurHitBTC = new Coin("Augur","REP",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(augurHitBTC);
                 HomePage.listOfCurrencies.add("Augur");
                 break;
 
             case R.id.veritaseumButton:
-                Coin veritaseumHitBTC = new Coin("Veritaseum","VERI","HitBTC","111");
+                Coin veritaseumHitBTC = new Coin("Veritaseum","VERI",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(veritaseumHitBTC);
                 HomePage.listOfCurrencies.add("Veritaseum");
                 break;
 
             case R.id.waltonButton:
-                Coin waltonBinance = new Coin("Waltonchain","WTC","Binance","011");
+                Coin waltonBinance = new Coin("Waltonchain","WTC",HomePage.binance,"011");
                 HomePage.binance.addCoin(waltonBinance);
-                Coin waltonOKEX = new Coin("Waltonchain","WTC","OKEX","011");
+                Coin waltonOKEX = new Coin("Waltonchain","WTC",HomePage.OKEX,"011");
                 HomePage.OKEX.addCoin(waltonOKEX);
-                Coin waltonHitBTC = new Coin("Waltonchain","WTC","HitBTC","010");
+                Coin waltonHitBTC = new Coin("Waltonchain","WTC",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(waltonHitBTC);
                 HomePage.listOfCurrencies.add("Waltonchain");
                 break;
 
             case R.id.zeroxButton:
-                Coin zeroxBinance = new Coin("0x","ZRX","Binance","011");
+                Coin zeroxBinance = new Coin("0x","ZRX",HomePage.binance,"011");
                 HomePage.binance.addCoin(zeroxBinance);
-                Coin zeroxBitfinex = new Coin("0x","zrx","Bitfinex","111");
+                Coin zeroxBitfinex = new Coin("0x","zrx",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(zeroxBitfinex);
-                Coin zeroxPoloniex = new Coin("0x","ZRX","Poloniex","011");
+                Coin zeroxPoloniex = new Coin("0x","ZRX",HomePage.poloniex,"011");
                 HomePage.poloniex.addCoin(zeroxPoloniex);
-                Coin zeroxHitBTC = new Coin("0x","ZRX","HitBTC","111");
+                Coin zeroxHitBTC = new Coin("0x","ZRX",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(zeroxHitBTC);
-                Coin zeroxOKEX = new Coin("0x","ZRX","OKEX","011");
+                Coin zeroxOKEX = new Coin("0x","ZRX",HomePage.OKEX,"011");
                 HomePage.OKEX.addCoin(zeroxOKEX);
                 Coin zeroxHuobi = new Coin("0x","zrx",
-                        "Huobi","010");
+                        HomePage.huobi,"010");
                 HomePage.huobi.addCoin(zeroxHuobi);
                 HomePage.listOfCurrencies.add("0x");
                 break;
 
             case R.id.ardorButton:
-                Coin ardorHitBTC = new Coin("Ardor","ARDR","HitBTC","010");
+                Coin ardorHitBTC = new Coin("Ardor","ARDR",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(ardorHitBTC);
-                Coin ardorBittrex = new Coin("Ardor","ARDR","Bittrex","010");
+                Coin ardorBittrex = new Coin("Ardor","ARDR",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(ardorBittrex);
-                Coin ardorPoloniex = new Coin("Ardor","ARDR","Poloniex","010");
+                Coin ardorPoloniex = new Coin("Ardor","ARDR",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(ardorPoloniex);
                 HomePage.listOfCurrencies.add("Ardor");
                 break;
 
             case R.id.revainButton:
-                Coin revainOKEX = new Coin("Revain","R","OKEX","011");
+                Coin revainOKEX = new Coin("Revain","R",HomePage.OKEX,"011");
                 HomePage.OKEX.addCoin(revainOKEX);
                 HomePage.listOfCurrencies.add("Revain");
                 break;
 
             case R.id.digixdaoButton:
-                Coin digixdaoBinance = new Coin("DigixDAO", "DGD","Binance","011");
+                Coin digixdaoBinance = new Coin("DigixDAO", "DGD",HomePage.binance,"011");
                 HomePage.binance.addCoin(digixdaoBinance);
-                Coin digixdaoOKEX = new Coin("DigixDAO","dgd","OKEX","110");
+                Coin digixdaoOKEX = new Coin("DigixDAO","dgd",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(digixdaoOKEX);
-                Coin digixdaoHitBTC = new Coin("DigixDAO","DGD","HitBTC","010");
+                Coin digixdaoHitBTC = new Coin("DigixDAO","DGD",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(digixdaoHitBTC);
                 Coin digixdaoHuobi = new Coin("DigixDAO","dgd",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(digixdaoHuobi);
                 HomePage.listOfCurrencies.add("DigixDAO");
                 break;
 
             case R.id.gasButton:
-                Coin gasBinance = new Coin("Gas","GAS","Binance","010");
+                Coin gasBinance = new Coin("Gas","GAS",HomePage.binance,"010");
                 HomePage.binance.addCoin(gasBinance);
-                Coin gasPoloniex = new Coin("Gas","GAS","Poloniex","011");
+                Coin gasPoloniex = new Coin("Gas","GAS",HomePage.poloniex,"011");
                 HomePage.poloniex.addCoin(gasPoloniex);
-                Coin gasOKEX = new Coin("Gas","GAS","OKEX","010");
+                Coin gasOKEX = new Coin("Gas","GAS",HomePage.OKEX,"010");
                 HomePage.binance.addCoin(gasOKEX);
                 Coin gasHuobi = new Coin("Gas","gas",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(gasHuobi);
                 HomePage.listOfCurrencies.add("Gas");
                 break;
 
             case R.id.kyberCurrency:
-                Coin kyberBinance = new Coin("Kyber","KNC","Binance","011");
+                Coin kyberBinance = new Coin("Kyber","KNC",HomePage.binance,"011");
                 HomePage.binance.addCoin(kyberBinance);
-                Coin kyberOKEX = new Coin("Kyber","KNC","OKEX","110");
+                Coin kyberOKEX = new Coin("Kyber","KNC",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(kyberOKEX);
                 Coin kyberHuobi = new Coin("Kyber","knc",
-                        "Huobi","010");
+                        HomePage.huobi,"010");
                 HomePage.huobi.addCoin(kyberHuobi);
                 HomePage.listOfCurrencies.add("Kyber");
                 break;
 
             case R.id.batButton:
-                Coin batBinance = new Coin("BAT","BAT","Binance","011");
+                Coin batBinance = new Coin("BAT","BAT",HomePage.binance,"011");
                 HomePage.binance.addCoin(batBinance);
-                Coin batBitfinex = new Coin("BAT","BAT","Bitfinex","111");
+                Coin batBitfinex = new Coin("BAT","BAT",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(batBitfinex);
-                Coin batBittrex = new Coin("BAT","BAT","Bittrex","011");
+                Coin batBittrex = new Coin("BAT","BAT",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(batBittrex);
                 Coin batHuobi = new Coin("BAT","bat",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(batHuobi);
                 HomePage.listOfCurrencies.add("BAT");
                 break;
 
             case R.id.loopringButton:
-                Coin loopringBinance = new Coin("Loopring","LRC","Binance","011");
+                Coin loopringBinance = new Coin("Loopring","LRC",HomePage.binance,"011");
                 HomePage.binance.addCoin(loopringBinance);
-                Coin loopringOKEX = new Coin("Loopring","LRC","OKEX","110");
+                Coin loopringOKEX = new Coin("Loopring","LRC",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(loopringOKEX);
                 HomePage.listOfCurrencies.add("Loopring");
                 break;
 
             case R.id.pivxButton:
-                Coin pivxBinance = new Coin("PIVX","PIVX","Binance","011");
+                Coin pivxBinance = new Coin("PIVX","PIVX",HomePage.binance,"011");
                 HomePage.binance.addCoin(pivxBinance);
-                Coin pivxBittrex = new Coin("PIVX","PIVX","Bittrex","010");
+                Coin pivxBittrex = new Coin("PIVX","PIVX",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(pivxBittrex);
                 HomePage.listOfCurrencies.add("PIVX");
                 break;
 
             case R.id.ethosButton:
-                Coin ethosBinance = new Coin("Ethos","BQX","Binance","011");
+                Coin ethosBinance = new Coin("Ethos","BQX",HomePage.binance,"011");
                 HomePage.binance.addCoin(ethosBinance);
                 HomePage.listOfCurrencies.add("Ethos");
                 break;
 
             case R.id.golemButton:
-                Coin golemBittrex = new Coin("Golem","GNT","Bittrex","011");
+                Coin golemBittrex = new Coin("Golem","GNT",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(golemBittrex);
-                Coin golemBitfinex = new Coin("Golem","GNT","Bitfinex","111");
+                Coin golemBitfinex = new Coin("Golem","GNT",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(golemBitfinex);
-                Coin golemPoloniex = new Coin("Golem","GNT","Poloniex","011");
+                Coin golemPoloniex = new Coin("Golem","GNT",HomePage.poloniex,"011");
                 HomePage.poloniex.addCoin(golemPoloniex);
-                Coin golemOKEX = new Coin("Golem","GNT","OKEX","110");
+                Coin golemOKEX = new Coin("Golem","GNT",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(golemOKEX);
                 Coin golemHuobi = new Coin("Golem","gnt",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(golemHuobi);
                 HomePage.listOfCurrencies.add("Golem");
                 break;
 
             case R.id.aelfButton:
-                Coin aelfBinance = new Coin("aelf","ELF","Binance","011");
+                Coin aelfBinance = new Coin("aelf","ELF",HomePage.binance,"011");
                 HomePage.binance.addCoin(aelfBinance);
-                Coin aelfOKEX = new Coin("aelf","ELF","OKEX","111");
+                Coin aelfOKEX = new Coin("aelf","ELF",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(aelfOKEX);
                 Coin aelfHuobi = new Coin("aelf","elf",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(aelfHuobi);
                 HomePage.listOfCurrencies.add("aelf");
                 break;
 
             case R.id.nebulasButton:
-                Coin nebulasOKEX = new Coin("Nebulas","NAS","OKEX","111");
+                Coin nebulasOKEX = new Coin("Nebulas","NAS",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(nebulasOKEX);
                 Coin nebulasHuobi = new Coin("Nebulas","nas",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(nebulasHuobi);
                 HomePage.listOfCurrencies.add("Nebulas");
                 break;
 
             case R.id.pillarButton:
-                Coin pillarHitBTC = new Coin("Pillar","PLR","HitBTC","011");
+                Coin pillarHitBTC = new Coin("Pillar","PLR",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(pillarHitBTC);
                 HomePage.listOfCurrencies.add("Pillar");
                 break;
 
             case R.id.powerledgerButton:
                 Coin powerledgerBinance = new Coin("Power Ledger","POWR",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(powerledgerBinance);
                 Coin powerledgerBittrex = new Coin("Power Ledger","POWR",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(powerledgerBittrex);
                 HomePage.listOfCurrencies.add("Power Ledger");
                 break;
 
             case R.id.cindicatorButton:
                 Coin cindicatorBinance = new Coin("Cindicator","CND",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(cindicatorBinance);
                 Coin cindicatorHitBTC = new Coin("Cindicator","CND",
-                        "HitBTC","010");
+                        HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(cindicatorHitBTC);
                 HomePage.listOfCurrencies.add("Cindicator");
                 break;
 
             case R.id.iosTokenButton:
                 Coin iostokenBinance = new Coin("IOStoken","IOST",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(iostokenBinance);
                 Coin iostokenOKEX = new Coin("IOStoken","IOST",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(iostokenOKEX);
                 Coin iostokenHuobi = new Coin("IOStoken","iost",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(iostokenHuobi);
                 HomePage.listOfCurrencies.add("IOStoken");
                 break;
 
             case R.id.funfairButton:
-                Coin funfairBinance = new Coin("FunFair","FUN","Binance","011");
+                Coin funfairBinance = new Coin("FunFair","FUN",HomePage.binance,"011");
                 HomePage.binance.addCoin(funfairBinance);
-                //Coin funfairBittrex = new Coin("FunFair","","Bittrex","");
+                //Coin funfairBittrex = new Coin("FunFair","",HomePage.bittrex,"");
                 //HomePage.bittrex.addCoin(funfairBittrex);
-                Coin funfairBitfinex = new Coin("FunFair","FUN","Bitfinex","111");
+                Coin funfairBitfinex = new Coin("FunFair","FUN",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(funfairBitfinex);
-                Coin funfairOKEX = new Coin("FunFair","FUN","OKEX","010");
+                Coin funfairOKEX = new Coin("FunFair","FUN",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(funfairOKEX);
                 HomePage.listOfCurrencies.add("FunFair");
                 break;
 
             case R.id.enigmaButton:
-                Coin enigmaBinance = new Coin("Enigma","ENG","Binance","011");
+                Coin enigmaBinance = new Coin("Enigma","ENG",HomePage.binance,"011");
                 HomePage.binance.addCoin(enigmaBinance);
-                Coin enigmaBittrex = new Coin("Enigma","ENG","Bittrex","011");
+                Coin enigmaBittrex = new Coin("Enigma","ENG",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(enigmaBittrex);
                 HomePage.listOfCurrencies.add("Enigma");
                 break;
 
             case R.id.saltButton:
-                Coin saltBinance = new Coin("Salt","SALT","Binance","011");
+                Coin saltBinance = new Coin("Salt","SALT",HomePage.binance,"011");
                 HomePage.binance.addCoin(saltBinance);
-                Coin saltBittrex = new Coin("Salt","SALT","Bittrex","011");
+                Coin saltBittrex = new Coin("Salt","SALT",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(saltBittrex);
                 Coin saltHuobi = new Coin("Salt","salt",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(saltHuobi);
                 HomePage.listOfCurrencies.add("Salt");
                 break;
 
             case R.id.civicButton:
-                Coin civicBittrex = new Coin("Civic","CVC","Bittrex","011");
+                Coin civicBittrex = new Coin("Civic","CVC",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(civicBittrex);
-                Coin civicPoloniex = new Coin("Civic","CVC","Poloniex","011");
+                Coin civicPoloniex = new Coin("Civic","CVC",HomePage.poloniex,"011");
                 HomePage.poloniex.addCoin(civicPoloniex);
-                Coin civicOKEX = new Coin("Civic","cvc","OKEX","110");
+                Coin civicOKEX = new Coin("Civic","cvc",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(civicOKEX);
                 Coin civicHuobi = new Coin("Civic","cvc",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(civicHuobi);
                 HomePage.listOfCurrencies.add("Civic");
                 break;
 
             case R.id.waxButton:
-                Coin waxHitBTC = new Coin("WAX","WAX","HitBTC","111");
+                Coin waxHitBTC = new Coin("WAX","WAX",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(waxHitBTC);
                 Coin waxHuobi = new Coin("WAX","wax",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(waxHuobi);
                 HomePage.listOfCurrencies.add("WAX");
                 break;
 
             case R.id.storjButton:
-                Coin storjBittrex = new Coin("Storj","STORJ","Bittrex","011");
+                Coin storjBittrex = new Coin("Storj","STORJ",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(storjBittrex);
-                Coin storjBinance = new Coin("Storj","STORJ","Binance","011");
+                Coin storjBinance = new Coin("Storj","STORJ",HomePage.binance,"011");
                 HomePage.binance.addCoin(storjBinance);
-                Coin storjPoloniex = new Coin("Storj","STORJ","Poloniex","010");
+                Coin storjPoloniex = new Coin("Storj","STORJ",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(storjPoloniex);
                 Coin storjHuobi = new Coin("Storj","storj",
-                        "Huobi","110");
+                        HomePage.huobi,"110");
                 HomePage.huobi.addCoin(storjHuobi);
                 HomePage.listOfCurrencies.add("Storj");
                 break;
 
             case R.id.decentralandButton:
                 Coin decentralandBittrex = new Coin("Decentraland","MANA",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(decentralandBittrex);
                 Coin decentralandBinance = new Coin("Decentraland","MANA",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(decentralandBinance);
                 Coin decentralandBitfinex = new Coin("Decentraland","MANA",
-                        "Bitfinex","010");
+                        HomePage.bitfinex,"010");
                 HomePage.bitfinex.addCoin(decentralandBitfinex);
                 Coin decentralandOKEX = new Coin("Decentraland","MANA",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(decentralandOKEX);
                 Coin decentralandHuobi = new Coin("Decentraland","mana",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(decentralandHuobi);
                 HomePage.listOfCurrencies.add("Decentraland");
                 break;
 
             case R.id.navButton:
-                Coin navBittrex = new Coin("NAV","NAV","Bittrex","010");
+                Coin navBittrex = new Coin("NAV","NAV",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(navBittrex);
-                Coin navBinance = new Coin("NAV","NAV","Binance","011");
+                Coin navBinance = new Coin("NAV","NAV",HomePage.binance,"011");
                 HomePage.binance.addCoin(navBinance);
-                Coin navPoloniex = new Coin("NAV","NAV","Poloniex","010");
+                Coin navPoloniex = new Coin("NAV","NAV",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(navPoloniex);
                 HomePage.listOfCurrencies.add("NAV");
                 break;
 
             case R.id.timenewbankButton:
                 Coin timenewbankBinance = new Coin("Time New Bank","TNB",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(timenewbankBinance);
                 Coin timenewbankBitfinex = new Coin("Time New Bank","TNB",
-                        "Bitfinex","110");
+                        HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(timenewbankBitfinex);
                 Coin timenewbankOKEX = new Coin("Time New Bank","TNB",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(timenewbankOKEX);
                 Coin timenewbankHuobi = new Coin("Time New Bank","tnb",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(timenewbankHuobi);
                 HomePage.listOfCurrencies.add("Time New Bank");
                 break;
 
             case R.id.achainButton:
-                Coin achainOKEX = new Coin("Achain","ACT","OKEX","111");
+                Coin achainOKEX = new Coin("Achain","ACT",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(achainOKEX);
                 Coin achainHuobi = new Coin("Achain","act",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(achainHuobi);
                 HomePage.listOfCurrencies.add("Achain");
                 break;
 
             case R.id.gnosisButton:
-                Coin gnosisBittrex = new Coin("Gnosis","GNO","Bittrex","010");
+                Coin gnosisBittrex = new Coin("Gnosis","GNO",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(gnosisBittrex);
-                //Coin gnosisKraken = new Coin("Gnosis","","Kraken","");
+                //Coin gnosisKraken = new Coin("Gnosis","",HomePage.kraken,"");
                 //HomePage.kraken.addCoin(gnosisKraken);
-                Coin gnosisPoloniex = new Coin("Gnosis","GNO","Poloniex","010");
+                Coin gnosisPoloniex = new Coin("Gnosis","GNO",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(gnosisPoloniex);
                 HomePage.listOfCurrencies.add("Gnosis");
                 break;
 
             case R.id.iconomiButton:
-                Coin iconomiBinance = new Coin("Iconomi","","Binance","011");
+                Coin iconomiBinance = new Coin("Iconomi","",HomePage.binance,"011");
                 HomePage.binance.addCoin(iconomiBinance);
-                //Coin iconomiKraken = new Coin("Iconomi","","Kraken","");
+                //Coin iconomiKraken = new Coin("Iconomi","",HomePage.kraken,"");
                 //HomePage.kraken.addCoin(iconomiKraken);
                 HomePage.listOfCurrencies.add("Iconomi");
                 break;
 
             case R.id.bancorButton:
                 Coin bancorBittrex = new Coin("Bancor","BNT",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(bancorBittrex);
                 Coin bancorBinance = new Coin("Bancor","BNT",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(bancorBinance);
                 Coin bancorHitBTC = new Coin("Bancor","BNT",
-                        "HitBTC","010");
+                        HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(bancorHitBTC);
                 Coin bancorOKEX = new Coin("Bancor","BNT",
-                        "OKEX","010");
+                        HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(bancorOKEX);
                 HomePage.listOfCurrencies.add("Bancor");
                 break;
 
             case R.id.madesafecoinButton:
                 Coin madesafecoinBittrex = new Coin("MaidSafeCoin",
-                        "MAID","Bittrex","010");
+                        "MAID",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(madesafecoinBittrex);
                 Coin madesafecoinPoloniex = new Coin("MaidSafeCoin","MAID",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(madesafecoinPoloniex);
                 Coin madesafecoinHitBTC = new Coin("MaidSafeCoin","MAID",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(madesafecoinHitBTC);
                 HomePage.listOfCurrencies.add("MaidSafeCoin");
                 break;
 
             case R.id.chainlinkButton:
                 Coin chainlinkBinance = new Coin("ChainLink","LINK",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(chainlinkBinance);
                 Coin chainlinkOKEX = new Coin("ChainLink","link",
-                        "OKEX","110");
+                        HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(chainlinkOKEX);
                 Coin chainlinkHuobi = new Coin("ChainLink","link",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(chainlinkHuobi);
                 HomePage.listOfCurrencies.add("ChainLink");
                 break;
 
             case R.id.emercoinButton:
-                Coin emercoinBittrex = new Coin("Emercoin","EMC","Bittrex","010");
+                Coin emercoinBittrex = new Coin("Emercoin","EMC",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(emercoinBittrex);
-                Coin emercoinHitBTC = new Coin("Emercoin","EMC","HitBTC","010");
+                Coin emercoinHitBTC = new Coin("Emercoin","EMC",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(emercoinHitBTC);
                 HomePage.listOfCurrencies.add("Emercoin");
                 break;
 
             case R.id.ethlendButton:
-                Coin ethlendBinance = new Coin("ETHLend","LEND","Binance","011");
+                Coin ethlendBinance = new Coin("ETHLend","LEND",HomePage.binance,"011");
                 HomePage.binance.addCoin(ethlendBinance);
-                Coin ethlendOKEX = new Coin("ETHLend","LEND","OKEX","111");
+                Coin ethlendOKEX = new Coin("ETHLend","LEND",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(ethlendOKEX);
-                Coin ethlendHitBTC = new Coin("EthLend","LEND","HitBTC","011");
+                Coin ethlendHitBTC = new Coin("EthLend","LEND",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(ethlendHitBTC);
                 HomePage.listOfCurrencies.add("ETHLend");
                 break;
 
             case R.id.iexecrlcButton:
-                Coin iexecrlcBittrex = new Coin("iExec RLC","RLC","Bittrex","010");
+                Coin iexecrlcBittrex = new Coin("iExec RLC","RLC",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(iexecrlcBittrex);
-                Coin iexecrlcBinance = new Coin("iExec RLC","RLC","Binance","011");
+                Coin iexecrlcBinance = new Coin("iExec RLC","RLC",HomePage.binance,"011");
                 HomePage.binance.addCoin(iexecrlcBinance);
-                Coin iexecrlcBitfinex = new Coin("iExec RLC","RLC","Bitfinex","111");
+                Coin iexecrlcBitfinex = new Coin("iExec RLC","RLC",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(iexecrlcBitfinex);
                 HomePage.listOfCurrencies.add("iExec RLC");
                 break;
 
             case R.id.monacoButton:
-                Coin monacoBittrex = new Coin("Monaco","MCO","Bittrex","010");
+                Coin monacoBittrex = new Coin("Monaco","MCO",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(monacoBittrex);
-                Coin monacoBinance = new Coin("Monaco","MCO","Binance","011");
+                Coin monacoBinance = new Coin("Monaco","MCO",HomePage.binance,"011");
                 HomePage.binance.addCoin(monacoBinance);
-                Coin monacoOKEX = new Coin("Monaco","MCO","OKEX","010");
+                Coin monacoOKEX = new Coin("Monaco","MCO",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(monacoOKEX);
-                Coin monacoBitZ = new Coin("Monaco","mco","Bit-Z","011");
+                Coin monacoBitZ = new Coin("Monaco","mco",HomePage.bitZ,"011");
                 HomePage.bitZ.addCoin(monacoBitZ);
                 Coin monacoHuobi = new Coin("Monaco","mco",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(monacoHuobi);
                 HomePage.listOfCurrencies.add("Monaco");
                 break;
 
             case R.id.blockvButton:
-                Coin blockvOKEX = new Coin("BLOCKv","VEE","OKEX","111");
+                Coin blockvOKEX = new Coin("BLOCKv","VEE",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(blockvOKEX);
                 HomePage.listOfCurrencies.add("BLOCKv");
                 break;
 
             case R.id.bluzelleButton:
-                Coin bluzelleBinance = new Coin("Bluzelle","BLZ","Binance","011");
+                Coin bluzelleBinance = new Coin("Bluzelle","BLZ",HomePage.binance,"011");
                 HomePage.binance.addCoin(bluzelleBinance);
                 HomePage.listOfCurrencies.add("Bluzelle");
                 break;
 
             case R.id.ripiocreditnetworkButton:
                 Coin ripioCreditNetworkBittrex = new Coin("Ripio Credit Network",
-                        "RCN","Bittrex","010");
+                        "RCN",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(ripioCreditNetworkBittrex);
                 Coin ripioCreditNetworkBinance = new Coin("Ripio Credit Network",
-                        "RCN","Binance","011");
+                        "RCN",HomePage.binance,"011");
                 HomePage.binance.addCoin(ripioCreditNetworkBinance);
                 Coin ripioCreditNetworkBitfinex = new Coin("Ripio Credit Network",
-                        "rcn","Bitfinex","110");
+                        "rcn",HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(ripioCreditNetworkBitfinex);
                 Coin ripioCreditNetworkOKEX = new Coin("Ripio Credit Network",
-                        "rcn","OKEX","011");
+                        "rcn",HomePage.OKEX,"011");
                 HomePage.OKEX.addCoin(ripioCreditNetworkOKEX);
                 Coin ripioCreditNetworkHuobi = new Coin("Ripio Credit Network","rcn",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(ripioCreditNetworkHuobi);
                 HomePage.listOfCurrencies.add("Ripio Credit Network");
                 break;
 
             case R.id.iotchainButton:
-                Coin iotchainOKEX = new Coin("IoT Chain","ITC","OKEX","111");
+                Coin iotchainOKEX = new Coin("IoT Chain","ITC",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(iotchainOKEX);
                 Coin iotchainHuobi = new Coin("IoT Chain","itc",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(iotchainHuobi);
                 HomePage.listOfCurrencies.add("IoT Chain");
                 break;
 
             case R.id.airswapButton:
-                Coin airswapBinance = new Coin("AirSwap","AST","Binance","011");
+                Coin airswapBinance = new Coin("AirSwap","AST",HomePage.binance,"011");
                 HomePage.binance.addCoin(airswapBinance);
                 Coin airswapHuobi = new Coin("AirSwap","ast",
-                        "Huobi","010");
+                        HomePage.huobi,"010");
                 HomePage.huobi.addCoin(airswapHuobi);
                 HomePage.listOfCurrencies.add("AirSwap");
                 break;
 
             case R.id.counterpartyButton:
                 Coin counterpartyBittrex = new Coin("Counterparty","XCP",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(counterpartyBittrex);
                 Coin counterpartyPoloniex = new Coin("Counterparty","XCP",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(counterpartyPoloniex);
                 HomePage.listOfCurrencies.add("Counterparty");
                 break;
 
             case R.id.einsteiniumButton:
                 Coin einsteiniumBittrex = new Coin("Einsteinium","EMC2",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(einsteiniumBittrex);
                 Coin einsteiniumPoloniex = new Coin("Einsteinium","EMC2",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(einsteiniumPoloniex);
                 HomePage.listOfCurrencies.add("Einsteinium");
                 break;
 
             case R.id.peercoinButton:
                 Coin peercoinBittrex = new Coin("Peercoin","PPC",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(peercoinBittrex);
                 Coin peercoinBitZ = new Coin("Peercoin","ppc",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(peercoinBitZ);
                 Coin peercoinPoloniex = new Coin("Peercoin","PPC",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(peercoinPoloniex);
                 HomePage.listOfCurrencies.add("Peercoin");
                 break;
 
             case R.id.vibeButton:
-                Coin vibeBinance = new Coin("VIBE","VIBE","Binance","011");
+                Coin vibeBinance = new Coin("VIBE","VIBE",HomePage.binance,"011");
                 HomePage.binance.addCoin(vibeBinance);
-                Coin vibeHitBTC = new Coin("VIBE","VIBE","HitBTC","010");
+                Coin vibeHitBTC = new Coin("VIBE","VIBE",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(vibeHitBTC);
                 HomePage.listOfCurrencies.add("VIBE");
                 break;
 
             case R.id.cybermilesButton:
                 Coin cybermilesBinance = new Coin("CyberMiles","CMT",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(cybermilesBinance);
-                Coin cybermilesOKEX = new Coin("CyberMiles","CMT","OKEX",
+                Coin cybermilesOKEX = new Coin("CyberMiles","CMT",HomePage.OKEX,
                         "110");
                 HomePage.OKEX.addCoin(cybermilesOKEX);
                 Coin cybermilesHuobi = new Coin("CyberMiles","cmt",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(cybermilesHuobi);
                 HomePage.listOfCurrencies.add("CyberMiles");
                 break;
 
             case R.id.adexButton:
-                Coin adexBittrex = new Coin("AdEx","ADX","Bittrex","010");
+                Coin adexBittrex = new Coin("AdEx","ADX",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(adexBittrex);
-                Coin adexbinance = new Coin("AdEx","ADX","Binance","011");
+                Coin adexbinance = new Coin("AdEx","ADX",HomePage.binance,"011");
                 HomePage.binance.addCoin(adexbinance);
-                Coin adexHitBTC = new Coin("AdEx","","HitBTC","001");
+                Coin adexHitBTC = new Coin("AdEx","",HomePage.hitBTC,"001");
                 HomePage.hitBTC.addCoin(adexHitBTC);
                 HomePage.listOfCurrencies.add("AdEx");
                 break;
 
             case R.id.singulardtvButton:
                 Coin singulardtvBinance = new Coin("SingularDTV","SNGLS",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(singulardtvBinance);
                 Coin singulardtvBitfinex = new Coin("SingularDTV","SNG",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(singulardtvBitfinex);
                 Coin singulardtvOKEX = new Coin("SingularDTV","sngls",
-                        "OKEX","010");
+                        HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(singulardtvOKEX);
                 HomePage.listOfCurrencies.add("SingularDTV");
                 break;
 
             case R.id.metalButton:
-                Coin metalBinance = new Coin("Metal","MTL","Binance","011");
+                Coin metalBinance = new Coin("Metal","MTL",HomePage.binance,"011");
                 HomePage.binance.addCoin(metalBinance);
-                Coin metalOKEX = new Coin("Metal","mtl","OKEX","011");
+                Coin metalOKEX = new Coin("Metal","mtl",HomePage.OKEX,"011");
                 HomePage.OKEX.addCoin(metalOKEX);
                 Coin metalHuobi = new Coin("Metal","mtl",
-                        "Huobi","010");
+                        HomePage.huobi,"010");
                 HomePage.huobi.addCoin(metalHuobi);
                 HomePage.listOfCurrencies.add("MTL");
                 break;
 
             case R.id.simpletokenButton:
                 Coin simpletokenBinance = new Coin("Simple Token","OST",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(simpletokenBinance);
                 Coin simpletokenOKEX = new Coin("Simple Token","OST",
-                        "OKEX","110");
+                        HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(simpletokenOKEX);
                 Coin simpletokenHuobi = new Coin("Simple Token","ost",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(simpletokenHuobi);
                 HomePage.listOfCurrencies.add("Simple Token");
                 break;
 
             case R.id.eidooButton:
-                Coin eidooBinance = new Coin("Eidoo","EDO","Binance","011");
+                Coin eidooBinance = new Coin("Eidoo","EDO",HomePage.binance,"011");
                 HomePage.binance.addCoin(eidooBinance);
-                Coin eidooBitfinex = new Coin("Eidoo","EDO","Bitfinex","111");
+                Coin eidooBitfinex = new Coin("Eidoo","EDO",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(eidooBitfinex);
-                Coin eidooHitBTC = new Coin("Eidoo","EDO","HitBTC","111");
+                Coin eidooHitBTC = new Coin("Eidoo","EDO",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(eidooHitBTC);
-                Coin eidooOKEX = new Coin("Eidoo","EDO","OKEX","110");
+                Coin eidooOKEX = new Coin("Eidoo","EDO",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(eidooOKEX);
                 HomePage.listOfCurrencies.add("Eidoo");
                 break;
 
             case R.id.thetatokenButton:
-                Coin thetatokenOKEX = new Coin("Theta Token","THETA","OKEX","111");
+                Coin thetatokenOKEX = new Coin("Theta Token","THETA",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(thetatokenOKEX);
                 Coin thetatokenHuobi = new Coin("Theta Token","theta",
-                        "Huobi","111");
+                        HomePage.huobi,"111");
                 HomePage.huobi.addCoin(thetatokenHuobi);
                 HomePage.listOfCurrencies.add("Theta Token");
                 break;
 
             case R.id.metaverseetpButton:
                 Coin metaverseBitfinex = new Coin("Metaverse","ETP",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(metaverseBitfinex);
                 Coin metaverseBitZ = new Coin("Metaverse","etp",
-                        "Bit-Z","010");
+                        HomePage.bitZ,"010");
                 HomePage.bitZ.addCoin(metaverseBitZ);
                 Coin metaverseHitBTC = new Coin("Metaverse","ETP",
-                        "HitBTC","010");
+                        HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(metaverseHitBTC);
                 HomePage.listOfCurrencies.add("Metaverse");
                 break;
 
             case R.id.aeternityButton:
-                Coin aeternityBinance = new Coin("Aeternity","AE","Binance","011");
+                Coin aeternityBinance = new Coin("Aeternity","AE",HomePage.binance,"011");
                 HomePage.binance.addCoin(aeternityBinance);
-                Coin aeternityHitBTC = new Coin("Aeternity","AE","HitBTC","010");
+                Coin aeternityHitBTC = new Coin("Aeternity","AE",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(aeternityHitBTC);
                 HomePage.listOfCurrencies.add("Aeternity");
                 break;
 
             case R.id.zilliqaButton:
-                Coin zilliqaHuobi = new Coin("Zilliqa","zil","Huobi","111");
+                Coin zilliqaHuobi = new Coin("Zilliqa","zil",HomePage.huobi,"111");
                 HomePage.huobi.addCoin(zilliqaHuobi);
                 HomePage.listOfCurrencies.add("Zilliqa");
                 break;
 
             case R.id.bytomButton:
-                Coin bytomOKEX = new Coin("Bytom","BTM","OKEX","111");
+                Coin bytomOKEX = new Coin("Bytom","BTM",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(bytomOKEX);
-                Coin bytomHuobi = new Coin("Bytom","btm","Huobi","011");
+                Coin bytomHuobi = new Coin("Bytom","btm",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(bytomHuobi);
                 HomePage.listOfCurrencies.add("Bytom");
                 break;
 
             case R.id.dentacoinButton:
-                Coin dentacoinHitBTC = new Coin("Dentacoin","DCN","HitBTC","101");
+                Coin dentacoinHitBTC = new Coin("Dentacoin","DCN",HomePage.hitBTC,"101");
                 HomePage.hitBTC.addCoin(dentacoinHitBTC);
                 HomePage.listOfCurrencies.add("Dentacoin");
                 break;
 
             case R.id.qashButton:
-                Coin qashHuobi = new Coin("QASH","qash","Huobi","011");
+                Coin qashHuobi = new Coin("QASH","qash",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(qashHuobi);
-                Coin qashBitfinex = new Coin("QASH","QSH","Bitfinex","111");
+                Coin qashBitfinex = new Coin("QASH","QSH",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(qashBitfinex);
                 HomePage.listOfCurrencies.add("QASH");
                 break;
 
             case R.id.bitcoreButton:
-                Coin bitcoreBitZ = new Coin("Bitcore","btx","Bit-Z","011");
+                Coin bitcoreBitZ = new Coin("Bitcore","btx",HomePage.bitZ,"011");
                 HomePage.bitZ.addCoin(bitcoreBitZ);
-                Coin bitcoreHitBTC = new Coin("Bitcore","BTX","HitBTC","010");
+                Coin bitcoreHitBTC = new Coin("Bitcore","BTX",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(bitcoreHitBTC);
                 HomePage.listOfCurrencies.add("Bitcore");
                 break;
 
             case R.id.aionButton:
-                Coin aionBinance = new Coin("Aion","AION","Binance","011");
+                Coin aionBinance = new Coin("Aion","AION",HomePage.binance,"011");
                 HomePage.binance.addCoin(aionBinance);
                 break;
 
             case R.id.requestnetworkButton:
                 Coin requestnetworkBinance = new Coin("Request Network","REQ",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(requestnetworkBinance);
                 Coin requestnetworkHuobi = new Coin("Request Network","011",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.listOfCurrencies.add("Request Network");
                 break;
 
             case R.id.tenxButton:
-                Coin tenxBittrex = new Coin("TenX","PAY","Bittrex","010");
+                Coin tenxBittrex = new Coin("TenX","PAY",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(tenxBittrex);
-                Coin tenxHuobi = new Coin("TenX","pay","Huobi","011");
+                Coin tenxHuobi = new Coin("TenX","pay",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(tenxHuobi);
                 HomePage.listOfCurrencies.add("TenX");
                 break;
 
             case R.id.quantstampButton:
                 Coin quantstampBinance = new Coin("Quantstamp","QSP",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(quantstampBinance);
-                Coin quantstampHuobi = new Coin("Quantstamp","qsp","Huobi","011");
+                Coin quantstampHuobi = new Coin("Quantstamp","qsp",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(quantstampHuobi);
                 HomePage.listOfCurrencies.add("Quantstamp");
                 break;
 
             case R.id.appcoinsButton:
                 Coin appcoinsBinance = new Coin("AppCoins","APPC",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(appcoinsBinance);
                 Coin appcoinsHuobi = new Coin("AppCoins","appc",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(appcoinsHuobi);
                 HomePage.listOfCurrencies.add("AppCoins");
                 break;
 
             case R.id.santimentButton:
-                Coin santimentBitfinex = new Coin("Santiment","SAN","Bitfinex","111");
+                Coin santimentBitfinex = new Coin("Santiment","SAN",HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(santimentBitfinex);
-                Coin santimentOKEX = new Coin("Santiment","SAN","OKEX","110");
+                Coin santimentOKEX = new Coin("Santiment","SAN",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(santimentOKEX);
                 HomePage.listOfCurrencies.add("Santiment");
                 break;
 
             case R.id.po_etButton:
-                Coin poetBinance = new Coin("Po.et","POE","Binance","011");
+                Coin poetBinance = new Coin("Po.et","POE",HomePage.binance,"011");
                 HomePage.binance.addCoin(poetBinance);
-                Coin poetOKEX = new Coin("Po.et","POE","OKEX","110");
+                Coin poetOKEX = new Coin("Po.et","POE",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(poetOKEX);
-                Coin poetHitBTC = new Coin("Po.et","POE","HitBTC","010");
+                Coin poetHitBTC = new Coin("Po.et","POE",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(poetHitBTC);
                 HomePage.listOfCurrencies.add("Po.et");
                 break;
 
             case R.id.substratumButton:
-                Coin substratumBinance = new Coin("Substratum","SUB","Binance","011");
+                Coin substratumBinance = new Coin("Substratum","SUB",HomePage.binance,"011");
                 HomePage.binance.addCoin(substratumBinance);
-                Coin substratumHitBTC = new Coin("Substratum","SUB","HitBTC","010");
+                Coin substratumHitBTC = new Coin("Substratum","SUB",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(substratumHitBTC);
                 HomePage.listOfCurrencies.add("Substratum");
                 break;
 
             case R.id.raidenButton:
-                Coin raidenBinance = new Coin("Raiden","RDN","Binance","011");
+                Coin raidenBinance = new Coin("Raiden","RDN",HomePage.binance,"011");
                 HomePage.binance.addCoin(raidenBinance);
-                Coin raidenHuobi = new Coin("Raiden","rdn","Huobi","011");
+                Coin raidenHuobi = new Coin("Raiden","rdn",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(raidenHuobi);
                 HomePage.listOfCurrencies.add("Raiden");
                 break;
 
             case R.id.zencashButton:
-                Coin zencashBittrex = new Coin("ZenCash","ZEN","Bittrex","010");
+                Coin zencashBittrex = new Coin("ZenCash","ZEN",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(zencashBittrex);
-                Coin zencashOKEX = new Coin("ZenCash","ZEN","OKEX","010");
+                Coin zencashOKEX = new Coin("ZenCash","ZEN",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(zencashOKEX);
                 HomePage.listOfCurrencies.add("ZenCash");
                 break;
 
             case R.id.redpulseButton:
-                Coin redpulseBinance = new Coin("Red Pulse","RPX","Binance","011");
+                Coin redpulseBinance = new Coin("Red Pulse","RPX",HomePage.binance,"011");
                 HomePage.binance.addCoin(redpulseBinance);
-                Coin redpulseHuobi = new Coin("Red Pulse","rpx","Huobi","010");
+                Coin redpulseHuobi = new Coin("Red Pulse","rpx",HomePage.huobi,"010");
                 HomePage.huobi.addCoin(redpulseHuobi);
                 HomePage.listOfCurrencies.add("Red Pulse");
                 break;
 
             case R.id.enjincoinButton:
-                Coin enjincoinBinance = new Coin("Enjin Coin","ENJ","Binance","011");
+                Coin enjincoinBinance = new Coin("Enjin Coin","ENJ",HomePage.binance,"011");
                 HomePage.binance.addCoin(enjincoinBinance);
                 break;
 
             case R.id.aragonButton:
-                Coin aragonBittrex = new Coin("Aragon","ANT","Bittrex","011");
+                Coin aragonBittrex = new Coin("Aragon","ANT",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(aragonBittrex);
                 break;
 
             case R.id.deepbrainchainButton:
-                Coin deepbrainchainHuobi = new Coin("DeepBrain Chain","dbc","Huobi","011");
+                Coin deepbrainchainHuobi = new Coin("DeepBrain Chain","dbc",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(deepbrainchainHuobi);
                 break;
 
             case R.id.sirinlabsButton:
                 Coin sirinlabsBittrex = new Coin("SIRIN LABS","SRN",
-                        "Bittrex","011");
+                        HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(sirinlabsBittrex);
                 Coin sirinlabsHuobi = new Coin("SIRIN LABS","srn",
-                        "Huobi","011");
+                        HomePage.huobi,"011");
                 HomePage.huobi.addCoin(sirinlabsHuobi);
                 HomePage.listOfCurrencies.add("SIRIN LABS");
                 break;
 
             case R.id.medisharesButton:
-                Coin medisharesHuobi = new Coin("MediShares","mds","Huobi","011");
+                Coin medisharesHuobi = new Coin("MediShares","mds",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(medisharesHuobi);
                 break;
 
             case R.id.giftoButton:
-                Coin giftoBinance = new Coin("Gifto","GTO","Binance","011");
+                Coin giftoBinance = new Coin("Gifto","GTO",HomePage.binance,"011");
                 HomePage.binance.addCoin(giftoBinance);
-                Coin giftoOKEX = new Coin("Gifto","GTO","OKEX","111");
+                Coin giftoOKEX = new Coin("Gifto","GTO",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(giftoOKEX);
                 HomePage.listOfCurrencies.add("Gifto");
                 break;
 
             case R.id.wabiButton:
-                Coin wabiBinance = new Coin("Wabi","WABI","Binance","011");
+                Coin wabiBinance = new Coin("Wabi","WABI",HomePage.binance,"011");
                 HomePage.binance.addCoin(wabiBinance);
                 break;
 
             case R.id.crypto20Button:
-                Coin crypto20HitBTC = new Coin("CRYPTO20","C20","HitBTC","011");
+                Coin crypto20HitBTC = new Coin("CRYPTO20","C20",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(crypto20HitBTC);
                 break;
 
             case R.id.ambrosusButton:
-                Coin ambrosusBinance = new Coin("Ambrosus","AMB","Binance","011");
+                Coin ambrosusBinance = new Coin("Ambrosus","AMB",HomePage.binance,"011");
                 HomePage.binance.addCoin(ambrosusBinance);
                 break;
 
             case R.id.insecosystemButton:
                 Coin insecosystemBinance = new Coin("INS Ecosystem","INS",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(insecosystemBinance);
-                Coin insecosystemOKEX = new Coin("INS Ecosystem","INS","OKEX",
+                Coin insecosystemOKEX = new Coin("INS Ecosystem","INS",HomePage.OKEX,
                         "111");
                 HomePage.OKEX.addCoin(insecosystemOKEX);
                 HomePage.listOfCurrencies.add("INS Ecosystem");
@@ -2102,376 +2097,376 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
 
             case R.id.streamrdataButton:
                 Coin streamrdataBitfinex = new Coin("Streamr DATAcoin","DATA",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(streamrdataBitfinex);
                 Coin streamrdataHitBTC = new Coin("Streamr DATAcoin","DATA",
-                        "HitBTC","111");
+                        HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(streamrdataHitBTC);
                 HomePage.listOfCurrencies.add("Streamr DATAcoin");
                 break;
 
             case R.id.sonmButton:
-                Coin sonmBinance = new Coin("SONM","SNM","Binance","011");
+                Coin sonmBinance = new Coin("SONM","SNM",HomePage.binance,"011");
                 HomePage.binance.addCoin(sonmBinance);
                 break;
 
             case R.id.viacoinButton:
-                Coin viacoinBinance = new Coin("Viacoin","VIA","Binance","011");
+                Coin viacoinBinance = new Coin("Viacoin","VIA",HomePage.binance,"011");
                 HomePage.binance.addCoin(viacoinBinance);
-                Coin viacoinBittrex = new Coin("Viacoin","VIA","Bittrex","010");
+                Coin viacoinBittrex = new Coin("Viacoin","VIA",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(viacoinBittrex);
-                Coin viacoinPoloniex = new Coin("Viacoin","VIA","Poloniex","010");
+                Coin viacoinPoloniex = new Coin("Viacoin","VIA",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(viacoinPoloniex);
                 HomePage.listOfCurrencies.add("Viacoin");
                 break;
 
             case R.id.genesisvisionButton:
                 Coin genesisvisionBinance = new Coin("Genesis Vision","GVT",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(genesisvisionBinance);
                 break;
 
             case R.id.melonButton:
-                Coin melonBittrex = new Coin("Melon","MLN","Bittrex","010");
+                Coin melonBittrex = new Coin("Melon","MLN",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(melonBittrex);
-                //Coin melonKraken = new Coin("Melon","MLN","Kraken","011");
+                //Coin melonKraken = new Coin("Melon","MLN",HomePage.kraken,"011");
                 //HomePage.kraken.addCoin(melonKraken);
                 HomePage.listOfCurrencies.add("Melon");
                 break;
 
             case R.id.spankchainButton:
                 Coin spankchainBitfinex = new Coin("SpankChain","SPK",
-                        "Bitfinex","111");
+                        HomePage.bitfinex,"111");
                 HomePage.bitfinex.addCoin(spankchainBitfinex);
                 break;
 
             case R.id.breadButton:
-                Coin breadBinance = new Coin("Bread","BRD","Binance","011");
+                Coin breadBinance = new Coin("Bread","BRD",HomePage.binance,"011");
                 HomePage.binance.addCoin(breadBinance);
-                Coin breadOKEX = new Coin("Bread","BRD","OKEX","110");
+                Coin breadOKEX = new Coin("Bread","BRD",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(breadOKEX);
                 HomePage.listOfCurrencies.add("Bread");
                 break;
 
             case R.id.nulsButton:
-                Coin nulsBinance = new Coin("Nuls","NULS","Binance","011");
+                Coin nulsBinance = new Coin("Nuls","NULS",HomePage.binance,"011");
                 HomePage.binance.addCoin(nulsBinance);
-                Coin nulsBitZ = new Coin("Nuls","nuls","Bit-Z","011");
+                Coin nulsBitZ = new Coin("Nuls","nuls",HomePage.bitZ,"011");
                 HomePage.bitZ.addCoin(nulsBitZ);
                 HomePage.listOfCurrencies.add("Nuls");
                 break;
 
             case R.id.utrustButton:
-                Coin utrustHuobi = new Coin("UTRUST","utk","Huobi","011");
+                Coin utrustHuobi = new Coin("UTRUST","utk",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(utrustHuobi);
-                Coin utrustHitBTC = new Coin("UTRUST","UTK","HitBTC","011");
+                Coin utrustHitBTC = new Coin("UTRUST","UTK",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(utrustHitBTC);
-                Coin utrustOKEX = new Coin("UTRUST","UTK","OKEX","010");
+                Coin utrustOKEX = new Coin("UTRUST","UTK",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(utrustOKEX);
                 HomePage.listOfCurrencies.add("UTRUST");
                 break;
 
             case R.id.triggersButton:
-                Coin triggersBinance = new Coin("Triggers","TRIG","Binance","011");
+                Coin triggersBinance = new Coin("Triggers","TRIG",HomePage.binance,"011");
                 HomePage.binance.addCoin(triggersBinance);
                 break;
 
             case R.id.etherpartyButton:
-                Coin etherpartyBinance = new Coin("Etherparty","FUEL","Binance","011");
+                Coin etherpartyBinance = new Coin("Etherparty","FUEL",HomePage.binance,"011");
                 HomePage.binance.addCoin(etherpartyBinance);
                 break;
 
             case R.id.modumButton:
-                Coin modumBinance = new Coin("Modum","MOD","Binance","011");
+                Coin modumBinance = new Coin("Modum","MOD",HomePage.binance,"011");
                 HomePage.binance.addCoin(modumBinance);
                 break;
 
             case R.id.wingsButton:
-                Coin wingsBinance = new Coin("Wings","WINGS","Binance","011");
+                Coin wingsBinance = new Coin("Wings","WINGS",HomePage.binance,"011");
                 HomePage.binance.addCoin(wingsBinance);
-                Coin wingsBittrex = new Coin("Wings","WINGS","Bittrex","010");
+                Coin wingsBittrex = new Coin("Wings","WINGS",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(wingsBittrex);
                 HomePage.listOfCurrencies.add("Wings");
                 break;
 
             case R.id.tierionButton:
-                Coin tierionBinance = new Coin("Tierion","TNT","Binance","011");
+                Coin tierionBinance = new Coin("Tierion","TNT",HomePage.binance,"011");
                 HomePage.binance.addCoin(tierionBinance);
-                Coin tierionHitBTC = new Coin("Tierion","TNT","HitBTC","101");
+                Coin tierionHitBTC = new Coin("Tierion","TNT",HomePage.hitBTC,"101");
                 HomePage.hitBTC.addCoin(tierionHitBTC);
-                Coin tierionHuobi = new Coin("Tierion","tnt","Huobi","011");
+                Coin tierionHuobi = new Coin("Tierion","tnt",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(tierionHuobi);
                 HomePage.listOfCurrencies.add("Tierion");
                 break;
 
             case R.id.wepowerButton:
-                Coin wepowerHuobi = new Coin("WePower","wpr","Huobi","011");
+                Coin wepowerHuobi = new Coin("WePower","wpr",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(wepowerHuobi);
                 break;
 
             case R.id.burstButton:
-                Coin burstBittrex = new Coin("Burst","BURST","Bittrex","010");
+                Coin burstBittrex = new Coin("Burst","BURST",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(burstBittrex);
-                Coin burstPoloniex = new Coin("Burst","BURST","Poloniex","010");
+                Coin burstPoloniex = new Coin("Burst","BURST",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(burstPoloniex);
                 HomePage.listOfCurrencies.add("Burst");
                 break;
 
             case R.id.allsportsButton:
-                Coin allsportsHuobi = new Coin("All Sports","soc","Huobi","011");
+                Coin allsportsHuobi = new Coin("All Sports","soc",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(allsportsHuobi);
-                Coin allsportsOKEX = new Coin("All Sports","SOC","OKEX","111");
+                Coin allsportsOKEX = new Coin("All Sports","SOC",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(allsportsOKEX);
                 HomePage.listOfCurrencies.add("All Sports");
                 break;
 
             case R.id.district0xButton:
-                Coin district0xBinance = new Coin("district0x","DNT","Binance","011");
+                Coin district0xBinance = new Coin("district0x","DNT",HomePage.binance,"011");
                 HomePage.binance.addCoin(district0xBinance);
-                Coin district0xBittrex = new Coin("district0x","DNT","Bittrex","010");
+                Coin district0xBittrex = new Coin("district0x","DNT",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(district0xBittrex);
-                Coin district0xOKEX = new Coin("district0x","DNT","OKEX","010");
+                Coin district0xOKEX = new Coin("district0x","DNT",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(district0xOKEX);
                 HomePage.listOfCurrencies.add("district0x");
                 break;
 
             case R.id.internetnodetokenButton:
                 Coin internetnodetokenOKEX = new Coin("Internet Node Token","INT",
-                        "OKEX","111");
+                        HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(internetnodetokenOKEX);
                 break;
 
             case R.id.coindashButton:
-                Coin coindashBinance = new Coin("CoinDash","CDT","Binance","011");
+                Coin coindashBinance = new Coin("CoinDash","CDT",HomePage.binance,"011");
                 HomePage.binance.addCoin(coindashBinance);
                 break;
 
             case R.id.cossButton:
-                Coin cossHitBTC = new Coin("COSS","COSS","HitBTC","011");
+                Coin cossHitBTC = new Coin("COSS","COSS",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(cossHitBTC);
                 break;
 
             case R.id.lbrycreditsButton:
                 Coin lbrycreditsBittrex = new Coin("LBRY Credits","LBC",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(lbrycreditsBittrex);
                 Coin lbrycreditsPoloniex = new Coin("LBRY Credits","LBC",
-                        "Poloniex","010");
+                        HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(lbrycreditsPoloniex);
                 HomePage.listOfCurrencies.add("LBRY Credits");
                 break;
 
             case R.id.unikoingoldButton:
-                Coin unikoingoBittrex = new Coin("Unikoin Gold","UKG","Bittrex","011");
+                Coin unikoingoBittrex = new Coin("Unikoin Gold","UKG",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(unikoingoBittrex);
-                Coin unikoingoOKEX = new Coin("Unikoin Gold","UKG","OKEX","110");
+                Coin unikoingoOKEX = new Coin("Unikoin Gold","UKG",HomePage.OKEX,"110");
                 HomePage.OKEX.addCoin(unikoingoOKEX);
                 HomePage.listOfCurrencies.add("Unikoin Gold");
                 break;
 
             case R.id.steemdollarsButton:
-                Coin steemdollarsBittrex = new Coin("Steem Dollars","SBD","Bittrex","010");
+                Coin steemdollarsBittrex = new Coin("Steem Dollars","SBD",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(steemdollarsBittrex);
-                Coin steemdollarsPoloniex = new Coin("Steem Dollars","SBD","Poloniex","010");
+                Coin steemdollarsPoloniex = new Coin("Steem Dollars","SBD",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(steemdollarsPoloniex);
                 HomePage.listOfCurrencies.add("Steem Dollars");
                 break;
 
             case R.id.nagaButton:
-                Coin nagaHitBTC = new Coin("NAGA","NGC","HitBTC","111");
+                Coin nagaHitBTC = new Coin("NAGA","NGC",HomePage.hitBTC,"111");
                 HomePage.hitBTC.addCoin(nagaHitBTC);
-                Coin nagaOKEX = new Coin("NAGA","NGC","OKEX","010");
+                Coin nagaOKEX = new Coin("NAGA","NGC",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(nagaOKEX);
                 HomePage.listOfCurrencies.add("NAGA");
                 break;
 
             case R.id.delphyButton:
-                Coin delphyOKEX = new Coin("Delphy","DPY","OKEX","111");
+                Coin delphyOKEX = new Coin("Delphy","DPY",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(delphyOKEX);
                 break;
 
             case R.id.aeonButton:
-                Coin aeonBittrex = new Coin("Aeon","AEON","Bittrex","010");
+                Coin aeonBittrex = new Coin("Aeon","AEON",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(aeonBittrex);
-                Coin aeonHitBTC = new Coin("Aeon","AEON","HitBTC","010");
+                Coin aeonHitBTC = new Coin("Aeon","AEON",HomePage.hitBTC,"010");
                 HomePage.hitBTC.addCoin(aeonHitBTC);
                 HomePage.listOfCurrencies.add("Aeon");
                 break;
 
             case R.id.indahashButton:
-                Coin indahashHitBTC = new Coin("indaHash","IDH","HitBTC","011");
+                Coin indahashHitBTC = new Coin("indaHash","IDH",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(indahashHitBTC);
                 break;
 
             case R.id.lunyrButton:
-                Coin lunyrBittrex = new Coin("Lunyr","LUN","Bittrex","010");
+                Coin lunyrBittrex = new Coin("Lunyr","LUN",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(lunyrBittrex);
-                Coin lunyrBinance = new Coin("Lunyr","LUN","Binance","011");
+                Coin lunyrBinance = new Coin("Lunyr","LUN",HomePage.binance,"011");
                 HomePage.binance.addCoin(lunyrBinance);
-                Coin lunyrHuobi = new Coin("Lunyr","lun","Huobi","011");
+                Coin lunyrHuobi = new Coin("Lunyr","lun",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(lunyrHuobi);
                 HomePage.listOfCurrencies.add("Lunyr");
                 break;
 
             case R.id.firstbloodButton:
                 Coin firstbloodBittrex = new Coin("FirstBlood","1ST",
-                        "Bittrex","010");
+                        HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(firstbloodBittrex);
                 Coin firstbloodOKEX = new Coin("FirstBlood","1ST",
-                        "OKEX","010");
+                        HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(firstbloodOKEX);
                 HomePage.listOfCurrencies.add("FirstBlood");
                 break;
 
             case R.id.viberateButton:
-                Coin viberateBinance = new Coin("Viberate","VIB","Binance","011");
+                Coin viberateBinance = new Coin("Viberate","VIB",HomePage.binance,"011");
                 HomePage.binance.addCoin(viberateBinance);
-                Coin viberateBittrex = new Coin("Viberate","VIB","Bittrex","011");
+                Coin viberateBittrex = new Coin("Viberate","VIB",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(viberateBittrex);
-                Coin viberateHitBTC = new Coin("Viberate","VIB","HitBTC","100");
+                Coin viberateHitBTC = new Coin("Viberate","VIB",HomePage.hitBTC,"100");
                 HomePage.hitBTC.addCoin(viberateHitBTC);
-                Coin viberateOKEX = new Coin("Viberate","VIB","OKEX","010");
+                Coin viberateOKEX = new Coin("Viberate","VIB",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(viberateOKEX);
                 HomePage.listOfCurrencies.add("Viberate");
                 break;
 
             case R.id.datumButton:
-                Coin datumHuobi = new Coin("Datum","dat","Huobi","011");
+                Coin datumHuobi = new Coin("Datum","dat",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(datumHuobi);
-                Coin datumOKEX = new Coin("Datum","DAT","OKEX","111");
+                Coin datumOKEX = new Coin("Datum","DAT",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(datumOKEX);
                 HomePage.listOfCurrencies.add("Datum");
                 break;
 
             case R.id.odysseyButton:
-                Coin odysseyBitZ = new Coin("Odyssey","ocn","Bit-Z","001");
+                Coin odysseyBitZ = new Coin("Odyssey","ocn",HomePage.bitZ,"001");
                 HomePage.bitZ.addCoin(odysseyBitZ);
-                Coin odysseyHuobi = new Coin("Odyssey","ocn","Huobi","011");
+                Coin odysseyHuobi = new Coin("Odyssey","ocn",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(odysseyHuobi);
                 HomePage.listOfCurrencies.add("Odyssey");
                 break;
 
             case R.id.inkButton:
-                Coin inkBitZ = new Coin("Ink","ink","Bit-Z","011");
+                Coin inkBitZ = new Coin("Ink","ink",HomePage.bitZ,"011");
                 HomePage.bitZ.addCoin(inkBitZ);
                 break;
 
             case R.id.potcoinButton:
-                Coin potcoinBittrex = new Coin("PotCoin","POT","Bittrex","010");
+                Coin potcoinBittrex = new Coin("PotCoin","POT",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(potcoinBittrex);
-                Coin potcoinPoloniex = new Coin("PotCoin","POT","Polobuex","010");
+                Coin potcoinPoloniex = new Coin("PotCoin","POT",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(potcoinPoloniex);
                 HomePage.listOfCurrencies.add("PotCoin");
                 break;
 
             case R.id.swftcoinButton:
-                Coin swftcoinOKEX = new Coin("SwftCoin","SWFTC","OKEX","111");
+                Coin swftcoinOKEX = new Coin("SwftCoin","SWFTC",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(swftcoinOKEX);
-                Coin swftcoinHuobi = new Coin("SwftCoin","swftc","Huobi","011");
+                Coin swftcoinHuobi = new Coin("SwftCoin","swftc",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(swftcoinHuobi);
                 HomePage.listOfCurrencies.add("SwftCoin");
                 break;
 
             case R.id.humaniqButton:
-                Coin humaniqBittrex = new Coin("Humaniq","HMQ","Bittrex","011");
+                Coin humaniqBittrex = new Coin("Humaniq","HMQ",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(humaniqBittrex);
                 break;
 
             case R.id.monethaButton:
-                Coin monethaBinance = new Coin("Monetha","MTH","Binance","011");
+                Coin monethaBinance = new Coin("Monetha","MTH",HomePage.binance,"011");
                 HomePage.binance.addCoin(monethaBinance);
                 break;
 
             case R.id.agrelloButton:
-                Coin agrelloBinance = new Coin("Agrello","DLT","Binance","011");
+                Coin agrelloBinance = new Coin("Agrello","DLT",HomePage.binance,"011");
                 HomePage.binance.addCoin(agrelloBinance);
                 break;
 
             case R.id.yoyowButton:
-                Coin yoyowBitfinex = new Coin("YOYOW","YYW","Bitfinex","110");
+                Coin yoyowBitfinex = new Coin("YOYOW","YYW",HomePage.bitfinex,"110");
                 HomePage.bitfinex.addCoin(yoyowBitfinex);
-                Coin yoyowBinance = new Coin("YOYOW","YOYO","Binance","011");
+                Coin yoyowBinance = new Coin("YOYOW","YOYO",HomePage.binance,"011");
                 HomePage.binance.addCoin(yoyowBinance);
-                Coin yoyoOKEX = new Coin("YOYOW","YOYO","OKEX","010");
+                Coin yoyoOKEX = new Coin("YOYOW","YOYO",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(yoyoOKEX);
                 HomePage.listOfCurrencies.add("YOYOW");
                 break;
 
             case R.id.worldcoreButton:
-                Coin worldcoreOKEX = new Coin("Worldcore","WRC","OKEX","111");
+                Coin worldcoreOKEX = new Coin("Worldcore","WRC",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(worldcoreOKEX);
-                Coin worldcoreHitBTC = new Coin("Worldcore","WRC","HitBTC","011");
+                Coin worldcoreHitBTC = new Coin("Worldcore","WRC",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(worldcoreHitBTC);
                 HomePage.listOfCurrencies.add("Worldcore");
                 break;
 
             case R.id.selfkeyButton:
-                Coin selfkeyOKEX = new Coin("Selfkey","KEY","OKEX","111");
+                Coin selfkeyOKEX = new Coin("Selfkey","KEY",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(selfkeyOKEX);
                 break;
 
             case R.id.blocktixButton:
-                Coin blocktixBittrex = new Coin("Blocktix","TIX","Bittrex","011");
+                Coin blocktixBittrex = new Coin("Blocktix","TIX",HomePage.bittrex,"011");
                 HomePage.bittrex.addCoin(blocktixBittrex);
                 break;
 
             case R.id.everexButton:
-                Coin everexHuobi = new Coin("Everex","evx","Huobi","011");
+                Coin everexHuobi = new Coin("Everex","evx",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(everexHuobi);
-                Coin everexBinance = new Coin("Everex","EVX","Binance","011");
+                Coin everexBinance = new Coin("Everex","EVX",HomePage.binance,"011");
                 HomePage.binance.addCoin(everexBinance);
                 HomePage.listOfCurrencies.add("Everex");
                 break;
 
             case R.id.suncontractButton:
-                Coin suncontractOKEX = new Coin("SunContract","SNC","OKEX","010");
+                Coin suncontractOKEX = new Coin("SunContract","SNC",HomePage.OKEX,"010");
                 HomePage.OKEX.addCoin(suncontractOKEX);
-                Coin suncontractHitBTC = new Coin("SunContract","SNC","HitBTC","011");
+                Coin suncontractHitBTC = new Coin("SunContract","SNC",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(suncontractHitBTC);
-                Coin suncontractHuobi = new Coin("SunContract","snc","Huobi","011");
+                Coin suncontractHuobi = new Coin("SunContract","snc",HomePage.huobi,"011");
                 HomePage.huobi.addCoin(suncontractHuobi);
                 HomePage.listOfCurrencies.add("SunContract");
                 break;
 
             case R.id.tradetokenButton:
-                Coin tradetokenOKEX = new Coin("Trade Token","TIO","OKEX","111");
+                Coin tradetokenOKEX = new Coin("Trade Token","TIO",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(tradetokenOKEX);
                 break;
 
             case R.id.latokenButton:
-                Coin latokenHitBTC = new Coin("LATOKEN","LA","HitBTC","001");
+                Coin latokenHitBTC = new Coin("LATOKEN","LA",HomePage.hitBTC,"001");
                 HomePage.hitBTC.addCoin(latokenHitBTC);
-                Coin latokenOKEX = new Coin("LATOKEN","LA","OKEX","011");
+                Coin latokenOKEX = new Coin("LATOKEN","LA",HomePage.OKEX,"011");
                 HomePage.OKEX.addCoin(latokenOKEX);
                 HomePage.listOfCurrencies.add("LATOKEN");
                 break;
 
             case R.id.blackcoinButton:
-                Coin blackcoinBittrex = new Coin("BlackCoin","BLK","Bittrex","010");
+                Coin blackcoinBittrex = new Coin("BlackCoin","BLK",HomePage.bittrex,"010");
                 HomePage.bittrex.addCoin(blackcoinBittrex);
-                Coin blackcoinPoloniex = new Coin("BlackCoin","BLK","Poloniex","010");
+                Coin blackcoinPoloniex = new Coin("BlackCoin","BLK",HomePage.poloniex,"010");
                 HomePage.poloniex.addCoin(blackcoinPoloniex);
                 HomePage.listOfCurrencies.add("BlackCoin");
                 break;
 
             case R.id.ixledgerButton:
-                Coin ixledgerHitBTC = new Coin("iXledger","IXT","HitBTC","011");
+                Coin ixledgerHitBTC = new Coin("iXledger","IXT",HomePage.hitBTC,"011");
                 HomePage.hitBTC.addCoin(ixledgerHitBTC);
                 break;
 
             case R.id.olympuslabsButton:
-                Coin olympuslabsOKEX = new Coin("Olympus Labs","MOT","OKEX","111");
+                Coin olympuslabsOKEX = new Coin("Olympus Labs","MOT",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(olympuslabsOKEX);
                 break;
 
             case R.id.hydroprotocolButton:
-                Coin hydroprotocolOKEX = new Coin("Hydro Protocol","HOT","OKEX","111");
+                Coin hydroprotocolOKEX = new Coin("Hydro Protocol","HOT",HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(hydroprotocolOKEX);
                 break;
 
             case R.id.moedaloyaltypointsButton:
                 Coin moedaloyaltypointsBinance = new Coin("Moeda Loyalty Points","MDA",
-                        "Binance","011");
+                        HomePage.binance,"011");
                 HomePage.binance.addCoin(moedaloyaltypointsBinance);
                 break;
 
