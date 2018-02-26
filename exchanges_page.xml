@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     android:padding="15dip"
     android:orientation="horizontal"
-    tools:context="com.example.alexander.cryptarbitrage2.MainActivity">
+    tools:context="My.Awesome.Project.cryptarbitrage30.HomePage">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -61,7 +61,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/exchange1"
+                        android:text="@string/exchangeBinance"
                         android:textColor="@color/black"
                         android:textSize="23sp"
                         android:paddingRight="90dip"/>
@@ -73,7 +73,6 @@
 
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -82,13 +81,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/exchange3"
+                        android:text="@string/exchangeBitZ"
                         android:textColor="@color/black"
                         android:textSize="23sp"
-                        android:paddingRight="105dip"/>
+                        android:paddingRight="121dip"/>
 
                     <ToggleButton
-                        android:id="@+id/exchange3_button"
+                        android:id="@+id/exchange11_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -102,7 +101,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/exchange4"
+                        android:text="@string/exchangeBitfinex"
                         android:textColor="@color/black"
                         android:textSize="23sp"
                         android:paddingRight="95dip"/>
@@ -122,108 +121,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/exchange5"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="113dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange5_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange7"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="83dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange7_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange15"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="101dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange15_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange8"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="99dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange8_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange9"
-                        android:textColor="@color/black"
-                        android:textSize="23sp"
-                        android:paddingRight="111dip"/>
-
-                    <ToggleButton
-                        android:id="@+id/exchange9_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/exchange10"
+                        android:text="@string/exchangeBitStamp"
                         android:textColor="@color/black"
                         android:textSize="23sp"
                         android:paddingRight="76dip"/>
@@ -243,13 +141,53 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/exchange11"
+                        android:text="@string/exchangeBittrex"
                         android:textColor="@color/black"
                         android:textSize="23sp"
-                        android:paddingRight="121dip"/>
+                        android:paddingRight="105dip"/>
 
                     <ToggleButton
-                        android:id="@+id/exchange11_button"
+                        android:id="@+id/exchange3_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchangeGDAX"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="111dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange9_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchangeHitBTC"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="99dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange8_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -274,6 +212,68 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchangeKraken"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="101dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange15_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchangeOKEX"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="113dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange5_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/exchangePoloniex"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        android:paddingRight="83dip"/>
+
+                    <ToggleButton
+                        android:id="@+id/exchange7_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
