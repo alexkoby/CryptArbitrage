@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     android:padding="15dip"
     android:orientation="horizontal"
-    tools:context="com.example.alexander.cryptarbitrage2.MainActivity">
+    tools:context="My.Awesome.Project.cryptarbitrage30.HomePage">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -76,24 +76,28 @@
                 android:layout_width="85dip"
                 android:layout_height="wrap_content"
                 android:text="@string/opprotunity1Price"
+                android:id="@+id/opportunity1Price"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="90dip"
                 android:layout_height="wrap_content"
                 android:text="@string/currency1CryptoOpportunities"
+                android:id="@+id/opportunity1Cryptocurrency"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="120dip"
                 android:layout_height="wrap_content"
                 android:text="@string/exchange1CryptoOpportunities"
+                android:id="@+id/opportunity1Exchange"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
-            <TextView
+            <Button
                 android:layout_width="57dip"
                 android:layout_height="wrap_content"
                 android:text="@string/arbitrageType1CryptoOpportunities"
+                android:id="@+id/opportunity1Type"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
         </LinearLayout>
@@ -108,24 +112,28 @@
                 android:layout_width="85dip"
                 android:layout_height="wrap_content"
                 android:text="@string/opprotunity2Price"
+                android:id="@+id/opportunity2Price"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="90dip"
                 android:layout_height="wrap_content"
                 android:text="@string/currency2CryptoOpportunities"
+                android:id="@+id/opportunity2Cryptocurrency"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="120dip"
                 android:layout_height="wrap_content"
                 android:text="@string/exchange2CryptoOpportunities"
+                android:id="@+id/opportunity2Exchange"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
-            <TextView
+            <Button
                 android:layout_width="57dip"
                 android:layout_height="wrap_content"
                 android:text="@string/arbitrageType2CryptoOpportunities"
+                android:id="@+id/opportunity2Type"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
         </LinearLayout>
@@ -140,24 +148,29 @@
                 android:layout_width="85dip"
                 android:layout_height="wrap_content"
                 android:text="@string/opprotunity3Price"
+                android:id="@+id/opportunity3Price"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="90dip"
                 android:layout_height="wrap_content"
                 android:text="@string/currency3CryptoOpportunities"
+                android:id="@+id/opportunity3Cryptocurrency"
+
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="120dip"
                 android:layout_height="wrap_content"
                 android:text="@string/exchange3CryptoOpportunities"
+                android:id="@+id/opportunity3Exchange"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
-            <TextView
+            <Button
                 android:layout_width="57dip"
                 android:layout_height="wrap_content"
                 android:text="@string/arbitrageType3CryptoOpportunities"
+                android:id="@+id/opportunity3Type"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
         </LinearLayout>
@@ -172,24 +185,28 @@
                 android:layout_width="85dip"
                 android:layout_height="wrap_content"
                 android:text="@string/opprotunity4Price"
+                android:id="@+id/opportunity4Price"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="90dip"
                 android:layout_height="wrap_content"
                 android:text="@string/currency4CryptoOpportunities"
+                android:id="@+id/opportunity4Cryptocurrency"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="120dip"
                 android:layout_height="wrap_content"
                 android:text="@string/exchange4CryptoOpportunities"
+                android:id="@+id/opportunity4Exchange"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
-            <TextView
+            <Button
                 android:layout_width="57dip"
                 android:layout_height="wrap_content"
                 android:text="@string/arbitrageType4CryptoOpportunities"
+                android:id="@+id/opportunity4Type"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
         </LinearLayout>
@@ -198,30 +215,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="90dip">
+            android:paddingBottom="80dip">
 
             <TextView
                 android:layout_width="85dip"
                 android:layout_height="wrap_content"
                 android:text="@string/opprotunity5Price"
+                android:id="@+id/opportunity5Price"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="90dip"
                 android:layout_height="wrap_content"
                 android:text="@string/currency5CryptoOpportunities"
+                android:id="@+id/opportunity5Cryptocurrency"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="120dip"
                 android:layout_height="wrap_content"
                 android:text="@string/exchange5CryptoOpportunities"
+                android:id="@+id/opportunity5Exchange"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
-            <TextView
+            <Button
                 android:layout_width="57dip"
                 android:layout_height="wrap_content"
                 android:text="@string/arbitrageType5CryptoOpportunities"
+                android:id="@+id/opportunity5Type"
                 android:textColor="@color/black"
                 android:textAlignment="center"/>
         </LinearLayout>
@@ -231,6 +252,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/lastUpdatedTime"
+                android:id="@+id/lastTimeRefreshID"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
                 >
             </TextView>
 
@@ -244,18 +269,21 @@
                 android:layout_width="75dip"
                 android:layout_height="40dip"
                 android:text="@string/previous5Button"
+                android:id="@+id/prev5Button"
                 android:textColor="@color/black"
                 android:layout_marginRight="50dip"/>
             <Button
                 android:layout_width="100dip"
                 android:layout_height="wrap_content"
                 android:text="@string/refreshDataButton"
+                android:id="@+id/refreshDataButtonView"
                 android:textColor="@color/black"
                 android:layout_marginRight="50dip"/>
             <Button
                 android:layout_width="75dip"
                 android:layout_height="40dip"
                 android:text="@string/next5Button"
+                android:id="@+id/next5Button"
                 android:textColor="@color/black"/>
         </LinearLayout>
 
