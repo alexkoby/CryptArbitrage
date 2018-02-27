@@ -215,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="80dip">
+            android:paddingBottom="65dip">
 
             <TextView
                 android:layout_width="85dip"
@@ -254,8 +254,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lastUpdatedTime"
                 android:id="@+id/lastTimeRefreshID"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
+                android:textAlignment="center"
                 >
             </TextView>
 
