@@ -204,7 +204,7 @@
                         android:text="@string/exchangeHuobi"
                         android:textColor="@color/black"
                         android:textSize="23sp"
-                        android:paddingRight="99dip"/>
+                        android:paddingRight="111dip"/>
 
                     <ToggleButton
                         android:id="@+id/huobiExchangeButton"
