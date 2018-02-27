@@ -1,4 +1,4 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 
 import android.app.Activity;
 import android.content.Context;
@@ -34,7 +34,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exchanges_page);
 
-         //The data has likely been changed before, try to load it
+        //The data has likely been changed before, try to load it
         //if(!MainActivity.isCreatedExchanges){
         setUpExchangeButtons();
 
@@ -47,7 +47,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
         if(HomePage.isCreatedExchanges) {
             getExchangeInfo1();
-            System.out.println("Papa Johns");
         }
     }
 
@@ -75,7 +74,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
             case R.id.submit_exchange_button:
                 HomePage.isCreatedExchanges = true;
                 //Gets rid of all Exchanges from listOfExchanges and adds in valid exchanges
-                    //based on the buttons that are 'On'
+                //based on the buttons that are 'On'
                 HomePage.listOfExchanges.clear();
                 for (ToggleButton button: allExchangesButton){
                     if (button.isChecked()){
@@ -171,7 +170,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             //while more lines
-            System.out.println("Size of allExchangesButton is: " + numExchanges);
+            //System.out.println("Size of allExchangesButton is: " + numExchanges);
             StringBuilder message = new StringBuilder();
             int data = 1;
             while(counter < numExchanges && data != -1){
@@ -182,13 +181,13 @@ public class Exchanges extends Activity implements View.OnClickListener{
                     allExchangesButton.get(counter++).setChecked(true);
                     // why doesn't the above text automatically change once it's checked
                     message.delete(0,4);
-                    System.out.println("Went" + allExchangesButton.get(counter-1).isChecked() + counter);
+                    //System.out.println("Went" + allExchangesButton.get(counter-1).isChecked() + counter);
 
                 }
                 else if (message.length() == 5 && message.charAt(0) == 'f'){
                     allExchangesButton.get(counter++).setChecked(false);
                     message.delete(0, 5);
-                    System.out.println("went false" + counter);
+                    //System.out.println("went false" + counter);
                 }
             }
         }
