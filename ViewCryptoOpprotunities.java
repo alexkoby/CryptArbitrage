@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.PriorityQueue;
 /**
  * Created by Alexander on 1/7/2018.
@@ -73,7 +72,6 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crypto_opprotunities);
 
-        Toast.makeText(this, "Made It To View Opportunities", Toast.LENGTH_SHORT).show();
 
         setUpMessages();
         Opportunity1AlertDialog = new AlertDialog.Builder(this).create();
@@ -83,6 +81,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         Opportunity5AlertDialog = new AlertDialog.Builder(this).create();
         alertDialog = new AlertDialog.Builder(this).create();
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
+        arbitrageFinder.getRealVolumeNumbers();
 
         timePicker = findViewById(R.id.lastTimeRefreshID);
         if(HomePage.lastTimeRefreshedMinute < 10){
@@ -434,7 +433,6 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         else {
             bestOpportunitiesAcrossExchanges = arbitrageFinder.getBestOpportunitiesAcrossExchange();
             bestOpportunitiesWithinExchanges = new PriorityQueue<>();
-
         }
 
         if(bestOpportunitiesAcrossExchanges.size() == 0 && bestOpportunitiesWithinExchanges.size() == 0){
@@ -447,7 +445,6 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
             topOpportunitiesArray = new Opportunity[bestOpportunitiesAcrossExchanges.size()];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
-                System.out.println("First Loop");
                 topOpportunitiesArray[i] = bestOpportunitiesAcrossExchanges.poll();
             }
         }
@@ -455,32 +452,26 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
             topOpportunitiesArray = new Opportunity[bestOpportunitiesWithinExchanges.size()];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
-                System.out.println("Second loop");
                 topOpportunitiesArray[i] = bestOpportunitiesWithinExchanges.poll();
             }
         }
         else {
-            topOpportunitiesArray = new Opportunity[min(bestOpportunitiesAcrossExchanges.size()
-                    + bestOpportunitiesWithinExchanges.size(), 50)];
+            topOpportunitiesArray = new Opportunity[bestOpportunitiesAcrossExchanges.size()
+                    + bestOpportunitiesWithinExchanges.size()];
 
             for(int i = 0; i < topOpportunitiesArray.length; i++){
-                System.out.println("Third loop");
                 if(bestOpportunitiesAcrossExchanges.size() == 0){
-                    System.out.println("Added 1");
                     topOpportunitiesArray[i] = bestOpportunitiesWithinExchanges.poll();
                 }
                 else if (bestOpportunitiesWithinExchanges.size() == 0){
                     topOpportunitiesArray[i] = bestOpportunitiesAcrossExchanges.poll();
-                    System.out.println("Added 2");
                 }
                 else if(bestOpportunitiesAcrossExchanges.peek().getPercentGain() >
                         bestOpportunitiesWithinExchanges.peek().getPercentGain()) {
                     topOpportunitiesArray[i] = bestOpportunitiesAcrossExchanges.poll();
-                    System.out.println("Added 3");
                 }
                 else{
                     topOpportunitiesArray[i] = bestOpportunitiesWithinExchanges.poll();
-                    System.out.println("Added 4");
                 }
             }
         }
@@ -488,9 +479,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     }
 
     public void setUpMessages(){
-        typeOneOpportunityMessage = "Type One Opportunities are when you buy the coin for USD," +
-                " convert it to Bitcoin, sell bitcoin for USD, buy coin for USD, convert it to Bitcoin, ect..." +
-                "\nWhere you start in the cycle doesn't matter, but the order does";
+
     }
 
     public String getDialogInfo(Opportunity opportunity){
