@@ -1,10 +1,11 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 import java.util.ArrayList;
 /**
  * Created by Alexander on 1/9/2018.
  */
 
 public class Exchange {
+    private String findVolumeSymbol;
     private ArrayList<Coin> coins;
     private ArrayList<Double> asks;
     private ArrayList<Double> bids;
@@ -16,7 +17,7 @@ public class Exchange {
     private boolean dataIsFinishedRefreshing;
     private boolean isUSD;
     public Exchange(String name, String askSymbol, String bidSymbol, boolean exchangeAPISorted, boolean dataIsFinishedRefreshing,
-                    boolean isdUSD){
+                    boolean isdUSD, String findVolumeSymbol){
         coins = new ArrayList<>();
         asks = new ArrayList<>();
         bids = new ArrayList<>();
@@ -28,6 +29,8 @@ public class Exchange {
         this.bidSymbol = bidSymbol;
 
         this.exchangeAPISorted = exchangeAPISorted;
+
+        this.findVolumeSymbol = findVolumeSymbol;
 
         this.isUSD = isdUSD;
     }
@@ -44,6 +47,10 @@ public class Exchange {
         }
         coins.remove(c);
         amtCoins--;
+    }
+
+    public String getFindVolumeSymbol(){
+        return this.findVolumeSymbol;
     }
     public boolean getIsUSD(){
         return this.isUSD;
