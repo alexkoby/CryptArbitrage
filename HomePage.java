@@ -15,9 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.SkuDetails;
-import com.anjlab.android.iab.v3.TransactionDetails;
+//import com.anjlab.android.iab.v3.BillingProcessor;
+//import com.anjlab.android.iab.v3.SkuDetails;
+//import com.anjlab.android.iab.v3.TransactionDetails;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,9 +29,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class HomePage extends Activity implements View.OnClickListener, BillingProcessor.IBillingHandler {
+public class HomePage extends Activity implements View.OnClickListener{
 
-    BillingProcessor bp;
+    //BillingProcessor bp;
     static boolean hasSubscription = false;
 
     static boolean isCreatedHomepage = false;
@@ -79,7 +79,7 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
     EditText minGainEditText;
     Button typeOfArbitrage;
     Button refreshButtonHomePage;
-    static String typeOfArbitrageString = "Inter-Exchange and Cross Exchange Arbitrage";
+    static String typeOfArbitrageString = "Intra-Exchange and Cross Exchange Arbitrage";
 
     final String publicAPI = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArNSgdFawfG05qVr5dmy5VGnrR/D7A636WN7l28Gpy8X9hIM8FlKpRDWfDNjV5x2q/7Nlzpla462DLlYRFIxCHm/LoQMd6vm37k10FqhskFxkvcMshKE7fEfVVrOnnod3JE8UDhwMd0a3UYGqAWNWx8m02K2Y6vzKfIYpu0NLpaPMD1GgVw6ZtoiNCIR+ilL/Kvv8WZutM3yUBhrTr47dOjvu/bwYQ01RT1QbGMjujIE3KWphzmfUCWRhZIGsTypgskVFoH2px5gSB2ynQVvjFAN2Jx18Hj+AhinVl1pSBdOl0eMJG0TXyPtbseRAhPdv1H+YcTPOed5g2j7qxKwxswIDAQAB";
 
@@ -88,47 +88,47 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-        bp = new BillingProcessor(this, publicAPI, this);
 
 
         //If this is the first time visiting the homepage
         if(!isCreatedHomepage) {
-            System.out.println("Home page not created");
+            //bp = new BillingProcessor(this, publicAPI, this);
+            //System.out.println("Home page not created");
             listOfExchanges = new ArrayList<>();
             listOfCurrencies = new ArrayList<>();
             allPossibleExchanges = new ArrayList<>();
             bitfinex = new Exchange("Bitfinex", "ask", "bid",
-                    false, false, true);
+                    false, false, true,null); // doesn't return volume
             allPossibleExchanges.add(bitfinex);
             bittrex = new Exchange("Bittrex", "Ask", "Bid",
-                    true, false, false);
+                    true, false, false, "baseVolume"); //multiply by price of bitcoin or eth to get price usd
             allPossibleExchanges.add(bittrex);
             binance = new Exchange("Binance", "price", "price",
-                    false, false,false);
+                    false, false,false,null); // doesn't return volume
             allPossibleExchanges.add(binance);
             hitBTC = new Exchange("HitBTC", "ask", "bid",
-                    false, false, true);
+                    false, false, true,"volume"); // volume * trading price * usd price of eth or btc
             allPossibleExchanges.add(hitBTC);
             bitZ = new Exchange("Bit-Z","sell","buy",
-                    false, false, false);
+                    false, false, false, "vol");//volume * trading price * usd price of eth or btc
             allPossibleExchanges.add(bitZ);
             poloniex = new Exchange("Poloniex","lowestAsk","highestBid",
-                    false, false, false);
+                    false, false, false, "baseVolume");//volume * price of usd(1) or brice of bitcoin
             allPossibleExchanges.add(poloniex);
             bitStamp = new Exchange("BitStamp","bid","ask",
-                    false, false, true);
+                    false, false, true, null); //all volume is high enough
             allPossibleExchanges.add(bitStamp);
             OKEX = new Exchange("OKEX","sell","buy",
-                    false, false, false);
+                    false, false, false, "vol");// volume * trading price * price of usd(1) or price btc or eth
             allPossibleExchanges.add(OKEX);
             GDAX = new Exchange("GDAX","ask","bid",
-                    false, false, true);
+                    false, false, true, null);// all volume is high
             allPossibleExchanges.add(GDAX);
             kraken = new Exchange("Kraken","a","b",
-                    false, false, true);
+                    false, false, true, null);//figure out later
             allPossibleExchanges.add(kraken);
             huobi = new Exchange("Huobi","ask","bid",
-                    false,false, false);
+                    false,false, false, "amount");
             allPossibleExchanges.add(huobi);
 
             isCreatedHomepage = true;
@@ -191,11 +191,11 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
 
     //Creates an Array of URLs and calls downloadtask.execute()
     private static void getAsksAndBids(Exchange e){
-        System.out.println("Exchange is: " + e.getName());
+        //System.out.println("Exchange is: " + e.getName());
         String [] APIs = new String [e.getCoins().size()*3];
         DownloadTask task = null;
 
-        System.out.println(e.getCoins().size());
+        //System.out.println(e.getCoins().size());
         switch (e.getName()){
             case "Bitfinex":
                 for(int i = 0; i < e.getCoins().size(); i+=1) {
@@ -246,7 +246,6 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
                 task = HomePage.taskPoloniex;
                 break;
             case "BitStamp":
-                System.out.println("BITSTAMP GOT HERE");
                 for(int i = 0; i < e.getCoins().size(); i+=1) {
                     APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("USD");
                     APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("BTC");
@@ -289,14 +288,14 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
                 break;
         }
         if(task == null) {
-            System.out.println("TRIED TO USE NULL DOWNLOAD TASK");
+            //System.out.println("TRIED TO USE NULL DOWNLOAD TASK");
             return;
         }
         else {
-            System.out.println("Made it to reimplement " + e.getName());
+            //System.out.println("Made it to reimplement " + e.getName());
             task = reImplementTask(task);
             if(task == null){
-                System.out.println("TASK IS NUUUUUUUUUUUUUUUUUUUUL");
+                //System.out.println("TASK IS NUUUUUUUUUUUUUUUUUUUUL");
             }
             task.execute(APIs);
         }
@@ -358,7 +357,7 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
                     break;
                 }
                 if(!HomePage.isAllDataFinishedRefreshing()){
-                    System.out.println("Made it inside the loop");
+                    //System.out.println("Made it inside the loop");
                     Toast.makeText(getApplicationContext(),"Please select the refresh data button to get data!",Toast.LENGTH_LONG).show();
                     alertDialog.setTitle("Please Wait");
                     alertDialog.setMessage("Please select the refresh data button to get data!");
@@ -371,12 +370,11 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
                     alertDialog.show();
                     break;
                 }
-                if(!hasSubscription){
-                    Toast.makeText(this, "Does Not Have Subscription", Toast.LENGTH_SHORT).show();
-                    bp.subscribe(this,"monthly_sub");
-                    break;
-                }
-                //Toast.makeText(this,"Has Subscription",Toast.LENGTH_SHORT).show();
+                //if(!hasSubscription){
+                //    Toast.makeText(this, "Please Subscribe To View Top Arbitrage Opportunities", Toast.LENGTH_SHORT).show();
+                //    bp.subscribe(this,"monthly_sub");
+                //    break;
+                //}
                 Intent j = new Intent(this, ViewCryptoOpprotunities.class);
                 startActivity(j);
                 break;
@@ -399,16 +397,16 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
                 break;
 
             case R.id.typeOfArbitrage:
-                if(typeOfArbitrage.getText().toString().equals("Inter-Exchange and Cross Exchange Arbitrage")){
-                    typeOfArbitrageString = "Inter-Exchange Arbitrage Only";
+                if(typeOfArbitrage.getText().toString().equals("Intra-Exchange and Cross Exchange Arbitrage")){
+                    typeOfArbitrageString = "Intra-Exchange Arbitrage Only";
                     typeOfArbitrage.setText(typeOfArbitrageString);
                 }
-                else if (typeOfArbitrage.getText().toString().equals("Inter-Exchange Arbitrage Only")){
+                else if (typeOfArbitrage.getText().toString().equals("Intra-Exchange Arbitrage Only")){
                     typeOfArbitrageString = "Cross-Exchange Arbitrage Only";
                     typeOfArbitrage.setText(typeOfArbitrageString);
                 }
                 else {
-                    typeOfArbitrageString = "Inter-Exchange and Cross Exchange Arbitrage";
+                    typeOfArbitrageString = "Intra-Exchange and Cross Exchange Arbitrage";
                     typeOfArbitrage.setText(typeOfArbitrageString);
                 }
                 break;
@@ -555,7 +553,7 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
             for(Exchange exchange: listOfExchanges){
                 exchange.setDataIsFinishedRefreshing(false);
                 getAsksAndBids(exchange);
-                System.out.println(exchange.getName());
+                //System.out.println(exchange.getName());
             }
         }
     }
@@ -568,12 +566,12 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
     }
 
     private static void clearCoinData(Coin coin){
-        coin.setAskPriceUSD(null);
-        coin.setBidPriceUSD(null);
-        coin.setAskPriceBTC(null);
-        coin.setBidPriceBTC(null);
-        coin.setAskPriceETH(null);
-        coin.setBidPriceETH(null);
+        coin.setAskPriceUSD(-1.0);
+        coin.setBidPriceUSD(-1.0);
+        coin.setAskPriceBTC(-1.0);
+        coin.setBidPriceBTC(-1.0);
+        coin.setAskPriceETH(-1.0);
+        coin.setBidPriceETH(-1.0);
     }
 
     static boolean isAllDataFinishedRefreshing(){
@@ -599,7 +597,7 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
         return null;
     }
 
-    @Override
+    /*@Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
         Toast.makeText(this, "Thank You For Purchasing A Subscription", Toast.LENGTH_LONG).show();
         HomePage.hasSubscription = true;
@@ -625,6 +623,7 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
         else{
             if(bp.isSubscribed("monthly_sub")){
                 Toast.makeText(this, "Welcome back", Toast.LENGTH_SHORT).show();
+                HomePage.hasSubscription = true;
             }
             else{
                 Toast.makeText(this,"You do not have a subscription", Toast.LENGTH_SHORT).show();
@@ -649,7 +648,7 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
         if(resultCode == 7){
             Toast.makeText(this,"You Are Already Subscribed",Toast.LENGTH_SHORT).show();;
         }
-        //Toast.makeText(this,"OnActivityResultMethod Result " + resultCode, Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"OnActivityResultMethod Result " + resultCode, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -659,6 +658,6 @@ public class HomePage extends Activity implements View.OnClickListener, BillingP
         }
         super.onDestroy();
     }
-
+    */
 
 }

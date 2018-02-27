@@ -1,4 +1,4 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 
 import android.os.AsyncTask;
 import android.view.View;
@@ -47,7 +47,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         //Create priority Queue first with USD endings, then BTC, then ETH
         //skips BTCBTC, BTCETH, ETHETH - DNE
 
-        System.out.println("MADE IT TO DOWNLOAD TASK");
+        System.out.println(exchange.getName());
 
         LinkedList<String> q1 = new LinkedList<>();
 
@@ -57,9 +57,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         int counter = -1; //specify which arrayList to add results to - explicit for first 3
         //rounds, then rotate
 
-        System.out.println("MADE IT TO DOWNLOADTASK2");
         if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
-    || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
+                || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
                 exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")) {
             fullAPIWay(q1);
             return "Worked";
@@ -72,7 +71,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             counter++;
 
             if(isCoinPairNull(counter)){
-                System.out.println("REMOVED");
+                //System.out.println("REMOVED");
                 q1.remove();
                 continue;
             }
@@ -113,6 +112,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                                 (jsonObject.getString(exchange.getBidSymbol())));
                         exchange.getCoins().get(counter/3).setAskPriceUSD(getPriceDataFromStringInArrayForm
                                 (jsonObject.getString(exchange.getAskSymbol())));
+                        exchange.getCoins().get(counter/3).setVolumeUSD(Double.parseDouble
+                                (jsonObject.getString(exchange.getFindVolumeSymbol())));
                         continue;
                     }
 
@@ -121,29 +122,45 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                             (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchange.getCoins().get(counter/3).setAskPriceUSD
                             (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                    if(exchange.getFindVolumeSymbol()!= null){
+                        exchange.getCoins().get(counter/3).setVolumeUSD(Double.parseDouble(jsonObject.
+                                getString(exchange.getFindVolumeSymbol())));
+                    }
                 }
                 else if (counter % 3 == 1) {
                     if(exchange.getName().equals("Huobi")){
                         exchange.getCoins().get(counter/3).setBidPriceBTC(getPriceDataFromStringInArrayForm                                (jsonObject.getString(exchange.getBidSymbol())));
                         exchange.getCoins().get(counter/3).setAskPriceBTC(getPriceDataFromStringInArrayForm
                                 (jsonObject.getString(exchange.getAskSymbol())));
+                        exchange.getCoins().get(counter/3).setVolumeBTC(Double.parseDouble
+                                (jsonObject.getString(exchange.getFindVolumeSymbol())));
                         continue;
                     }
                     exchange.getCoins().get(counter/3).setBidPriceBTC
                             (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchange.getCoins().get(counter/3).setAskPriceBTC
                             (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                    if(exchange.getFindVolumeSymbol()!= null){
+                        exchange.getCoins().get(counter/3).setVolumeBTC(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
+                    }
                 }
                 else if (counter % 3 == 2) { //dont really need the if, but makes it more clear
                     if(exchange.getName().equals("Huobi")){
-                        exchange.getCoins().get(counter/3).setBidPriceETH(getPriceDataFromStringInArrayForm                                (jsonObject.getString(exchange.getBidSymbol())));
-                        exchange.getCoins().get(counter/3).setAskPriceETH(getPriceDataFromStringInArrayForm                                (jsonObject.getString(exchange.getAskSymbol())));
+                        exchange.getCoins().get(counter/3).setBidPriceETH(getPriceDataFromStringInArrayForm
+                                (jsonObject.getString(exchange.getBidSymbol())));
+                        exchange.getCoins().get(counter/3).setAskPriceETH(getPriceDataFromStringInArrayForm
+                                (jsonObject.getString(exchange.getAskSymbol())));
+                        exchange.getCoins().get(counter/3).setVolumeETH(Double.parseDouble
+                                (jsonObject.getString(exchange.getFindVolumeSymbol())));
                         continue;
                     }
                     exchange.getCoins().get(counter/3).setBidPriceETH
                             (Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                     exchange.getCoins().get(counter/3).setAskPriceETH
                             (Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                    if(exchange.getFindVolumeSymbol()!= null){
+                        exchange.getCoins().get(counter/3).setVolumeBTC(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
+                    }
                 }
             }
             catch (Exception e) {
@@ -153,8 +170,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                         if(urlConnection != null){
                             urlConnection.disconnect();
                         }
-                        System.out.print("NO MORE API REQUESTS ALLOWED " + exchange.getName());
-                        System.out.println("The maximum amt is: " + APIRequestsMade);
+                        //System.out.print("NO MORE API REQUESTS ALLOWED " + exchange.getName());
+                        //System.out.println("The maximum amt is: " + APIRequestsMade);
                         return "NO MORE API REQUESTS ALLOWED";
                     }
                 }
@@ -167,9 +184,18 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        System.out.println(exchange.getName());
+        //System.out.println(exchange.getName());
         try { //sets all null values in each coin to 0 if it DNE - previously null
             for(Coin coin : exchange.getCoins()){
+                if(coin.getVolumeBTC() == null){
+                    coin.setVolumeBTC(-1.0);
+                }
+                if(coin.getVolumeETH() == null){
+                    coin.setVolumeETH(-1.0);
+                }
+                if(coin.getVolumeUSD() == null){
+                    coin.setVolumeUSD(-1.0);
+                }
                 if (coin.getAskPriceUSD() == null){
                     coin.setAskPriceUSD(-1.0);
                 }
@@ -193,12 +219,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 HomePage.isInProcessOfRefreshing = false;
             }
             exchange.setDataIsFinishedRefreshing(true);
-            for(Coin coin: exchange.getCoins()){
+            /*for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
                         + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
-            }
+            }*/
         }
         catch (Exception e) {
             exchange.setDataIsFinishedRefreshing(true);
@@ -214,23 +240,17 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
         int counter = -1;
         Coin currentCoin;
-        System.out.println("MADE IT TO DOWNLOADTASK5");
         StringBuilder result = new StringBuilder();
         URL url;
         HttpURLConnection urlConnection;
 
         try {
-            System.out.println("MADE IT TO DOWNLOADTASK6");
             url = new URL(this.apiBase);
-            System.out.println("MADE IT TO DOWNLOADTASK7");
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setConnectTimeout(800);
-            System.out.println("MADE IT TO DOWNLOADTASK8");
             InputStream in = urlConnection.getInputStream();
-            System.out.println(in.toString());
-            System.out.println("MADE IT TO DOWNLOADTASK9");
+            //System.out.println(in.toString());
             InputStreamReader reader = new InputStreamReader(in);
-            System.out.println("MADE IT TO DOWNLOADTASK10");
             int data = reader.read();
             while (data != -1) {
                 char current = (char) data;
@@ -269,8 +289,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 sortJSONArray(allPairs, findSymbol);
             }
 
-            System.out.println("JSON SIZE" + allPairs.length() + " Queue length" + queue.size());
-            System.out.println("Exchange name is: " + exchange.getName());
+            //System.out.println("JSON SIZE" + allPairs.length() + " Queue length" + queue.size());
+            //System.out.println("Exchange name is: " + exchange.getName());
 
             while(!queue.isEmpty()){
                 counter ++; //makes counter1 0 initially 0 - don't want it at end bc might overlook it
@@ -286,23 +306,33 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 //        " Price is " + jsonObject.getString(exchange.getAskSymbol()));
 
                 if(jsonObject == null){
-                    System.out.println("Null " + queue.peek() );//debugger
+                    //System.out.println("Null " + queue.peek() );//debugger
                 }
                 else {
                     //a btc pair
                     if (counter % 3 == 1) {
                         currentCoin.setBidPriceBTC(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                         currentCoin.setAskPriceBTC(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                        if(exchange.getFindVolumeSymbol()!= null){
+                            currentCoin.setVolumeBTC(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        }
                     }
                     //eth pair
                     else if (counter % 3 == 2) {
                         currentCoin.setBidPriceETH(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                         currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                        if(exchange.getFindVolumeSymbol()!= null){
+                            currentCoin.setVolumeETH(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        }
                     }
                     //USDT pair
                     else if (counter % 3 == 0) {
                         currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                         currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
+                        System.out.println(currentCoin.getName());
+                        if(exchange.getFindVolumeSymbol()!= null){
+                            currentCoin.setVolumeUSD(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        }
                     }
                 }
                 queue.remove();
@@ -314,7 +344,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         }
         catch (Exception e){
             e.printStackTrace();
-            System.out.println("MADE IT TO DOWNLOADTAS12");
+            //System.out.println("MADE IT TO DOWNLOADTAS12");
             return;
         }
     }
@@ -416,16 +446,20 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 if (counter % 3 == 1) {
                     currentCoin.setBidPriceBTC(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceBTC(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
+                    currentCoin.setVolumeBTC(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
                 }
                 //eth pair
                 else if (counter % 3 == 2) {
                     currentCoin.setBidPriceETH(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceETH(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
+                    currentCoin.setVolumeETH(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
+
                 }
                 //USDT pair
                 else if (counter % 3 == 0) {
                     currentCoin.setBidPriceUSD(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceUSD(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
+                    currentCoin.setVolumeUSD(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
                 }
                 queue.remove();
 
@@ -450,9 +484,8 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
         }
     }
-        //Kraken pairs are so weird
+    //Kraken pairs are so weird
     private void krakenWay(LinkedList<String> q1, JSONObject jsonObject) {
-        System.out.println("Kraken has " + exchange.getCoins().size() + " coins in it");
         Coin currentCoin;
         JSONObject currentCoinJSONForm;
         String currentAskString;
@@ -462,9 +495,6 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         while(!q1.isEmpty()){
             counter++;
             currentCoin = exchange.getCoins().get(counter/3);
-            if(counter % 3 == 0){
-                System.out.println("Coin is: " + exchange.getCoins().get(counter/3).getName());
-            }
             if(isCoinPairNull(counter)){
                 q1.remove();
                 continue;
@@ -481,9 +511,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             try {
                 currentCoinJSONForm = jsonObject.getJSONObject(coinPairBase);
                 currentAskString = currentCoinJSONForm.getString(exchange.getAskSymbol());
-                System.out.println(currentAskString);
                 currentBidString = currentCoinJSONForm.getString(exchange.getBidSymbol());
-                System.out.println(currentBidString);
 
                 if (counter % 3 == 1) {
                     currentCoin.setBidPriceBTC(getPriceDataFromStringInArrayForm(currentBidString));
@@ -549,5 +577,4 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         }
         return null;
     }
-
 }

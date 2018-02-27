@@ -1,4 +1,4 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 import android.graphics.Path;
 
 import java.util.Comparator;
@@ -245,7 +245,7 @@ public class ArbitrageFinder {
                         }
                         if (listOfCoins.get(j).getBidPriceUSD() / listOfCoins.get(i).getAskPriceUSD() - 1 >
                                 HomePage.minGainsWanted / 100) {
-                                bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceUSD()
+                            bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceUSD()
                                     / listOfCoins.get(i).getAskPriceUSD() - 1) * 100, 7, listOfCoins.get(j), listOfCoins.get(i)));
                         }
                     }
@@ -278,12 +278,100 @@ public class ArbitrageFinder {
                                 / listOfCoins.get(j).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(i), listOfCoins.get(j)));
                     }
                     if (listOfCoins.get(j).getBidPriceETH() / listOfCoins.get(i).getAskPriceETH() - 1 >
-                                HomePage.minGainsWanted / 100) {
-                            bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceETH()
-                                    / listOfCoins.get(i).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(j), listOfCoins.get(i)));
+                            HomePage.minGainsWanted / 100) {
+                        bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceETH()
+                                / listOfCoins.get(i).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(j), listOfCoins.get(i)));
 
                     }
                 }
+            }
+        }
+    }
+
+    public void getRealVolumeNumbers(){
+        for(Exchange exchange: HomePage.listOfExchanges){
+            switch (exchange.getName()){
+                case "Bittrex":
+                    for(Coin coin: exchange.getCoins()){
+                        if(coin.getVolumeBTC() > 0) {
+                            coin.setVolumeBTC(coin.getVolumeBTC() * exchange.getCoins().get(0).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeETH() > 0) {
+                            coin.setVolumeETH(coin.getVolumeETH() * exchange.getCoins().get(1).getAskPriceUSD());
+                        }
+                    }
+                    break;
+                case "HitBTC":
+                    for(Coin coin: exchange.getCoins()){
+                        if(coin.getVolumeBTC() > 0) {
+                            coin.setVolumeBTC(coin.getVolumeBTC() * coin.getBidPriceBTC() * exchange.getCoins().get(0).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeETH() > 0) {
+                            coin.setVolumeETH(coin.getVolumeETH() * coin.getBidPriceETH() * exchange.getCoins().get(1).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeUSD() > 0) {
+                            coin.setVolumeUSD(coin.getVolumeUSD() * coin.getAskPriceUSD());
+                        }
+                    }
+                    break;
+                case "Bit-Z":
+                    for(Coin coin: exchange.getCoins()){
+                        if(coin.getVolumeBTC() > 0) {
+                            coin.setVolumeBTC(coin.getVolumeBTC() * coin.getBidPriceBTC() * exchange.getCoins().get(0).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeETH() > 0) {
+                            coin.setVolumeETH(coin.getVolumeETH() * coin.getBidPriceETH() * exchange.getCoins().get(1).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeUSD() > 0) {
+                            coin.setVolumeUSD(coin.getVolumeUSD() * coin.getAskPriceUSD());
+                        }
+                    }
+                    break;
+                case "Poloniex":
+                    for(Coin coin: exchange.getCoins()){
+                        if(coin.getVolumeBTC() > 0) {
+                            coin.setVolumeBTC(coin.getVolumeBTC() * exchange.getCoins().get(0).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeETH() > 0) {
+                            coin.setVolumeETH(coin.getVolumeETH() * exchange.getCoins().get(1).getAskPriceUSD());
+                        }
+                    }
+                    break;
+
+                case "OKEX":
+                    for(Coin coin: exchange.getCoins()){
+                        if(coin.getVolumeBTC() > 0) {
+                            coin.setVolumeBTC(coin.getVolumeBTC() * coin.getBidPriceBTC() * exchange.getCoins().get(0).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeETH() > 0) {
+                            coin.setVolumeETH(coin.getVolumeETH() * coin.getBidPriceETH() * exchange.getCoins().get(1).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeUSD() > 0) {
+                            coin.setVolumeUSD(coin.getVolumeUSD() * coin.getAskPriceUSD());
+                        }
+                    }
+                    break;
+                case "Huobi":
+                    for(Coin coin: exchange.getCoins()){
+                        if(coin.getVolumeBTC() > 0) {
+                            coin.setVolumeBTC(coin.getVolumeBTC() * coin.getBidPriceBTC() * exchange.getCoins().get(0).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeETH() > 0) {
+                            coin.setVolumeETH(coin.getVolumeETH() * coin.getBidPriceETH() * exchange.getCoins().get(1).getAskPriceUSD());
+                        }
+                        if(coin.getVolumeUSD() > 0) {
+                            coin.setVolumeUSD(coin.getVolumeUSD() * coin.getAskPriceUSD());
+                        }
+                    }
+                    break;
+            }
+        }
+
+        for(Exchange exchange: HomePage.listOfExchanges){
+            System.out.println(exchange.getName());
+            for(Coin coin: exchange.getCoins()){
+                System.out.println(coin.getName() + ": V usd: " + coin.getVolumeUSD() +
+                        "  v btc: " + coin.getVolumeBTC() + "  volume eth: " + coin.getVolumeETH());
             }
         }
     }
