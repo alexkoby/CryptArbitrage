@@ -1,4 +1,4 @@
-package com.example.alexander.cryptarbitrage2;
+package My.Awesome.Project.cryptarbitrage30;
 
 
 import android.support.annotation.NonNull;
@@ -8,6 +8,11 @@ import android.support.annotation.NonNull;
  */
 
 public class Coin implements Comparable<Coin>{
+    //all converted to usd figures
+    private Double volumeUSD;
+    private Double volumeBTC;
+    private Double volumeETH;
+
 
     private String name;
     private String abbreviation;
@@ -111,6 +116,25 @@ public class Coin implements Comparable<Coin>{
 
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
+    }
+
+    public Double getVolumeUSD(){
+        return this.volumeUSD;
+    }
+    public void setVolumeUSD(Double volume){
+        this.volumeUSD = volume;
+    }
+    public Double getVolumeBTC(){
+        return this.volumeBTC;
+    }
+    public void setVolumeBTC(Double volume){
+        this.volumeBTC = volume;
+    }
+    public Double getVolumeETH(){
+        return this.volumeETH;
+    }
+    public void setVolumeETH(Double volume){
+        this.volumeETH = volume;
     }
 
 
