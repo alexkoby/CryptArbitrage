@@ -6,6 +6,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.BufferedReader;
@@ -26,6 +27,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
     Button submitCurrencyButton;
     Button selectAllCurrenciesButton;
     boolean hasAddedBitcoinAndEthereum = false;
+
+    static int numberClicked = 0;
+    final int MAX_NUMBER_ALLOWED = 5;
 
     ArrayAdapter<String>listAdapter;
 
@@ -56,6 +60,11 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             //Makes Select All button work
             case R.id.select_all_cryptocurrencies_button:
+                if(!HomePage.hasSubscription){
+                    //Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
+                    //HomePage.bp.subscribe();
+                    //break;
+                }
                 if (selectAllCurrenciesButton.getText().equals("On")) {
                     for (ToggleButton button : allCurrenciesButtons) {
                         button.setChecked(false);
@@ -72,6 +81,22 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
             //Submit button - clears everything off each exchange and inserts coins
             //to respective exchanges
             case R.id.submit_currency_button:
+                /*if(!HomePage.hasSubscription) {
+                    int count = 0;
+                    for (ToggleButton toggleButton : allCurrenciesButtons) {
+                        if(toggleButton.isChecked()){
+                            count++;
+                        }
+                        if(count > 5){Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
+                            //HomePage.bp.subscribe();
+                            break;
+                        }
+                    }
+                    if(count > 5){
+                        break;
+                    }
+                }
+                */
                 HomePage.isCreatedCryptocurrencies = true;
                 clearExchanges();
                 HomePage.listOfCurrencies.clear();
