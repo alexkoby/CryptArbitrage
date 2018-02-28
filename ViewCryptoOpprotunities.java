@@ -81,7 +81,6 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         Opportunity5AlertDialog = new AlertDialog.Builder(this).create();
         alertDialog = new AlertDialog.Builder(this).create();
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
-        arbitrageFinder.getRealVolumeNumbers();
 
         timePicker = findViewById(R.id.lastTimeRefreshID);
         if(HomePage.lastTimeRefreshedMinute < 10){
@@ -742,5 +741,50 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 return stringBuilder.toString();
         }
         return null;
+    }
+
+    private void quantityToBuy(Opportunity opportunity){
+        Double dollarAmt = 0.0;
+        switch (opportunity.getType()){
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            case 5:
+
+                break;
+
+            case 6:
+
+                break;
+        }
+    }
+    private Double min(Double d1, Double d2, Double d3){
+        if(d1 > d2){
+            return min(d2, d3);
+        }
+        else{
+            return min(d1, d3);
+        }
+    }
+    private Double min(Double d1, Double d2){
+        if(d1 > d2){
+            return d2;
+        }
+        else{
+            return d1;
+        }
     }
 }
