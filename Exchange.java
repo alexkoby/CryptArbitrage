@@ -5,6 +5,9 @@ import java.util.ArrayList;
  */
 
 public class Exchange {
+
+    private String bidQtySymbol;
+    private String askQtySymbol;
     private String findVolumeSymbol;
     private ArrayList<Coin> coins;
     private ArrayList<Double> asks;
@@ -17,7 +20,7 @@ public class Exchange {
     private boolean dataIsFinishedRefreshing;
     private boolean isUSD;
     public Exchange(String name, String askSymbol, String bidSymbol, boolean exchangeAPISorted, boolean dataIsFinishedRefreshing,
-                    boolean isdUSD, String findVolumeSymbol){
+                    boolean isdUSD, String findVolumeSymbol, String bidQtySymbol, String askQtySymbol){
         coins = new ArrayList<>();
         asks = new ArrayList<>();
         bids = new ArrayList<>();
@@ -33,6 +36,9 @@ public class Exchange {
         this.findVolumeSymbol = findVolumeSymbol;
 
         this.isUSD = isdUSD;
+
+        this.bidQtySymbol = bidQtySymbol;
+        this.askQtySymbol = askQtySymbol;
     }
 
 
@@ -91,5 +97,11 @@ public class Exchange {
     }
     public void setDataIsFinishedRefreshing(boolean value){
         this.dataIsFinishedRefreshing = value;
+    }
+    public String getBidQtySymbol(){
+        return this.bidQtySymbol;
+    }
+    public String getAskQtySymbol(){
+        return this.askQtySymbol;
     }
 }
