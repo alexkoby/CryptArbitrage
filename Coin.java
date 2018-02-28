@@ -9,6 +9,15 @@ import android.support.annotation.NonNull;
 
 public class Coin implements Comparable<Coin>{
     //all converted to usd figures
+    private Double bidQtyUSD;
+    private Double askQtyUSD;
+    private Double bidQtyBTC;
+    private Double askQtyBTC;
+    private Double bidQtyETH;
+    private Double askQtyETH;
+
+
+
     private Double volumeUSD;
     private Double volumeBTC;
     private Double volumeETH;
@@ -135,6 +144,53 @@ public class Coin implements Comparable<Coin>{
     }
     public void setVolumeETH(Double volume){
         this.volumeETH = volume;
+    }
+    public Double getBidQtyUSD() {
+        return bidQtyUSD;
+    }
+
+    public void setBidQtyUSD(Double bidQtyUSD) {
+        this.bidQtyUSD = bidQtyUSD;
+    }
+
+    public Double getAskQtyUSD() {
+        return askQtyUSD;
+    }
+
+    public void setAskQtyUSD(Double askQtyUSD) {
+        this.askQtyUSD = askQtyUSD;
+    }
+
+    public Double getBidQtyBTC() {
+        return bidQtyBTC;
+    }
+
+    public void setBidQtyBTC(Double bidQtyBTC) {
+        this.bidQtyBTC = bidQtyBTC;
+    }
+
+    public Double getAskQtyBTC() {
+        return askQtyBTC;
+    }
+
+    public void setAskQtyBTC(Double askQtyBTC) {
+        this.askQtyBTC = askQtyBTC;
+    }
+
+    public Double getBidQtyETH() {
+        return bidQtyETH;
+    }
+
+    public void setBidQtyETH(Double bidQtyETH) {
+        this.bidQtyETH = bidQtyETH;
+    }
+
+    public Double getAskQtyETH() {
+        return askQtyETH;
+    }
+
+    public void setAskQtyETH(Double askQtyETH) {
+        this.askQtyETH = askQtyETH;
     }
 
 
