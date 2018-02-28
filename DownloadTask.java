@@ -217,6 +217,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
             if(exchange.getName().equals(HomePage.lastExchange)){
                 HomePage.isInProcessOfRefreshing = false;
+                ArbitrageFinder.getRealVolumeNumbers();
             }
             exchange.setDataIsFinishedRefreshing(true);
             /*for(Coin coin: exchange.getCoins()){
@@ -316,6 +317,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                         if(exchange.getFindVolumeSymbol()!= null){
                             currentCoin.setVolumeBTC(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
                         }
+                        if(exchange.getAskQtySymbol() != null){
+                            currentCoin.setAskQtyBTC(Double.parseDouble(jsonObject.getString(exchange.getAskQtySymbol())));
+                            currentCoin.setBidQtyBTC(Double.parseDouble(jsonObject.getString(exchange.getBidQtySymbol())));
+                        }
                     }
                     //eth pair
                     else if (counter % 3 == 2) {
@@ -323,6 +328,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                         currentCoin.setAskPriceETH(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
                         if(exchange.getFindVolumeSymbol()!= null){
                             currentCoin.setVolumeETH(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        }
+                        if(exchange.getAskQtySymbol() != null){
+                            currentCoin.setAskQtyETH(Double.parseDouble(jsonObject.getString(exchange.getAskQtySymbol())));
+                            currentCoin.setBidQtyETH(Double.parseDouble(jsonObject.getString(exchange.getBidQtySymbol())));
                         }
                     }
                     //USDT pair
@@ -332,6 +341,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                         System.out.println(currentCoin.getName());
                         if(exchange.getFindVolumeSymbol()!= null){
                             currentCoin.setVolumeUSD(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        }
+                        if(exchange.getAskQtySymbol() != null){
+                            currentCoin.setAskQtyUSD(Double.parseDouble(jsonObject.getString(exchange.getAskQtySymbol())));
+                            currentCoin.setBidQtyUSD(Double.parseDouble(jsonObject.getString(exchange.getBidQtySymbol())));
                         }
                     }
                 }
@@ -490,6 +503,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         JSONObject currentCoinJSONForm;
         String currentAskString;
         String currentBidString;
+        String currentVolume;
 
         int counter = -1;
         while(!q1.isEmpty()){
@@ -512,20 +526,24 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 currentCoinJSONForm = jsonObject.getJSONObject(coinPairBase);
                 currentAskString = currentCoinJSONForm.getString(exchange.getAskSymbol());
                 currentBidString = currentCoinJSONForm.getString(exchange.getBidSymbol());
+                currentVolume = currentCoinJSONForm.getString(exchange.getFindVolumeSymbol());
 
                 if (counter % 3 == 1) {
                     currentCoin.setBidPriceBTC(getPriceDataFromStringInArrayForm(currentBidString));
                     currentCoin.setAskPriceBTC(getPriceDataFromStringInArrayForm(currentAskString));
+                    currentCoin.setVolumeBTC(getVolumeDataFromStringInArrayForm(currentVolume));
                 }
                 //eth pair
                 else if (counter % 3 == 2) {
                     currentCoin.setBidPriceETH(getPriceDataFromStringInArrayForm(currentBidString));
                     currentCoin.setAskPriceETH(getPriceDataFromStringInArrayForm(currentAskString));
+                    currentCoin.setVolumeETH(getVolumeDataFromStringInArrayForm(currentVolume));
                 }
                 //USDT pair
                 else if (counter % 3 == 0) {
                     currentCoin.setBidPriceUSD(getPriceDataFromStringInArrayForm(currentBidString));
                     currentCoin.setAskPriceUSD(getPriceDataFromStringInArrayForm(currentAskString));
+                    currentCoin.setVolumeUSD(getVolumeDataFromStringInArrayForm(currentVolume));
                 }
                 q1.remove();
             }
@@ -576,5 +594,23 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             return Double.parseDouble(s.substring(1,spotOfSecondQuote));
         }
         return null;
+    }
+
+    private Double getVolumeDataFromStringInArrayForm(String s){
+        int spotComma = 0;
+        int spotSecondQuote = 0;
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == ','){
+                spotComma = i;
+                break;
+            }
+        }
+        for(int i = spotComma + 2; i < s.length(); i++){
+            if(s.charAt(i) == '"'){
+                spotSecondQuote = i;
+                break;
+            }
+        }
+        return Double.parseDouble(s.substring(spotComma + 2, spotSecondQuote));
     }
 }
