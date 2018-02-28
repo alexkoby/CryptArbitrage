@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     android:padding="15dip"
     android:orientation="horizontal"
-    tools:context="com.example.alexander.cryptarbitrage2.MainActivity">
+    tools:context="My.Awesome.Project.cryptarbitrage30.HomePage">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -62,13 +62,13 @@
             android:text="@string/modify_cryptocurrencies"
             android:textSize="20sp" />
 
-            <TextView
-                android:paddingTop="35dip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:text="@string/minimumGainsHappyWith"/>
+        <TextView
+            android:paddingTop="35dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="@string/minimumGainsHappyWith"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -85,7 +85,25 @@
                 android:layout_width="75dip"
                 android:layout_height="30dip"
                 android:background="@color/light_sea_green"
+                android:text="@string/enterButtonHomePageMinGains"
+                android:paddingRight="5dip"/>
+
+            <EditText
+                android:id="@+id/minVolumeEditText"
+                android:layout_width="105dip"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:text="@string/minGainNumber"
+                android:textSize="16sp"
+                android:paddingRight="20dip"/>
+
+            <Button
+                android:id="@+id/enterVolumeButton"
+                android:layout_width="75dip"
+                android:layout_height="30dip"
+                android:background="@color/light_sea_green"
                 android:text="@string/enterButtonHomePageMinGains" />
+
         </LinearLayout>
 
         <Button
