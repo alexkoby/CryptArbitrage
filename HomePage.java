@@ -33,6 +33,7 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     //BillingProcessor bp;
     static boolean hasSubscription = false;
+    static double minimumVolumeUSD = 100000.0;
 
     static boolean isCreatedHomepage = false;
     static boolean isCreatedExchanges = false;
@@ -77,6 +78,7 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     static double minGainsWanted = 1.5;
     EditText minGainEditText;
+    EditText minVolumeEditText;
     Button typeOfArbitrage;
     Button refreshButtonHomePage;
     static String typeOfArbitrageString = "Intra-Exchange and Cross Exchange Arbitrage";
@@ -97,38 +99,38 @@ public class HomePage extends Activity implements View.OnClickListener{
             listOfExchanges = new ArrayList<>();
             listOfCurrencies = new ArrayList<>();
             allPossibleExchanges = new ArrayList<>();
-            bitfinex = new Exchange("Bitfinex", "ask", "bid",
-                    false, false, true,null); // doesn't return volume
+            bitfinex = new Exchange("Bitfinex", "ask", "bid",false,
+                    false, true,null, null, null); // doesn't return volume
             allPossibleExchanges.add(bitfinex);
-            bittrex = new Exchange("Bittrex", "Ask", "Bid",
-                    true, false, false, "baseVolume"); //multiply by price of bitcoin or eth to get price usd
+            bittrex = new Exchange("Bittrex", "Ask", "Bid",true,
+                    false, false, "BaseVolume", null, null); //multiply by price of bitcoin or eth to get price usd
             allPossibleExchanges.add(bittrex);
-            binance = new Exchange("Binance", "price", "price",
-                    false, false,false,null); // doesn't return volume
+            binance = new Exchange("Binance", "askPrice", "bidPrice",false,
+                    false,false,"volume", "bidQty","askQty"); // doesn't return volume
             allPossibleExchanges.add(binance);
-            hitBTC = new Exchange("HitBTC", "ask", "bid",
-                    false, false, true,"volume"); // volume * trading price * usd price of eth or btc
+            hitBTC = new Exchange("HitBTC", "ask", "bid",false,
+                    false, true,"volume", null, null); // volume * trading price * usd price of eth or btc
             allPossibleExchanges.add(hitBTC);
-            bitZ = new Exchange("Bit-Z","sell","buy",
-                    false, false, false, "vol");//volume * trading price * usd price of eth or btc
+            bitZ = new Exchange("Bit-Z","sell","buy",false,
+                    false, false, "vol", null, null);//volume * trading price * usd price of eth or btc
             allPossibleExchanges.add(bitZ);
-            poloniex = new Exchange("Poloniex","lowestAsk","highestBid",
-                    false, false, false, "baseVolume");//volume * price of usd(1) or brice of bitcoin
+            poloniex = new Exchange("Poloniex","lowestAsk","highestBid",false,
+                    false, false, "baseVolume", null, null);//volume * price of usd(1) or brice of bitcoin
             allPossibleExchanges.add(poloniex);
-            bitStamp = new Exchange("BitStamp","bid","ask",
-                    false, false, true, null); //all volume is high enough
+            bitStamp = new Exchange("BitStamp","bid","ask",false,
+                    false, true, "volume", null, null); //volume * price * price usd(1) or btc
             allPossibleExchanges.add(bitStamp);
-            OKEX = new Exchange("OKEX","sell","buy",
-                    false, false, false, "vol");// volume * trading price * price of usd(1) or price btc or eth
+            OKEX = new Exchange("OKEX","sell","buy",false,
+                    false, false, "vol", null, null);// volume * trading price * price of usd(1) or price btc or eth
             allPossibleExchanges.add(OKEX);
-            GDAX = new Exchange("GDAX","ask","bid",
-                    false, false, true, null);// all volume is high
+            GDAX = new Exchange("GDAX","ask","bid",false,
+                    false, true, "volume", null, null);// same as bitstamp
             allPossibleExchanges.add(GDAX);
-            kraken = new Exchange("Kraken","a","b",
-                    false, false, true, null);//figure out later
+            kraken = new Exchange("Kraken","a","b",false,
+                    false, true, "v", null, null);//same at bitstamp
             allPossibleExchanges.add(kraken);
-            huobi = new Exchange("Huobi","ask","bid",
-                    false,false, false, "amount");
+            huobi = new Exchange("Huobi","ask","bid",false,
+                    false, false, "amount", null, null);
             allPossibleExchanges.add(huobi);
 
             isCreatedHomepage = true;
@@ -150,12 +152,17 @@ public class HomePage extends Activity implements View.OnClickListener{
         View enterMinGainsButton = findViewById(R.id.enterMinGainsButton);
         enterMinGainsButton.setOnClickListener(this);
 
+        View enterMinVolumeButton = findViewById(R.id.enterVolumeButton);
+        enterMinVolumeButton.setOnClickListener(this);
+
         refreshButtonHomePage = findViewById(R.id.refreshDataButtonHomePage);
         refreshButtonHomePage.setOnClickListener(this);
 
 
         minGainEditText= findViewById(R.id.minGainEditText);
         minGainEditText.setText(Double.toString(minGainsWanted));
+        minVolumeEditText = findViewById(R.id.minVolumeEditText);
+        minVolumeEditText.setText(Double.toString(minimumVolumeUSD));
 
         typeOfArbitrage = findViewById(R.id.typeOfArbitrage);
         typeOfArbitrage.setText(typeOfArbitrageString);
@@ -390,10 +397,16 @@ public class HomePage extends Activity implements View.OnClickListener{
                 break;
 
             case R.id.enterMinGainsButton:
-                minGainsWanted = 0;
                 String s = minGainEditText.getText().toString();
                 minGainsWanted = Double.parseDouble(s);
                 minGainEditText.setText(Double.toString(minGainsWanted));
+                break;
+
+            case R.id.enterVolumeButton:
+                String str = minVolumeEditText.getText().toString();
+                minimumVolumeUSD = Double.parseDouble(str);
+                minVolumeEditText.setText(Double.toString(minimumVolumeUSD));
+                System.out.println("Volume min is: " + minimumVolumeUSD);
                 break;
 
             case R.id.typeOfArbitrage:
@@ -475,7 +488,7 @@ public class HomePage extends Activity implements View.OnClickListener{
         taskBitfinex = new DownloadTask(null,"https://api.bitfinex.com/v1/pubticker/", bitfinex );
         taskBittrex = new DownloadTask("MarketName",
                 "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
-        taskBinance = new DownloadTask("symbol", "https://www.binance.com/api/v1/ticker/allPrices",
+        taskBinance = new DownloadTask("symbol", "https://www.binance.com/api/v1/ticker/24hr",
                 binance);
         taskHitBTC = new DownloadTask("symbol","https://api.hitbtc.com/api/2/public/ticker", hitBTC);
         taskBitZ = new DownloadTask("data","https://www.bit-z.com/api_v1/tickerall", bitZ);
@@ -506,7 +519,7 @@ public class HomePage extends Activity implements View.OnClickListener{
                         "https://bittrex.com/api/v1.1/public/getmarketsummaries", bittrex);
                 return taskBittrex;
             case "Binance":
-                taskBinance = new DownloadTask("symbol", "https://www.binance.com/api/v1/ticker/allPrices",
+                taskBinance = new DownloadTask("symbol", "https://www.binance.com/api/v1/ticker/24hr",
                         binance);
                 return taskBinance;
             case "HitBTC":
