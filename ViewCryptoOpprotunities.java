@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.PriorityQueue;
 /**
  * Created by Alexander on 1/7/2018.
@@ -81,6 +82,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         Opportunity5AlertDialog = new AlertDialog.Builder(this).create();
         alertDialog = new AlertDialog.Builder(this).create();
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
+
 
         timePicker = findViewById(R.id.lastTimeRefreshID);
         if(HomePage.lastTimeRefreshedMinute < 10){
@@ -474,6 +476,12 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
             }
         }
+        /*for(int i = 0; i < topOpportunitiesArray.length; i++){
+            if(topOpportunitiesArray[i].getType() < 7 &&
+                    topOpportunitiesArray[i].getHighPriceCoinExchange().getExchange().getName().equals("Binance")) {
+                arbitrageFinder.quantityToBuy(topOpportunitiesArray[i]);
+            }
+        }*/
         return 1;
     }
 
@@ -671,9 +679,22 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceUSD()));
                 stringBuilder.append(" USD");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nRemember to always check to make sure the wallets on both exchanges are" +
-                        " working and the quantity of asks/bids on both exchanges is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else {
+                    stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else{
+                    stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
 
             case 8:
@@ -692,9 +713,22 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceBTC()));
                 stringBuilder.append(" Bitcoin");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nRemember to always check to make sure the wallets on both exchanges are" +
-                        " working and the quantity of asks/bids on both exchanges is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else{
+                    stringBuilder.append("$" +round(opportunity.getHighPriceCoinExchange().getVolumeBTC()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else {
+                    stringBuilder.append("$" +round(opportunity.getLowPriceCoinExchange().getVolumeBTC()));
+                }
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
 
             case 9:
@@ -713,9 +747,22 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceETH()));
                 stringBuilder.append(" Ethereum");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nRemember to always check to make sure the wallets on both exchanges are" +
-                        " working and the quantity of asks/bids on both exchanges is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else {
+                    stringBuilder.append("$" +round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else{
+                    stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
 
             case 10:
@@ -735,56 +782,36 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceUSD()));
                 stringBuilder.append(" USDT");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nRemember to always check to make sure the wallets on both exchanges are" +
-                        " working and the quantity of asks/bids on both exchanges is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else {
+                    stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else{
+                    stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
         }
         return null;
     }
 
-    private void quantityToBuy(Opportunity opportunity){
-        Double dollarAmt = 0.0;
-        switch (opportunity.getType()){
-            case 1:
 
-                break;
-
-            case 2:
-
-                break;
-
-            case 3:
-
-                break;
-
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
-            case 6:
-
-                break;
-        }
-    }
-    private Double min(Double d1, Double d2, Double d3){
-        if(d1 > d2){
-            return min(d2, d3);
+    private int round(Double d1){
+        if(d1 != null){
+            double d2 = d1;
+            int i = (int)d2;
+            return i;
         }
         else{
-            return min(d1, d3);
-        }
-    }
-    private Double min(Double d1, Double d2){
-        if(d1 > d2){
-            return d2;
-        }
-        else{
-            return d1;
+            return -1;
         }
     }
 }
