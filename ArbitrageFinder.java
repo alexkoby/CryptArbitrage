@@ -120,6 +120,11 @@ public class ArbitrageFinder {
     private Opportunity typeOne(Coin coin, Coin bitcoin) {
         double type1Rate;
 
+        /*if(coin.getAskPriceUSD() == null || coin.getBidPriceBTC() == null){
+            return null;
+        }
+        */
+
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && bitcoin.getBidPriceUSD() > 0) {
             type1Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceBTC() * bitcoin.getBidPriceUSD();
             System.out.println("Type 1: "+ type1Rate+ "  " + coin.getName());
@@ -138,6 +143,11 @@ public class ArbitrageFinder {
      */
     private Opportunity typeTwo(Coin coin, Coin bitcoin) {
         double type2Rate;
+        /*
+        if(coin.getBidPriceUSD() == null || coin.getAskPriceBTC() == null){
+            return null;
+        }*/
+
         if (bitcoin.getAskPriceUSD() > 0 && coin.getAskPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
             type2Rate = (1/bitcoin.getAskPriceUSD()) * (1/coin.getAskPriceBTC()) * coin.getBidPriceUSD();
             System.out.println("Type 2: "+ type2Rate+ "  " + coin.getName());
@@ -156,6 +166,10 @@ public class ArbitrageFinder {
      */
     private Opportunity typeThree(Coin coin, Coin ethereum) {
         double type3Rate;
+
+        /*if(coin.getAskPriceUSD() == null || coin.getBidPriceETH() == null){
+            return null;
+        }*/
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceUSD() > 0) {
             type3Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceETH() * ethereum.getBidPriceUSD();
             System.out.println("Type 3: "+ type3Rate+ "  " + coin.getName());
@@ -175,6 +189,11 @@ public class ArbitrageFinder {
      */
     private Opportunity typeFour(Coin coin, Coin ethereum) {
         double type4Rate;
+
+        /*if(coin.getBidPriceUSD() == null || coin.getAskPriceETH() == null){
+            return null;
+        }*/
+
         if (ethereum.getAskPriceUSD() > 0 && coin.getAskPriceETH() > 0 && coin.getBidPriceUSD() > 0) {
             type4Rate = (1/ethereum.getAskPriceUSD()) * (1/coin.getAskPriceETH()) * coin.getBidPriceUSD();
             System.out.println("Type 4: "+ type4Rate+ "  " + coin.getName());
@@ -194,6 +213,11 @@ public class ArbitrageFinder {
      */
     private Opportunity typeFive(Coin coin, Coin ethereum) {
         double type5Rate;
+
+        /*if(coin.getBidPriceBTC() == null || coin.getAskPriceETH() == null){
+            return null;
+        }*/
+
         if(coin.getAskPriceETH() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getAskPriceBTC() > 0){
             type5Rate = (1 / coin.getAskPriceETH()) * coin.getBidPriceBTC() / ethereum.getAskPriceBTC();
             System.out.println("Type 5 " + type5Rate + "  " + coin.getName());
@@ -212,6 +236,11 @@ public class ArbitrageFinder {
      */
     private Opportunity typeSix(Coin coin, Coin ethereum) {
         double type6Rate;
+
+        /*if(coin.getAskPriceBTC() == null || coin.getBidPriceETH() == null){
+            return null;
+        }*/
+
         if(coin.getAskPriceBTC() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceBTC() > 0) {
             type6Rate = (1 / coin.getAskPriceBTC()) * coin.getBidPriceETH() * ethereum.getBidPriceBTC();
             System.out.println("Type 6: "+ type6Rate + "  "+ coin.getName());
@@ -233,7 +262,9 @@ public class ArbitrageFinder {
         for(Exchange exchange: HomePage.listOfExchanges){
             for(Coin coin: exchange.getCoins()){
                 if(coin.getName().equals(coinName)){
+                    //if(coin.getAskPriceBTC() != null || coin.getAskPriceUSD() != null || coin.getAskPriceETH() != null) {
                     listOfCoins.add(coin);
+                    //}
                 }
             }
         }
@@ -348,4 +379,84 @@ public class ArbitrageFinder {
             }
         }
     }
+
+    /*
+    public void quantityToBuy(Opportunity opportunity){
+
+        Coin alt = opportunity.getHighPriceCoinExchange();
+        Coin main = opportunity.getLowPriceCoinExchange();
+        Double altQty = 0.0;
+        switch (opportunity.getType()){
+            case 1:
+                //if(alt.getAskQtyUSD() != null && alt.getBidQtyBTC() != null && main.getBidQtyUSD() != null) {
+                    altQty = min(alt.getAskQtyUSD(), alt.getBidQtyBTC(), main.getBidQtyUSD() * main.getBidPriceUSD() *
+                            (1 / max(alt.getAskPriceUSD(), alt.getBidPriceUSD())));
+                //}
+                break;
+
+            case 2:
+                altQty = min(alt.getAskQtyBTC(), alt.getBidQtyBTC(), main.getAskQtyUSD() * main.getAskPriceUSD() *
+                        1/ max(alt.getAskPriceUSD(), alt.getBidPriceUSD()));
+
+                break;
+
+            case 3:
+                altQty=min(alt.getAskQtyUSD(), alt.getBidQtyETH(), main.getBidQtyUSD() * main.getBidPriceUSD() *
+                        (1 / max(alt.getAskPriceUSD(), alt.getBidPriceUSD())));
+                break;
+
+            case 4:
+                altQty = min(alt.getAskQtyBTC(), alt.getBidQtyETH(), main.getAskQtyUSD() * main.getAskPriceUSD() *
+                        1/ max(alt.getAskPriceUSD(), alt.getBidPriceUSD()));
+                break;
+
+            case 5:
+                altQty = min(alt.getAskQtyETH(), alt.getBidQtyBTC(), main.getAskPriceBTC() * main.getAskQtyBTC() /
+                        min(alt.getBidPriceBTC(), alt.getAskPriceBTC())); //this line might be wrong
+                break;
+
+            case 6:
+                altQty = min(alt.getBidQtyETH(), alt.getAskQtyBTC(), main.getBidPriceBTC() * main.getBidQtyBTC() /
+                        min(alt.getAskPriceBTC(), alt.getBidPriceBTC()));
+                break;
+        }
+        if(opportunity.getType() > 2) {
+            System.out.println("Dollar amt for " + alt.getName() + " is: " + altQty * alt.getAskPriceBTC() * main.getBidPriceUSD());
+        }
+        else{
+            System.out.println("Dollar amt for " + alt.getName() + " is: " + altQty * alt.getAskPriceETH() * main.getBidPriceUSD());
+        }
+        System.out.println("Alt ask Qty: (USD, BTC, ETH) " + alt.getAskQtyUSD() + "  " + alt.getAskQtyBTC() + "  " + alt.getAskQtyETH());
+        System.out.println("Alt ask price (USD, BTC, ETH) " + alt.getAskPriceUSD() + "  " + alt.getAskPriceBTC() + "  " + alt.getAskPriceETH());
+        System.out.println("Alt Bid Qty: (USD, BTC, ETH) " + alt.getBidQtyUSD() + "  " + alt.getBidQtyBTC() + "  " + alt.getBidQtyETH());
+        System.out.println("Alt Bid price (USD, BTC, ETH) " + alt.getBidPriceUSD() + "  " + alt.getBidPriceBTC() + "  " + alt.getBidPriceETH());
+        System.out.println("Main ask Qty: (USD, BTC, ETH) " + main.getAskQtyUSD() + "  " + main.getAskQtyBTC() + "  " + main.getAskQtyETH());
+        System.out.println("Main ask price (USD, BTC, ETH) " + main.getAskPriceUSD() + "  " + main.getAskPriceBTC() + "  " + main.getAskPriceETH());
+        System.out.println("Main Bid Qty: (USD, BTC, ETH) " + main.getBidQtyUSD() + "  " + main.getBidQtyBTC() + "  " + main.getBidQtyETH());
+        System.out.println("Main Bid price (USD, BTC, ETH) " + main.getBidPriceUSD() + "  " + main.getBidPriceBTC() + "  " + main.getBidPriceETH());
+    }
+    private Double min(Double d1, Double d2, Double d3){
+        if(d1 > d2){
+            return min(d2, d3);
+        }
+        else{
+            return min(d1, d3);
+        }
+    }
+    private Double min(Double d1, Double d2){
+        if(d1 > d2){
+            return d2;
+        }
+        else{
+            return d1;
+        }
+    }
+    private Double max(Double d1, Double d2){
+        if (d1 > d2){
+            return d1;
+        }
+        else{
+            return d2;
+        }
+    }*/
 }
