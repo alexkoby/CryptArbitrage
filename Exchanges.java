@@ -42,8 +42,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
         selectAllExchangesButton = findViewById(R.id.select_all_exchanges_button);
         selectAllExchangesButton.setOnClickListener(this);
 
-        submitExchangeButton = findViewById(R.id.submit_exchange_button);
-        submitExchangeButton.setOnClickListener(this);
 
         if(HomePage.isCreatedExchanges) {
             getExchangeInfo1();
@@ -68,22 +66,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
                     }
                     selectAllExchangesButton.setText("Off");
                 }
-                break;
-
-            //Submit Button
-            case R.id.submit_exchange_button:
-                HomePage.isCreatedExchanges = true;
-                //Gets rid of all Exchanges from listOfExchanges and adds in valid exchanges
-                //based on the buttons that are 'On'
-                HomePage.listOfExchanges.clear();
-                for (ToggleButton button: allExchangesButton){
-                    if (button.isChecked()){
-                        addExchangeToList(button);
-                    }
-                }
-                saveExchangeInfo1();
-
-                startActivity(new Intent(this, HomePage.class));
                 break;
         }
     }
@@ -232,5 +214,20 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
     private void setButtonOn(ToggleButton button, boolean value){
         button.setChecked(value);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        HomePage.isCreatedExchanges = true;
+        //Gets rid of all Exchanges from listOfExchanges and adds in valid exchanges
+        //based on the buttons that are 'On'
+        HomePage.listOfExchanges.clear();
+        for (ToggleButton button: allExchangesButton){
+            if (button.isChecked()){
+                addExchangeToList(button);
+            }
+        }
+        saveExchangeInfo1();
     }
 }
