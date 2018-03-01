@@ -33,7 +33,7 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     //BillingProcessor bp;
     static boolean hasSubscription = false;
-    static double minimumVolumeUSD = 100000.0;
+    static double minimumVolumeUSD = 50000.0;
 
     static boolean isCreatedHomepage = false;
     static boolean isCreatedExchanges = false;
@@ -178,7 +178,7 @@ public class HomePage extends Activity implements View.OnClickListener{
         if(!ViewCryptoOpprotunities.hasData){
             alertDialog.setTitle("No Arbitrage Opportunities Were Found");
             alertDialog.setMessage("Please add more exchanges," +
-                    " more cryptocurrencies, or set a lower minimum gains to find an Arbitrage Opprotunity for you");
+                    " more cryptocurrencies, set a lower minimum gains or a lower minimum volume to find an Arbitrage Opprotunity for you");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -363,11 +363,11 @@ public class HomePage extends Activity implements View.OnClickListener{
                     alertDialog.show();
                     break;
                 }
-                if(!HomePage.isAllDataFinishedRefreshing()){
+                if(!HomePage.isAllDataFinishedRefreshing() || !doesEveryCoinHaveData()){
                     //System.out.println("Made it inside the loop");
-                    Toast.makeText(getApplicationContext(),"Please select the refresh data button to get data!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Please Select The Refresh Data Button To Get Data!",Toast.LENGTH_LONG).show();
                     alertDialog.setTitle("Please Wait");
-                    alertDialog.setMessage("Please select the refresh data button to get data!");
+                    alertDialog.setMessage("Please Select The Refresh Data Button To Get Data!");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -591,6 +591,19 @@ public class HomePage extends Activity implements View.OnClickListener{
         for (Exchange exchange: HomePage.listOfExchanges){
             if (exchange.isDataFinishedRefreshing() == false){
                 return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean doesEveryCoinHaveData(){
+        for(Exchange exchange: HomePage.listOfExchanges){
+            for(Coin coin: exchange.getCoins()){
+                if(coin.getBidPriceUSD() == null)
+                {
+                    System.out.println(coin.getName());
+                    return false;
+                }
             }
         }
         return true;
