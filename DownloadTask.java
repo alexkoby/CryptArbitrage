@@ -220,12 +220,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 ArbitrageFinder.getRealVolumeNumbers();
             }
             exchange.setDataIsFinishedRefreshing(true);
-            /*for(Coin coin: exchange.getCoins()){
+            for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
                         + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
-            }*/
+            }
         }
         catch (Exception e) {
             exchange.setDataIsFinishedRefreshing(true);
