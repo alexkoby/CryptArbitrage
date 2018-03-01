@@ -24,7 +24,8 @@ import java.util.ArrayList;
 
 public class Cryptocurrencies extends Activity implements View.OnClickListener{
     ArrayList<ToggleButton> allCurrenciesButtons;
-    Button submitCurrencyButton;
+
+
     Button selectAllCurrenciesButton;
     boolean hasAddedBitcoinAndEthereum = false;
 
@@ -43,8 +44,6 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         selectAllCurrenciesButton = findViewById(R.id.select_all_cryptocurrencies_button);
         selectAllCurrenciesButton.setOnClickListener(this);
 
-        submitCurrencyButton = findViewById(R.id.submit_currency_button);
-        submitCurrencyButton.setOnClickListener(this);
 
         //Create and add all other Buttons to ArrayList
         setUpButtons();
@@ -78,44 +77,6 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                     selectAllCurrenciesButton.setText("On");
                 }
                 break;
-            //Submit button - clears everything off each exchange and inserts coins
-            //to respective exchanges
-            case R.id.submit_currency_button:
-                /*if(!HomePage.hasSubscription) {
-                    int count = 0;
-                    for (ToggleButton toggleButton : allCurrenciesButtons) {
-                        if(toggleButton.isChecked()){
-                            count++;
-                        }
-                        if(count > 5){Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
-                            //HomePage.bp.subscribe();
-                            break;
-                        }
-                    }
-                    if(count > 5){
-                        break;
-                    }
-                }
-                */
-                HomePage.isCreatedCryptocurrencies = true;
-                clearExchanges();
-                HomePage.listOfCurrencies.clear();
-                for(ToggleButton button : allCurrenciesButtons){
-                    if(button.isChecked()) {
-                        //adds bitcoin and ethereum if at least one coin is checked
-                        if(!hasAddedBitcoinAndEthereum){
-                            addBitcoinAndEthereumToExchanges();
-                            hasAddedBitcoinAndEthereum = true;
-                        }
-                        addCurrencyToExchanges(button);
-                    }
-                }
-                hasAddedBitcoinAndEthereum = false;
-
-                saveSelectedCoinsInfo(allCurrenciesButtons);
-                //System.out.println("size is: " + HomePage.bitfinex.getCoins().size());
-                startActivity(new Intent(this, HomePage.class));
-
         }
     }
 
@@ -2677,5 +2638,43 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        /*if(!HomePage.hasSubscription) {
+                    int count = 0;
+                    for (ToggleButton toggleButton : allCurrenciesButtons) {
+                        if(toggleButton.isChecked()){
+                            count++;
+                        }
+                        if(count > 5){Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
+                            //HomePage.bp.subscribe();
+                            break;
+                        }
+                    }
+                    if(count > 5){
+                        break;
+                    }
+                }
+                */
+        HomePage.isCreatedCryptocurrencies = true;
+        clearExchanges();
+        HomePage.listOfCurrencies.clear();
+        for(ToggleButton button : allCurrenciesButtons){
+            if(button.isChecked()) {
+                //adds bitcoin and ethereum if at least one coin is checked
+                if(!hasAddedBitcoinAndEthereum){
+                    addBitcoinAndEthereumToExchanges();
+                    hasAddedBitcoinAndEthereum = true;
+                }
+                addCurrencyToExchanges(button);
+            }
+        }
+        hasAddedBitcoinAndEthereum = false;
+
+        saveSelectedCoinsInfo(allCurrenciesButtons);
+
     }
 }
