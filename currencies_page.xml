@@ -3909,19 +3909,6 @@
                 </LinearLayout>
 
 
-                 <LinearLayout
-                     android:layout_width="200dip"
-                     android:layout_height="wrap_content">
-
-                     <Button
-                          android:id="@+id/submit_currency_button"
-                          android:layout_width="120dip"
-                          android:layout_height="wrap_content"
-                          android:background="@color/light_sea_green"
-                          android:text="@string/sumbit"
-                          android:textAlignment="center" />
-                 </LinearLayout>
-
             </LinearLayout>
 
         </ScrollView>
