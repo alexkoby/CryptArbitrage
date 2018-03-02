@@ -67,6 +67,16 @@ public class Exchanges extends Activity implements View.OnClickListener{
                     selectAllExchangesButton.setText("Off");
                 }
                 break;
+
+            default:
+                selectAllExchangesButton.setText("On");
+                for(ToggleButton toggleButton: allExchangesButton){
+                    if (!toggleButton.isChecked()){
+                        selectAllExchangesButton.setText("Off");
+                        break;
+                    }
+                }
+
         }
     }
 
@@ -210,6 +220,10 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(exchangeButton9);
         ToggleButton exchangeButton10 = findViewById(R.id.exchange10_button);
         allExchangesButton.add(exchangeButton10);
+
+        for(ToggleButton toggleButton: allExchangesButton){
+            toggleButton.setOnClickListener(this);
+        }
     }
 
     private void setButtonOn(ToggleButton button, boolean value){
