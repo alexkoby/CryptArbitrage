@@ -1,7 +1,10 @@
 package My.Awesome.Project.cryptarbitrage30;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
@@ -10,27 +13,37 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.SkuDetails;
+import com.anjlab.android.iab.v3.TransactionDetails;
+
 /**
  * Created by Alexander on 1/8/2018.
  */
 
 //still need to add kraken eos
 
-public class Cryptocurrencies extends Activity implements View.OnClickListener{
+public class Cryptocurrencies extends Activity implements View.OnClickListener, BillingProcessor.IBillingHandler{
     ArrayList<ToggleButton> allCurrenciesButtons;
 
+    static boolean hasSubscription = false;
+    BillingProcessor bp;
 
     Button selectAllCurrenciesButton;
     boolean hasAddedBitcoinAndEthereum = false;
 
     static int numberClicked = 0;
     final int MAX_NUMBER_ALLOWED = 5;
+
+    final String publicAPI = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArNSgdFawfG05qVr5dmy5VGnrR/D7A636WN7l28Gpy8X9hIM8FlKpRDWfDNjV5x2q/7Nlzpla462DLlYRFIxCHm/LoQMd6vm37k10FqhskFxkvcMshKE7fEfVVrOnnod3JE8UDhwMd0a3UYGqAWNWx8m02K2Y6vzKfIYpu0NLpaPMD1GgVw6ZtoiNCIR+ilL/Kvv8WZutM3yUBhrTr47dOjvu/bwYQ01RT1QbGMjujIE3KWphzmfUCWRhZIGsTypgskVFoH2px5gSB2ynQVvjFAN2Jx18Hj+AhinVl1pSBdOl0eMJG0TXyPtbseRAhPdv1H+YcTPOed5g2j7qxKwxswIDAQAB";
 
     ArrayAdapter<String>listAdapter;
 
@@ -43,7 +56,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         //set up click listeners
         selectAllCurrenciesButton = findViewById(R.id.select_all_cryptocurrencies_button);
         selectAllCurrenciesButton.setOnClickListener(this);
-
+        //if(!hasSubscription){
+            bp = new BillingProcessor(this, publicAPI, this);
+        //}
 
         //Create and add all other Buttons to ArrayList
         setUpButtons();
@@ -51,18 +66,19 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         if(HomePage.isCreatedCryptocurrencies){
             getSavedCoins();
         }
+        else{
 
-
+        }
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
             //Makes Select All button work
             case R.id.select_all_cryptocurrencies_button:
-                if(!HomePage.hasSubscription){
-                    //Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
-                    //HomePage.bp.subscribe();
-                    //break;
+                if(!Cryptocurrencies.hasSubscription){
+                    Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
+                    bp.subscribe(this, "monthly_sub");
+                    break;
                 }
                 if (selectAllCurrenciesButton.getText().equals("On")) {
                     for (ToggleButton button : allCurrenciesButtons) {
@@ -77,6 +93,32 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
                     selectAllCurrenciesButton.setText("On");
                 }
                 break;
+
+            default:
+                selectAllCurrenciesButton.setText("On");
+                for(ToggleButton toggleButton: allCurrenciesButtons){
+                    if(!toggleButton.isChecked()){
+                        selectAllCurrenciesButton.setText("Off");
+                        break;
+                    }
+                }
+                if(!hasSubscription) {
+                    int numberOfButtonsOn = 0;
+                    for (ToggleButton toggleButton : allCurrenciesButtons) {
+                        if (toggleButton.isChecked()) {
+                            numberOfButtonsOn++;
+                        }
+                        if (numberOfButtonsOn > 5) {
+                            if(toggleButton.isChecked()){
+                                toggleButton.setChecked(false);
+                                toggleButton.setText("OFF");
+                            }
+                            Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies" + hasSubscription, Toast.LENGTH_LONG).show();
+                            bp.subscribe(this, "monthly_sub");
+                            break;
+                        }
+                    }
+                }
         }
     }
 
@@ -468,6 +510,10 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
         allCurrenciesButtons.add(propyButton);
         ToggleButton matchpoolButton = findViewById(R.id.matchpoolButton);
         allCurrenciesButtons.add(matchpoolButton);
+
+        for(ToggleButton toggleButton: allCurrenciesButtons){
+            toggleButton.setOnClickListener(this);
+        }
 
 
 
@@ -2641,24 +2687,69 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
     }
 
     @Override
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+        //Toast.makeText(this, "Thank You For Purchasing A Subscription", Toast.LENGTH_LONG).show();
+        Cryptocurrencies.hasSubscription = true;
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+
+    }
+    //Either onBillingInitialized or onPurchaseHistoryRestored
+    @Override
+    public void onBillingInitialized() {
+        if(!bp.loadOwnedPurchasesFromGoogle()) {
+            Toast.makeText(this,"Please Check Your Internet Connection",Toast.LENGTH_LONG);
+            Cryptocurrencies.hasSubscription = false;
+        }
+//this is getting executed below
+        else{
+            if(bp.isSubscribed("monthly_sub")){
+                Toast.makeText(this, "Welcome Back", Toast.LENGTH_SHORT).show();
+                Cryptocurrencies.hasSubscription = true;
+            }
+            else{
+                Toast.makeText(this,"You Do Not Have A Subscription", Toast.LENGTH_SHORT).show();
+                hasSubscription = false;
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        if(resultCode == 0){
+            Toast.makeText(this,"Buy A Subscription To See The Top Arbitrage Opportunities", Toast.LENGTH_LONG).show();
+        }
+        else if(resultCode == -1){
+            Cryptocurrencies.hasSubscription = true;
+            Toast.makeText(this, "Thank You For Purchasing A Subscription", Toast.LENGTH_LONG).show();
+        }
+        else if (resultCode == 2){
+            Toast.makeText(this, "Network Connection Down", Toast.LENGTH_LONG).show();
+        }
+        else if(resultCode == 7){
+            Toast.makeText(this,"You Are Already Subscribed",Toast.LENGTH_SHORT).show();;
+        }
+        else {
+            Toast.makeText(this,"OnActivityResultMethod Result " + resultCode, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
     public void onDestroy(){
-        super.onDestroy();
-        /*if(!HomePage.hasSubscription) {
-                    int count = 0;
-                    for (ToggleButton toggleButton : allCurrenciesButtons) {
-                        if(toggleButton.isChecked()){
-                            count++;
-                        }
-                        if(count > 5){Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
-                            //HomePage.bp.subscribe();
-                            break;
-                        }
-                    }
-                    if(count > 5){
-                        break;
-                    }
-                }
-                */
+
+        if (bp != null) {
+            bp.release();
+        }
         HomePage.isCreatedCryptocurrencies = true;
         clearExchanges();
         HomePage.listOfCurrencies.clear();
@@ -2676,5 +2767,33 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener{
 
         saveSelectedCoinsInfo(allCurrenciesButtons);
 
+
+        super.onDestroy();
     }
+
+/*    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        }
+        catch (Exception e) {}
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
+    }*/
+
 }
