@@ -1,4 +1,4 @@
-package My.Awesome.Project.cryptarbitrage30;
+package my.awesome.project.cryptarbitrage30;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
 import java.util.PriorityQueue;
 /**
  * Created by Alexander on 1/7/2018.
@@ -66,7 +65,6 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     AlertDialog alertDialog;
     int counter;
 
-    String typeOneOpportunityMessage;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     protected void onCreate(Bundle savedInstanceState){
@@ -96,11 +94,11 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 
         int x = recalculateNumbers();
 
-        if(topOpportunitiesArray != null) {
+        /*if(topOpportunitiesArray != null) {
             for (int i = 0; i < topOpportunitiesArray.length; i++) {
                 System.out.println(topOpportunitiesArray[i].getPercentGain());
             }
-        }
+        }*/
 
         counter = 0;
 
@@ -807,8 +805,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
     private int round(Double d1){
         if(d1 != null){
             double d2 = d1;
-            int i = (int)d2;
-            return i;
+            return (int)d2;
+
         }
         else{
             return -1;

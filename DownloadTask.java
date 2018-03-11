@@ -1,11 +1,9 @@
-package My.Awesome.Project.cryptarbitrage30;
+package my.awesome.project.cryptarbitrage30;
 
 import android.os.AsyncTask;
-import android.view.View;
-import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
+//import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
@@ -19,20 +17,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
+//import java.util.PriorityQueue;
 
 /**
  * Created by Alexander on 1/9/2018.
  */
 
 public class DownloadTask extends AsyncTask<String,Void,String> {
-    int APIRequestsMade = -1;
-    String apiBase;
-    String findSymbol;
+    private int APIRequestsMade = -1;
+    private String apiBase;
+    private String findSymbol;
 
-    Exchange exchange;
-    URL url;
-    HttpURLConnection urlConnection;
+    private Exchange exchange;
+    private URL url;
+    private HttpURLConnection urlConnection;
 
 
     public DownloadTask(String findSymbol, String apiBase, Exchange exchange) {
@@ -47,7 +45,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         //Create priority Queue first with USD endings, then BTC, then ETH
         //skips BTCBTC, BTCETH, ETHETH - DNE
 
-        System.out.println(exchange.getName());
+        //System.out.println(exchange.getName());
 
         LinkedList<String> q1 = new LinkedList<>();
 
@@ -220,12 +218,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 ArbitrageFinder.getRealVolumeNumbers();
             }
             exchange.setDataIsFinishedRefreshing(true);
-            for(Coin coin: exchange.getCoins()){
+            /*for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
                         + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
-            }
+            }*/
         }
         catch (Exception e) {
             exchange.setDataIsFinishedRefreshing(true);
@@ -317,10 +315,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                         if(exchange.getFindVolumeSymbol()!= null){
                             currentCoin.setVolumeBTC(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
                         }
-                        if(exchange.getAskQtySymbol() != null){
+                        /*if(exchange.getAskQtySymbol() != null){
                             currentCoin.setAskQtyBTC(Double.parseDouble(jsonObject.getString(exchange.getAskQtySymbol())));
                             currentCoin.setBidQtyBTC(Double.parseDouble(jsonObject.getString(exchange.getBidQtySymbol())));
-                        }
+                        }*/
                     }
                     //eth pair
                     else if (counter % 3 == 2) {
@@ -329,23 +327,23 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                         if(exchange.getFindVolumeSymbol()!= null){
                             currentCoin.setVolumeETH(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
                         }
-                        if(exchange.getAskQtySymbol() != null){
+                        /*if(exchange.getAskQtySymbol() != null){
                             currentCoin.setAskQtyETH(Double.parseDouble(jsonObject.getString(exchange.getAskQtySymbol())));
                             currentCoin.setBidQtyETH(Double.parseDouble(jsonObject.getString(exchange.getBidQtySymbol())));
-                        }
+                        }*/
                     }
                     //USDT pair
                     else if (counter % 3 == 0) {
                         currentCoin.setBidPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getBidSymbol())));
                         currentCoin.setAskPriceUSD(Double.parseDouble(jsonObject.getString(exchange.getAskSymbol())));
-                        System.out.println(currentCoin.getName());
+                        //System.out.println(currentCoin.getName());
                         if(exchange.getFindVolumeSymbol()!= null){
                             currentCoin.setVolumeUSD(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
                         }
-                        if(exchange.getAskQtySymbol() != null){
+                        /*if(exchange.getAskQtySymbol() != null){
                             currentCoin.setAskQtyUSD(Double.parseDouble(jsonObject.getString(exchange.getAskQtySymbol())));
                             currentCoin.setBidQtyUSD(Double.parseDouble(jsonObject.getString(exchange.getBidQtySymbol())));
-                        }
+                        }*/
                     }
                 }
                 queue.remove();

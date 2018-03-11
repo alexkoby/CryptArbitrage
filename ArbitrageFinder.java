@@ -1,5 +1,5 @@
-package My.Awesome.Project.cryptarbitrage30;
-import android.graphics.Path;
+package my.awesome.project.cryptarbitrage30;
+
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -127,7 +127,7 @@ public class ArbitrageFinder {
 
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && bitcoin.getBidPriceUSD() > 0) {
             type1Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceBTC() * bitcoin.getBidPriceUSD();
-            System.out.println("Type 1: "+ type1Rate+ "  " + coin.getName());
+            //System.out.println("Type 1: "+ type1Rate+ "  " + coin.getName());
             if (type1Rate - 1 > goalReturn / 100 && coin.getVolumeUSD() > HomePage.minimumVolumeUSD &&
                     coin.getVolumeBTC() > HomePage.minimumVolumeUSD && bitcoin.getVolumeUSD() > HomePage.minimumVolumeUSD) {
                 return new Opportunity((type1Rate - 1) * 100, 1, coin, bitcoin);
@@ -150,7 +150,7 @@ public class ArbitrageFinder {
 
         if (bitcoin.getAskPriceUSD() > 0 && coin.getAskPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
             type2Rate = (1/bitcoin.getAskPriceUSD()) * (1/coin.getAskPriceBTC()) * coin.getBidPriceUSD();
-            System.out.println("Type 2: "+ type2Rate+ "  " + coin.getName());
+            //System.out.println("Type 2: "+ type2Rate+ "  " + coin.getName());
             if (type2Rate - 1 > goalReturn / 100 && coin.getVolumeUSD() > HomePage.minimumVolumeUSD &&
                     coin.getVolumeBTC() > HomePage.minimumVolumeUSD && bitcoin.getVolumeUSD() > HomePage.minimumVolumeUSD) {
                 return new Opportunity((type2Rate - 1) * 100, 2, coin, bitcoin);
@@ -172,7 +172,7 @@ public class ArbitrageFinder {
         }*/
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceUSD() > 0) {
             type3Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceETH() * ethereum.getBidPriceUSD();
-            System.out.println("Type 3: "+ type3Rate+ "  " + coin.getName());
+            //System.out.println("Type 3: "+ type3Rate+ "  " + coin.getName());
             if (type3Rate - 1 > goalReturn / 100 && coin.getVolumeUSD() > HomePage.minimumVolumeUSD &&
                     coin.getVolumeETH() > HomePage.minimumVolumeUSD && ethereum.getVolumeUSD() > HomePage.minimumVolumeUSD) {
                 return new Opportunity((type3Rate - 1) * 100, 3, coin, ethereum);
@@ -196,7 +196,7 @@ public class ArbitrageFinder {
 
         if (ethereum.getAskPriceUSD() > 0 && coin.getAskPriceETH() > 0 && coin.getBidPriceUSD() > 0) {
             type4Rate = (1/ethereum.getAskPriceUSD()) * (1/coin.getAskPriceETH()) * coin.getBidPriceUSD();
-            System.out.println("Type 4: "+ type4Rate+ "  " + coin.getName());
+            //System.out.println("Type 4: "+ type4Rate+ "  " + coin.getName());
             if (type4Rate - 1> goalReturn / 100 && coin.getVolumeUSD() > HomePage.minimumVolumeUSD &&
                     coin.getVolumeETH() > HomePage.minimumVolumeUSD && ethereum.getVolumeUSD() > HomePage.minimumVolumeUSD) {
                 return new Opportunity((type4Rate - 1) * 100, 4, coin, ethereum);
@@ -220,7 +220,7 @@ public class ArbitrageFinder {
 
         if(coin.getAskPriceETH() > 0 && coin.getBidPriceBTC() > 0 && ethereum.getAskPriceBTC() > 0){
             type5Rate = (1 / coin.getAskPriceETH()) * coin.getBidPriceBTC() / ethereum.getAskPriceBTC();
-            System.out.println("Type 5 " + type5Rate + "  " + coin.getName());
+            //System.out.println("Type 5 " + type5Rate + "  " + coin.getName());
             if(type5Rate - 1 > goalReturn / 100 && coin.getVolumeETH() > HomePage.minimumVolumeUSD &&
                     coin.getVolumeBTC() > HomePage.minimumVolumeUSD && ethereum.getVolumeBTC() > HomePage.minimumVolumeUSD){
                 return new Opportunity((type5Rate - 1) * 100, 5, coin, ethereum);
@@ -243,7 +243,7 @@ public class ArbitrageFinder {
 
         if(coin.getAskPriceBTC() > 0 && coin.getBidPriceETH() > 0 && ethereum.getBidPriceBTC() > 0) {
             type6Rate = (1 / coin.getAskPriceBTC()) * coin.getBidPriceETH() * ethereum.getBidPriceBTC();
-            System.out.println("Type 6: "+ type6Rate + "  "+ coin.getName());
+            //System.out.println("Type 6: "+ type6Rate + "  "+ coin.getName());
             if(type6Rate -1 > goalReturn / 100 && coin.getVolumeETH() > HomePage.minimumVolumeUSD &&
                     coin.getVolumeBTC() > HomePage.minimumVolumeUSD && ethereum.getVolumeBTC() > HomePage.minimumVolumeUSD) {
                 return new Opportunity((type6Rate - 1) * 100, 6, coin, ethereum);
@@ -320,7 +320,7 @@ public class ArbitrageFinder {
                             HomePage.minGainsWanted / 100
                             && listOfCoins.get(i).getVolumeETH() > HomePage.minimumVolumeUSD
                             && listOfCoins.get(j).getVolumeETH() > HomePage.minimumVolumeUSD) {
-                        System.out.println(listOfCoins.get(j).getName() + " " + listOfCoins.get(j).getVolumeETH() + " " + listOfCoins.get(i).getVolumeETH());
+                        //System.out.println(listOfCoins.get(j).getName() + " " + listOfCoins.get(j).getVolumeETH() + " " + listOfCoins.get(i).getVolumeETH());
                         bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(i).getBidPriceETH()
                                 / listOfCoins.get(j).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(i), listOfCoins.get(j)));
                     }
@@ -328,7 +328,7 @@ public class ArbitrageFinder {
                             HomePage.minGainsWanted / 100
                             && listOfCoins.get(i).getVolumeETH() > HomePage.minimumVolumeUSD
                             && listOfCoins.get(j).getVolumeETH() > HomePage.minimumVolumeUSD) {
-                        System.out.println(listOfCoins.get(j).getName() + " " + listOfCoins.get(j).getVolumeETH() + " " + listOfCoins.get(i).getVolumeETH());
+                        //System.out.println(listOfCoins.get(j).getName() + " " + listOfCoins.get(j).getVolumeETH() + " " + listOfCoins.get(i).getVolumeETH());
                         bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceETH()
                                 / listOfCoins.get(i).getAskPriceETH() - 1) * 100, 9, listOfCoins.get(j), listOfCoins.get(i)));
 
@@ -371,13 +371,13 @@ public class ArbitrageFinder {
                 }
             }
         }
-        for(Exchange exchange: HomePage.listOfExchanges){
+        /*for(Exchange exchange: HomePage.listOfExchanges){
             System.out.println(exchange.getName());
             for(Coin coin: exchange.getCoins()){
                 System.out.println(coin.getName() + ": V usd: " + coin.getVolumeUSD() +
                         "  v btc: " + coin.getVolumeBTC() + "  volume eth: " + coin.getVolumeETH());
             }
-        }
+        }*/
     }
 
     /*

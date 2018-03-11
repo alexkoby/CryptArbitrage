@@ -1,4 +1,4 @@
-package My.Awesome.Project.cryptarbitrage30;
+package my.awesome.project.cryptarbitrage30;
 import java.util.ArrayList;
 /**
  * Created by Alexander on 1/9/2018.

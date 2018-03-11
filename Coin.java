@@ -1,4 +1,4 @@
-package My.Awesome.Project.cryptarbitrage30;
+package my.awesome.project.cryptarbitrage30;
 
 
 import android.support.annotation.NonNull;
@@ -9,12 +9,12 @@ import android.support.annotation.NonNull;
 
 public class Coin implements Comparable<Coin>{
     //all converted to usd figures
-    private Double bidQtyUSD;
+    /*private Double bidQtyUSD;
     private Double askQtyUSD;
     private Double bidQtyBTC;
     private Double askQtyBTC;
     private Double bidQtyETH;
-    private Double askQtyETH;
+    private Double askQtyETH;*/
 
 
 
@@ -45,107 +45,107 @@ public class Coin implements Comparable<Coin>{
         this.exchange = exchange;
         this.USDPairBitcoinPairEthPair = USDPairBitcoinPairEthPair;
     }
-    public Coin(String name, String abbreviation, Exchange exchange){
+    protected Coin(String name, String abbreviation, Exchange exchange){
         this.name = name;
         this.abbreviation = abbreviation;
         this.exchange = exchange;
     }
 
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public Exchange getExchange() {
+    protected Exchange getExchange() {
         return exchange;
     }
 
-    public void setExchange(Exchange exchange) {
+    protected void setExchange(Exchange exchange) {
         this.exchange = exchange;
     }
 
-    public Double getAskPriceUSD() {
+    protected Double getAskPriceUSD() {
         return askPriceUSD;
     }
 
-    public void setAskPriceUSD(Double askPriceUSD) {
+    protected void setAskPriceUSD(Double askPriceUSD) {
         this.askPriceUSD = askPriceUSD;
     }
 
-    public Double getBidPriceUSD() {
+    protected Double getBidPriceUSD() {
         return bidPriceUSD;
     }
 
-    public void setBidPriceUSD(Double bidPriceUSD) {
+    protected void setBidPriceUSD(Double bidPriceUSD) {
         this.bidPriceUSD = bidPriceUSD;
     }
 
-    public Double getAskPriceBTC() {
+    protected Double getAskPriceBTC() {
         return askPriceBTC;
     }
 
-    public void setAskPriceBTC(Double askPriceBTC) {
+    protected void setAskPriceBTC(Double askPriceBTC) {
         this.askPriceBTC = askPriceBTC;
     }
 
-    public Double getBidPriceBTC() {
+    protected Double getBidPriceBTC() {
         return bidPriceBTC;
     }
 
-    public void setBidPriceBTC(Double bidPriceBTC) {
+    protected void setBidPriceBTC(Double bidPriceBTC) {
         this.bidPriceBTC = bidPriceBTC;
     }
 
-    public Double getAskPriceETH() {
+    protected Double getAskPriceETH() {
         return askPriceETH;
     }
 
-    public void setAskPriceETH(Double askPriceETH) {
+    protected void setAskPriceETH(Double askPriceETH) {
         this.askPriceETH = askPriceETH;
     }
 
-    public Double getBidPriceETH() {
+    protected Double getBidPriceETH() {
         return bidPriceETH;
     }
 
-    public void setBidPriceETH(Double bidPriceETH) {
+    protected void setBidPriceETH(Double bidPriceETH) {
         this.bidPriceETH = bidPriceETH;
     }
 
-    public String getAbbreviation() {
+    protected String getAbbreviation() {
         return abbreviation;
     }
 
-    public String getUSDBTCETHPairs(){
+    protected String getUSDBTCETHPairs(){
         return this.USDPairBitcoinPairEthPair;
     }
 
-    public void setAbbreviation(String abbreviation) {
+    protected void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
     }
 
-    public Double getVolumeUSD(){
+    protected Double getVolumeUSD(){
         return this.volumeUSD;
     }
-    public void setVolumeUSD(Double volume){
+    protected void setVolumeUSD(Double volume){
         this.volumeUSD = volume;
     }
-    public Double getVolumeBTC(){
+    protected Double getVolumeBTC(){
         return this.volumeBTC;
     }
-    public void setVolumeBTC(Double volume){
+    protected void setVolumeBTC(Double volume){
         this.volumeBTC = volume;
     }
-    public Double getVolumeETH(){
+    protected Double getVolumeETH(){
         return this.volumeETH;
     }
-    public void setVolumeETH(Double volume){
+    protected void setVolumeETH(Double volume){
         this.volumeETH = volume;
     }
-    public Double getBidQtyUSD() {
+    /*public Double getBidQtyUSD() {
         return bidQtyUSD;
     }
 
@@ -192,6 +192,7 @@ public class Coin implements Comparable<Coin>{
     public void setAskQtyETH(Double askQtyETH) {
         this.askQtyETH = askQtyETH;
     }
+    */
 
 
     @Override

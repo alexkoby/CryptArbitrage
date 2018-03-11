@@ -1,4 +1,4 @@
-package com.example.alexander.cryptarbitrage2;
+package my.awesome.project.cryptarbitrage30;
 
 /**
  * Created by Alexander on 2/1/2018.
