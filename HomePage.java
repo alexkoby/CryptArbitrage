@@ -1,38 +1,30 @@
-package My.Awesome.Project.cryptarbitrage30;
-import android.annotation.SuppressLint;
+package my.awesome.project.cryptarbitrage30;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
-//import com.anjlab.android.iab.v3.BillingProcessor;
-//import com.anjlab.android.iab.v3.SkuDetails;
-//import com.anjlab.android.iab.v3.TransactionDetails;
-
-import java.lang.reflect.Array;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
  * Created by Alexander on 1/7/2018.
  */
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class HomePage extends Activity implements View.OnClickListener{
 
-    //BillingProcessor bp;
-    static boolean hasSubscription = false;
     static double minimumVolumeUSD = 50000.0;
 
     static boolean isCreatedHomepage = false;
@@ -83,18 +75,19 @@ public class HomePage extends Activity implements View.OnClickListener{
     Button refreshButtonHomePage;
     static String typeOfArbitrageString = "Intra-Exchange and Cross Exchange Arbitrage";
 
-    final String publicAPI = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArNSgdFawfG05qVr5dmy5VGnrR/D7A636WN7l28Gpy8X9hIM8FlKpRDWfDNjV5x2q/7Nlzpla462DLlYRFIxCHm/LoQMd6vm37k10FqhskFxkvcMshKE7fEfVVrOnnod3JE8UDhwMd0a3UYGqAWNWx8m02K2Y6vzKfIYpu0NLpaPMD1GgVw6ZtoiNCIR+ilL/Kvv8WZutM3yUBhrTr47dOjvu/bwYQ01RT1QbGMjujIE3KWphzmfUCWRhZIGsTypgskVFoH2px5gSB2ynQVvjFAN2Jx18Hj+AhinVl1pSBdOl0eMJG0TXyPtbseRAhPdv1H+YcTPOed5g2j7qxKwxswIDAQAB";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
+        retrieveMinGainsInfo();
+        retrieveMinVolumeInfo();
+
 
 
         //If this is the first time visiting the homepage
         if(!isCreatedHomepage) {
-            //bp = new BillingProcessor(this, publicAPI, this);
             //System.out.println("Home page not created");
             listOfExchanges = new ArrayList<>();
             listOfCurrencies = new ArrayList<>();
@@ -155,6 +148,9 @@ public class HomePage extends Activity implements View.OnClickListener{
         View enterMinVolumeButton = findViewById(R.id.enterVolumeButton);
         enterMinVolumeButton.setOnClickListener(this);
 
+        View helpButton = findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(this);
+
         refreshButtonHomePage = findViewById(R.id.refreshDataButtonHomePage);
         refreshButtonHomePage.setOnClickListener(this);
 
@@ -190,7 +186,7 @@ public class HomePage extends Activity implements View.OnClickListener{
         }
         if(ViewCryptoOpprotunities.selectedRefreshViewOpportunities){
             HomePage.makeAPIRequests();
-            Toast.makeText(this, "Refreshing your data", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Refreshing Your Data", Toast.LENGTH_LONG).show();
             ViewCryptoOpprotunities.selectedRefreshViewOpportunities = false;
         }
     }
@@ -302,6 +298,7 @@ public class HomePage extends Activity implements View.OnClickListener{
             //System.out.println("Made it to reimplement " + e.getName());
             task = reImplementTask(task);
             if(task == null){
+                return;
                 //System.out.println("TASK IS NUUUUUUUUUUUUUUUUUUUUL");
             }
             task.execute(APIs);
@@ -309,8 +306,44 @@ public class HomePage extends Activity implements View.OnClickListener{
     }
     public void onClick(View v){
         switch (v.getId()){
+            case R.id.helpButton:
+                alertDialog.setTitle("Best Practices");
+                alertDialog.setMessage("Select Exchanges\nTo begin using this app, click the \"Select Exchanges\" button." +
+                        " It is recommended to hit select all, so you will be able to see all the opportunities " +
+                        "out there, even if you don't have an account on a particular exchange.\n\n" +
+                        "Select Cryptocurrencies\n \"Select Cryptocurrencies\" button. On the free version, you will only be" +
+                        " able to select " + Cryptocurrencies.MAX_NUMBER_ALLOWED + " coins. With premium version, you can select " +
+                        "unlimited coins, which is highly recommended. This will ensure you never miss an opportunity for arbitrage.\n\n" +
+                        "Refresh Data\nClick the \"" +
+                        refreshButtonHomePage.getText().toString() +
+                        "\" button. You will need to click this every time you want the app" +
+                        " to update the coin's prices and every time you modify the selected cryptocurrencies. \n\n" +
+                        "Minimum Percent Gains\nMinumum percent gains is the lowest percentage profits you want the app to " +
+                        "look for. For example, if you only want to " +
+                        "see opportunities for 5.2% gains, change the value to \"5.2\" and select the enter button next to it." +
+                        "\n\nMinimum 24 hour volume\n" +
+                        "The app uses this value to filter out any trading pairs" +
+                        " with less than this amount of volume traded within the past 24 hours. 24 hour trading volume can be used " +
+                        "to get an idea as to how much " +
+                        "arbitrage can be done before the buy price and the sell price of the coin get extremely close together." +
+                        "\n\nCross Exchange Arbitrage\nIf you want to see only cross exchange arbitrage or only intra-exchange arbitrage, hit the button that says" +
+                        " \"Intra-Exchange And Cross Exchange Arbitrage\", however, looking at both intra-exchange and cross exchange arbitrage " +
+                        "is the recommended option." +
+                        "\n\nView Arbitrage Opportunities\nFinally, when the data is finished refreshing, you may select the \"View Current Opportunities\"" +
+                        " button, which" +
+                        " will show you the best opportunities for arbitrage, sorted by profitablility. The details button will allow you to see " +
+                        "what price to buy at, what price to sell at, and which exchanges to use. Always remember to ensure the wallets for " +
+                        "your cryptocurrencies are working on both exchanges you hope to engage in arbitrage on, especially for " +
+                        "opportunities over 50%");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                break;
             case R.id.view_current_opprotunities:
-                Toast.makeText(this, "Have paid: " +HomePage.hasSubscription, Toast.LENGTH_SHORT).show();
                 if(listOfExchanges.size() == 0 && listOfCurrencies.size() == 0){
                     alertDialog.setTitle("Error");
                     alertDialog.setMessage("Please Select One Or More Exchanges And One Or " +
@@ -377,11 +410,7 @@ public class HomePage extends Activity implements View.OnClickListener{
                     alertDialog.show();
                     break;
                 }
-                //if(!hasSubscription){
-                //    Toast.makeText(this, "Please Subscribe To View Top Arbitrage Opportunities", Toast.LENGTH_SHORT).show();
-                //    bp.subscribe(this,"monthly_sub");
-                //    break;
-                //}
+
                 Intent j = new Intent(this, ViewCryptoOpprotunities.class);
                 startActivity(j);
                 break;
@@ -406,7 +435,7 @@ public class HomePage extends Activity implements View.OnClickListener{
                 String str = minVolumeEditText.getText().toString();
                 minimumVolumeUSD = Double.parseDouble(str);
                 minVolumeEditText.setText(Double.toString(minimumVolumeUSD));
-                System.out.println("Volume min is: " + minimumVolumeUSD);
+                //System.out.println("Volume min is: " + minimumVolumeUSD);
                 break;
 
             case R.id.typeOfArbitrage:
@@ -589,7 +618,7 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     static boolean isAllDataFinishedRefreshing(){
         for (Exchange exchange: HomePage.listOfExchanges){
-            if (exchange.isDataFinishedRefreshing() == false){
+            if (!exchange.isDataFinishedRefreshing()){
                 return false;
             }
         }
@@ -601,7 +630,7 @@ public class HomePage extends Activity implements View.OnClickListener{
             for(Coin coin: exchange.getCoins()){
                 if(coin.getBidPriceUSD() == null)
                 {
-                    System.out.println(coin.getName());
+                    //System.out.println(coin.getName());
                     return false;
                 }
             }
@@ -614,76 +643,120 @@ public class HomePage extends Activity implements View.OnClickListener{
     }
 
     private String currentlyOnWhatExchange(){
-        Exchange e;
         for(Exchange exchange: listOfExchanges){
             if (!exchange.isDataFinishedRefreshing()){
-                return exchange.getName();
+                if(exchange.getName() == null){
+                    return "Unknown";
+                }
+                else{
+                   return exchange.getName();
+                }
             }
         }
         return null;
     }
 
-    /*@Override
-    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-        Toast.makeText(this, "Thank You For Purchasing A Subscription", Toast.LENGTH_LONG).show();
-        HomePage.hasSubscription = true;
-    }
 
-    @Override
-    public void onPurchaseHistoryRestored() {
 
-    }
 
-    @Override
-    public void onBillingError(int errorCode, @Nullable Throwable error) {
+    public void saveMinGainsInfo(){
+        String fileName = "minGainsInfo";
+        String message;
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
+            fileOutputStream.write(Double.toString(HomePage.minGainsWanted).getBytes());
 
-    }
-//Either onBillingInitialized or onPurchaseHistoryRestored
-    @Override
-    public void onBillingInitialized() {
-        if(!bp.loadOwnedPurchasesFromGoogle()) {
-            Toast.makeText(this,"Please check your internet connection",Toast.LENGTH_LONG);
-            HomePage.hasSubscription = false;
         }
-//this is getting executed below
-        else{
-            if(bp.isSubscribed("monthly_sub")){
-                Toast.makeText(this, "Welcome back", Toast.LENGTH_SHORT).show();
-                HomePage.hasSubscription = true;
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void retrieveMinGainsInfo(){
+        try {
+            FileInputStream fileInputStream = openFileInput("minGainsInfo");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            //while more lines
+            //System.out.println("Size of allExchangesButton is: " + numExchanges);
+            StringBuilder message = new StringBuilder();
+            int data = 1;
+            while(data != -1){
+                data = bufferedReader.read();
+                message.append((char) data);
             }
-            else{
-                Toast.makeText(this,"You do not have a subscription", Toast.LENGTH_SHORT).show();
+            if(message.toString().length() > 1){
+                HomePage.minGainsWanted = Double.parseDouble(message.toString());
             }
         }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
+    public void saveMinVolumeInfo(){
+        String fileName = "minVolumeInfo";
+        String message;
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
+            fileOutputStream.write(Double.toString(HomePage.minimumVolumeUSD).getBytes());
         }
-        if(resultCode == 0){
-            Toast.makeText(this,"Buy A Subscription To See The Top Arbitrage Opportunities", Toast.LENGTH_LONG).show();
+        catch (FileNotFoundException e){
+            e.printStackTrace();
         }
-        if(resultCode == -1){
-            HomePage.hasSubscription = true;
+        catch (IOException e){
+            e.printStackTrace();
         }
-        if (resultCode == 2){
-            Toast.makeText(this, "Network Connection Down", Toast.LENGTH_LONG).show();
-        }
-        if(resultCode == 7){
-            Toast.makeText(this,"You Are Already Subscribed",Toast.LENGTH_SHORT).show();;
-        }
-        Toast.makeText(this,"OnActivityResultMethod Result " + resultCode, Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onDestroy() {
-        if (bp != null) {
-            bp.release();
+    public void retrieveMinVolumeInfo(){
+        try {
+            FileInputStream fileInputStream = openFileInput("minVolumeInfo");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            //while more lines
+            //System.out.println("Size of allExchangesButton is: " + numExchanges);
+            StringBuilder message = new StringBuilder();
+            int data = 1;
+            while(data != -1){
+                data = bufferedReader.read();
+                message.append((char) data);
+            }
+            if(message.toString().length() > 1){
+                HomePage.minimumVolumeUSD = Double.parseDouble(message.toString());
+            }
         }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    @Override
+    protected void onDestroy(){
+        saveMinGainsInfo();
+        saveMinVolumeInfo();
+
         super.onDestroy();
     }
-    */
+
+
+
+
 
 }
