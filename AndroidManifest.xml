@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.alexander.cryptarbitrage2">
+    package="my.awesome.project.cryptarbitrage30">
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".HomePage">
+            android:name="my.awesome.project.cryptarbitrage30.HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,13 +19,13 @@
 
         </activity>
         <activity
-            android:name=".Exchanges">
+            android:name="my.awesome.project.cryptarbitrage30.Exchanges">
         </activity>
         <activity
-            android:name=".ViewCryptoOpprotunities">
+            android:name="my.awesome.project.cryptarbitrage30.ViewCryptoOpprotunities">
         </activity>
         <activity
-            android:name=".Cryptocurrencies">
+            android:name="my.awesome.project.cryptarbitrage30.Cryptocurrencies">
         </activity>
     </application>
 
