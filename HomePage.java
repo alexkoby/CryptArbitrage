@@ -664,8 +664,8 @@ public class HomePage extends Activity implements View.OnClickListener{
         String message;
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
+            message = Double.toString(HomePage.minGainsWanted) + ' ';
             fileOutputStream.write(Double.toString(HomePage.minGainsWanted).getBytes());
-
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
@@ -681,12 +681,16 @@ public class HomePage extends Activity implements View.OnClickListener{
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             //while more lines
-            //System.out.println("Size of allExchangesButton is: " + numExchanges);
             StringBuilder message = new StringBuilder();
             int data = 1;
             while(data != -1){
                 data = bufferedReader.read();
-                message.append((char) data);
+                if((char)data == ' '){
+                    break;
+                }
+                if(((char)data >= '0' && (char)data <= '9')|| (char)data == '.'){
+                    message.append((char) data);
+                }
             }
             if(message.toString().length() > 1){
                 HomePage.minGainsWanted = Double.parseDouble(message.toString());
@@ -706,10 +710,9 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     public void saveMinVolumeInfo(){
         String fileName = "minVolumeInfo";
-        String message;
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
-            fileOutputStream.write(Double.toString(HomePage.minimumVolumeUSD).getBytes());
+            fileOutputStream.write((Double.toString(HomePage.minimumVolumeUSD) + ' ').getBytes());
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
@@ -725,12 +728,16 @@ public class HomePage extends Activity implements View.OnClickListener{
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             //while more lines
-            //System.out.println("Size of allExchangesButton is: " + numExchanges);
             StringBuilder message = new StringBuilder();
             int data = 1;
             while(data != -1){
                 data = bufferedReader.read();
-                message.append((char) data);
+                if((char)data == ' '){
+                    break;
+                }
+                if(((char)data >= '0' && (char)data <= '9')|| (char)data == '.'){
+                    message.append((char) data);
+                }
             }
             if(message.toString().length() > 1){
                 HomePage.minimumVolumeUSD = Double.parseDouble(message.toString());
