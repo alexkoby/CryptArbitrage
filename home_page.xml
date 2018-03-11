@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     android:padding="15dip"
     android:orientation="horizontal"
-    tools:context="My.Awesome.Project.cryptarbitrage30.HomePage">
+    tools:context="my.awesome.project.cryptarbitrage30.HomePage">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -16,13 +16,26 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dip"
-            android:text="@string/main_title"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dip"
+                android:text="@string/main_title"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:paddingRight="80dip"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/help"
+                android:textSize="20sp"
+                android:id="@+id/helpButton"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="fill_parent"
@@ -57,8 +70,8 @@
             android:id="@+id/modify_cryptocurrencies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dip"
             android:background="@color/lime_green"
+            android:layout_marginHorizontal="30dip"
             android:text="@string/modify_cryptocurrencies"
             android:textSize="20sp" />
 
