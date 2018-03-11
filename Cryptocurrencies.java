@@ -1,29 +1,26 @@
-package My.Awesome.Project.cryptarbitrage30;
+package my.awesome.project.cryptarbitrage30;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
+
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.SkuDetails;
-import com.anjlab.android.iab.v3.TransactionDetails;
 
 /**
  * Created by Alexander on 1/8/2018.
@@ -32,6 +29,7 @@ import com.anjlab.android.iab.v3.TransactionDetails;
 //still need to add kraken eos
 
 public class Cryptocurrencies extends Activity implements View.OnClickListener, BillingProcessor.IBillingHandler{
+
     ArrayList<ToggleButton> allCurrenciesButtons;
 
     static boolean hasSubscription = false;
@@ -41,7 +39,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
     boolean hasAddedBitcoinAndEthereum = false;
 
     static int numberClicked = 0;
-    final int MAX_NUMBER_ALLOWED = 5;
+    static final int MAX_NUMBER_ALLOWED = 5;
 
     final String publicAPI = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArNSgdFawfG05qVr5dmy5VGnrR/D7A636WN7l28Gpy8X9hIM8FlKpRDWfDNjV5x2q/7Nlzpla462DLlYRFIxCHm/LoQMd6vm37k10FqhskFxkvcMshKE7fEfVVrOnnod3JE8UDhwMd0a3UYGqAWNWx8m02K2Y6vzKfIYpu0NLpaPMD1GgVw6ZtoiNCIR+ilL/Kvv8WZutM3yUBhrTr47dOjvu/bwYQ01RT1QbGMjujIE3KWphzmfUCWRhZIGsTypgskVFoH2px5gSB2ynQVvjFAN2Jx18Hj+AhinVl1pSBdOl0eMJG0TXyPtbseRAhPdv1H+YcTPOed5g2j7qxKwxswIDAQAB";
 
@@ -56,19 +54,16 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         //set up click listeners
         selectAllCurrenciesButton = findViewById(R.id.select_all_cryptocurrencies_button);
         selectAllCurrenciesButton.setOnClickListener(this);
-        //if(!hasSubscription){
+
+        if(!hasSubscription){
             bp = new BillingProcessor(this, publicAPI, this);
-        //}
+        }
 
         //Create and add all other Buttons to ArrayList
         setUpButtons();
 
-        if(HomePage.isCreatedCryptocurrencies){
-            getSavedCoins();
-        }
-        else{
+        getSavedCoins();
 
-        }
     }
 
     public void onClick(View v) {
@@ -76,7 +71,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
             //Makes Select All button work
             case R.id.select_all_cryptocurrencies_button:
                 if(!Cryptocurrencies.hasSubscription){
-                    Toast.makeText(this, "Buy A Subscription to Select More Than 5 Cryptocurrencies", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Buy A Subscription to Select More Than " + MAX_NUMBER_ALLOWED +
+                            " Cryptocurrencies", Toast.LENGTH_LONG).show();
                     bp.subscribe(this, "monthly_sub");
                     break;
                 }
@@ -2632,7 +2628,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 message = Boolean.toString(b1.isChecked());
                 fileOutputStream.write(message.getBytes());
             }
-            fileOutputStream.close();
+
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
@@ -2647,7 +2643,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
      *     which coins should be toggled to "Off"
      */
     public void getSavedCoins(){
-        int numExchanges = allCurrenciesButtons.size();
+        int numCurrencies = allCurrenciesButtons.size();
         int counter = 0;
         try {
             FileInputStream fileInputStream = openFileInput("CurrenciesInformation");
@@ -2657,7 +2653,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
             //System.out.println("Size of allExchangesButton is: " + numExchanges);
             StringBuilder message = new StringBuilder();
             int data = 1;
-            while(counter < numExchanges && data != -1){
+            while(counter < numCurrencies && data != -1){
                 data = bufferedReader.read();
                 message.append((char) data);
                 //if word is true, set exchange value to true
@@ -2677,13 +2673,22 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                     counter++;
                 }
             }
-        }
+         }
         catch (FileNotFoundException e){
             e.printStackTrace();
         }
         catch (IOException e){
             e.printStackTrace();
         }
+
+        selectAllCurrenciesButton.setText("On");
+        for(ToggleButton button: allCurrenciesButtons){
+            if(!button.isChecked()){
+                selectAllCurrenciesButton.setText("Off");
+                break;
+            }
+        }
+
     }
 
     @Override
@@ -2753,16 +2758,6 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         HomePage.isCreatedCryptocurrencies = true;
         clearExchanges();
         HomePage.listOfCurrencies.clear();
-        for(ToggleButton button : allCurrenciesButtons){
-            if(button.isChecked()) {
-                //adds bitcoin and ethereum if at least one coin is checked
-                if(!hasAddedBitcoinAndEthereum){
-                    addBitcoinAndEthereumToExchanges();
-                    hasAddedBitcoinAndEthereum = true;
-                }
-                addCurrencyToExchanges(button);
-            }
-        }
         hasAddedBitcoinAndEthereum = false;
 
         saveSelectedCoinsInfo(allCurrenciesButtons);
