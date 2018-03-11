@@ -1,16 +1,12 @@
-package My.Awesome.Project.cryptarbitrage30;
+package my.awesome.project.cryptarbitrage30;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -42,10 +38,8 @@ public class Exchanges extends Activity implements View.OnClickListener{
         selectAllExchangesButton = findViewById(R.id.select_all_exchanges_button);
         selectAllExchangesButton.setOnClickListener(this);
 
+         getExchangeInfo1();
 
-        if(HomePage.isCreatedExchanges) {
-            getExchangeInfo1();
-        }
     }
 
     public void onClick(View v){
@@ -140,7 +134,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
                 message = Boolean.toString(b1.isChecked());
                 fileOutputStream.write(message.getBytes());
             }
-            fileOutputStream.close();
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
@@ -164,7 +157,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
             //while more lines
             //System.out.println("Size of allExchangesButton is: " + numExchanges);
             StringBuilder message = new StringBuilder();
-            int data = 1;
+            int data = 0; //will be -1 if read is finished
             while(counter < numExchanges && data != -1){
                 data = bufferedReader.read();
                 message.append((char) data);
@@ -188,6 +181,16 @@ public class Exchanges extends Activity implements View.OnClickListener{
         }
         catch (IOException e){
             e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        selectAllExchangesButton.setText("On");
+        for(ToggleButton button: allExchangesButton){
+            if(!button.isChecked()){
+                selectAllExchangesButton.setText("Off");
+                break;
+            }
         }
 
     }
