@@ -678,19 +678,19 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" USD");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
-                    stringBuilder.append("unknown");
-                }
-                else {
-                    stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
-                }
-                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
                 if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
-                else{
+                else {
                     stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else{
+                    stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
                 }
                 stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
@@ -712,19 +712,19 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Bitcoin");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
-                    stringBuilder.append("unknown");
-                }
-                else{
-                    stringBuilder.append("$" +round(opportunity.getHighPriceCoinExchange().getVolumeBTC()));
-                }
-                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
                 if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
-                else {
+                else{
                     stringBuilder.append("$" +round(opportunity.getLowPriceCoinExchange().getVolumeBTC()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else {
+                    stringBuilder.append("$" +round(opportunity.getHighPriceCoinExchange().getVolumeBTC()));
                 }
                 stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
@@ -746,19 +746,19 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Ethereum");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
-                    stringBuilder.append("unknown");
-                }
-                else {
-                    stringBuilder.append("$" +round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
-                }
-                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
                 if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
+                else {
+                    stringBuilder.append("$" +round(opportunity.getLowPriceCoinExchange().getVolumeETH()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
                 else{
-                    stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
+                    stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeETH()));
                 }
                 stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
@@ -781,19 +781,19 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" USDT");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
-                    stringBuilder.append("unknown");
-                }
-                else {
-                    stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
-                }
-                stringBuilder.append("\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
+                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
                 if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
-                else{
+                else {
                     stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
+                }
+                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
+                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                    stringBuilder.append("unknown");
+                }
+                else{
+                    stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
                 }
                 stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
                 return stringBuilder.toString();
