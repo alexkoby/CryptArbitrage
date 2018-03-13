@@ -1,6 +1,7 @@
 package my.awesome.project.cryptarbitrage30;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
     static ArrayList<ToggleButton> allExchangesButton;
 
     Button selectAllExchangesButton;
-    Button submitExchangeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,18 @@ public class Exchanges extends Activity implements View.OnClickListener{
         selectAllExchangesButton = findViewById(R.id.select_all_exchanges_button);
         selectAllExchangesButton.setOnClickListener(this);
 
-         getExchangeInfo1();
 
+
+    }
+
+    protected void onStart(){
+        getExchangeInfo1();
+
+        if(!HomePage.isCreatedExchanges){
+            HomePage.isCreatedExchanges = true;
+            startActivity(new Intent(this, Cryptocurrencies.class));
+        }
+        super.onStart();
     }
 
     public void onClick(View v){
@@ -70,7 +80,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
                         break;
                     }
                 }
-
         }
     }
 
@@ -157,7 +166,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
             //while more lines
             //System.out.println("Size of allExchangesButton is: " + numExchanges);
             StringBuilder message = new StringBuilder();
-            int data = 0; //will be -1 if read is finished
+            int data = 0; //
             while(counter < numExchanges && data != -1){
                 data = bufferedReader.read();
                 message.append((char) data);
@@ -234,8 +243,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
     }
 
     @Override
-    public void onDestroy(){
-        super.onDestroy();
+    public void onStop(){
         HomePage.isCreatedExchanges = true;
         //Gets rid of all Exchanges from listOfExchanges and adds in valid exchanges
         //based on the buttons that are 'On'
@@ -246,5 +254,7 @@ public class Exchanges extends Activity implements View.OnClickListener{
             }
         }
         saveExchangeInfo1();
+
+        super.onStop();
     }
 }
