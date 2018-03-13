@@ -120,10 +120,11 @@ public class ArbitrageFinder {
     private Opportunity typeOne(Coin coin, Coin bitcoin) {
         double type1Rate;
 
-        /*if(coin.getAskPriceUSD() == null || coin.getBidPriceBTC() == null){
+        if(!(coin.getVolumeUSD() > HomePage.minimumVolumeUSD
+                && coin.getVolumeBTC() > HomePage.minimumVolumeUSD
+                && bitcoin.getVolumeUSD() > HomePage.minimumVolumeUSD)){
             return null;
         }
-        */
 
         if (coin.getAskPriceUSD() > 0 && coin.getBidPriceBTC() > 0 && bitcoin.getBidPriceUSD() > 0) {
             type1Rate = (1/coin.getAskPriceUSD()) * coin.getBidPriceBTC() * bitcoin.getBidPriceUSD();
@@ -147,6 +148,11 @@ public class ArbitrageFinder {
         if(coin.getBidPriceUSD() == null || coin.getAskPriceBTC() == null){
             return null;
         }*/
+        if(!(coin.getVolumeUSD() > HomePage.minimumVolumeUSD
+                && coin.getVolumeBTC() > HomePage.minimumVolumeUSD
+                && bitcoin.getVolumeUSD() > HomePage.minimumVolumeUSD)){
+            return null;
+        }
 
         if (bitcoin.getAskPriceUSD() > 0 && coin.getAskPriceBTC() > 0 && coin.getBidPriceUSD() > 0) {
             type2Rate = (1/bitcoin.getAskPriceUSD()) * (1/coin.getAskPriceBTC()) * coin.getBidPriceUSD();
@@ -166,6 +172,12 @@ public class ArbitrageFinder {
      */
     private Opportunity typeThree(Coin coin, Coin ethereum) {
         double type3Rate;
+
+        if(!(coin.getVolumeUSD() > HomePage.minimumVolumeUSD
+                && coin.getVolumeETH() > HomePage.minimumVolumeUSD
+                && ethereum.getVolumeUSD() > HomePage.minimumVolumeUSD)){
+            return null;
+        }
 
         /*if(coin.getAskPriceUSD() == null || coin.getBidPriceETH() == null){
             return null;
@@ -189,6 +201,12 @@ public class ArbitrageFinder {
      */
     private Opportunity typeFour(Coin coin, Coin ethereum) {
         double type4Rate;
+
+        if(!(coin.getVolumeUSD() > HomePage.minimumVolumeUSD
+                && coin.getVolumeETH() > HomePage.minimumVolumeUSD
+                && ethereum.getVolumeUSD() > HomePage.minimumVolumeUSD)){
+            return null;
+        }
 
         /*if(coin.getBidPriceUSD() == null || coin.getAskPriceETH() == null){
             return null;
@@ -214,6 +232,11 @@ public class ArbitrageFinder {
     private Opportunity typeFive(Coin coin, Coin ethereum) {
         double type5Rate;
 
+        if(!(coin.getVolumeETH() > HomePage.minimumVolumeUSD
+            && coin.getVolumeBTC() > HomePage.minimumVolumeUSD
+            &&ethereum.getVolumeBTC() > HomePage.minimumVolumeUSD)){
+            return null;
+        }
         /*if(coin.getBidPriceBTC() == null || coin.getAskPriceETH() == null){
             return null;
         }*/
@@ -236,6 +259,12 @@ public class ArbitrageFinder {
      */
     private Opportunity typeSix(Coin coin, Coin ethereum) {
         double type6Rate;
+
+        if(!(coin.getVolumeETH() > HomePage.minimumVolumeUSD
+                && coin.getVolumeBTC() > HomePage.minimumVolumeUSD
+                &&ethereum.getVolumeBTC() > HomePage.minimumVolumeUSD)){
+            return null;
+        }
 
         /*if(coin.getAskPriceBTC() == null || coin.getBidPriceETH() == null){
             return null;
@@ -311,7 +340,8 @@ public class ArbitrageFinder {
                                 / listOfCoins.get(j).getAskPriceBTC() - 1) * 100, 8, listOfCoins.get(i), listOfCoins.get(j)));
                     }
                     if (listOfCoins.get(j).getBidPriceBTC() / listOfCoins.get(i).getAskPriceBTC() - 1 >
-                            HomePage.minGainsWanted / 100 && listOfCoins.get(i).getVolumeBTC() > HomePage.minimumVolumeUSD
+                            HomePage.minGainsWanted / 100
+                            && listOfCoins.get(i).getVolumeBTC() > HomePage.minimumVolumeUSD
                             && listOfCoins.get(j).getVolumeBTC() > HomePage.minimumVolumeUSD) {
                         bestOpportunitiesAcrossExchanges.add(new Opportunity((listOfCoins.get(j).getBidPriceBTC()
                                 / listOfCoins.get(i).getAskPriceBTC() - 1) * 100, 8, listOfCoins.get(j), listOfCoins.get(i)));
