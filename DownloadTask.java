@@ -77,8 +77,6 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
             StringBuilder stringBuilder = new StringBuilder();
 
-
-
             try {
                 String currentPair = q1.peek();
                 url = new URL(this.apiBase.concat(currentPair));
@@ -218,12 +216,12 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 ArbitrageFinder.getRealVolumeNumbers();
             }
             exchange.setDataIsFinishedRefreshing(true);
-            /*for(Coin coin: exchange.getCoins()){
+            for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
                         + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
-            }*/
+            }
         }
         catch (Exception e) {
             exchange.setDataIsFinishedRefreshing(true);
@@ -293,10 +291,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
             while(!queue.isEmpty()){
                 counter ++; //makes counter1 0 initially 0 - don't want it at end bc might overlook it
-                if(isCoinPairNull(counter)){
-                    queue.remove();
-                    continue;
-                }
+                //if(isCoinPairNull(counter)){
+                //    queue.remove();
+                //    continue;
+                //}
                 currentCoin = exchange.getCoins().get(counter/3);
                 //want it to switch every third time - coinUSD, coinBTC, coinETH
 
@@ -438,17 +436,17 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
 
         return null;
     }
-
+//should still work even if looking for pair that DNE
     private void bitZWay(LinkedList<String> queue, JSONObject jsonObject){
         JSONObject temp;
         int counter = -1;
         Coin currentCoin;
         while(!queue.isEmpty()){
             counter++;
-            if(isCoinPairNull(counter)){
-                queue.remove();
-                continue;
-            }
+            //if(isCoinPairNull(counter)){
+            //    queue.remove();
+            //    continue;
+            //}
             currentCoin = exchange.getCoins().get(counter/3);
             try{
                 temp = jsonObject.getJSONObject(queue.peek());
@@ -507,10 +505,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         while(!q1.isEmpty()){
             counter++;
             currentCoin = exchange.getCoins().get(counter/3);
-            if(isCoinPairNull(counter)){
-                q1.remove();
-                continue;
-            }
+            //if(isCoinPairNull(counter)){
+            //    q1.remove();
+            //    continue;
+            //}
             String coinPairBase = q1.peek();
 
             //BitcoinCash and Dash have different way to look at API for some reason
