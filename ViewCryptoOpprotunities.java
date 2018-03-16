@@ -16,7 +16,6 @@ import java.util.PriorityQueue;
 /**
  * Created by Alexander on 1/7/2018.
  */
-
 public class ViewCryptoOpprotunities extends Activity implements View.OnClickListener{
     ArbitrageFinder arbitrageFinder;
     PriorityQueue<Opportunity> bestOpportunitiesWithinExchanges;
@@ -496,19 +495,19 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceUSD()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" USD\n\nStep 2:\nCovert ");
+                    stringBuilder.append(" USD\n\nStep 2:\nConvert ");
                 }
                 else{
-                    stringBuilder.append(" USDT\n\nStep 2:\nCovert ");
+                    stringBuilder.append(" USDT\n\nStep 2:\nConvert ");
                 }
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceBTC()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" Bitcoin\n\nStep 3:\nSell your Bitcoin for USD at: $");
+                    stringBuilder.append(" Bitcoin\n\nStep 3:\nSell Bitcoin for USD at: $");
                 }
                 else{
-                    stringBuilder.append(" Bitcoin\n\nStep 3:\nSell your Bitcoin for USDT at: ");
+                    stringBuilder.append(" Bitcoin\n\nStep 3:\nSell Bitcoin for USDT at: ");
                 }
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceUSD()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
@@ -517,26 +516,37 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 else{
                     stringBuilder.append(" USDT");
                 }
-                stringBuilder.append("\n\nNote you may start at any point in this cycle");
+                stringBuilder.append("\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nAlways check the quantity of the asks/bids at each step" +
-                        " in the cycle before you begin to ensure it is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                if(!opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                    stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeUSD()));
+                    stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeBTC()));
+                    stringBuilder.append("\nStep 3 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getLowPriceCoinExchange().getVolumeUSD()));
+                }
+                else{
+                    stringBuilder.append("\n\nVolumes: Unknown");
+                }
+                stringBuilder.append("\n\nAlways check the quantity of the asks/bids at each step" +
+                        " in the cycle before you begin to ensure it is adequate.");
                 return stringBuilder.toString();
 
             case 2:
                 stringBuilder.append("Step1:\nBuy Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" USD \n\nStep 2:\nCovert Bitcoin to ");
+                    stringBuilder.append(" USD \n\nStep 2:\nConvert Bitcoin to ");
                 }
                 else{
-                    stringBuilder.append(" USDT \n\nStep 2:\nCovert Bitcoin to ");
+                    stringBuilder.append(" USDT \n\nStep 2:\nConvert Bitcoin to ");
                 }
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
-                stringBuilder.append( "at ");
+                stringBuilder.append( " at ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceBTC()));
-                stringBuilder.append(" Bitcoin\n\nStep 3:\nSell your");
+                stringBuilder.append(" Bitcoin\n\nStep 3:\nSell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
                     stringBuilder.append(" for USD at: $");
@@ -551,11 +561,22 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 else{
                     stringBuilder.append(" USDT");
                 }
-                stringBuilder.append("\nNote: you may start at any point in this cycle");
+                stringBuilder.append("\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nAlways check the quantity of the asks/bids at each step" +
-                        " in the cycle before you begin to ensure it is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                    stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getLowPriceCoinExchange().getVolumeUSD()));
+                    stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeBTC()));
+                    stringBuilder.append("\nStep 3 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeUSD()));
+                }
+                else{
+                    stringBuilder.append("\n\nVolumes: Unknown");
+                }
+                stringBuilder.append("\n\nAlways check the quantity of the asks/bids at each step" +
+                        " in the cycle before you begin to ensure it is adequate.");
                 return stringBuilder.toString();
 
             case 3:
@@ -564,46 +585,57 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceUSD()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" USD\n\nStep 2:\nCovert ");
+                    stringBuilder.append(" USD\n\nStep 2:\nConvert ");
                 }
                 else{
-                    stringBuilder.append(" USDT\n\nStep 2:\nCovert ");
+                    stringBuilder.append(" USDT\n\nStep 2:\nConvert ");
                 }
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceETH()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" Ethereum\n\nStep 3:\nSell your Ethereum for USD at: $");
+                    stringBuilder.append(" Ethereum\n\nStep 3:\nSell Ethereum for USD at: $");
                 }
                 else{
-                    stringBuilder.append(" Ethereum\n\nStep 3:\nSell your Ethereum for USDT at: ");
+                    stringBuilder.append(" Ethereum\n\nStep 3:\nSell Ethereum for USDT at: ");
                 }
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceUSD()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" USD\nNote: you may start at any point in this cycle");
+                    stringBuilder.append(" USD\n\nNote: You may start at any point in this cycle.");
                 }
                 else{
-                    stringBuilder.append(" USDT\nNote: you may start at any point in this cycle");
+                    stringBuilder.append(" USDT\n\nNote: You may start at any point in this cycle.");
                 }
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nAlways check the quantity of the asks/bids at each step" +
-                        " in the cycle before you begin to ensure it is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                    stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeUSD()));
+                    stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeETH()));
+                    stringBuilder.append("\nStep 3 Volume $" + doubleToStringFiveSigDigs(opportunity.
+                            getLowPriceCoinExchange().getVolumeUSD()));
+                }
+                else{
+                    stringBuilder.append("\n\nVolumes: Unknown");
+                }
+                stringBuilder.append("\n\nAlways check the quantity of the asks/bids at each step" +
+                        " in the cycle before you begin to ensure it is adequate.");
                 return stringBuilder.toString();
 
             case 4:
                 stringBuilder.append("Step1:\nBuy Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" USD\n\nStep 2:\nCovert Ethereum to ");
+                    stringBuilder.append(" USD\n\nStep 2:\nConvert Ethereum to ");
                 }
                 else{
-                    stringBuilder.append(" USDT\n\nStep 2:\nCovert Ethereum to ");
+                    stringBuilder.append(" USDT\n\nStep 2:\nConvert Ethereum to ");
                 }
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
-                stringBuilder.append("at ");
+                stringBuilder.append(" at ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceETH()));
-                stringBuilder.append(" Ethereum\n\nStep 3:\nSell your");
+                stringBuilder.append(" Ethereum\n\nStep 3:\nSell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
                     stringBuilder.append(" For USD at: $");
@@ -613,51 +645,84 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceUSD()));
                 if(opportunity.getHighPriceCoinExchange().getExchange().getIsUSD()){
-                    stringBuilder.append(" USD\nNote: you may start at any point in this cycle");
+                    stringBuilder.append(" USD\n\nNote: You may start at any point in this cycle.");
                 }
                 else{
-                    stringBuilder.append(" USDT\nNote: you may start at any point in this cycle");
+                    stringBuilder.append(" USDT\n\nNote: You may start at any point in this cycle.");
                 }
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nAlways check the quantity of the asks/bids at each step" +
-                        " in the cycle before you begin to ensure it is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                    stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getLowPriceCoinExchange().getVolumeUSD()));
+                    stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeETH()));
+                    stringBuilder.append("\nStep 3 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeUSD()));
+                }
+                else{
+                    stringBuilder.append("\n\nVolumes: Unknown");
+                }
+                stringBuilder.append("\n\nAlways check the quantity of the asks/bids at each step" +
+                        " in the cycle before you begin to ensure it is adequate.");
                 return stringBuilder.toString();
 
             case 5:
-                stringBuilder.append("Step1:\nConvert Your Ethereum to: ");
+                stringBuilder.append("Step1:\nConvert Ethereum to: ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
-                stringBuilder.append( "at: ");
+                stringBuilder.append( " at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceETH()));
-                stringBuilder.append("Ethereum\n\nStep 2:\nConvert ");
+                stringBuilder.append(" Ethereum\n\nStep 2:\nConvert ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceBTC()));
-                stringBuilder.append(" Bitcoin\n\nStep 3:\nConvert Your Bitcoin to Ethereum at: ");
+                stringBuilder.append(" Bitcoin\n\nStep 3:\nConvert Bitcoin to Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceBTC()));
-                stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
+                stringBuilder.append(" Bitcoin\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nAlways check the quantity of the asks/bids at each step" +
-                        " in the cycle before you begin to ensure it is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                    stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeETH()));
+                    stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeBTC()));
+                    stringBuilder.append("\nStep 3 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getLowPriceCoinExchange().getVolumeBTC()));
+                }
+                else{
+                    stringBuilder.append("\n\nVolumes: Unknown");
+                }
+                stringBuilder.append("\n\nAlways check the quantity of the asks/bids at each step" +
+                        " in the cycle before you begin to ensure it is adequate.");
                 return stringBuilder.toString();
 
             case 6:
-                stringBuilder.append("Step1:\nConvert Your Bitcoin to: ");
+                stringBuilder.append("Step1:\nConvert Bitcoin to: ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
-                stringBuilder.append( "at: ");
+                stringBuilder.append( " at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getAskPriceBTC()));
                 stringBuilder.append(" Bitcoin\n\nStep 2:\nConvert ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" to Ethereum at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceETH()));
-                stringBuilder.append(" Ethereum\n\nStep 3:\nConvert Your Ethereum to Bitcoin at: ");
+                stringBuilder.append(" Ethereum\n\nStep 3:\nConvert Ethereum to Bitcoin at: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getBidPriceBTC()));
-                stringBuilder.append(" Bitcoin\nNote: you may start at any point in this cycle");
+                stringBuilder.append(" Bitcoin\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()));
-                stringBuilder.append("%\n\nAlways check the quantity of the asks/bids at each step" +
-                        " in the cycle before you begin to ensure it is adequate");
+                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
+                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                    stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeBTC()));
+                    stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getHighPriceCoinExchange().getVolumeETH()));
+                    stringBuilder.append("\nStep 3 Volume: $" + doubleToStringFiveSigDigs(opportunity.
+                            getLowPriceCoinExchange().getVolumeBTC()));
+                }
+                else{
+                    stringBuilder.append("\n\nVolumes: Unknown");
+                }
+                stringBuilder.append("\n\nAlways check the quantity of the asks/bids at each step" +
+                        " in the cycle before you begin to ensure it is adequate.");
                 return stringBuilder.toString();
 
             case 7:
@@ -692,7 +757,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 else{
                     stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
                 }
-                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws." +
+                        "\nAlways check the withdrawl fees associated with each exchange and each cryptocurrency.");
                 return stringBuilder.toString();
 
             case 8:
@@ -726,7 +792,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 else {
                     stringBuilder.append("$" +round(opportunity.getHighPriceCoinExchange().getVolumeBTC()));
                 }
-                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws." +
+                        "\nAlways check the withdrawl fees associated with each exchange and each cryptocurrency.");
                 return stringBuilder.toString();
 
             case 9:
@@ -760,7 +827,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 else{
                     stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeETH()));
                 }
-                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws." +
+                        "\nAlways check the withdrawl fees associated with each exchange and each cryptocurrency.");
                 return stringBuilder.toString();
 
             case 10:
@@ -795,7 +863,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 else{
                     stringBuilder.append("$" + round(opportunity.getHighPriceCoinExchange().getVolumeUSD()));
                 }
-                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws");
+                stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws." +
+                        "\nAlways check the withdrawl fees associated with each exchange and each cryptocurrency.");
                 return stringBuilder.toString();
         }
         return null;
