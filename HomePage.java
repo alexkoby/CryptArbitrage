@@ -25,7 +25,7 @@ import java.util.Calendar;
 
 public class HomePage extends Activity implements View.OnClickListener{
 
-    static double minimumVolumeUSD = 50000.0;
+    static double minimumVolumeUSD = 20000.0;
 
     static boolean isCreatedHomepage = false;
     static boolean isCreatedExchanges = false;
@@ -68,7 +68,7 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     static boolean isInProcessOfRefreshing = false;
 
-    static double minGainsWanted = 1.5;
+    static double minGainsWanted = 1.0;
     EditText minGainEditText;
     EditText minVolumeEditText;
     Button typeOfArbitrage;
@@ -320,35 +320,45 @@ public class HomePage extends Activity implements View.OnClickListener{
                         " able to select " + Cryptocurrencies.MAX_NUMBER_ALLOWED + " coins. With premium version, you empowered to select " +
                         "unlimited coins, which is highly recommended. Selecting all coins ensures you never miss an opportunity for " +
                         "arbitrage, " +
-                        "as the most lucrative opportunities often come from coins most have never heard of\n\n" +
+                        "as the most lucrative opportunities often come from less popular coins.\n\n" +
                         "Refresh Data\nClick the \"" +
                         refreshButtonHomePage.getText().toString() +
                         "\" button. This is where the app will be gathering the most accurate and up-to-date information regarding each " +
                         "coin's price, volume, ect. You will need to click this every time you want the app" +
                         " to update the coin's prices and every time you modify the selected cryptocurrencies. This process can sometimes " +
-                        "take longer than you'd like, see \"Refresh Data\" Too Slow? below for explanation \n\n" +
+                        "take longer than you'd like, see \"Refresh Data Too Slow?\" below for details.\n\n" +
                         "Minimum Percent Gains\nMinumum percent gains is the lowest percentage profits you want the app to " +
                         "look for. For example, if you only want to " +
                         "see opportunities for 5.2% gains, change the value to \"5.2\" and select the enter button next to it." +
-                        "\n\nMinimum 24 hour volume\n" +
+                        "\n\nMinimum 24 Hour Volume\n" +
                         "This value is used to filter out any trading pairs" +
                         " with less than this amount of volume traded within the past 24 hours. 24 hour trading volume can be used " +
                         "to get an idea as to how much " +
-                        "arbitrage can be done before the buy price and the sell price of the coin get extremely close together." +
+                        "of a currency you can buy or sell before the price begins to move." +
                         "\n\nCross Exchange Arbitrage\nIf you want to see only cross exchange arbitrage or only intra-exchange arbitrage, hit the button that says" +
-                        " \"Intra-Exchange And Cross Exchange Arbitrage\", however, looking at both intra-exchange and cross exchange arbitrage " +
-                        "is the recommended option." +
-                        "\n\nView Arbitrage Opportunities\nFinally, when the data is finished refreshing, you may select the \"View Current Opportunities\"" +
-                        " button, which" +
-                        " will show you the best opportunities for arbitrage, sorted by profitablility. The details button will allow you to see " +
+                        " \"Intra-Exchange And Cross Exchange Arbitrage.\" Cross Exchange Arbitrage is buying a coin on one exchange, then sending it to another " +
+                        "exchange to sell on. Intra-Exchange Arbitrage is when everything occurs on only one exchange. For example, " +
+                        "you might buy Bitcoin for USD, convert Bitcoin to Dash, then sell Dash for USD, and end up with more USD than when you started. " +
+                        "Looking at both Intra-Exchange and Cross Exchange Arbitrage " +
+                        "is the recommended option.\nNote: Trading fees are NOT considered in our calculations. " +
+                        "\n\nView Arbitrage Opportunities\nSelect the \"View Current Opportunities\" button when the data is finished refreshing. " +
+                        " This will show you the best opportunities for arbitrage, sorted by profitablility. The details button will allow you to see " +
                         "what price to buy at, what price to sell at, and which exchanges to use. Always remember to ensure the wallets for " +
                         "your cryptocurrencies are working on both exchanges you hope to engage in arbitrage on, especially for " +
-                        "opportunities over 50%" +
+                        "opportunities over 10%. Also check the exchange's withdrawl fee for the currency, as this is not factored in our calculations." +
                         "\n\n\"Refresh Data\" Too Slow?\nCryptArbitrage prides itself on always using the most accurate and " +
-                        "most fresh data, even more accurate and more fresh than CoinMarketCap. To ensure we maintain these high standards, which" +
-                        " are ensure users make the most well informed decision, it can sometimes take ~2 minutes to refresh the data." +
-                        " Huobi and OKEX are the main culprits causing this longer than wanted refresh time. If you wish to keep your refresh data to under 20 seconds" +
-                        ", uncheck Huobi and OKEX. However, it is recomended to keep these two exchange selected if you want the best arbitrage opportunities.");
+                        "most fresh data, even more-so than CoinMarketCap. To ensure we maintain these high standards, which" +
+                        " ensure our users make the most well informed decision, it can sometimes take ~2 minutes to refresh the data." +
+                        " Huobi and OKEX are the main culprits causing this longer than ideal refresh time. If you wish to keep your refresh data to under 30 seconds" +
+                        ", uncheck Huobi and OKEX. However, it is recomended to keep these two exchanges selected if you want the best arbitrage opportunities. " +
+                        "A good technique is to select all currencies to figure out which coins present the best arbitrage opportunities. Then, unselect " +
+                        "everything except for the coins with arbitrage opportunities that you seek to pursue, and then refresh the data again. This method will ensure " +
+                        "that when making your trade, the information will be up to date to the minute." +
+                        "\n\nDoes CryptArbitrage Consider Withdral Fees?\n" +
+                        "CryptArbitrage currently does not consider withdrawl fees in our calculations. These fees vary from exchange to exchange, time to time, " +
+                        "and coin to coin." +
+                        " Always consider their impact on your percent gains before trading. The larger the amount of money you're withdrawing, the less the fee " +
+                        "will impact you, as the fees are flat fees.");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
