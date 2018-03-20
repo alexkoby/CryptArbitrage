@@ -264,7 +264,7 @@
     <string name="refreshDataButton">Refresh Data</string>
     <string name="next5Button">Next 5</string>
     <string name="lastUpdatedTime">5:10</string>
-    <string name="help">Best Practices</string>
+    <string name="help">#?</string>
 
 
 </resources>
