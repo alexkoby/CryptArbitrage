@@ -16,6 +16,8 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,111 +30,131 @@
                 android:text="@string/main_title"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                android:paddingRight="80dip"/>
+                android:paddingRight="70dip"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/help"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 android:id="@+id/helpButton"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dip"
-            android:text="@string/home_page"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="28sp" />
-
-        <Button
-            android:id="@+id/view_current_opprotunities"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="26dip"
-            android:layout_marginHorizontal="30dip"
-            android:background="@color/lime_green"
-            android:text="@string/view_current_opprotunities"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/modify_exchanges"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="26dip"
-            android:layout_marginHorizontal="30dip"
-            android:background="@color/lime_green"
-            android:text="@string/modify_exchanges"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/modify_cryptocurrencies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/lime_green"
-            android:layout_marginHorizontal="30dip"
-            android:text="@string/modify_cryptocurrencies"
-            android:textSize="20sp" />
-
-        <TextView
-            android:paddingTop="35dip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:text="@string/minimumGainsHappyWith"/>
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/minGainEditText"
-                android:layout_width="60dip"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:text="@string/minGainNumber"
-                android:textSize="16sp" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/enterMinGainsButton"
-                android:layout_width="75dip"
-                android:layout_height="30dip"
-                android:background="@color/light_sea_green"
-                android:text="@string/enterButtonHomePageMinGains"
-                android:paddingRight="5dip"/>
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dip"
+                    android:text="@string/home_page"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
 
-            <EditText
-                android:id="@+id/minVolumeEditText"
-                android:layout_width="105dip"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:text="@string/minGainNumber"
-                android:textSize="16sp"
-                android:paddingRight="20dip"/>
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:id="@+id/progress"
 
-            <Button
-                android:id="@+id/enterVolumeButton"
-                android:layout_width="75dip"
-                android:layout_height="30dip"
-                android:background="@color/light_sea_green"
-                android:text="@string/enterButtonHomePageMinGains" />
+                    />
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/view_current_opprotunities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="26dip"
+                    android:layout_marginHorizontal="30dip"
+                    android:background="@color/lime_green"
+                    android:text="@string/view_current_opprotunities"
+                    android:textSize="20sp" />
 
-        <Button
-            android:layout_marginTop="30dip"
-            android:id="@+id/typeOfArbitrage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/light_sea_green"
-            android:text="@string/typeOfOpprotunities" />
+                <Button
+                    android:id="@+id/modify_exchanges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="26dip"
+                    android:layout_marginHorizontal="30dip"
+                    android:background="@color/lime_green"
+                    android:text="@string/modify_exchanges"
+                    android:textSize="20sp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/refreshDataButtonHomePage"
-            android:text="@string/refreshDataButton"
-            android:background="@color/light_sea_green"
-            />
+                <Button
+                    android:id="@+id/modify_cryptocurrencies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/lime_green"
+                    android:layout_marginHorizontal="30dip"
+                    android:text="@string/modify_cryptocurrencies"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:paddingTop="35dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="@string/minimumGainsHappyWith"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/minGainEditText"
+                        android:layout_width="60dip"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:text="@string/minGainNumber"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/enterMinGainsButton"
+                        android:layout_width="75dip"
+                        android:layout_height="30dip"
+                        android:background="@color/light_sea_green"
+                        android:text="@string/enterButtonHomePageMinGains"
+                        android:paddingRight="5dip"/>
+
+                    <EditText
+                        android:id="@+id/minVolumeEditText"
+                        android:layout_width="105dip"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:text="@string/minGainNumber"
+                        android:textSize="16sp"
+                        android:paddingRight="20dip"/>
+
+                    <Button
+                        android:id="@+id/enterVolumeButton"
+                        android:layout_width="75dip"
+                        android:layout_height="30dip"
+                        android:background="@color/light_sea_green"
+                        android:text="@string/enterButtonHomePageMinGains" />
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_marginTop="30dip"
+                    android:id="@+id/typeOfArbitrage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_sea_green"
+                    android:text="@string/typeOfOpprotunities" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/refreshDataButtonHomePage"
+                    android:text="@string/refreshDataButton"
+                    android:background="@color/light_sea_green" />
+
+            </LinearLayout>
+
+        </ScrollView>
     </LinearLayout>
 </LinearLayout>
