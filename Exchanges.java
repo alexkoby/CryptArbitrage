@@ -41,15 +41,24 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
 
     }
-
+    @Override
     protected void onStart(){
+        super.onStart();
+
         getExchangeInfo1();
 
         if(!HomePage.isCreatedExchanges){
-            HomePage.isCreatedExchanges = true;
             startActivity(new Intent(this, Cryptocurrencies.class));
         }
-        super.onStart();
+
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(!HomePage.isCreatedExchanges){
+            HomePage.isCreatedExchanges = true;
+            finish();
+        }
     }
 
     public void onClick(View v){
@@ -244,7 +253,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
     @Override
     public void onStop(){
-        HomePage.isCreatedExchanges = true;
         //Gets rid of all Exchanges from listOfExchanges and adds in valid exchanges
         //based on the buttons that are 'On'
         HomePage.listOfExchanges.clear();

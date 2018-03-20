@@ -7,6 +7,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
@@ -24,6 +25,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class HomePage extends Activity implements View.OnClickListener{
+
+
+    static int howManyAPIRequestsNeeded = 0;
 
     static double minimumVolumeUSD = 20000.0;
 
@@ -74,6 +78,9 @@ public class HomePage extends Activity implements View.OnClickListener{
     Button typeOfArbitrage;
     Button refreshButtonHomePage;
     static String typeOfArbitrageString = "Intra-Exchange and Cross Exchange Arbitrage";
+
+    static ProgressBar progressBar;
+
 
 
     @Override
@@ -156,6 +163,9 @@ public class HomePage extends Activity implements View.OnClickListener{
         View helpButton = findViewById(R.id.helpButton);
         helpButton.setOnClickListener(this);
 
+        progressBar = findViewById(R.id.progress);
+        progressBar.setVisibility(View.INVISIBLE);
+
         refreshButtonHomePage = findViewById(R.id.refreshDataButtonHomePage);
         refreshButtonHomePage.setOnClickListener(this);
 
@@ -190,15 +200,31 @@ public class HomePage extends Activity implements View.OnClickListener{
             ViewCryptoOpprotunities.hasData = true;
         }
         if(ViewCryptoOpprotunities.selectedRefreshViewOpportunities){
-            HomePage.makeAPIRequests();
-            Toast.makeText(this, "Refreshing Your Data", Toast.LENGTH_LONG).show();
+            makeAPIRequests();
+            Toast.makeText(this, "Refreshing Your Data\nRefresh May Take Up To 3 Minutes", Toast.LENGTH_LONG).show();
             ViewCryptoOpprotunities.selectedRefreshViewOpportunities = false;
+        }
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(!HomePage.isCreatedExchanges){
+            finish();
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if(isDataCurrentlyRefreshing()){
+            progressBar.setVisibility(View.VISIBLE);
         }
     }
 
 
+
     //Creates an Array of URLs and calls downloadtask.execute()
-    private static void getAsksAndBids(Exchange e){
+    private void getAsksAndBids(Exchange e){
         //System.out.println("Exchange is: " + e.getName());
         String [] APIs = new String [e.getCoins().size()*3];
         DownloadTask task = null;
@@ -306,7 +332,9 @@ public class HomePage extends Activity implements View.OnClickListener{
                 return;
                 //System.out.println("TASK IS NUUUUUUUUUUUUUUUUUUUUL");
             }
-            task.execute(APIs);
+            task.setURLS(APIs);
+            task.setContext(this);
+            task.execute();
         }
     }
     public void onClick(View v){
@@ -407,10 +435,12 @@ public class HomePage extends Activity implements View.OnClickListener{
                 }
                 if(HomePage.isDataCurrentlyRefreshing()){
                     Toast.makeText(getApplicationContext(),"Please Wait for data to finish loading" +
-                            "\n\n Currently gathering data from ".concat(currentlyOnWhatExchange()),Toast.LENGTH_LONG).show();
+                            "\n\n Currently gathering data from ".concat(currentlyOnWhatExchange() + "" +
+                                    "\nRefresh May Take Up To 3 Minutes"),Toast.LENGTH_LONG).show();
                     alertDialog.setTitle("Please Wait");
                     alertDialog.setMessage("Please Wait While We Refresh All The Data To Find Your Best Arbitrage Opportunities" +
-                            "\n\nCurrently gathering data from ".concat(currentlyOnWhatExchange()));
+                            "\n\nCurrently gathering data from ".concat(currentlyOnWhatExchange() + "" +
+                                    "\n\nRefresh May Take Up To 3 Minutes"));
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -421,17 +451,8 @@ public class HomePage extends Activity implements View.OnClickListener{
                     break;
                 }
                 if(!HomePage.isAllDataFinishedRefreshing() || !doesEveryCoinHaveData()){
-                    //System.out.println("Made it inside the loop");
-                    Toast.makeText(getApplicationContext(),"Please Select The Refresh Data Button To Get Data!",Toast.LENGTH_LONG).show();
-                    alertDialog.setTitle("Please Wait");
-                    alertDialog.setMessage("Please Select The Refresh Data Button To Get Data!");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
+                    makeAPIRequests();
+                    Toast.makeText(this, "Refreshing Your Data\n\nRefresh May Take Up To 3 Minutes", Toast.LENGTH_LONG).show();
                     break;
                 }
 
@@ -516,14 +537,15 @@ public class HomePage extends Activity implements View.OnClickListener{
                     break;
                 }
                 if(!isDataCurrentlyRefreshing()){
-                    HomePage.makeAPIRequests();
-                    Toast.makeText(this, "Refreshing Your Data", Toast.LENGTH_LONG).show();
+                    makeAPIRequests();
+                    Toast.makeText(this, "Refreshing Your Data\nRefresh May Take Up To 3 Minutes", Toast.LENGTH_LONG).show();
                     break;
                 }
                 else{
                     alertDialog.setTitle("Error");
                     alertDialog.setMessage("Please Wait For Data To Finish Refreshing Before Refreshing Again" +
-                            "\n\nCurrently gathering data from ".concat(currentlyOnWhatExchange()));
+                            "\n\nCurrently gathering data from ".concat(currentlyOnWhatExchange() +
+                            "\n\nRefresh May Take Up To 3 Minutes"));
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -606,7 +628,12 @@ public class HomePage extends Activity implements View.OnClickListener{
         return null;
     }
 
-    public static void makeAPIRequests(){
+    public void makeAPIRequests(){
+
+        HomePage.howManyAPIRequestsNeeded = howManyAPIRequestsToMake();
+        progressBar.setMax(HomePage.howManyAPIRequestsNeeded);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setProgress(0);
 
         HomePage.lastTimeRefreshedMinute = Calendar.getInstance().get(Calendar.MINUTE);
         HomePage.lastTimeRefreshedHour = Calendar.getInstance().get(Calendar.HOUR);
@@ -673,11 +700,36 @@ public class HomePage extends Activity implements View.OnClickListener{
                     return "Unknown";
                 }
                 else{
+                    System.out.println(exchange.getName());
                    return exchange.getName();
                 }
             }
         }
         return null;
+    }
+
+   static public int howManyAPIRequestsToMake(){
+        int count = 0;
+        for(Exchange exchange: HomePage.listOfExchanges){
+            if(exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance") || exchange.getName().equals("HitBTC")
+                    || exchange.getName().equals("Bit-Z") || exchange.getName().equals("Poloniex")
+                    || exchange.getName().equals("Kraken")){
+                count++;
+                continue;
+            }
+            for(Coin coin: exchange.getCoins()){
+                if (coin.getUSDBTCETHPairs().charAt(0) == '1'){
+                    count++;
+                }
+                if (coin.getUSDBTCETHPairs().charAt(1) == '1'){
+                    count++;
+                }
+                if (coin.getUSDBTCETHPairs().charAt(2) == '1'){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 
