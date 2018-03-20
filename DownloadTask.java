@@ -1,6 +1,9 @@
 package my.awesome.project.cryptarbitrage30;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.View;
 
 import org.json.JSONArray;
 //import org.json.JSONException;
@@ -23,14 +26,18 @@ import java.util.List;
  * Created by Alexander on 1/9/2018.
  */
 
-public class DownloadTask extends AsyncTask<String,Void,String> {
-    private int APIRequestsMade = -1;
+public class DownloadTask extends AsyncTask<Context,Integer,String> {
+    private boolean fullAPIWay = false;
     private String apiBase;
     private String findSymbol;
+
+    Context context;
 
     private Exchange exchange;
     private URL url;
     private HttpURLConnection urlConnection;
+
+    String [] urls;
 
 
     public DownloadTask(String findSymbol, String apiBase, Exchange exchange) {
@@ -40,8 +47,10 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
     }
 
 
+
+
     @Override
-    protected String doInBackground(String[] urls) {
+    protected String doInBackground(Context... contexts) {
         //Create priority Queue first with USD endings, then BTC, then ETH
         //skips BTCBTC, BTCETH, ETHETH - DNE
 
@@ -58,6 +67,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
         if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
                 || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
                 exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")) {
+            fullAPIWay = true;
             fullAPIWay(q1);
             return "Worked";
         }
@@ -73,7 +83,6 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 q1.remove();
                 continue;
             }
-            APIRequestsMade++;
 
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -110,6 +119,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                                 (jsonObject.getString(exchange.getAskSymbol())));
                         exchange.getCoins().get(counter/3).setVolumeUSD(Double.parseDouble
                                 (jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        publishProgress(HomePage.progressBar.getProgress() + 1);
                         continue;
                     }
 
@@ -122,6 +132,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                         exchange.getCoins().get(counter/3).setVolumeUSD(Double.parseDouble(jsonObject.
                                 getString(exchange.getFindVolumeSymbol())));
                     }
+                    publishProgress(HomePage.progressBar.getProgress() + 1);
                 }
                 else if (counter % 3 == 1) {
                     if(exchange.getName().equals("Huobi")){
@@ -130,6 +141,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                                 (jsonObject.getString(exchange.getAskSymbol())));
                         exchange.getCoins().get(counter/3).setVolumeBTC(Double.parseDouble
                                 (jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        publishProgress(HomePage.progressBar.getProgress() + 1);
                         continue;
                     }
                     exchange.getCoins().get(counter/3).setBidPriceBTC
@@ -139,6 +151,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     if(exchange.getFindVolumeSymbol()!= null){
                         exchange.getCoins().get(counter/3).setVolumeBTC(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
                     }
+                    publishProgress(HomePage.progressBar.getProgress() + 1);
                 }
                 else if (counter % 3 == 2) { //dont really need the if, but makes it more clear
                     if(exchange.getName().equals("Huobi")){
@@ -148,6 +161,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                                 (jsonObject.getString(exchange.getAskSymbol())));
                         exchange.getCoins().get(counter/3).setVolumeETH(Double.parseDouble
                                 (jsonObject.getString(exchange.getFindVolumeSymbol())));
+                        publishProgress(HomePage.progressBar.getProgress() + 1);
                         continue;
                     }
                     exchange.getCoins().get(counter/3).setBidPriceETH
@@ -157,6 +171,7 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     if(exchange.getFindVolumeSymbol()!= null){
                         exchange.getCoins().get(counter/3).setVolumeBTC(Double.parseDouble(jsonObject.getString(exchange.getFindVolumeSymbol())));
                     }
+                    publishProgress(HomePage.progressBar.getProgress() + 1);
                 }
             }
             catch (Exception e) {
@@ -211,10 +226,6 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                     coin.setBidPriceETH(-1.0);
                 }
             }
-            if(exchange.getName().equals(HomePage.lastExchange)){
-                HomePage.isInProcessOfRefreshing = false;
-                ArbitrageFinder.getRealVolumeNumbers();
-            }
             exchange.setDataIsFinishedRefreshing(true);
             for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
@@ -222,6 +233,17 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
             }
+            if(exchange.getName().equals(HomePage.lastExchange)){
+                HomePage.isInProcessOfRefreshing = false;
+                ArbitrageFinder.getRealVolumeNumbers();
+                HomePage.progressBar.setVisibility(View.INVISIBLE);
+                Intent newIntent = new Intent();
+                newIntent.setClass(context.getApplicationContext(), ViewCryptoOpprotunities.class);
+                newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(newIntent);
+            }
+
+
         }
         catch (Exception e) {
             exchange.setDataIsFinishedRefreshing(true);
@@ -608,5 +630,20 @@ public class DownloadTask extends AsyncTask<String,Void,String> {
             }
         }
         return Double.parseDouble(s.substring(spotComma + 2, spotSecondQuote));
+    }
+
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        HomePage.progressBar.setProgress(values[0]);
+    }
+
+    public void setContext(Context context){
+        this.context = context;
+    }
+
+    public void setURLS(String[]urls){
+        this.urls = urls;
     }
 }
