@@ -56,9 +56,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         selectAllCurrenciesButton = findViewById(R.id.select_all_cryptocurrencies_button);
         selectAllCurrenciesButton.setOnClickListener(this);
 
-        if(!hasSubscription){
+        /*if(!hasSubscription){
             bp = new BillingProcessor(this, publicAPI, this);
-        }
+        }*/
 
         //Create and add all other Buttons to ArrayList
         setUpButtons();
@@ -78,16 +78,23 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         super.onStart();
     }
 
+    protected void onPause(){
+        super.onPause();
+        if(!HomePage.isCreatedCryptocurrencies){
+            finish();
+        }
+    }
+
     public void onClick(View v) {
         switch (v.getId()) {
             //Makes Select All button work
             case R.id.select_all_cryptocurrencies_button:
-                if(!Cryptocurrencies.hasSubscription){
+                /*if(!Cryptocurrencies.hasSubscription){
                     Toast.makeText(this, "Buy A Subscription to Select More Than " + MAX_NUMBER_ALLOWED +
                             " Cryptocurrencies", Toast.LENGTH_LONG).show();
                     bp.subscribe(this, "monthly_sub_");
                     break;
-                }
+                }*/
                 if (selectAllCurrenciesButton.getText().equals("On")) {
                     for (ToggleButton button : allCurrenciesButtons) {
                         button.setChecked(false);
@@ -110,7 +117,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                         break;
                     }
                 }
-                if(!hasSubscription) {
+                /*if(!hasSubscription) {
                     int numberOfButtonsOn = 0;
                     for (ToggleButton toggleButton : allCurrenciesButtons) {
                         if (toggleButton.isChecked()) {
@@ -126,7 +133,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                             break;
                         }
                     }
-                }
+                }*/
         }
     }
 
@@ -2700,7 +2707,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
             e.printStackTrace();
         }
         //hasSubscription wasn't showing the correct value immediately, thus only make this condition after some time has elapsed and hasSubscription working correctly
-        if((!hasSubscription && HomePage.isCreatedCryptocurrencies)){
+        /*if((!hasSubscription && HomePage.isCreatedCryptocurrencies)){
             int numOn = 0;
             for(int i = 2; i < allCurrenciesButtons.size(); i++){
                 if(allCurrenciesButtons.get(i).isChecked()){
@@ -2714,6 +2721,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                     break;
                 }
             }
+        }*/
+        if(false){
+
         }
         else{
             selectAllCurrenciesButton.setText("On");
@@ -2798,7 +2808,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
     }
 
     @Override
-    public void onStop(){
+    public void onDestroy(){
 
         //want this to run for first time so that everything is restored for user automatically
         if(anyNewCoinsAddedOrDeleted() || !HomePage.isCreatedCryptocurrencies) {
@@ -2819,23 +2829,18 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
 
         HomePage.isCreatedCryptocurrencies = true;
 
-
         hasAddedBitcoinAndEthereum = false;
 
         saveSelectedCoinsInfo(allCurrenciesButtons);
 
-
-        super.onStop();
-    }
-    @Override
-    protected void onDestroy(){
         if (bp != null) {
             bp.release();
         }
+
+
+
         super.onDestroy();
-
     }
-
 /*    public static void deleteCache(Context context) {
         try {
             File dir = context.getCacheDir();
