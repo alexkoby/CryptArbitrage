@@ -223,6 +223,8 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(exchangeButton1);
         ToggleButton exchangeButton3 = findViewById(R.id.exchange3_button);
         allExchangesButton.add(exchangeButton3);
+        ToggleButton exchangeButton4 = findViewById(R.id.exchange4_button);
+        allExchangesButton.add(exchangeButton4);
         ToggleButton exchangeButton7 = findViewById(R.id.exchange7_button);
         allExchangesButton.add(exchangeButton7);
         ToggleButton exchangeButton11 = findViewById(R.id.exchange11_button);
@@ -233,8 +235,6 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(huobiButton);
         ToggleButton exchangeButton8 = findViewById(R.id.exchange8_button);
         allExchangesButton.add(exchangeButton8);
-        ToggleButton exchangeButton4 = findViewById(R.id.exchange4_button);
-        allExchangesButton.add(exchangeButton4);
         ToggleButton exchangeButton5 = findViewById(R.id.exchange5_button);
         allExchangesButton.add(exchangeButton5);
         ToggleButton exchangeButton9 = findViewById(R.id.exchange9_button);
