@@ -181,10 +181,18 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                         if(urlConnection != null){
                             urlConnection.disconnect();
                         }
+                        while(!q1.isEmpty()){
+                            q1.remove();
+                            if(!isCoinPairNull(counter++)){
+                                System.out.println("Made it HERE:");
+                                publishProgress(HomePage.progressBar.getProgress() + 1);
+                            }
+                        }
                         //System.out.print("NO MORE API REQUESTS ALLOWED " + exchange.getName());
                         //System.out.println("The maximum amt is: " + APIRequestsMade);
                         return "NO MORE API REQUESTS ALLOWED";
                     }
+                    publishProgress(HomePage.progressBar.getProgress() + 1);
                 }
                 e.printStackTrace();
             }
@@ -195,6 +203,9 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+        if(fullAPIWay){
+            publishProgress(HomePage.progressBar.getProgress() + 3);
+        }
         //System.out.println(exchange.getName());
         try { //sets all null values in each coin to 0 if it DNE - previously null
             for(Coin coin : exchange.getCoins()){
