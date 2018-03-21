@@ -39,7 +39,7 @@
     <string name="currency4">Bitcoin Cash</string>
     <string name="currency5">Cardano</string>
     <string name="currency6">NEM</string>
-    <string name="currency7">Litcoin</string>
+    <string name="currency7">Litecoin</string>
     <string name="currency8">Stellar</string>
     <string name="currency9">Iota</string>
     <string name="currency10">Dash</string>
@@ -236,7 +236,7 @@
     <string name="typeOfOpprotunities">Intra-Exchange and Cross Exchange Arbitrage</string>
     <string name="SearchForCryptocurrencies">Search For Cryptocurrencies</string>
     <string name="opportunity_header">Opportunity</string>
-    <string name="percentGainsHeader">% Gains</string>
+    <string name="percentGainsHeader">% Gain</string>
     <string name="currencyHeader">Currency</string>
     <string name="exchangesHeader">Exchange(s)</string>
     <string name="arbitrageTypeHeader">Details</string>
@@ -264,7 +264,7 @@
     <string name="refreshDataButton">Refresh Data</string>
     <string name="next5Button">Next 5</string>
     <string name="lastUpdatedTime">5:10</string>
-    <string name="help">#?</string>
+    <string name="help">\?</string>
 
 
 </resources>
