@@ -33,6 +33,7 @@ public class Coin implements Comparable<Coin>{
     private Double askPriceETH;
     private Double bidPriceETH;
     private String USDPairBitcoinPairEthPair;
+    double withdrawalFee;
 
 
     /**
@@ -49,6 +50,13 @@ public class Coin implements Comparable<Coin>{
         this.name = name;
         this.abbreviation = abbreviation;
         this.exchange = exchange;
+    }
+    public Coin(String name, String abbreviation, Exchange exchange, String USDPairBitcoinPairEthPair, double withdrawalFree){
+        this.name = name;
+        this.abbreviation = abbreviation;
+        this.exchange = exchange;
+        this.USDPairBitcoinPairEthPair = USDPairBitcoinPairEthPair;
+        this.withdrawalFee = withdrawalFree;
     }
 
     protected String getName() {
@@ -194,6 +202,9 @@ public class Coin implements Comparable<Coin>{
     }
     */
 
+    public double getWithdrawalFee(){
+        return this.withdrawalFee;
+    }
 
     @Override
     //sorts coins alphabetically
