@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dip"
+                android:layout_marginBottom="30dip"
                 android:text="@string/main_title"
                 android:textColor="@color/black"
                 android:textSize="30sp"
@@ -39,6 +39,16 @@
                 android:id="@+id/helpButton"/>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dip"
+            android:text="@string/home_page"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -47,15 +57,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dip"
-                    android:text="@string/home_page"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="28sp" />
 
                 <ProgressBar
                     android:layout_width="match_parent"
@@ -140,6 +141,7 @@
 
                 <Button
                     android:layout_marginTop="30dip"
+                    android:paddingBottom="5dip"
                     android:id="@+id/typeOfArbitrage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
