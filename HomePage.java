@@ -714,7 +714,7 @@ public class HomePage extends Activity implements View.OnClickListener{
             if(exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance") || exchange.getName().equals("HitBTC")
                     || exchange.getName().equals("Bit-Z") || exchange.getName().equals("Poloniex")
                     || exchange.getName().equals("Kraken")){
-                count++;
+                count+=3; //these take extra long bc analyze data also
                 continue;
             }
             for(Coin coin: exchange.getCoins()){
