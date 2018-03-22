@@ -2,6 +2,7 @@ package my.awesome.project.cryptarbitrage30;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
@@ -35,9 +36,10 @@ public class HomePage extends Activity implements View.OnClickListener{
     static boolean isCreatedExchanges = false;
     static boolean isCreatedCryptocurrencies = false;
 
-    static ArrayList<String> listOfCurrencies;
-    static ArrayList<Exchange> listOfExchanges;
-    static ArrayList<Exchange> allPossibleExchanges;
+    final static ArrayList<String> listOfCurrencies = new ArrayList<>();
+    final static ArrayList<Exchange> listOfExchanges = new ArrayList<>();
+    final static ArrayList<Exchange> allPossibleExchanges = new ArrayList<>();
+
     static Exchange bitfinex;
     static Exchange bittrex;
     static Exchange binance;
@@ -69,6 +71,7 @@ public class HomePage extends Activity implements View.OnClickListener{
     static String lastExchange;
 
     AlertDialog alertDialog;
+    AlertDialog alertDialogTwoButtons;
 
     static boolean isInProcessOfRefreshing = false;
 
@@ -96,9 +99,6 @@ public class HomePage extends Activity implements View.OnClickListener{
         //If this is the first time visiting the homepage
         if(!isCreatedHomepage) {
             //System.out.println("Home page not created");
-            listOfExchanges = new ArrayList<>();
-            listOfCurrencies = new ArrayList<>();
-            allPossibleExchanges = new ArrayList<>();
             bitfinex = new Exchange("Bitfinex", "ask", "bid",false,
                     false, true,null, null, null); // doesn't return volume
             allPossibleExchanges.add(bitfinex);
@@ -181,6 +181,7 @@ public class HomePage extends Activity implements View.OnClickListener{
 
         //alert dialog in case user tries to click viewCurrentOpprotunities before it's ready
         alertDialog = new AlertDialog.Builder(this).create();
+        alertDialogTwoButtons = new AlertDialog.Builder(this).create();
     }
     @Override
     public void onStart(){
@@ -226,7 +227,7 @@ public class HomePage extends Activity implements View.OnClickListener{
     //Creates an Array of URLs and calls downloadtask.execute()
     private void getAsksAndBids(Exchange e){
         //System.out.println("Exchange is: " + e.getName());
-        String [] APIs = new String [e.getCoins().size()*3];
+        String [] APIs = new String [e.getCoins().size() * 3];
         DownloadTask task = null;
 
         //System.out.println(e.getCoins().size());
@@ -459,13 +460,72 @@ public class HomePage extends Activity implements View.OnClickListener{
                 Intent j = new Intent(this, ViewCryptoOpprotunities.class);
                 startActivity(j);
                 break;
-
+    //ADD HERE
             case R.id.modify_exchanges:
+                if(HomePage.isDataCurrentlyRefreshing()){
+                    alertDialogTwoButtons.setTitle("Data Is Currently Refreshing");
+                    alertDialogTwoButtons.setMessage("You Can Not Modify Exchanges While Data Is Refreshing");
+                    alertDialogTwoButtons.setButton(AlertDialog.BUTTON_NEGATIVE, "Stop Data Refresh",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    System.out.println("Stopped Here");
+                                    for(Exchange exchange: listOfExchanges){
+                                        DownloadTask current = getDownloadTask(exchange);
+                                        if(current.getStatus() == DownloadTask.Status.PENDING || current.getStatus() == DownloadTask.Status.RUNNING){
+                                            current.cancel(true);
+                                        }
+                                    }
+                                    dialog.dismiss();
+                                    HomePage.isInProcessOfRefreshing = false;
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    Intent p = new Intent(HomePage.this,Exchanges.class);
+                                    startActivity(p);
+                                }
+                            });
+                    alertDialogTwoButtons.setButton(AlertDialog.BUTTON_POSITIVE, "Continue Data Refresh",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialogTwoButtons.show();
+                    break;
+                }
                 Intent i = new Intent(this,Exchanges.class);
                 startActivity(i);
                 break;
 
             case R.id.modify_cryptocurrencies:
+                if(HomePage.isDataCurrentlyRefreshing()){
+                    alertDialogTwoButtons.setTitle("Data Is Currently Refreshing");
+                    alertDialogTwoButtons.setMessage("You Can Not Modify Currencies While Data Is Refreshing");
+                    alertDialogTwoButtons.setButton(AlertDialog.BUTTON_NEGATIVE, "Stop Data Refresh",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    System.out.println("Stopped Here");
+                                    HomePage.isInProcessOfRefreshing = false;
+                                    for(Exchange exchange: listOfExchanges){
+                                        DownloadTask current = getDownloadTask(exchange);
+                                        if(current.getStatus() == DownloadTask.Status.PENDING || current.getStatus() == DownloadTask.Status.RUNNING){
+                                            current.cancel(true);
+                                        }
+                                    }
+                                    dialog.dismiss();
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    Intent p = new Intent(HomePage.this,Cryptocurrencies.class);
+                                    startActivity(p);
+                                }
+                            });
+                    alertDialogTwoButtons.setButton(AlertDialog.BUTTON_POSITIVE, "Continue Data Refresh",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialogTwoButtons.show();
+                    break;
+                }
+
                 Intent k = new Intent(this, Cryptocurrencies.class);
                 startActivity(k);
                 break;
@@ -626,6 +686,35 @@ public class HomePage extends Activity implements View.OnClickListener{
                 return taskHuobi;
         }
         return null;
+    }
+
+    public DownloadTask getDownloadTask(Exchange e){
+        switch (e.getName()){
+            case "Bitfinex":
+                return taskBitfinex;
+            case "Bittrex":
+                return taskBittrex;
+            case "Binance":
+                return taskBinance;
+            case "HitBTC":
+                return taskHitBTC;
+            case "Bit-Z":
+                return taskBitZ;
+            case "Poloniex":
+                return taskPoloniex;
+            case "BitStamp":
+                return taskBitStamp;
+            case "OKEX":
+                return taskOKEX;
+            case "GDAX":
+                return taskGDAX;
+            case "Kraken":
+                return taskKraken;
+            case "Huobi":
+                return taskHuobi;
+        }
+        return null;
+
     }
 
     public void makeAPIRequests(){
