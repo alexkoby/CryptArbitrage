@@ -81,6 +81,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         arbitrageFinder = new ArbitrageFinder(HomePage.minGainsWanted);
 
 
+        if(HomePage.lastTimeRefreshedHour == 0){
+            HomePage.lastTimeRefreshedHour = 12;
+        }
         timePicker = findViewById(R.id.lastTimeRefreshID);
         if(HomePage.lastTimeRefreshedMinute < 10){
             timePicker.setText("Last Refresh: ".concat(Integer.toString(HomePage.lastTimeRefreshedHour).
