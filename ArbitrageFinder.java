@@ -59,7 +59,7 @@ public class ArbitrageFinder {
             //tell user to select more currencies
             return;
         }
-        if(HomePage.listOfExchanges.size() <= 1){
+        if(HomePage.listOfExchanges == null ||HomePage.listOfExchanges.size() <= 1){
             //tell user to select more exchanges - need at least two to tango
             return;
         }
@@ -285,6 +285,7 @@ public class ArbitrageFinder {
      * Checks if way type seven offers above a 'goalReturn' arbitrage opportunitiy
      * @param coinName is the coin you're testing
      */
+
     private void typeSevenandEight(String coinName){
         ArrayList<Coin> listOfCoins = new ArrayList<>();
 
