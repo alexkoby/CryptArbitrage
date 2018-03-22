@@ -78,6 +78,10 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
         while (q1.size() != 0) {
             counter++;
 
+            if(isCancelled()){
+                return "Cancelled";
+            }
+
             if(isCoinPairNull(counter)){
                 //System.out.println("REMOVED");
                 q1.remove();
