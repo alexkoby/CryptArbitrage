@@ -304,8 +304,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
             case R.id.refreshDataButtonView:
                 //get clock data here
                 selectedRefreshViewOpportunities = true;
-                Intent intent = new Intent(this, HomePage.class);
-                startActivity(intent);
+                finish();//is this proper spot for this?kkk
                 break;
 
             case R.id.opportunity1Type:
