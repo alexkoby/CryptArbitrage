@@ -557,13 +557,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 HomePage.poloniex,"100");
         HomePage.poloniex.addCoin(bitcoinPoloniex);
         Coin bitcoinBitStamp = new Coin ("Bitcoin","BTC",
-                HomePage.bitStamp,"100");
+                HomePage.bitStamp,"100", 0);
         HomePage.bitStamp.addCoin(bitcoinBitStamp);
         Coin bitcoinOKEX = new Coin("Bitcoin", "BTC",
                 HomePage.OKEX,"100");
         HomePage.OKEX.addCoin(bitcoinOKEX);
         Coin bitcoinGDAX = new Coin("Bitcoin","BTC",
-                HomePage.GDAX,"100");
+                HomePage.GDAX,"100", 0);
         HomePage.GDAX.addCoin(bitcoinGDAX);
         Coin bitcoinKraken = new Coin("Bitcoin","XXBT",
                 HomePage.kraken, "100");
@@ -571,6 +571,14 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         Coin bitcoinHuobi = new Coin("Bitcoin","btc",
                 HomePage.huobi,"100", .001);
         HomePage.huobi.addCoin(bitcoinHuobi);
+        Coin bitcoinGateIO = new Coin("Bitcoin", "btc", HomePage.gateIO,
+                "111");
+        HomePage.gateIO.addCoin(bitcoinGateIO);
+        Coin bitcoinCryptopia = new Coin("Bitcoin", "BTC", HomePage.cryptopia,
+                "111");
+        HomePage.cryptopia.addCoin(bitcoinCryptopia);
+        Coin bitcoinCEXIO = new Coin("Bitcoin", "BTC", HomePage.cexIO, "111");
+        HomePage.cexIO.addCoin(bitcoinCEXIO);
         HomePage.listOfCurrencies.add("Bitcoin");
 
         Coin ethereumBitfinex = new Coin("Ethereum","ETH",
@@ -592,13 +600,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 HomePage.poloniex,"110");
         HomePage.poloniex.addCoin(ethereumPoloniex);
         Coin ethereumBitStamp = new Coin ("Ethereum","ETH",
-                HomePage.bitStamp,"110");
+                HomePage.bitStamp,"110", 0);
         HomePage.bitStamp.addCoin(ethereumBitStamp);
         Coin ethereumOKEX = new Coin("Ethereum", "ETH",
                 HomePage.OKEX,"110");
         HomePage.OKEX.addCoin(ethereumOKEX);
         Coin ethereumGDAX = new Coin("Ethereum","ETH",
-                HomePage.GDAX, "110");
+                HomePage.GDAX, "110", 0);
         HomePage.GDAX.addCoin(ethereumGDAX);
         Coin ethereumKraken = new Coin("Ethereum","XETH",
                 HomePage.kraken,"110");
@@ -606,8 +614,18 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         Coin ethereumHuobi = new Coin("Ethereum","eth",
                 HomePage.huobi,"110", .01);
         HomePage.huobi.addCoin(ethereumHuobi);
+        Coin ethereumGateIO = new Coin("Ethereum", "eth", HomePage.gateIO,
+                "111");
+        HomePage.gateIO.addCoin(ethereumGateIO);
+        Coin ethereumCryptopia = new Coin("Ethereum", "ETH", HomePage.cryptopia,
+                "111");
+        HomePage.cryptopia.addCoin(ethereumCryptopia);
+        Coin ethereumCEXIO = new Coin("Ethereum", "ETH", HomePage.cexIO, "111");
+        HomePage.cexIO.addCoin(ethereumCEXIO);
+
+
         HomePage.listOfCurrencies.add("Ethereum");
-    }
+    } //selenium
 
     /**
      * Checks to see if button is selected, if it is, it adds it to all exchanges
@@ -633,7 +651,7 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                         HomePage.poloniex,"110");
                 HomePage.poloniex.addCoin(ripplePoloniex);
                 Coin rippleBitStamp = new Coin ("Ripple","XRP",
-                        HomePage.bitStamp,"110");
+                        HomePage.bitStamp,"110", 0);
                 HomePage.bitStamp.addCoin(rippleBitStamp);
                 Coin rippleOKEX = new Coin("Ripple", "XRP",
                         HomePage.OKEX,"111");
@@ -644,6 +662,11 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 Coin rippleHuobi = new Coin("Ripple","xrp",
                         HomePage.huobi,"110", .1);
                 HomePage.huobi.addCoin(rippleHuobi);
+                Coin rippleGateIO = new Coin("Ripple", "xrp", HomePage.gateIO,
+                        "111");
+                HomePage.gateIO.addCoin(rippleGateIO);
+                Coin rippleCEXIO = new Coin("Ripple", "XRP", HomePage.cexIO, "111");
+                HomePage.cexIO.addCoin(rippleCEXIO);
                 HomePage.listOfCurrencies.add("Ripple");
                 break;
 
@@ -664,13 +687,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                         HomePage.poloniex,"111");
                 HomePage.poloniex.addCoin(bitcoinCashPoloniex);
                 Coin bitcoinCashBitStamp = new Coin ("Bitcoin Cash","BCH",
-                        HomePage.bitStamp,"110");
+                        HomePage.bitStamp,"110", 0);
                 HomePage.bitStamp.addCoin(bitcoinCashBitStamp);
                 Coin bitcoinCashOKEX = new Coin("Bitcoin Cash", "BCH",
                         HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(bitcoinCashOKEX);
                 Coin bitcoinCashGDAX = new Coin("Bitcoin Cash","BCH",
-                        HomePage.GDAX,"110");
+                        HomePage.GDAX,"110", 0);
                 HomePage.GDAX.addCoin(bitcoinCashGDAX);
                 Coin bitcoinCashKraken = new Coin("Bitcoin Cash","BCH",
                         HomePage.kraken,"110");
@@ -678,6 +701,14 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 Coin bitcoinCashHuobi = new Coin("Bitcoin Cash","bch",
                         HomePage.huobi,"110", .0001);
                 HomePage.huobi.addCoin(bitcoinCashHuobi);
+                Coin bitcoinCashGateIO = new Coin("Bitcoin Cash", "bch", HomePage.gateIO,
+                        "111");
+                HomePage.gateIO.addCoin(bitcoinCashGateIO);
+                Coin bitcoinCashCryptopia = new Coin("Bitcoin Cash", "BCH", HomePage.cryptopia,
+                        "111");
+                HomePage.cryptopia.addCoin(bitcoinCashCryptopia);
+                Coin bitcoinCashCEXIO = new Coin("Bitcoin Cash", "BCH", HomePage.cexIO, "111");
+                HomePage.cexIO.addCoin(bitcoinCashCEXIO);
                 HomePage.listOfCurrencies.add("Bitcoin Cash");
                 break;
 
@@ -688,6 +719,8 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 Coin cardanoBinance = new Coin("Cardano", "ADA",
                         HomePage.binance,"011", 1);
                 HomePage.binance.addCoin(cardanoBinance);
+                Coin cardanoGateIO = new Coin("Cardano", "ada", HomePage.gateIO, "111");
+                HomePage.gateIO.addCoin(cardanoGateIO);
 //19
                 HomePage.listOfCurrencies.add("Cardano");
                 break;
@@ -734,13 +767,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                         HomePage.poloniex,"110");
                 HomePage.poloniex.addCoin(litecoinPoloniex);
                 Coin litecoinBitStamp = new Coin ("Litecoin","LTC",
-                        HomePage.bitStamp,"110");
+                        HomePage.bitStamp,"110", 0);
                 HomePage.bitStamp.addCoin(litecoinBitStamp);
                 Coin litecoinOKEX = new Coin("Litecoin", "LTC",
                         HomePage.OKEX,"111");
                 HomePage.OKEX.addCoin(litecoinOKEX);
                 Coin litecoinGDAX = new Coin("Litecoin","LTC",
-                        HomePage.GDAX,"100");
+                        HomePage.GDAX,"100", 0);
                 HomePage.GDAX.addCoin(litecoinGDAX);
                 Coin litecoinKraken = new Coin("Litecoin","XLTC",
                         HomePage.kraken,"110");
@@ -748,6 +781,13 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 Coin litecoinHuobi = new Coin("Litecoin","ltc",
                         HomePage.huobi,"110", .001);
                 HomePage.huobi.addCoin(litecoinHuobi);
+                Coin litecoinGateIO = new Coin("Litecoin", "ltc", HomePage.gateIO,
+                        "111");
+                HomePage.gateIO.addCoin(litecoinGateIO);
+                Coin litecoinCryptopia = new Coin("Litecoin", "LTC", HomePage.cryptopia,
+                        "111");
+                HomePage.cryptopia.addCoin(litecoinCryptopia);
+
                 HomePage.listOfCurrencies.add("Litecoin");
                 break;
 
