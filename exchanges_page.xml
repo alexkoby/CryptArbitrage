@@ -166,6 +166,65 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@string/exchangeCEX.IO"
+                            android:textColor="@color/black"
+                            android:textSize="23sp"
+                            android:paddingRight="99dip"/>
+
+                        <ToggleButton
+                            android:id="@+id/exchangeCEX.IOButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/exchangeCryptopia"
+                            android:textColor="@color/black"
+                            android:textSize="23sp"
+                            android:paddingRight="73dip"/>
+
+                        <ToggleButton
+                            android:id="@+id/exchangeCryptopiaButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/exchangeGateio"
+                            android:textColor="@color/black"
+                            android:textSize="23sp"
+                            android:paddingRight="98dip"/>
+
+                        <ToggleButton
+                            android:id="@+id/exchangeGate.ioButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/exchangeGDAX"
                             android:textColor="@color/black"
                             android:textSize="23sp"
@@ -213,6 +272,26 @@
 
                         <ToggleButton
                             android:id="@+id/huobiExchangeButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/exchangeKoinex"
+                            android:textColor="@color/black"
+                            android:textSize="23sp"
+                            android:paddingRight="43dip"/>
+
+                        <ToggleButton
+                            android:id="@+id/koinexExchangeButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
