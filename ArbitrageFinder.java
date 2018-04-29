@@ -381,6 +381,17 @@ public class ArbitrageFinder {
                     }
                 }
             }
+            else if (exchange.getName().equals("CEX.IO"))
+            {
+                for(Coin coin: exchange.getCoins()){
+                    if(coin.getVolumeUSD() > 0) {
+                        coin.setVolumeUSD(coin.getVolumeUSD() * coin.getBidPriceUSD());
+                    }
+                    if(coin.getVolumeBTC() > 0) {
+                        coin.setVolumeBTC(coin.getVolumeBTC() * coin.getBidPriceUSD());
+                    }
+                }
+            }
             else if(!exchange.getName().equals("Bitfinex")){
                 for(Coin coin: exchange.getCoins()){
                     if(coin.getVolumeBTC() > 0) {
