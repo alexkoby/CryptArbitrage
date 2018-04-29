@@ -66,7 +66,10 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
 
         if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
                 || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
-                exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")) {
+                exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")||
+                exchange.getName().equals("Gate.io") || exchange.getName().equals("Cryptopia") ||
+                exchange.getName().equals("CEX.IO")) {
+            System.out.println("Going Full API WAY");
             fullAPIWay = true;
             fullAPIWay(q1);
             return "Worked";
@@ -210,7 +213,7 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
         if(fullAPIWay){
             publishProgress(HomePage.progressBar.getProgress() + 3);
         }
-        //System.out.println(exchange.getName());
+        System.out.println(exchange.getName());
         try { //sets all null values in each coin to 0 if it DNE - previously null
             for(Coin coin : exchange.getCoins()){
                 if(coin.getVolumeBTC() == null){
@@ -295,9 +298,18 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
             urlConnection.disconnect();
             JSONObject jsonObject;
             JSONArray allPairs;
+//            TODO: Make this a switch statement for more clear reading
             if(exchange.getName().equals("Bittrex")) {
                 jsonObject = new JSONObject(result.toString());
                 allPairs = jsonObject.getJSONArray("result");
+            }
+            else if (exchange.getName().equals("Cryptopia")){
+                jsonObject = new JSONObject(result.toString());
+                allPairs = jsonObject.getJSONArray("Data");
+            }
+            else if (exchange.getName().equals("CEX.IO")){
+                jsonObject = new JSONObject(result.toString());
+                allPairs = jsonObject.getJSONArray("data");
             }
             else if (exchange.getName().equals("Bit-Z")){
                 jsonObject = new JSONObject(result.toString());
@@ -305,7 +317,7 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                 bitZWay(queue, jsonObject);
                 return;
             }
-            else if(exchange.getName().equals("Poloniex")){
+            else if(exchange.getName().equals("Poloniex") || exchange.getName().equals("Gate.io")){
                 jsonObject = new JSONObject(result.toString());
                 bitZWay(queue, jsonObject);
                 return;
