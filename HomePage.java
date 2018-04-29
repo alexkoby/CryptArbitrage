@@ -51,7 +51,10 @@ public class HomePage extends Activity implements View.OnClickListener{
     static Exchange GDAX;
     static Exchange kraken;
     static Exchange huobi;
-
+    static Exchange gateIO;
+    static Exchange cryptopia;
+    static Exchange cexIO;
+    static Exchange koinex;
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
@@ -64,6 +67,10 @@ public class HomePage extends Activity implements View.OnClickListener{
     static DownloadTask taskGDAX;
     static DownloadTask taskKraken;
     static DownloadTask taskHuobi;
+    static DownloadTask taskGateIO;
+    static DownloadTask taskCryptopia;
+    static DownloadTask taskCexIO;
+    static DownloadTask taskKoinex;
 
     static int lastTimeRefreshedMinute;
     static int lastTimeRefreshedHour;
@@ -132,7 +139,14 @@ public class HomePage extends Activity implements View.OnClickListener{
             huobi = new Exchange("Huobi","ask","bid",false,
                     false, false, "amount", null, null);
             allPossibleExchanges.add(huobi);
-
+            gateIO = new Exchange("Gate.io", "lowestAsk", "highestBid", false,
+                    false, false, "baseVolume",null, null);
+            allPossibleExchanges.add(gateIO);
+            cryptopia = new Exchange("Cryptopia", "AskPrice", "BidPrice", true,
+                    false, false, "BaseVolume", null, null);
+            allPossibleExchanges.add(cryptopia);
+            cexIO = new Exchange("CEX.IO", "ask", "bid",false,
+                    false, true, "volume", null, null);
             isCreatedHomepage = true;
 
             initialzeTasks();
@@ -320,6 +334,33 @@ public class HomePage extends Activity implements View.OnClickListener{
                     APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("eth");
                 }
                 task = HomePage.taskHuobi;
+                break;
+
+            case "Gate.io":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("_usdt");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("_btc");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("_eth");
+                }
+                task = HomePage.taskGateIO;
+                break;
+
+            case "Cryptopia":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("/USDT");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("/BTC");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("/ETH");
+                }
+                task = HomePage.taskCryptopia;
+                break;
+
+            case "CEX.IO":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat(":USD");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat(":BTC");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat(":ETH");
+                }
+                task = HomePage.taskCexIO;
                 break;
         }
         if(task == null) {
@@ -636,6 +677,9 @@ public class HomePage extends Activity implements View.OnClickListener{
                 "ETCETH,ZECXBT,ZECUSD, EOSXBT, EOSETH, EOSUSD, REPETH, REPXBT, GNOUSD, GNOETH, GNOXBT, ICNXBT, ICNETH" +
                 ", MLNXBT, MLNETH",kraken);
         taskHuobi = new DownloadTask("tick","https://api.huobi.pro/market/detail/merged?symbol=",huobi);
+        taskGateIO = new DownloadTask(null, "http://data.gate.io/api2/1/tickers", gateIO);
+        taskCryptopia = new DownloadTask("Label", "https://www.cryptopia.co.nz/api/GetMarkets", cryptopia);
+        taskCexIO = new DownloadTask("pair", "https://cex.io/api/tickers/BTC/USD", cexIO);
     }
 
     //@Override
@@ -684,6 +728,15 @@ public class HomePage extends Activity implements View.OnClickListener{
             case "Huobi":
                 taskHuobi = new DownloadTask("tick","https://api.huobi.pro/market/detail/merged?symbol=",huobi);
                 return taskHuobi;
+            case "Gate.io":
+                taskGateIO = new DownloadTask(null, "http://data.gate.io/api2/1/tickers", gateIO);
+                return taskGateIO;
+            case "Cryptopia":
+                taskCryptopia = new DownloadTask("Label", "https://www.cryptopia.co.nz/api/GetMarkets", cryptopia);
+                return taskCryptopia;
+            case "CEX.IO":
+                taskCexIO = new DownloadTask("pair", "https://cex.io/api/tickers/BTC/USD", cexIO);
+                return taskCexIO;
         }
         return null;
     }
@@ -712,6 +765,12 @@ public class HomePage extends Activity implements View.OnClickListener{
                 return taskKraken;
             case "Huobi":
                 return taskHuobi;
+            case "Gate.io":
+                return taskGateIO;
+            case "Cryptopia":
+                return taskCryptopia;
+            case "CEX.IO":
+                return taskCexIO;
         }
         return null;
 
