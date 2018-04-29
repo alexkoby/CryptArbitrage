@@ -28,6 +28,10 @@
     <string name="exchangeBitStamp">BitStamp</string>
     <string name="exchangeBitZ">Bit-Z</string>
     <string name="exchangeKraken">Kraken</string>
+    <string name="exchangeGateio">Gate.io</string>
+    <string name="exchangeCryptopia">Cryptopia</string>
+    <string name="exchangeCEX.IO">CEX.IO</string>
+    <string name="exchangeKoinex">Koinex (INR)</string>
     <string name="exchange18">Bitcoin Indonesis</string>
     <string name="on">On</string>
     <string name="off">Off</string>
