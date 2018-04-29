@@ -140,6 +140,19 @@ public class Exchanges extends Activity implements View.OnClickListener{
 
             case R.id.huobiExchangeButton:
                 HomePage.listOfExchanges.add(HomePage.huobi);
+                break;
+
+            case R.id.exchangeGate_ioButton:
+                HomePage.listOfExchanges.add(HomePage.gateIO);
+                break;
+
+            case R.id.exchangeCryptopiaButton:
+                HomePage.listOfExchanges.add(HomePage.cryptopia);
+                break;
+
+            case R.id.exchangeCEX_IOButton:
+                HomePage.listOfExchanges.add(HomePage.cexIO);
+                break;
         }
     }
 
@@ -241,6 +254,12 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(exchangeButton9);
         ToggleButton exchangeButton10 = findViewById(R.id.exchange10_button);
         allExchangesButton.add(exchangeButton10);
+        ToggleButton exchangeGateIOButton = findViewById(R.id.exchangeGate_ioButton);
+        allExchangesButton.add(exchangeGateIOButton);
+        ToggleButton exchangeCryptopiaButton = findViewById(R.id.exchangeCryptopiaButton);
+        allExchangesButton.add(exchangeCryptopiaButton);
+        ToggleButton exchangeCEXIOButton = findViewById(R.id.exchangeCEX_IOButton);
+        allExchangesButton.add(exchangeCEXIOButton);
 
         for(ToggleButton toggleButton: allExchangesButton){
             toggleButton.setOnClickListener(this);
