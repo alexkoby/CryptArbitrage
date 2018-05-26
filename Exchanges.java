@@ -142,6 +142,10 @@ public class Exchanges extends Activity implements View.OnClickListener{
                 HomePage.listOfExchanges.add(HomePage.huobi);
                 break;
 
+            case R.id.koinexEchangeButton:
+                HomePage.listOfExchanges.add(HomePage.koinex);
+                break;
+
             case R.id.exchangeGate_ioButton:
                 HomePage.listOfExchanges.add(HomePage.gateIO);
                 break;
@@ -260,6 +264,8 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(exchangeCryptopiaButton);
         ToggleButton exchangeCEXIOButton = findViewById(R.id.exchangeCEX_IOButton);
         allExchangesButton.add(exchangeCEXIOButton);
+        ToggleButton exchangekoinexButton = findViewById(R.id.koinexEchangeButton);
+        allExchangesButton.add(exchangekoinexButton);
 
         for(ToggleButton toggleButton: allExchangesButton){
             toggleButton.setOnClickListener(this);

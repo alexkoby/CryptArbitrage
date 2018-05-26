@@ -147,6 +147,9 @@ public class HomePage extends Activity implements View.OnClickListener{
             allPossibleExchanges.add(cryptopia);
             cexIO = new Exchange("CEX.IO", "ask", "bid",false,
                     false, true, "volume", null, null);
+            koinex = new Exchange("Koinex", "lowest_ask", "highest_bid",false,
+                    false, true, "vol_24hrs", null, null);
+            allPossibleExchanges.add(koinex);
             isCreatedHomepage = true;
 
             initialzeTasks();
@@ -240,6 +243,21 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     //Creates an Array of URLs and calls downloadtask.execute()
     private void getAsksAndBids(Exchange e){
+        //delete after
+        int counter = 0;
+        for(Exchange exchange: listOfExchanges) {
+            System.out.println(exchange.getName());
+            for (Coin coin : exchange.getCoins()) {
+                System.out.print("{name: \""+coin.getName() + "\", ticker: \"" + coin.getAbbreviation() + "\"}, ");
+                if(counter++ %4 == 0){
+                    System.out.println();
+                }
+            }
+        }
+
+        //end
+
+
         //System.out.println("Exchange is: " + e.getName());
         String [] APIs = new String [e.getCoins().size() * 3];
         DownloadTask task = null;
@@ -361,6 +379,14 @@ public class HomePage extends Activity implements View.OnClickListener{
                     APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat(":ETH");
                 }
                 task = HomePage.taskCexIO;
+                break;
+            case "Koinex":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation();
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation();
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation();
+                }
+                task = HomePage.taskKoinex;
                 break;
         }
         if(task == null) {
@@ -680,6 +706,7 @@ public class HomePage extends Activity implements View.OnClickListener{
         taskGateIO = new DownloadTask(null, "http://data.gate.io/api2/1/tickers", gateIO);
         taskCryptopia = new DownloadTask("Label", "https://www.cryptopia.co.nz/api/GetMarkets", cryptopia);
         taskCexIO = new DownloadTask("pair", "https://cex.io/api/tickers/BTC/USD", cexIO);
+        taskKoinex = new DownloadTask("stats", "https://koinex.in/api/ticker", koinex);
     }
 
     //@Override
@@ -737,6 +764,9 @@ public class HomePage extends Activity implements View.OnClickListener{
             case "CEX.IO":
                 taskCexIO = new DownloadTask("pair", "https://cex.io/api/tickers/BTC/USD", cexIO);
                 return taskCexIO;
+            case "Koinex":
+                taskKoinex = new DownloadTask("stats", "https://koinex.in/api/ticker", koinex);
+                return taskKoinex;
         }
         return null;
     }
@@ -771,6 +801,8 @@ public class HomePage extends Activity implements View.OnClickListener{
                 return taskCryptopia;
             case "CEX.IO":
                 return taskCexIO;
+            case "Koinex":
+                return taskKoinex;
         }
         return null;
 
