@@ -412,6 +412,14 @@ public class ArbitrageFinder {
                     coin.setVolumeETH(1000000.0);
                 }
             }
+
+            if(exchange.getName().equals("Koinex")){
+                for(Coin coin: exchange.getCoins()){
+                    coin.setVolumeUSD(coin.getVolumeUSD() * DownloadTask.EXCHANGE_RATE);
+                    coin.setVolumeBTC(coin.getVolumeBTC() * DownloadTask.EXCHANGE_RATE);
+                    coin.setVolumeETH(coin.getVolumeETH() * DownloadTask.EXCHANGE_RATE);
+                }
+            }
         }
         /*for(Exchange exchange: HomePage.listOfExchanges){
             System.out.println(exchange.getName());
