@@ -30,6 +30,7 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
     private boolean fullAPIWay = false;
     private String apiBase;
     private String findSymbol;
+    static final double EXCHANGE_RATE = .0148;
 
     Context context;
 
@@ -68,7 +69,7 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                 || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
                 exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")||
                 exchange.getName().equals("Gate.io") || exchange.getName().equals("Cryptopia") ||
-                exchange.getName().equals("CEX.IO")) {
+                exchange.getName().equals("CEX.IO") || exchange.getName().equals("Koinex")) {
             System.out.println("Going Full API WAY");
             fullAPIWay = true;
             fullAPIWay(q1);
@@ -244,13 +245,25 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                     coin.setBidPriceETH(-1.0);
                 }
             }
+            if(exchange.getName().equals("Koinex"))
+            {
+                for(Coin coin: exchange.getCoins())
+                {
+                    coin.setBidPriceUSD(coin.getBidPriceUSD() * EXCHANGE_RATE);
+                    coin.setAskPriceUSD(coin.getAskPriceUSD() * EXCHANGE_RATE);
+                    coin.setBidPriceBTC(coin.getBidPriceBTC() * EXCHANGE_RATE);
+                    coin.setAskPriceBTC(coin.getAskPriceBTC() * EXCHANGE_RATE);
+                    coin.setBidPriceETH(coin.getBidPriceETH() * EXCHANGE_RATE);
+                    coin.setAskPriceETH(coin.getAskPriceETH() * EXCHANGE_RATE);
+                }
+            }
             exchange.setDataIsFinishedRefreshing(true);
-            for(Coin coin: exchange.getCoins()){
+            /*for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
                         + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
-            }
+            }*/
             if(exchange.getName().equals(HomePage.lastExchange)){
                 HomePage.isInProcessOfRefreshing = false;
                 ArbitrageFinder.getRealVolumeNumbers();
@@ -326,6 +339,12 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                 jsonObject = new JSONObject(result.toString());
                 jsonObject = jsonObject.getJSONObject("result");
                 krakenWay(queue,jsonObject);
+                return;
+            }
+            else if (exchange.getName().equals("Koinex")){
+                jsonObject = new JSONObject(result.toString());
+                jsonObject = jsonObject.getJSONObject("stats");
+                koinexWay(queue, jsonObject);
                 return;
             }
             else {
@@ -595,6 +614,80 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
             catch (Exception e){
                 e.printStackTrace();
                 q1.remove();
+            }
+        }
+    }
+
+    private void koinexWay(LinkedList<String> queue, JSONObject jsonObject){
+
+        JSONObject inrPair;
+        JSONObject btcPair;
+        JSONObject ethPair;
+
+        try {
+            inrPair = jsonObject.getJSONObject("inr");
+            btcPair = jsonObject.getJSONObject("bitcoin");
+            ethPair = jsonObject.getJSONObject("ether");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return;
+        }
+
+
+        JSONObject temp;
+        int counter = -1;
+        Coin currentCoin;
+        while(!queue.isEmpty()){
+            counter++;
+            //if(isCoinPairNull(counter)){
+            //    queue.remove();
+            //    continue;
+            //}
+            currentCoin = exchange.getCoins().get(counter/3);
+            try{
+
+                if (counter % 3 == 1) {
+                    temp = btcPair.getJSONObject(queue.peek());
+                    currentCoin.setBidPriceBTC(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
+                    currentCoin.setAskPriceBTC(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
+                    currentCoin.setVolumeBTC(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
+                }
+                //eth pair
+                else if (counter % 3 == 2) {
+                    temp = ethPair.getJSONObject(queue.peek());
+                    currentCoin.setBidPriceETH(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
+                    currentCoin.setAskPriceETH(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
+                    currentCoin.setVolumeETH(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
+
+                }
+                //USDT pair
+                else if (counter % 3 == 0) {
+                    temp = inrPair.getJSONObject(queue.peek());
+                    currentCoin.setBidPriceUSD(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
+                    currentCoin.setAskPriceUSD(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
+                    currentCoin.setVolumeUSD(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
+                }
+                queue.remove();
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                if (counter % 3 == 1) {
+                    currentCoin.setBidPriceBTC(-1.0);
+                    currentCoin.setAskPriceBTC(-1.0);
+                }
+                //eth pair
+                else if (counter % 3 == 2) {
+                    currentCoin.setBidPriceETH(-1.0);
+                    currentCoin.setAskPriceETH(-1.0);
+                }
+                //USDT pair
+                else if (counter % 3 == 0) {
+                    currentCoin.setBidPriceUSD(-1.0);
+                    currentCoin.setAskPriceUSD(-1.0);
+                }
+                queue.remove();
             }
         }
     }
