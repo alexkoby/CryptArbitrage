@@ -579,6 +579,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         HomePage.cryptopia.addCoin(bitcoinCryptopia);
         Coin bitcoinCEXIO = new Coin("Bitcoin", "BTC", HomePage.cexIO, "111");
         HomePage.cexIO.addCoin(bitcoinCEXIO);
+        Coin bitcoinKoinex = new Coin("Bitcoin","BTC",
+                HomePage.koinex,"100");
+        HomePage.koinex.addCoin(bitcoinKoinex);
         HomePage.listOfCurrencies.add("Bitcoin");
 
         Coin ethereumBitfinex = new Coin("Ethereum","ETH",
@@ -622,7 +625,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
         HomePage.cryptopia.addCoin(ethereumCryptopia);
         Coin ethereumCEXIO = new Coin("Ethereum", "ETH", HomePage.cexIO, "111");
         HomePage.cexIO.addCoin(ethereumCEXIO);
-
+        Coin ethereumKoinex = new Coin("Ethereum","ETH",
+                HomePage.koinex,"100");
+        HomePage.koinex.addCoin(ethereumKoinex);
 
         HomePage.listOfCurrencies.add("Ethereum");
     } //selenium
@@ -667,6 +672,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 HomePage.gateIO.addCoin(rippleGateIO);
                 Coin rippleCEXIO = new Coin("Ripple", "XRP", HomePage.cexIO, "111");
                 HomePage.cexIO.addCoin(rippleCEXIO);
+                Coin rippleKoinex = new Coin("Ripple","XRP",
+                        HomePage.koinex,"100");
+                HomePage.koinex.addCoin(rippleKoinex);
                 HomePage.listOfCurrencies.add("Ripple");
                 break;
 
@@ -709,6 +717,9 @@ public class Cryptocurrencies extends Activity implements View.OnClickListener, 
                 HomePage.cryptopia.addCoin(bitcoinCashCryptopia);
                 Coin bitcoinCashCEXIO = new Coin("Bitcoin Cash", "BCH", HomePage.cexIO, "111");
                 HomePage.cexIO.addCoin(bitcoinCashCEXIO);
+                Coin bitcoinCashKoinex = new Coin("Bitcoin Cash","BCH",
+                        HomePage.koinex,"100");
+                HomePage.koinex.addCoin(bitcoinCashKoinex);
                 HomePage.listOfCurrencies.add("Bitcoin Cash");
                 break;
 
