@@ -262,7 +262,7 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                     coin.setBidPriceETH(-1.0);
                 }
             }
-            if(exchange.getName().equals("Koinex") || exchange.getName().equals("bitbns") || exchange.getName().equals("zebpay"))
+            if(ViewCryptoOpprotunities.isIndianExchange(exchange.getName()))
             {
                 for(Coin coin: exchange.getCoins())
                 {
