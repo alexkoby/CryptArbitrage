@@ -157,6 +157,14 @@ public class Exchanges extends Activity implements View.OnClickListener{
             case R.id.exchangeCEX_IOButton:
                 HomePage.listOfExchanges.add(HomePage.cexIO);
                 break;
+
+            case R.id.zebpayExchangeButton:
+                HomePage.listOfExchanges.add(HomePage.zebpay);
+                break;
+
+            case R.id.bitbnsExchangeButton:
+                HomePage.listOfExchanges.add(HomePage.bitbns);
+                break;
         }
     }
 
@@ -266,6 +274,10 @@ public class Exchanges extends Activity implements View.OnClickListener{
         allExchangesButton.add(exchangeCEXIOButton);
         ToggleButton exchangekoinexButton = findViewById(R.id.koinexEchangeButton);
         allExchangesButton.add(exchangekoinexButton);
+        ToggleButton exchangeBitbnsButton = findViewById(R.id.bitbnsExchangeButton);
+        allExchangesButton.add(exchangeBitbnsButton);
+        ToggleButton exchangeZebpayButton = findViewById(R.id.zebpayExchangeButton);
+        allExchangesButton.add(exchangeZebpayButton);
 
         for(ToggleButton toggleButton: allExchangesButton){
             toggleButton.setOnClickListener(this);
