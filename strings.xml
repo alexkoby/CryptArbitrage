@@ -32,6 +32,8 @@
     <string name="exchangeCryptopia">Cryptopia</string>
     <string name="exchangeCEX.IO">CEX.IO</string>
     <string name="exchangeKoinex">Koinex (INR)</string>
+    <string name="exchangeBitBns">bitbns (INR)</string>
+    <string name="exchangeZebpay">zebpay (INR)</string>
     <string name="exchange18">Bitcoin Indonesis</string>
     <string name="on">On</string>
     <string name="off">Off</string>
