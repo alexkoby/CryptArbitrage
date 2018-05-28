@@ -55,6 +55,8 @@ public class HomePage extends Activity implements View.OnClickListener{
     static Exchange cryptopia;
     static Exchange cexIO;
     static Exchange koinex;
+    static Exchange zebpay;
+    static Exchange bitbns;
 
     static DownloadTask taskBitfinex;
     static DownloadTask taskBittrex;
@@ -71,6 +73,9 @@ public class HomePage extends Activity implements View.OnClickListener{
     static DownloadTask taskCryptopia;
     static DownloadTask taskCexIO;
     static DownloadTask taskKoinex;
+    static DownloadTask taskZebpay;
+    static DownloadTask taskBitbns;
+    static DownloadTask taskINRExchangeRate;
 
     static int lastTimeRefreshedMinute;
     static int lastTimeRefreshedHour;
@@ -150,9 +155,17 @@ public class HomePage extends Activity implements View.OnClickListener{
             koinex = new Exchange("Koinex", "lowest_ask", "highest_bid",false,
                     false, true, "vol_24hrs", null, null);
             allPossibleExchanges.add(koinex);
-            isCreatedHomepage = true;
+            zebpay = new Exchange("zebpay", "buy","sell",false,
+                    false, true, "volume", null, null);
+            allPossibleExchanges.add(zebpay);
+            bitbns = new Exchange("bitbns", "lowest_sell_bid","highest_buy_bid", true,
+                    false, true, "volume", null, null);
+            allPossibleExchanges.add(bitbns);
 
             initialzeTasks();
+            retrieveExchangeRates();
+
+            isCreatedHomepage = true;
         }
         //always starts exchanges activity, which starts cryptocurrencies activity, which restarts homepage activity to ensure all data
         //is gotten from saved files and up to date for user
@@ -243,8 +256,8 @@ public class HomePage extends Activity implements View.OnClickListener{
 
     //Creates an Array of URLs and calls downloadtask.execute()
     private void getAsksAndBids(Exchange e){
-        //delete after
-        int counter = 0;
+        //delete after -- converts every coin into JSON format
+/*        int counter = 0;
         for(Exchange exchange: listOfExchanges) {
             System.out.println(exchange.getName());
             for (Coin coin : exchange.getCoins()) {
@@ -256,7 +269,7 @@ public class HomePage extends Activity implements View.OnClickListener{
         }
 
         //end
-
+*/
 
         //System.out.println("Exchange is: " + e.getName());
         String [] APIs = new String [e.getCoins().size() * 3];
@@ -387,6 +400,23 @@ public class HomePage extends Activity implements View.OnClickListener{
                     APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation();
                 }
                 task = HomePage.taskKoinex;
+                break;
+            case "bitbns":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation();
+                    APIs[3 * i + 1] = null;
+                    APIs[3 * i + 2] = null;
+                }
+                task = HomePage.taskBitbns;
+                break;
+
+            case "zebpay":
+                for(int i = 0; i < e.getCoins().size(); i+=1) {
+                    APIs[3 * i] = e.getCoins().get(i).getAbbreviation().concat("/inr");
+                    APIs[3 * i + 1] = e.getCoins().get(i).getAbbreviation().concat("/btc");
+                    APIs[3 * i + 2] = e.getCoins().get(i).getAbbreviation().concat("/eth");
+                }
+                task = HomePage.taskZebpay;
                 break;
         }
         if(task == null) {
@@ -707,6 +737,9 @@ public class HomePage extends Activity implements View.OnClickListener{
         taskCryptopia = new DownloadTask("Label", "https://www.cryptopia.co.nz/api/GetMarkets", cryptopia);
         taskCexIO = new DownloadTask("pair", "https://cex.io/api/tickers/BTC/USD", cexIO);
         taskKoinex = new DownloadTask("stats", "https://koinex.in/api/ticker", koinex);
+        taskBitbns = new DownloadTask(null, "https://bitbns.com/order/getTickerWithVolume/", bitbns);
+        taskZebpay = new DownloadTask(null, "https://www.zebapi.com/api/v1/market/ticker-new/", zebpay);
+        taskINRExchangeRate = new DownloadTask(true, "https://free.currencyconverterapi.com/api/v5/convert?q=INR_USD&compact=y");
     }
 
     //@Override
@@ -767,6 +800,14 @@ public class HomePage extends Activity implements View.OnClickListener{
             case "Koinex":
                 taskKoinex = new DownloadTask("stats", "https://koinex.in/api/ticker", koinex);
                 return taskKoinex;
+            case "zebpay":
+                taskZebpay = new DownloadTask(null, "https://www.zebapi.com/api/v1/market/ticker-new/", zebpay);
+                return taskZebpay;
+            case "bitbns":
+                taskBitbns = new DownloadTask(null, "https://bitbns.com/order/getTickerWithVolume/", bitbns);
+                return taskBitbns;
+
+
         }
         return null;
     }
@@ -803,6 +844,10 @@ public class HomePage extends Activity implements View.OnClickListener{
                 return taskCexIO;
             case "Koinex":
                 return taskKoinex;
+            case "bitbns":
+                return taskBitbns;
+            case "zebpay":
+                return taskZebpay;
         }
         return null;
 
@@ -1010,6 +1055,11 @@ public class HomePage extends Activity implements View.OnClickListener{
         }
 
     }
+
+    public void retrieveExchangeRates(){
+        taskINRExchangeRate.execute();
+    }
+
     @Override
     protected void onDestroy(){
         saveMinGainsInfo();
