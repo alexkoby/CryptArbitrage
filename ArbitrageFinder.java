@@ -413,11 +413,11 @@ public class ArbitrageFinder {
                 }
             }
 
-            if(exchange.getName().equals("Koinex")){
+            if(exchange.getName().equals("Koinex") || exchange.getName().equals("zebpay") || exchange.getName().equals("bitbns")){
                 for(Coin coin: exchange.getCoins()){
-                    coin.setVolumeUSD(coin.getVolumeUSD() * DownloadTask.EXCHANGE_RATE);
-                    coin.setVolumeBTC(coin.getVolumeBTC() * DownloadTask.EXCHANGE_RATE);
-                    coin.setVolumeETH(coin.getVolumeETH() * DownloadTask.EXCHANGE_RATE);
+                    coin.setVolumeUSD(coin.getVolumeUSD() * DownloadTask.exchangeRateINR);
+                    coin.setVolumeBTC(coin.getVolumeBTC() * DownloadTask.exchangeRateINR);
+                    coin.setVolumeETH(coin.getVolumeETH() * DownloadTask.exchangeRateINR);
                 }
             }
         }
