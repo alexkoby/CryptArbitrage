@@ -490,6 +490,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
 
     public String getDialogInfo(Opportunity opportunity){
         StringBuilder stringBuilder = new StringBuilder();
+
+        String lowPriceExchangeName = opportunity.getLowPriceCoinExchange().getExchange().getName();
+        String highPriceExchangeName = opportunity.getHighPriceCoinExchange().getExchange().getName();
         switch (opportunity.getType()){
             case 1:
                 stringBuilder.append("Step1:\nBuy ");
@@ -521,7 +524,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                if(!opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                if(!lowPriceExchangeName.equals("Bitfinex")) {
                     stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
                             getHighPriceCoinExchange().getVolumeUSD()));
                     stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
@@ -566,7 +569,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                if(!highPriceExchangeName.equals("Bitfinex")) {
                     stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
                             getLowPriceCoinExchange().getVolumeUSD()));
                     stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
@@ -610,7 +613,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                if(!highPriceExchangeName.equals("Bitfinex")) {
                     stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
                             getHighPriceCoinExchange().getVolumeUSD()));
                     stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
@@ -654,7 +657,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                if(!highPriceExchangeName.equals("Bitfinex")) {
                     stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
                             getLowPriceCoinExchange().getVolumeUSD()));
                     stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
@@ -683,7 +686,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Bitcoin\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                if(!highPriceExchangeName.equals("Bitfinex")) {
                     stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
                             getHighPriceCoinExchange().getVolumeETH()));
                     stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
@@ -712,7 +715,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" Bitcoin\n\nNote: You may start at any point in this cycle.");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                if(!opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")) {
+                if(!highPriceExchangeName.equals("Bitfinex")) {
                     stringBuilder.append("\n\nStep 1 Volume: $" + doubleToStringFiveSigDigs(opportunity.
                             getHighPriceCoinExchange().getVolumeBTC()));
                     stringBuilder.append("\nStep 2 Volume: $" + doubleToStringFiveSigDigs(opportunity.
@@ -731,13 +734,13 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("Step 1\nBuy ");
                 stringBuilder.append(opportunity.getLowPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getLowPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(lowPriceExchangeName);
                 stringBuilder.append(" for: $");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
-                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Koinex"))
+                if(isIndianExchange(lowPriceExchangeName))
                 {
                     stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
-                            getAskPriceUSD() / DownloadTask.EXCHANGE_RATE)).append(" INR");
+                            getAskPriceUSD() / DownloadTask.exchangeRateINR)).append(" INR");
                 }
                 else{
                     stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
@@ -748,12 +751,12 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getHighPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(highPriceExchangeName);
                 stringBuilder.append(" for: $");
-                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Koinex"))
+                if(isIndianExchange(highPriceExchangeName))
                 {
                     stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
-                            getBidPriceUSD() / DownloadTask.EXCHANGE_RATE)).append(" INR");
+                            getBidPriceUSD() / DownloadTask.exchangeRateINR)).append(" INR");
                 }
                 else{
                     stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
@@ -761,15 +764,15 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\n\nVolume on " + lowPriceExchangeName + ": ");
+                if(lowPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else {
                     stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
                 }
-                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\nVolume on " + highPriceExchangeName + ": ");
+                if(highPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else{
@@ -777,9 +780,8 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
                 stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws." +
                         "\nAlways check the withdrawl fees associated with each exchange and each cryptocurrency.");
-                if(opportunity.getLowPriceCoinExchange().getName().equals("Koinex") ||
-                        opportunity.getHighPriceCoinExchange().getName().equals("Koinex")){
-                    stringBuilder.append("\n\nAssumes exchange rate USD/INR is: " + DownloadTask.EXCHANGE_RATE);
+                if(isIndianExchange(lowPriceExchangeName) || isIndianExchange(highPriceExchangeName)){
+                    stringBuilder.append("\n\nAssumes exchange rate USD/INR is: " + DownloadTask.exchangeRateINR);
                 }
                 return stringBuilder.toString();
 
@@ -787,28 +789,28 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("Step 1\nBuy ");
                 stringBuilder.append(opportunity.getLowPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getLowPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(lowPriceExchangeName);
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceBTC()));
                 stringBuilder.append(" Bitcoin\n\nStep 2:\n");
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getHighPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(highPriceExchangeName);
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceBTC()));
                 stringBuilder.append(" Bitcoin");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\n\nVolume on " + lowPriceExchangeName + ": ");
+                if(lowPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else{
                     stringBuilder.append("$" +round(opportunity.getLowPriceCoinExchange().getVolumeBTC()));
                 }
-                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\nVolume on " + highPriceExchangeName + ": ");
+                if(highPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else {
@@ -822,28 +824,28 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("Step 1\nBuy ");
                 stringBuilder.append(opportunity.getLowPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getLowPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(lowPriceExchangeName);
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceETH()));
                 stringBuilder.append(" Ethereum\n\nStep 2:\n");
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getHighPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(highPriceExchangeName);
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceETH()));
                 stringBuilder.append(" Ethereum");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\n\nVolume on " + lowPriceExchangeName + ": ");
+                if(lowPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else {
                     stringBuilder.append("$" +round(opportunity.getLowPriceCoinExchange().getVolumeETH()));
                 }
-                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\nVolume on " + highPriceExchangeName + ": ");
+                if(highPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else{
@@ -857,7 +859,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("Step 1\nBuy ");
                 stringBuilder.append(opportunity.getLowPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getLowPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(lowPriceExchangeName);
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
                 stringBuilder.append(" USDT");
@@ -865,21 +867,21 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
-                stringBuilder.append(opportunity.getHighPriceCoinExchange().getExchange().getName());
+                stringBuilder.append(highPriceExchangeName);
                 stringBuilder.append(" for: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceUSD()));
                 stringBuilder.append(" USDT");
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
-                stringBuilder.append("\n\nVolume on " + opportunity.getLowPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getLowPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\n\nVolume on " + lowPriceExchangeName + ": ");
+                if(lowPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else {
                     stringBuilder.append("$" + round(opportunity.getLowPriceCoinExchange().getVolumeUSD()));
                 }
-                stringBuilder.append("\nVolume on " + opportunity.getHighPriceCoinExchange().getExchange().getName() + ": ");
-                if(opportunity.getHighPriceCoinExchange().getExchange().getName().equals("Bitfinex")){
+                stringBuilder.append("\nVolume on " + highPriceExchangeName + ": ");
+                if(highPriceExchangeName.equals("Bitfinex")){
                     stringBuilder.append("unknown");
                 }
                 else{
@@ -890,6 +892,10 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 return stringBuilder.toString();
         }
         return null;
+    }
+
+    public boolean isIndianExchange(String name){
+        return(name.equals("Koinex") || name.equals("bitbns") || name.equals("zebpay"));
     }
 
 
