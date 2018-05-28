@@ -30,8 +30,8 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
     private boolean fullAPIWay = false;
     private String apiBase;
     private String findSymbol;
-    static final double EXCHANGE_RATE = .0148;
-
+    static double exchangeRateINR = .0148;
+    private boolean currencyCoverting = false;
     Context context;
 
     private Exchange exchange;
@@ -47,6 +47,11 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
         this.exchange = exchange;
     }
 
+    public DownloadTask(boolean currencyCoverting, String apiBase) {
+        this.apiBase = apiBase;
+        this.currencyCoverting = currencyCoverting;
+    }
+
 
 
 
@@ -56,6 +61,12 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
         //skips BTCBTC, BTCETH, ETHETH - DNE
 
         //System.out.println(exchange.getName());
+        
+        if(currencyCoverting)
+        {
+            getExchangeRate();
+            return "finished";
+        }
 
         LinkedList<String> q1 = new LinkedList<>();
 
@@ -64,12 +75,13 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
         }
         int counter = -1; //specify which arrayList to add results to - explicit for first 3
         //rounds, then rotate
-
-        if (exchange.getName().equals("Bittrex") || exchange.getName().equals("Binance")
-                || exchange.getName().equals("HitBTC") || exchange.getName().equals("Bit-Z") ||
-                exchange.getName().equals("Poloniex") || exchange.getName().equals("Kraken")||
-                exchange.getName().equals("Gate.io") || exchange.getName().equals("Cryptopia") ||
-                exchange.getName().equals("CEX.IO") || exchange.getName().equals("Koinex")) {
+        String exchangeName = exchange.getName();
+        if (exchangeName.equals("Bittrex") || exchangeName.equals("Binance")
+                || exchangeName.equals("HitBTC") || exchangeName.equals("Bit-Z") ||
+                exchangeName.equals("Poloniex") || exchangeName.equals("Kraken")||
+                exchangeName.equals("Gate.io") || exchangeName.equals("Cryptopia") ||
+                exchangeName.equals("CEX.IO") || exchangeName.equals("Koinex")
+                || exchangeName.equals("bitbns")) {
             System.out.println("Going Full API WAY");
             fullAPIWay = true;
             fullAPIWay(q1);
@@ -211,6 +223,11 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+        if(this.currencyCoverting)
+        {
+            System.out.println("Exchange Rate is: " + DownloadTask.exchangeRateINR);
+            return;
+        }
         if(fullAPIWay){
             publishProgress(HomePage.progressBar.getProgress() + 3);
         }
@@ -245,25 +262,25 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                     coin.setBidPriceETH(-1.0);
                 }
             }
-            if(exchange.getName().equals("Koinex"))
+            if(exchange.getName().equals("Koinex") || exchange.getName().equals("bitbns") || exchange.getName().equals("zebpay"))
             {
                 for(Coin coin: exchange.getCoins())
                 {
-                    coin.setBidPriceUSD(coin.getBidPriceUSD() * EXCHANGE_RATE);
-                    coin.setAskPriceUSD(coin.getAskPriceUSD() * EXCHANGE_RATE);
-                    coin.setBidPriceBTC(coin.getBidPriceBTC() * EXCHANGE_RATE);
-                    coin.setAskPriceBTC(coin.getAskPriceBTC() * EXCHANGE_RATE);
-                    coin.setBidPriceETH(coin.getBidPriceETH() * EXCHANGE_RATE);
-                    coin.setAskPriceETH(coin.getAskPriceETH() * EXCHANGE_RATE);
+                    coin.setBidPriceUSD(coin.getBidPriceUSD() * exchangeRateINR);
+                    coin.setAskPriceUSD(coin.getAskPriceUSD() * exchangeRateINR);
+                    coin.setBidPriceBTC(coin.getBidPriceBTC() * exchangeRateINR);
+                    coin.setAskPriceBTC(coin.getAskPriceBTC() * exchangeRateINR);
+                    coin.setBidPriceETH(coin.getBidPriceETH() * exchangeRateINR);
+                    coin.setAskPriceETH(coin.getAskPriceETH() * exchangeRateINR);
                 }
             }
             exchange.setDataIsFinishedRefreshing(true);
-            /*for(Coin coin: exchange.getCoins()){
+            for(Coin coin: exchange.getCoins()){
                 System.out.print("Name: " + coin.getName() + " Price Ask USD: "
                         + coin.getAskPriceUSD() + " Price Bid USD" + coin.getBidPriceUSD());
                 System.out.println(" Price Ask BTC: " + coin.getAskPriceBTC() + "Price BID BTC" + coin.getBidPriceBTC() +
                         " Price Ask ETH: " + coin.getAskPriceETH() + " Price Bid USD" + coin.getBidPriceETH());
-            }*/
+            }
             if(exchange.getName().equals(HomePage.lastExchange)){
                 HomePage.isInProcessOfRefreshing = false;
                 ArbitrageFinder.getRealVolumeNumbers();
@@ -330,7 +347,8 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
                 bitZWay(queue, jsonObject);
                 return;
             }
-            else if(exchange.getName().equals("Poloniex") || exchange.getName().equals("Gate.io")){
+            else if(exchange.getName().equals("Poloniex") || exchange.getName().equals("Gate.io")
+                    || exchange.getName().equals("bitbns")){
                 jsonObject = new JSONObject(result.toString());
                 bitZWay(queue, jsonObject);
                 return;
@@ -507,6 +525,7 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
 //should still work even if looking for pair that DNE
     private void bitZWay(LinkedList<String> queue, JSONObject jsonObject){
         JSONObject temp;
+        JSONObject tempVolume;
         int counter = -1;
         Coin currentCoin;
         while(!queue.isEmpty()){
@@ -518,25 +537,28 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
             currentCoin = exchange.getCoins().get(counter/3);
             try{
                 temp = jsonObject.getJSONObject(queue.peek());
-
+                tempVolume = temp;
+                if(exchange.getName().equals("bitbns")){
+                    tempVolume = temp.getJSONObject(exchange.getFindVolumeSymbol());
+                }
 
                 if (counter % 3 == 1) {
                     currentCoin.setBidPriceBTC(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceBTC(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
-                    currentCoin.setVolumeBTC(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
+                    currentCoin.setVolumeBTC(Double.parseDouble(tempVolume.getString(exchange.getFindVolumeSymbol())));
                 }
                 //eth pair
                 else if (counter % 3 == 2) {
                     currentCoin.setBidPriceETH(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceETH(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
-                    currentCoin.setVolumeETH(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
+                    currentCoin.setVolumeETH(Double.parseDouble(tempVolume.getString(exchange.getFindVolumeSymbol())));
 
                 }
                 //USDT pair
                 else if (counter % 3 == 0) {
                     currentCoin.setBidPriceUSD(Double.parseDouble(temp.getString(exchange.getBidSymbol())));
                     currentCoin.setAskPriceUSD(Double.parseDouble(temp.getString(exchange.getAskSymbol())));
-                    currentCoin.setVolumeUSD(Double.parseDouble(temp.getString(exchange.getFindVolumeSymbol())));
+                    currentCoin.setVolumeUSD(Double.parseDouble(tempVolume.getString(exchange.getFindVolumeSymbol())));
                 }
                 queue.remove();
 
@@ -750,6 +772,38 @@ public class DownloadTask extends AsyncTask<Context,Integer,String> {
             }
         }
         return Double.parseDouble(s.substring(spotComma + 2, spotSecondQuote));
+    }
+    
+    public void getExchangeRate()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            url = new URL(this.apiBase);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setConnectTimeout(800);
+
+            InputStream in = urlConnection.getInputStream();
+
+            InputStreamReader reader = new InputStreamReader(in);
+
+            int data = reader.read();
+            while (data != -1) {
+                char current = (char) data;
+                stringBuilder.append(current);
+                data = reader.read();
+            }
+            in.close();
+            urlConnection.disconnect();
+
+            JSONObject jsonObject = new JSONObject(stringBuilder.toString());
+            jsonObject = jsonObject.getJSONObject("INR_USD");
+            DownloadTask.exchangeRateINR = Double.parseDouble(jsonObject.getString("val"));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
