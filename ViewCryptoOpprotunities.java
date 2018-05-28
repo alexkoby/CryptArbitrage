@@ -735,15 +735,14 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getLowPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
                 stringBuilder.append(lowPriceExchangeName);
-                stringBuilder.append(" for: $");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
+                stringBuilder.append(" for: ");
                 if(isIndianExchange(lowPriceExchangeName))
                 {
-                    stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
+                    stringBuilder.append("₹").append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
                             getAskPriceUSD() / DownloadTask.exchangeRateINR)).append(" INR");
                 }
                 else{
-                    stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
+                    stringBuilder.append("$").append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
                             getAskPriceUSD())).append(" USD");
                 }
 
@@ -752,14 +751,14 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
                 stringBuilder.append(highPriceExchangeName);
-                stringBuilder.append(" for: $");
+                stringBuilder.append(" for: ");
                 if(isIndianExchange(highPriceExchangeName))
                 {
-                    stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
+                    stringBuilder.append("₹").append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
                             getBidPriceUSD() / DownloadTask.exchangeRateINR)).append(" INR");
                 }
                 else{
-                    stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
+                    stringBuilder.append("$").append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
                             getBidPriceUSD())).append(" USD");
                 }
                 stringBuilder.append("\n\nPercent Profit: ");
@@ -894,7 +893,7 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
         return null;
     }
 
-    public boolean isIndianExchange(String name){
+    public static boolean isIndianExchange(String name){
         return(name.equals("Koinex") || name.equals("bitbns") || name.equals("zebpay"));
     }
 
