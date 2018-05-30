@@ -1,0 +1,30 @@
+coinsBinance = [{name: "Bitcoin}, {name: "Ethereum"}, {name: "Ripple"}];
+
+for(var i = 0; i < coinsBinance.length; i++)
+  {
+  	//console.log("Name is: " + coinsBinance[i].name); //prints Bitcoin Ethereum Ripple and works properly
+	var coin = coinsBinance[i];
+	
+	connection.query("SELECT * FROM practiceone WHERE name = " + JSON.stringify(coin.name) + " LIMIT 1;", function(err, result){
+		if(err)
+		{
+			console.log("ERROR: Line 50" + err);
+			return;
+		}
+		console.log("Coin is: " + coin.name); //PRINTS "RIPPLE" 3 TIMES IN A ROW CONSECUTIVELY WITHOUT OTHER PRINTLINES OCCURING
+    //if nothing was found, add it to database
+		if(result.length == 0)
+		{
+		  connection.query("INSERT INTO practiceone (name, ticker) VALUES (" + JSON.stringify(coin.name) + ", " + JSON.stringify(coin.ticker) + ");", function(error, resultInside){
+			if(error){
+				console.error("ERROR: Line 58" + error);
+				return;
+			}
+			else
+			{
+				console.error("Added in beggining successfully" + resultInside);
+			}
+		});
+	}
+  });
+ }
