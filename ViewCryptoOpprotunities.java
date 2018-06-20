@@ -860,16 +860,30 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 stringBuilder.append(" on ");
                 stringBuilder.append(lowPriceExchangeName);
                 stringBuilder.append(" for: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().getAskPriceUSD()));
-                stringBuilder.append(" USDT");
+                if(isIndianExchange(lowPriceExchangeName))
+                {
+                    stringBuilder.append("₹").append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
+                            getAskPriceUSD() / DownloadTask.exchangeRateINR)).append(" INR");
+                }
+                else{
+                    stringBuilder.append("$").append(doubleToStringFiveSigDigs(opportunity.getLowPriceCoinExchange().
+                            getAskPriceUSD())).append(" USDT");
+                }
                 stringBuilder.append("\n\nStep 2:\n");
                 stringBuilder.append("Sell ");
                 stringBuilder.append(opportunity.getHighPriceCoinExchange().getName());
                 stringBuilder.append(" on ");
                 stringBuilder.append(highPriceExchangeName);
                 stringBuilder.append(" for: ");
-                stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().getBidPriceUSD()));
-                stringBuilder.append(" USDT");
+                if(isIndianExchange(highPriceExchangeName))
+                {
+                    stringBuilder.append("₹").append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
+                            getBidPriceUSD() / DownloadTask.exchangeRateINR)).append(" INR");
+                }
+                else{
+                    stringBuilder.append("$").append(doubleToStringFiveSigDigs(opportunity.getHighPriceCoinExchange().
+                            getBidPriceUSD())).append(" USDT");
+                }
                 stringBuilder.append("\n\nPercent Profit: ");
                 stringBuilder.append(doubleToStringFiveSigDigs(opportunity.getPercentGain()) + "%");
                 stringBuilder.append("\n\nVolume on " + lowPriceExchangeName + ": ");
@@ -888,6 +902,9 @@ public class ViewCryptoOpprotunities extends Activity implements View.OnClickLis
                 }
                 stringBuilder.append("\n\nAlways check to ensure the wallets on both exchanges work and allow deposits/withdraws." +
                         "\nAlways check the withdrawl fees associated with each exchange and each cryptocurrency.");
+                if(isIndianExchange(lowPriceExchangeName) || isIndianExchange(highPriceExchangeName)){
+                    stringBuilder.append("\n\nAssumes exchange rate USDT/INR is: " + DownloadTask.exchangeRateINR);
+                }
                 return stringBuilder.toString();
         }
         return null;

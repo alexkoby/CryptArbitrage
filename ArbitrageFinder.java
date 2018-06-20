@@ -1,6 +1,8 @@
 package my.awesome.project.cryptarbitrage30;
 
 
+import android.view.View;
+
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
@@ -304,7 +306,8 @@ public class ArbitrageFinder {
         else {
             for (int i = 0; i < listOfCoins.size() - 1; i++) {
                 for (int j = i + 1; j < listOfCoins.size(); j++) {
-                    if (listOfCoins.get(i).getExchange().getIsUSD() && listOfCoins.get(j).getExchange().getIsUSD()
+                    //Both USD Pairs or one USD and one Indian or both Indian Pairs
+                    if (isUSDOrIndian(listOfCoins.get(i).getExchange(), listOfCoins.get(j).getExchange())
                             && listOfCoins.get(i).getVolumeUSD() > HomePage.minimumVolumeUSD
                             && listOfCoins.get(j).getVolumeUSD() > HomePage.minimumVolumeUSD){
                         if (listOfCoins.get(i).getBidPriceUSD() / listOfCoins.get(j).getAskPriceUSD() - 1 >
@@ -318,7 +321,8 @@ public class ArbitrageFinder {
                                     / listOfCoins.get(i).getAskPriceUSD() - 1) * 100, 7, listOfCoins.get(j), listOfCoins.get(i)));
                         }
                     }
-                    else if (listOfCoins.get(i).getExchange().getIsUSD() == listOfCoins.get(j).getExchange().getIsUSD()
+                    //Both are USDT or one is USDT and the other is Indian --- False if both are indian -- don't want to double count
+                    if (isUSDTOrIndian(listOfCoins.get(i).getExchange(), listOfCoins.get(j).getExchange())
                             && listOfCoins.get(i).getVolumeUSD() > HomePage.minimumVolumeUSD
                             && listOfCoins.get(j).getVolumeUSD() > HomePage.minimumVolumeUSD){
 
@@ -502,4 +506,29 @@ public class ArbitrageFinder {
             return d2;
         }
     }*/
+
+    /**
+     * Returns true if both exchanges are either USD or Indian
+     * @param exchange1 is the first exchange
+     * @param exchange2 is the second exchange
+     * @return returns true if both exchanges are either USD or Indian
+     */
+    private boolean isUSDOrIndian(Exchange exchange1, Exchange exchange2){
+        return (exchange1.getIsUSD() || ViewCryptoOpprotunities.isIndianExchange(exchange1.getName())) && (exchange2.getIsUSD() || ViewCryptoOpprotunities.isIndianExchange(exchange2.getName()));
+    }
+
+    /**
+     * Returns true if one exchange is indian and the other is USDT or both are USDT, returns false if both exchanges are indian
+     * @param exchange1 is the first exchange
+     * @param exchange2 is the second exchange
+     * @return True if one exchange is indian and the other is USDT or both are USDT, returns false if both exchanges are indian
+     */
+    private boolean isUSDTOrIndian(Exchange exchange1, Exchange exchange2){
+        if(ViewCryptoOpprotunities.isIndianExchange(exchange1.getName()) && ViewCryptoOpprotunities.isIndianExchange(exchange2.getName())){
+            return false;
+        }
+        return (!exchange1.getIsUSD() || ViewCryptoOpprotunities.isIndianExchange(exchange1.getName())) && (!exchange2.getIsUSD() || ViewCryptoOpprotunities.isIndianExchange(exchange2.getName()));
+    }
+
+
 }
