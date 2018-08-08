@@ -531,4 +531,8 @@ public class ArbitrageFinder {
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f3e00ca204257a42834f58bc4d67566dd3e874fd
